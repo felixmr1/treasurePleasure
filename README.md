@@ -5,17 +5,19 @@
 - Kurshemsida: http://www.cse.chalmers.se/edu/course/tda367/
 - Trello: https://trello.com/b/1DMSwIxe/oopp
 - Vår slack: https://objektorienteradprog.slack.com/messages/CCMB3E9K9/
+- Concept 1.0: https://docs.google.com/document/d/1NIl7WeYu4tAMQekcdAZwG34ss_kRbImIm0hU9crKP3k/edit?usp=sharing
 
 # Document locations
-## Social contract
+## Requirements and Analysis Document
 ````
-/Documents/socialcontract.md
+/Documents/RAD.pdf (includes User Stories)
 ````
-## Meeting notes
+## System Design Document
 ````
-/Documents/Meetings/
+/Documents/SSD.pdf
 ````
-## Meeting agendas
+
+## Meeting protocols
 ````
 /Documents/Meetings/
 ````
