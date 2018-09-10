@@ -1,9 +1,9 @@
 # Meeting Agenda
 
-Group:
-Date:
-Chair: 
-Participants:
+- Group:
+- Date:
+- Chair: 
+- Participants:
 
 
 ## Objectives (5 min) 
