@@ -1,6 +1,18 @@
 # DIT212/TDA367 Objektorienterat programmeringsprojekt
 
 # Overview
+
+## Veckoplanering
+1. Bestäm projekt, preliminärt GUI, user stories, prototypning, samt workshop Maven/Git
+2. Domänmodell, mer prototypning, samt workshop JUnit/Travis
+3. Designmodell (torrköra User Stories m.h.a. design modell); körbar (ev. i form av tester bara)
+4. Design, MVC
+5. Mer design, servicess hantering av resurser
+6. Bygga på mer funktionalitet, tester, kvalitetsverktyg, dokumentation
+7. (samma som 6.)
+8. (samma som 6.)
+9. Redovisning
+
 ## Links
 - Kurshemsida: http://www.cse.chalmers.se/edu/course/tda367/
 - Trello: https://trello.com/b/1DMSwIxe/oopp
