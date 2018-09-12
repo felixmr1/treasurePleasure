@@ -18,6 +18,7 @@
 - Trello: https://trello.com/b/1DMSwIxe/oopp
 - Vår slack: https://objektorienteradprog.slack.com/messages/CCMB3E9K9/
 - Concept 1.0: https://docs.google.com/document/d/1NIl7WeYu4tAMQekcdAZwG34ss_kRbImIm0hU9crKP3k/edit?usp=sharing
+- Concept GUI MavenApp: https://marvelapp.com/1982i2e6
 
 # Document locations
 ## Requirements and Analysis Document
