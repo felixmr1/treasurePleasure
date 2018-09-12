@@ -19,7 +19,8 @@
 - Vår slack: https://objektorienteradprog.slack.com/messages/CCMB3E9K9/
 - Concept 1.0: https://docs.google.com/document/d/1NIl7WeYu4tAMQekcdAZwG34ss_kRbImIm0hU9crKP3k/edit?usp=sharing
 - Concept GUI MarvelApp: https://marvelapp.com/1982i2e6
-- Google maps api by example app: https://github.com/googlemaps/android-samples
+- Maps SDK for android: https://developers.google.com/maps/documentation/android-sdk/intro
+- Google maps api example app: https://github.com/googlemaps/android-samples
 
 # Document locations
 ## Requirements and Analysis Document
