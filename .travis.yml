@@ -2,13 +2,11 @@ language: android
 before_script: cd MapTestApp
 android:
   components:
-    - build-tools-26.0.2
-    - android-26
-    - sys-img-armeabi-v7a-android-tv-l
+    - build-tools-27.0.2
+    - android-27
     - add-on
     - extra
   licenses:
-    - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
