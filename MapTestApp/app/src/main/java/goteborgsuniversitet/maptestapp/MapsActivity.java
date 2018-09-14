@@ -96,6 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Permission to access the location is missing.
             Toast.makeText(this,"Location permission required", Toast.LENGTH_SHORT).show();
             getLocationPermission();
+            //TODO enable locaion
         } else if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
