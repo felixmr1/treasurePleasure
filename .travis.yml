@@ -2,7 +2,7 @@ language: android
 before_script: cd MapTestApp
 android:
   components:
-    - build-tools-27.0.2
+    - build-tools-27.0.3
     - android-27
     - add-on
     - extra
@@ -12,4 +12,4 @@ android:
     - 'google-gdk-license-.+'
 
 before_install:
-  - yes | sdkmanager --licenses 
+  - yes | sdkmanager "platforms;android-27"
