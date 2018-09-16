@@ -23,4 +23,9 @@ public class ExampleInstrumentedTest {
 
         assertEquals("goteborgsuniversitet.maptestapp", appContext.getPackageName());
     }
+
+    @Test
+    public void addition_isCorrect() {
+        assertEquals(4, 2 + 2);
+    }
 }
