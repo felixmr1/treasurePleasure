@@ -1,5 +1,6 @@
 sudo: false
 language: android
+jdk: oraclejdk8
 
 before_script: 
   - cd MapTestApp
@@ -31,3 +32,7 @@ env:
 
 before_install:
   - yes | sdkmanager "platforms;android-27"
+
+
+script:
+  - ./gradlew connectedAndroidTest
