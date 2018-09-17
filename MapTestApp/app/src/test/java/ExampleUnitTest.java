@@ -1,5 +1,3 @@
-package goteborgsuniversitet.maptestapp;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;
