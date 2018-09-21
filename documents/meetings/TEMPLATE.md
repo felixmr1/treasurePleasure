@@ -11,17 +11,14 @@
 
 # Meeting Agenda
 
-- Group: 9
-- Date: 26/9
-- Chair: David
+- Group:
+- Date:
+- Chair:
 - Participants:
 
 
 ## Objectives (5 min) 
-From last meeting: 
-- We need to discuss further about the trello structure, estimates
-- All members need to add acceptance criteria to their respecitve assignments
-
+- Resolve last issues
 - Short clear descriptions.
 
 
