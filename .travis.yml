@@ -3,7 +3,7 @@ language: android
 jdk: oraclejdk8
 
 before_script: 
-  - cd MapTestApp/app
+  - cd TreasurePleasure/app
   - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-window &
   - android-wait-for-emulator
