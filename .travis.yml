@@ -36,3 +36,6 @@ before_install:
 
 script:
   - ./gradlew connectedAndroidTest
+
+git:
+  quiet: true
