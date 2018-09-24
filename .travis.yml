@@ -38,6 +38,3 @@ script:
   - ./gradlew connectedAndroidTest
   # run tests  against the JVM
   - ./gradlew test
-
-git:
-  quiet: true
