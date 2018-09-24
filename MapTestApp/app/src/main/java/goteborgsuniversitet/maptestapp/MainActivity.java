@@ -1,6 +1,8 @@
 package goteborgsuniversitet.maptestapp;
 
+        //android imports
         import android.content.Intent;
+        import android.support.v4.app.FragmentManager;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.util.Log;
@@ -8,40 +10,83 @@ package goteborgsuniversitet.maptestapp;
         import android.widget.Button;
         import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+        //java imports
+        //java.util.---
+
+        //own classes
+        import goteborgsuniversitet.maptestapp.ui.BackPackFragment;
+        import goteborgsuniversitet.maptestapp.ui.CallBackMethodsInterface;
+
+public class MainActivity extends AppCompatActivity implements CallBackMethodsInterface {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //Get buttons
-        Button testButton = findViewById(R.id.testButton);
-        Button buttonTwo = findViewById(R.id.buttonTwo);
+        Button testButton = findViewById(R.id.map_button);
+        Button showBackPackButton = findViewById(R.id.backpackButton);
 
-        //Make button action using an anonymous class
+        //Hook up button with trigger action using an anonymous class
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TestTag", "testButton clicked"); //logged in logcat
+                Log.i("TAG", "testButton clicked"); //logged in logcat
                 Toast.makeText(getApplicationContext(),"testButtonToast", Toast.LENGTH_SHORT).show();
                 //startActivity()
                 startActivity(new Intent (MainActivity.this, MapsActivity.class));
             }
         });
 
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
+        //trigger to backpack button. Trigger launches a fragment representing the backpack
+        showBackPackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TestTag", "buttonTwo clicked"); //logged in logcat
-                Toast.makeText(getApplicationContext(),"buttonTwoToast", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent (MainActivity.this, MapsActivity2.class));
+                Log.i(TAG, "backpack buttonTwo clicked"); //logged in logcat
+                Toast.makeText(getApplicationContext(),"backpack button toast", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent (MainActivity.this, MapsActivity2.class));
+
+                //show backpack
+                addBackPackFragment();
             }
         });
 
 
-        //switch to mapview
-        //startActivity(new Intent(this, MapsActivity.class));
+
+    }
+
+    /**
+     * Create an instance of activity BackPackFragment,
+     * place fragment in the activity view.
+     *
+     * About fragments:
+     *  modular reusable parts of an activity (sort of like a mini activity),
+     *  must be embedded,
+     *  have their own life cycle.
+     *
+     *  https://developer.android.com/guide/components/fragments
+     */
+    private void addBackPackFragment() {
+        //create instance to display
+        BackPackFragment backPackFragment = new BackPackFragment();
+
+        //the fragment manager can be used to add, remove or replace fragments in an activity at runtime.
+        //Fragments are added into containers, such as a empty frame layout. In this case backPackContainer.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        //Fragment transaction: place backPackFragment in "backpack_container" id defined in associated layout: layout/activity_main.xml,
+        fragmentManager.beginTransaction()
+                .add(R.id.backpack_container, backPackFragment)
+                .commit();
+    }
+
+
+    @Override
+    public void receivedCallBack(String s) {
+        Log.i(TAG, s); //logged in logcat
+        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
     }
 }

@@ -28,6 +28,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //Markers
     private Marker treasureChest;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Permission to access the location is missing.
             Toast.makeText(this,"Location permission required", Toast.LENGTH_SHORT).show();
             getLocationPermission();
-            //TODO enable locaion
+
         } else if (mMap != null) {
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
@@ -106,4 +108,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void getLocationPermission() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1 );
     }
+
+
+    /* TODO in progress
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case LOCATION_PERMISSION_REQUEST_CODE: {
+                //if request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //permission was granted
+                    if (mMap != null) { mMap.setMyLocationEnabled(true);}
+                } else {
+                    //permission denied.
+                    //notify user
+                }
+            }
+        }
+    }
+    */
 }
