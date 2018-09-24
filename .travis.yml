@@ -40,10 +40,7 @@ android:
 
 
 before_script: 
-  - echo "first cd into TreasurePleasure"
   - cd TreasurePleasure
-  - echo "now ls -"
-  - echo $(ls)
   - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-window &
   - android-wait-for-emulator
@@ -52,6 +49,6 @@ before_script:
 script:
   # - ./gradlew clean build
   # run tests against the emulator
-  # - ./gradlew connectedAndroidTest
+  - ./gradlew connectedAndroidTest
   # run tests against the JVM
   - ./gradlew test
