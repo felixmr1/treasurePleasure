@@ -11,8 +11,6 @@ before_script:
 
 android:
   components:
-    - tools
-    - platform-tools
     - build-tools-27.0.3
     - android-27
     - android-$ANDROID_EMULATOR_LEVEL
