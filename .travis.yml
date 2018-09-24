@@ -50,8 +50,8 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew clean build connectedCheck -PdisablePreDex --stacktrace
-  # run tests  against the emulator
-  - ./gradlew connectedAndroidTest
-  # run tests  against the JVM
+  # - ./gradlew clean build
+  # run tests against the emulator
+  # - ./gradlew connectedAndroidTest
+  # run tests against the JVM
   - ./gradlew test
