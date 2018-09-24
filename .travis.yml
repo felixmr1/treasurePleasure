@@ -3,9 +3,9 @@ language: android
 jdk: oraclejdk8
 
 before_script: 
-  - cd TreasurePleasure
+  - cd TreasurePleasure/app
   - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
@@ -13,7 +13,6 @@ android:
   components:
     - tools
     - platform-tools
-    - tools
     - build-tools-27.0.3
     - android-27
     - android-$ANDROID_EMULATOR_LEVEL
