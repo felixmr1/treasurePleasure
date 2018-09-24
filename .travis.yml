@@ -2,6 +2,14 @@ sudo: false
 language: android
 jdk: oraclejdk8
 
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
 before_script: 
   - cd TreasurePleasure/app
   - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
@@ -11,6 +19,8 @@ before_script:
 
 android:
   components:
+    - tools
+    - platform-tools
     - build-tools-27.0.3
     - android-27
     - android-$ANDROID_EMULATOR_LEVEL
@@ -28,10 +38,12 @@ env:
     - ADB_INSTALL_TIMEOUT=20
 
 before_install:
+  - chmod +x gradlew
   - yes | sdkmanager "platforms;android-27"
 
 
 script:
+  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
   # run tests  against the emulator
   - ./gradlew connectedAndroidTest
   # run tests  against the JVM
