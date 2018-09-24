@@ -35,20 +35,23 @@ android:
     - android-27
     - android-$ANDROID_EMULATOR_LEVEL
     - sys-img-armeabi-v7a-google_apis-$ANDROID_EMULATOR_LEVEL
-    
+
   licenses:
     - '.+'
 
 
 before_script: 
+  - echo "first cd into TreasurePleasure"
   - cd TreasurePleasure
+  - echo "now ls -"
+  - echo $(ls)
   - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
 script:
-  - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+  - ./gradlew clean build connectedCheck -PdisablePreDex --stacktrace
   # run tests  against the emulator
   - ./gradlew connectedAndroidTest
   # run tests  against the JVM
