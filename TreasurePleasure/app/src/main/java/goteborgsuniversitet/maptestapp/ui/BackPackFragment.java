@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -49,14 +50,15 @@ public class BackPackFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_backpack, container, false);
 
         //Get reference to the TextView in the fragment_backpack xml layout file
-        TextView clickTextView = (TextView) rootView.findViewById(R.id.backpack_textview);
-
-        clickTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView clickImageView = (ImageView) rootView.findViewById(R.id.imageView11);
+        clickImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickBackpack(view);
             }
         });
+
+        //TODO populate backpack
 
         return  rootView;
     }
