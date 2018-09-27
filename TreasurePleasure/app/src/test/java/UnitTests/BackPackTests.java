@@ -68,7 +68,7 @@ public class BackPackTests {
     @Test
     public void testUpgrade_0_Input(){
 
-        b.upgrade(-1);
+        b.upgrade(0);
         assertEquals(3, b.getMaxSize());
         assertEquals(1, b.getBackPackLevel());
 

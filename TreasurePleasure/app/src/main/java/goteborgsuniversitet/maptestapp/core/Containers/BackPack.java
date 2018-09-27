@@ -2,7 +2,7 @@ package goteborgsuniversitet.maptestapp.core.Containers;
 import java.util.Collection;
 
 /**
- * class invariant : currentSize <= maxSize
+ * class invariant : nOfBusySlots <= maxSize
  */
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
@@ -17,7 +17,7 @@ public class BackPack <T> extends Inventory<T> {
 
     public BackPack(int maxSize){
         super();
-        this. backPackLevel = 1;
+        this.backPackLevel = 1;
         this.maxSize = maxSize;
         this.nOfBusySlots = 0;
     }
