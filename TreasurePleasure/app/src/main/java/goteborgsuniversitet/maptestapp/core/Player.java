@@ -11,11 +11,13 @@ class Player {
     private BackPack backpack;
     //private Chest chest;
     //private UpgradeCenter upgrades;
+    private int dropBonus;
 
 
-    Player(String name, Avatar avatar){
+    Player(String name, Avatar avatar, int dropBonus){
         this.username = username;
         this.avatar = avatar;
+        this.dropBonus = dropBonus;
     }
 
     String getUsername() {
@@ -24,6 +26,10 @@ class Player {
 
     Enum getAvatar() {
         return this.avatar;
+    }
+
+    int getDropBonus() {
+        return this.dropBonus;
     }
 
     void setUsername(String username) {
@@ -36,6 +42,14 @@ class Player {
         } else {
             this.username = username;
         }
+    }
+
+    void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
+    void setDropBonus(int dropBonus) {
+        this.dropBonus = dropBonus;
     }
 
     void addToBackpack(Item i){
@@ -69,10 +83,6 @@ class Player {
             }
         }
          */
-    }
-
-    void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
     }
 
 
