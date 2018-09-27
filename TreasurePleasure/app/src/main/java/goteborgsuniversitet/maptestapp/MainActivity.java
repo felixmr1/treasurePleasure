@@ -8,6 +8,7 @@ package goteborgsuniversitet.maptestapp;
         import android.util.Log;
         import android.view.View;
         import android.widget.Button;
+        import android.widget.FrameLayout;
         import android.widget.Toast;
 
         //java imports
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Hide container for backpack fragment
+        FrameLayout backPackFrame = findViewById(R.id.backpack_container);
+        backPackFrame.setVisibility(View.GONE);
+            //alternatively try (View.GONE)
 
         //Get buttons
         Button testButton = findViewById(R.id.map_button);
@@ -81,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
         fragmentManager.beginTransaction()
                 .add(R.id.backpack_container, backPackFragment)
                 .commit();
+
+        //Make the fragment container visible
+        findViewById(R.id.backpack_container).setVisibility(View.VISIBLE);
     }
 
 

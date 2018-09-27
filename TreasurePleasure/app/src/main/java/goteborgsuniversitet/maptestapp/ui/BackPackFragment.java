@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 
 import goteborgsuniversitet.maptestapp.R;
@@ -77,7 +75,7 @@ public class BackPackFragment extends Fragment implements View.OnClickListener {
 
         //TODO dynamically populate backpack
 
-        return  rootView;
+        return rootView;
     }
 
     public void onClickBackpack(View view, String s) {

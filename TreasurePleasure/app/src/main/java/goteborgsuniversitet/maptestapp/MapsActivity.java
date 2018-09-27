@@ -111,6 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     /* TODO in progress
+    //requires  ActivityCompat.OnRequestPermissionsResultCallback ?
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
