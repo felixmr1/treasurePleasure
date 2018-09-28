@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
 
 
 
-
+    //from CallBackMethodsInterface
     @Override
     public void receivedCallBack(String s) {
         Log.i(TAG, s); //logged in logcat
