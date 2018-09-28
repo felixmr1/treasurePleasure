@@ -8,33 +8,30 @@ package goteborgsuniversitet.maptestapp;
         import android.util.Log;
         import android.view.View;
         import android.widget.Button;
-        import android.widget.FrameLayout;
         import android.widget.Toast;
 
         //java imports
         //java.util.---
 
         //own classes
-        import goteborgsuniversitet.maptestapp.ui.BackPackFragment;
+        import goteborgsuniversitet.maptestapp.ui.BackpackFragment;
         import goteborgsuniversitet.maptestapp.ui.CallBackMethodsInterface;
 
 public class MainActivity extends AppCompatActivity implements CallBackMethodsInterface {
 
     private static final String TAG = "MainActivity";
 
+    //buttons
+    Button showBackPackButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Hide container for backpack fragment
-        FrameLayout backPackFrame = findViewById(R.id.backpack_container);
-        backPackFrame.setVisibility(View.GONE);
-            //alternatively try (View.GONE)
-
         //Get buttons
         Button testButton = findViewById(R.id.map_button);
-        Button showBackPackButton = findViewById(R.id.backpackButton);
+        showBackPackButton = findViewById(R.id.backpackButton);
 
         //Hook up button with trigger action using an anonymous class
         testButton.setOnClickListener(new View.OnClickListener() {
@@ -51,9 +48,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
         showBackPackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "backpack buttonTwo clicked"); //logged in logcat
-                Toast.makeText(getApplicationContext(),"backpack button toast", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent (MainActivity.this, MapsActivity2.class));
+                Log.i(TAG, "showBackPackButton clicked"); //logged in logcat
 
                 //show backpack
                 addBackPackFragment();
@@ -65,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
     }
 
     /**
-     * Create an instance of activity BackPackFragment,
+     * Create an instance of activity BackpackFragment,
      * place fragment in the activity view.
      *
      * About fragments:
@@ -76,21 +71,42 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
      *  https://developer.android.com/guide/components/fragments
      */
     private void addBackPackFragment() {
-        //create instance to display
-        BackPackFragment backPackFragment = new BackPackFragment();
 
         //the fragment manager can be used to add, remove or replace fragments in an activity at runtime.
-        //Fragments are added into containers, such as a empty frame layout. In this case backPackContainer.
+        //Fragments are added into containers, such as a empty frame layout. In this case backpack_container.
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        //Fragment transaction: place backPackFragment in "backpack_container" id defined in associated layout: layout/activity_main.xml,
-        fragmentManager.beginTransaction()
-                .add(R.id.backpack_container, backPackFragment)
-                .commit();
+        //get fragment held by backpack_container
+        BackpackFragment backpackFragment = (BackpackFragment) fragmentManager.findFragmentById(R.id.backpack_container);
 
-        //Make the fragment container visible
-        findViewById(R.id.backpack_container).setVisibility(View.VISIBLE);
+        //check if backpack_container is displaying a fragment.
+        if (backpackFragment == null) {
+            //backpackFragment is not attached
+
+            //create instance of fragment to display
+            backpackFragment = new BackpackFragment();
+
+            //Fragment transaction: place backpackFragment in "backpack_container" id defined in associated layout: layout/activity_main.xml,
+            fragmentManager.beginTransaction()
+                    .add(R.id.backpack_container, backpackFragment)
+                    .commit();
+
+            //update button text because backpack is now showing
+            showBackPackButton.setText("close backpack");
+        } else {
+            //backpackFragment is attached
+
+            //remove the fragment.
+            fragmentManager.beginTransaction()
+                    .remove(backpackFragment)
+                    .commit();
+            showBackPackButton.setText("show backpack");
+        }
     }
+
+
+
+
 
 
     @Override
