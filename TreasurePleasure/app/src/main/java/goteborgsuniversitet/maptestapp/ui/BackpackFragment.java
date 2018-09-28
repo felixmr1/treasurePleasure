@@ -13,13 +13,13 @@ import goteborgsuniversitet.maptestapp.R;
 
 //Fragments must be embedded in a host activity
 
-public class BackPackFragment extends Fragment implements View.OnClickListener {
+public class BackpackFragment extends Fragment implements View.OnClickListener {
 
     //make reference to interface in order to check that the containing activity implements given interface
     CallBackMethodsInterface callBackMethodsInterface;
 
     //must have a constructor
-    public BackPackFragment (){
+    public BackpackFragment(){
     }
 
     //ensure container activity has implemented callback interface
