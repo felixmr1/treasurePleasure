@@ -1,14 +1,16 @@
 package goteborgsuniversitet.maptestapp.core.Containers;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * class invariant : nOfBusySlots <= maxSize
- */
+ **/
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-public class BackPack <T> extends Inventory<T> {
+public class BackPack <T> implements Inventory<T> {
 
-    private boolean wasSuccesful;
+    private List<T> items;
+
     private int backPackLevel;
     private int maxSize;
     private int nOfBusySlots;
@@ -16,7 +18,8 @@ public class BackPack <T> extends Inventory<T> {
 
 
     public BackPack(int maxSize){
-        super();
+        this.items = new ArrayList<>(maxSize);
+
         this.backPackLevel = 1;
         this.maxSize = maxSize;
         this.nOfBusySlots = 0;
@@ -39,26 +42,29 @@ public class BackPack <T> extends Inventory<T> {
 
 
     @Override
-    public boolean appendTo(T item) {
+    public void appendTo(T item) throws Exception {
 
         if(nOfBusySlots < maxSize){
-            slots.add(item);
+            items.add(item);
             nOfBusySlots ++;
-
-            return true;
 
         }
         else {
-            return false;}
+
+            throw new Exception();
+
+        }
+
+    }
+
+    @Override
+    public void remove(T item) throws Exception {
 
     }
 
 
-
-
-
-    public Collection<T> getAllSlots(){
-        return this.slots;
+    public List<T> getAllItems(){
+        return this.items;
     }
 
     public boolean isFull(){

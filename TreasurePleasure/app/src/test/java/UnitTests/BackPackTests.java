@@ -77,48 +77,26 @@ public class BackPackTests {
 
     }
 
-
-    /**
-     * checks that appendTo returns correct boolean
-     */
-    @Test public void testAppend_output_true(){
-
-       assertEquals(0, b.getnOfBusySlots());
-       assertTrue(b.appendTo(item));
-
-       testClassInvariant();
-
-
-
-    }
-
-
-    @Test
-    public void test_append_output_false(){
-
-        b.appendTo(item);
-        b.appendTo(item2);
-        b.appendTo(item3);
-
-        assertFalse(b.appendTo(item4));
-
-        testClassInvariant();
-
-    }
-
-
-
     @Test
     public void test_appended_value_does_not_exist(){
         Collection slots;
 
-        b.appendTo(item);
-        b.appendTo(item2);
-        b.appendTo(item3);
 
-        b.appendTo(item4);
+        try {
+            b.appendTo(item);
+            b.appendTo(item2);
+            b.appendTo(item3);
 
-        slots = b.getAllSlots();
+            b.appendTo(item4);
+
+        } catch (Exception e) {
+
+            System.out.println("IM AN EXCEPTION");
+
+        }
+
+
+        slots = b.getAllItems();
         assertFalse(slots.contains(item4));
 
     }
@@ -129,8 +107,12 @@ public class BackPackTests {
         List slots;
 
 
-        b.appendTo(item);
-        slots = (List) b.getAllSlots();
+        try {
+            b.appendTo(item);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        slots = b.getAllItems();
         assertTrue(slots.contains(item));
 
     }

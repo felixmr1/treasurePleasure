@@ -4,22 +4,9 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Inventory<T> {
+public interface  Inventory<T> {
 
-    Collection<T> slots;
-
-    Inventory(){
-        slots =  new ArrayList();
-
-    }
-
-    public abstract boolean appendTo(T item);
-
-
-
-
-
-
-
+     void appendTo(T item) throws Exception;
+     void remove (T item) throws Exception;
 
 }

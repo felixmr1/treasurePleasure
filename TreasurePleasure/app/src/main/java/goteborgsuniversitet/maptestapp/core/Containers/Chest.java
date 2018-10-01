@@ -1,24 +1,29 @@
 package goteborgsuniversitet.maptestapp.core.Containers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by John on 2018-09-24.
 */
 
-public class Chest<T>  extends Inventory<T> {
+public class Chest<T>  implements Inventory<T> {
 
 
     Chest(){
-        this.slots = new ArrayList<>();
+
 
     }
 
 
+    @Override
+    public void appendTo(T item) throws Exception {
 
+    }
 
     @Override
-    public boolean appendTo(T item) {
-        return false;
+    public void remove(T item) {
+
     }
 }
