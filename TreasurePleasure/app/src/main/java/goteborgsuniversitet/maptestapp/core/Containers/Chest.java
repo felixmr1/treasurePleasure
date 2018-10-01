@@ -26,4 +26,9 @@ public class Chest<T>  implements Inventory<T> {
     public void remove(T item) {
 
     }
+
+    @Override
+    public List<T> getAllItems() {
+        return null;
+    }
 }

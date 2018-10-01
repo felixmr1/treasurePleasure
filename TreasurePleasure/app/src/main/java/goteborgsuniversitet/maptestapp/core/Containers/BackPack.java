@@ -31,13 +31,10 @@ public class BackPack <T> implements Inventory<T> {
      * @param nOfMoreSlots int > 0, if given negative input it will not mutate the object in any way
      */
     public void upgrade(int nOfMoreSlots){
-
         if(nOfMoreSlots > 0) {
-
             this.maxSize = maxSize + nOfMoreSlots;
             this.backPackLevel++;
         }
-
     }
 
 
@@ -47,14 +44,10 @@ public class BackPack <T> implements Inventory<T> {
         if(nOfBusySlots < maxSize){
             items.add(item);
             nOfBusySlots ++;
-
         }
         else {
-
             throw new Exception();
-
         }
-
     }
 
     @Override
@@ -74,6 +67,8 @@ public class BackPack <T> implements Inventory<T> {
     public boolean isEmpty(){
         return (nOfBusySlots == 0);
     }
+
+    public int getnOfEmptySlots(){return (maxSize - items.size());}
 
     public int getnOfBusySlots(){
         return nOfBusySlots;

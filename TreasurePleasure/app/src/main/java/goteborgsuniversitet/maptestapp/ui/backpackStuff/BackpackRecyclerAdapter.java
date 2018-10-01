@@ -8,11 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import goteborgsuniversitet.maptestapp.R;
 
 public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecyclerAdapter.MyViewHolder> {
-    private ArrayList<BackpackItemDummy> mItemsInBackPack;
+    private List<BackpackItemDummy> mItemsInBackPack;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -28,7 +29,7 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
         }
     }
 
-    public BackpackRecyclerAdapter(ArrayList<BackpackItemDummy> itemsInBackpackList) {
+    public BackpackRecyclerAdapter(List<BackpackItemDummy> itemsInBackpackList) {
         this.mItemsInBackPack = itemsInBackpackList;
     }
     // Create new views (invoked by the layout manager)
