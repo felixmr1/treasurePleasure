@@ -1,5 +1,7 @@
 package goteborgsuniversitet.maptestapp.ui.backpackStuff;
 
+//THIS IS A TEMPORARY CLASS REPRESENTING ITEM
+//TODO REPLACE WITH REAL THING
 public class BackpackItemDummy {
     private int mImageResource;
     private int mValue;

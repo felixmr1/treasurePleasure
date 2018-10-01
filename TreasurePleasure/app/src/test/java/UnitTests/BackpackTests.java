@@ -6,9 +6,7 @@ import org.junit.Test;
 import java.util.Collection;
 import java.util.List;
 
-import goteborgsuniversitet.maptestapp.core.Containers.BackPack;
-import goteborgsuniversitet.maptestapp.core.Item;
-import goteborgsuniversitet.maptestapp.core.Valuable;
+import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,8 +14,8 @@ import static org.junit.Assert.assertTrue;
 
 
 
-public class BackPackTests {
-    BackPack<Object> b;
+public class BackpackTests {
+    Backpack<Object> b;
     Object item;
     Object item2;
     Object item3;
@@ -26,7 +24,7 @@ public class BackPackTests {
 
     @Before
     public void initBackPack(){
-        b = new BackPack<Object>(3);
+        b = new Backpack<Object>(3);
         item = new Object();
         item2 = new Object();
         item3 = new Object();

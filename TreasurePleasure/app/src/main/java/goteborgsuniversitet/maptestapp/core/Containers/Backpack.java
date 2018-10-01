@@ -7,7 +7,7 @@ import java.util.List;
  **/
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-public class BackPack <T> implements Inventory<T> {
+public class Backpack<T> implements Inventory<T> {
 
     private List<T> items;
 
@@ -17,7 +17,7 @@ public class BackPack <T> implements Inventory<T> {
 
 
 
-    public BackPack(int maxSize){
+    public Backpack(int maxSize){
         this.items = new ArrayList<>(maxSize);
 
         this.backPackLevel = 1;

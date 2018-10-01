@@ -3,7 +3,6 @@ package goteborgsuniversitet.maptestapp;
         //android imports
         import android.content.Intent;
         import android.support.v4.app.FragmentManager;
-        import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.util.Log;
@@ -12,20 +11,17 @@ package goteborgsuniversitet.maptestapp;
         import android.widget.Toast;
 
         //java imports
-        import java.util.ArrayList;
         import java.util.List;
 
         //own classes
-        import goteborgsuniversitet.maptestapp.core.Containers.BackPack;
-        import goteborgsuniversitet.maptestapp.ui.CallBackMethodsInterface;
+        import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
         import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
         import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackRecyclerViewFragment;
 
-public class MainActivity extends AppCompatActivity implements CallBackMethodsInterface {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
-    public BackPack<BackpackItemDummy> backPack;
+    public Backpack<BackpackItemDummy> backpackItemsList;
 
     //buttons
     Button showBackPackButton;
@@ -36,14 +32,12 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
         setContentView(R.layout.activity_main);
 
 
-        this.backPack = new BackPack<>(5);
+        //instantiate and populate backpack //TODO should not be instantiated nor populated here
+        backpackItemsList = new Backpack<>(5);
         try {
-            backPack.appendTo(new BackpackItemDummy(R.drawable.gem,5));
-
+            backpackItemsList.appendTo(new BackpackItemDummy(R.drawable.gem,5));
         } catch (Exception e) {
-
             Toast.makeText(getApplicationContext(),"CANT ADD TO EMPTY BACKPACK", Toast.LENGTH_SHORT).show();
-
         }
 
 
@@ -69,17 +63,13 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
                 Log.i(TAG, "showBackPackButton clicked"); //logged in logcat
 
                 //show backpack
-                addBackPackFragment( backPack.getAllItems(), backPack.getnOfEmptySlots() );
+                addBackPackFragment( backpackItemsList.getAllItems(), backpackItemsList.getnOfEmptySlots() );
             }
         });
-
-
-
     }
 
-    //OLD FRAGMENT
     /**
-     * Create an instance of activity BackpackFragment,
+     * Create an instance of activity BackpackRecyclerViewFragment,
      * place fragment in the activity view.
      *
      * About fragments:
@@ -89,9 +79,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
      *
      *  https://developer.android.com/guide/components/fragments
      */
-
-
-    private void addBackPackFragment(List inv, int emptySlots) {
+    private void addBackPackFragment(List backpackContentList, int backpackAvailableSlots) {
 
         //the fragment manager can be used to add, remove or replace fragments in an activity at runtime.
         //Fragments are added into containers, such as a empty frame layout. In this case backpack_container.
@@ -109,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
 
             //pass backpack args to fragment
             //TODO replace with contents from model
-            backpackFragment.setBackpackContent(inv);
-            backpackFragment.setnOfEmptySlots(emptySlots);
+            backpackFragment.setBackpackContent(backpackContentList);
+            backpackFragment.setAvailableSlots(backpackAvailableSlots);
 
             //Fragment transaction: place backpackFragment in "backpack_container" id defined in associated layout: layout/activity_main.xml,
             fragmentManager.beginTransaction()
@@ -129,25 +117,4 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
             showBackPackButton.setText("show backpack");
         }
     }
-
-
-
-
-
-    //from CallBackMethodsInterface
-    @Override
-    public void receivedCallBack(String s) {
-        Log.i(TAG, s); //logged in logcat
-        Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
-    }
-
-    //TODO replace with backpack items from model
-    private ArrayList<BackpackItemDummy> createDummyItemList() {
-        ArrayList<BackpackItemDummy> itemsInBackpackList = new ArrayList<>();
-        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 100));
-        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 200));
-        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 9001));
-        return itemsInBackpackList;
-    }
-
 }

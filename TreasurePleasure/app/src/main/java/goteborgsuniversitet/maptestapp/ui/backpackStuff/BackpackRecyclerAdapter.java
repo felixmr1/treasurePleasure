@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import goteborgsuniversitet.maptestapp.R;
@@ -32,6 +31,7 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     public BackpackRecyclerAdapter(List<BackpackItemDummy> itemsInBackpackList) {
         this.mItemsInBackPack = itemsInBackpackList;
     }
+
     // Create new views (invoked by the layout manager)
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,9 +44,9 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
+        // get element from your dataset at this position
         BackpackItemDummy currentItem = mItemsInBackPack.get(position);
-        // - replace the contents of the view with that element
+        // replace the contents of the view with that element
         holder.mTextView.setText(String.valueOf(currentItem.getmValue()));
         holder.mImageView.setImageResource(currentItem.getmImageResource());
     }

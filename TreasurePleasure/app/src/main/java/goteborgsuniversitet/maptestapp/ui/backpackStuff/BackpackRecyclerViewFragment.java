@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import goteborgsuniversitet.maptestapp.R;
@@ -19,9 +18,9 @@ public class BackpackRecyclerViewFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    //because the constructor takes no arguments these are setable. Can also be solved using a factory method.
+    //because the constructor cannot take arguments these are setable.
     private List<BackpackItemDummy> backpackContent;
-    private int emptySlots;
+    private int availableSlots;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -41,21 +40,18 @@ public class BackpackRecyclerViewFragment extends Fragment {
         mAdapter = new BackpackRecyclerAdapter(backpackContent);
         mRecyclerView.setAdapter(mAdapter);
 
-        //TODO refactor methods
-
         return rootView;
     }
 
     //check if the backpack has empty slots
     private boolean backpackNotFull () {
-        return (emptySlots > 0);
+        return (availableSlots > 0);
     }
 
     // The backpack ui is supposed to show current content and available slots,
     // populate the backpack with images representing space available
     private void populateEmptySlots() {
-
-        for (int i = 0; i < emptySlots; i++) {
+        for (int i = 0; i < availableSlots; i++) {
             backpackContent.add(new BackpackItemDummy(R.drawable.cobweb, 0));
         }
     }
@@ -65,9 +61,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
         this.backpackContent = backpackContent;
     }
 
-    public void setnOfEmptySlots(int emptySlots) {
-        this.emptySlots = emptySlots;
+    public void setAvailableSlots(int availableSlots) {
+        this.availableSlots = availableSlots;
     }
-
-
 }
