@@ -11,11 +11,13 @@ package goteborgsuniversitet.maptestapp;
         import android.widget.Toast;
 
         //java imports
-        //java.util.---
+        import java.util.ArrayList;
 
         //own classes
         import goteborgsuniversitet.maptestapp.ui.BackpackFragment;
         import goteborgsuniversitet.maptestapp.ui.CallBackMethodsInterface;
+        import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
+        import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackRecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity implements CallBackMethodsInterface {
 
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
 
     }
 
+    //OLD FRAGMENT
     /**
      * Create an instance of activity BackpackFragment,
      * place fragment in the activity view.
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
      *
      *  https://developer.android.com/guide/components/fragments
      */
+    /*
     private void addBackPackFragment() {
 
         //the fragment manager can be used to add, remove or replace fragments in an activity at runtime.
@@ -102,6 +106,45 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
                     .commit();
             showBackPackButton.setText("show backpack");
         }
+    }*/
+
+    private void addBackPackFragment() {
+
+        //the fragment manager can be used to add, remove or replace fragments in an activity at runtime.
+        //Fragments are added into containers, such as a empty frame layout. In this case backpack_container.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        //get fragment held by backpack_container
+        BackpackRecyclerViewFragment backpackFragment = (BackpackRecyclerViewFragment) fragmentManager.findFragmentById(R.id.backpack_container);
+
+        //check if backpack_container is displaying a fragment.
+        if (backpackFragment == null) {
+            // - backpackFragment is not attached
+
+            //create instance of fragment to display
+            backpackFragment = new BackpackRecyclerViewFragment();
+
+            //pass backpack args to fragment
+            //TODO replace with contents from model
+            backpackFragment.setBackpackContent(createDummyItemList());
+            backpackFragment.setTotalBackpackSlots(7);
+
+            //Fragment transaction: place backpackFragment in "backpack_container" id defined in associated layout: layout/activity_main.xml,
+            fragmentManager.beginTransaction()
+                    .add(R.id.backpack_container, backpackFragment)
+                    .commit();
+
+            //update button text because backpack is now showing
+            showBackPackButton.setText("close backpack");
+        } else {
+            // - backpackFragment is attached
+
+            //remove the fragment.
+            fragmentManager.beginTransaction()
+                    .remove(backpackFragment)
+                    .commit();
+            showBackPackButton.setText("show backpack");
+        }
     }
 
 
@@ -114,4 +157,14 @@ public class MainActivity extends AppCompatActivity implements CallBackMethodsIn
         Log.i(TAG, s); //logged in logcat
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
     }
+
+    //TODO replace with backpack items from model
+    private ArrayList<BackpackItemDummy> createDummyItemList() {
+        ArrayList<BackpackItemDummy> itemsInBackpackList = new ArrayList<>();
+        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 100));
+        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 200));
+        itemsInBackpackList.add(new BackpackItemDummy(R.drawable.gem, 9001));
+        return itemsInBackpackList;
+    }
+
 }
