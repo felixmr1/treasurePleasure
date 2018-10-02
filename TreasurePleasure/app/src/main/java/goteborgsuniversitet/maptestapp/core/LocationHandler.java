@@ -82,7 +82,8 @@ public class LocationHandler {
         // if (lastLocations.size() > maxLocations)
 
         // Pushes a COPY of existing location
-        this.lastLocations.add(new Location(this.location));
+        if (this.location != null) this.lastLocations.add(new Location(this.location));
+
 
         this.setLongitude(longitude);
         this.setLatitude(latitude);
