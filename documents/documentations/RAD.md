@@ -1,4 +1,4 @@
-## Concept:
+### Concept:
 
 A mobile multiplayer game for Android devices utilizing Google's geolocation API. It will use the mobile device GPS to locate and pinpoint players on a shared map where they can explore a virtual world and capture various objects and artifacts. Collectables are shown on the map and collected when stepped on, they have different values and can be combined and crafted into jewelries.
 
@@ -7,7 +7,7 @@ Each player has a backpack with a maximum capacity, when the capacity is full th
 Players get to place their treasure chest and jewelcraft on the map with a minimum distance (e.g. 200m) between them. This promotes fairness and whilst still encouraging physical activity.
 
 
-## Epics / User Stories (example):
+### Epics / User Stories (example):
 
 See Trello for user stories.
 
@@ -25,7 +25,7 @@ As a player I want to set a player name and a avatar/picture that is represented
 As a developer I want to identify user id’s by either a register system or by automating a unique id for each unique device (user identification)
 As a player I don’t want to see inactive players on my map (cleanliness)
 
-## Wordlist:
+### Wordlist:
 
 - The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
 
