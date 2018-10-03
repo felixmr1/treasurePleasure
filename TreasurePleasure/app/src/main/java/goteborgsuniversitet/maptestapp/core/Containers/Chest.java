@@ -18,12 +18,14 @@ public class Chest<T>  implements Inventory<T> {
 
 
     @Override
-    public void appendTo(T item) throws Exception {
+    public void add(T item) throws Exception {
 
     }
 
+
+
     @Override
-    public void remove(T item) {
+    public void removeAll() throws Exception {
 
     }
 

@@ -38,7 +38,7 @@ public class Backpack<T> implements Inventory<T> {
 
 
   @Override
-  public void appendTo(T item) throws Exception {
+  public void add(T item) throws Exception {
 
     if (nOfBusySlots < maxSize) {
       items.add(item);
@@ -48,8 +48,15 @@ public class Backpack<T> implements Inventory<T> {
     }
   }
 
+
   @Override
-  public void remove(T item) throws Exception {
+  public void removeAll() {
+
+    System.out.println(nOfBusySlots);
+
+      this.items = new ArrayList<>(0);
+      nOfBusySlots = 0;
+
 
   }
 
