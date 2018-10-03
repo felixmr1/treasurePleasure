@@ -59,6 +59,9 @@ public class LocationHandlerUnitTest {
 
         location = location1.getLastLocations(1).get(0);
 
+      System.out.println(location.getLongitude());
+      System.out.println(firstLong);
+
         assertTrue(location.getLongitude() == firstLong);
         assertTrue(location.getLatitude() == firstLat);
         assertTrue(location.getTime() == firstTimeStamp);
