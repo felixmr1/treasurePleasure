@@ -1,16 +1,12 @@
 package goteborgsuniversitet.maptestapp.core;
 
-enum ItemType {
-    DIAMOND,
-    GOLD,
-    STONE
-}
+import goteborgsuniversitet.maptestapp.core.Containers.ItemType;
 
 public class Item {
     private int value;
     private ItemType type;
 
-    Item(ItemType type, int value){
+    public Item(ItemType type, int value){
         this.type = type;
         this.value = value;
     }

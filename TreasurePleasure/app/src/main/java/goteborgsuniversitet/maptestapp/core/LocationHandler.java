@@ -112,6 +112,10 @@ public class LocationHandler {
     this.location = new Location(lh.location);
   }
 
+  public LocationHandler(double longitude, double latitude) {
+    this.location = new Location(longitude, latitude);
+  }
+
   public Location getLocation() {
     return this.location;
   }
