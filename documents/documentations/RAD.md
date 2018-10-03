@@ -27,23 +27,26 @@ As a player I don’t want to see inactive players on my map (cleanliness)
 
 ## Dictionary:
 
-- Map: The map is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings.
+- The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
 
-- Player: A player is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
+- A **player** is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
 
-- Collectables: Randomly spawned items on the map that can be picked up by players. These items is shared/same for all players so the one that picks an item up first gets it. There is always a certain number of collectables available, after one is picked up a new one is randomly spawned. Items have different value and size/weight depending on how rare they are.
+- **Collectables** are randomly spawned items on the map. Collectables can be interacted with by players, and collected if the player is close enough to the collectable. These items are shared for all players so the one that picks an item up first gets it, and the collectable is removed from the global map. There is always a certain amount of collectables available, when one is collected a new collectable is randomly spawned.
 
-- Item Pickup - When an item is picked up the player is prompted with a screen with details about the item.
+- A **item** is a valueble in the game. There are different items and each item has a value and a unique type/id. The type can for example be diamond and gold.
 
+- A **backpack** is a local inventory that every player carries with them. Backpacks are unique to each player and can only carry a limited amount of items in them. When a players backpack is full the player has to empty it to his/hers tresure chest.
+
+- A **Treasure chest** is stationary inventory with unlimited size. A player has one unique treasure chest that the player choses where to place when first starting the game. When a player empty his/hers backpack into the treasure chest a total value is calculated and dispalyed.
+
+- A **shop** is a way for the player to buy a higher value multiplier. The value mulitplier increases the value of collected items from the map.
+
+- A **score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
+
+- **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
+
+### Future implementations
 - Settings - Here one can access the highscore or change name and avatar.
-
-- Backpack - Each player has a backpack with a capacity, when the backpack is full no more items can be picked up. The backpack can be emptied at any point at the players treasure chest.
-
-- Treasure chest - Each player gets to place a treasure chest on the map at the start of each season. It contains all of the items that has been collected and been emptied from a players backpack. When a season is over the value contained in the treasure chest is summed up and a winner is determined based of which user has the most value.
-
 - Season - A season is a specified length of e.g. 1 week. When the season has passed the winner is determined and is placed on the Hall of Fame, then a new season starts and all players progresses are reseted.
-
 - Hall of Fame - A list or high score of the best performing players.
-
-- Shop - In the shop collectables can be crafted i.e. traded to either more valuable items or items with equal value but less weight (this mechanic has not been decided). There might also be an option to buy a weapon, armory or tool.
 
