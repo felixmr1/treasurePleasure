@@ -1,14 +1,13 @@
-package goteborgsuniversitet.maptestapp;
+package goteborgsuniversitet.maptestapp.ui;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+import android.util.Log;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -17,55 +16,39 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import goteborgsuniversitet.maptestapp.R;
 
+public class MapFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
+    private static final String TAG = "MapFragment";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private GoogleMap mMap;
 
     //Hardcoded locations
-    private static final LatLng KLATTERLABBET = new LatLng(57.6874709, 11.9782359);
+    private static final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
+    private static final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
 
     //Markers
     private Marker treasureChest;
-
-
+    private Marker gemOne;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
+        getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //change style
         //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setOnMarkerClickListener(this);
 
-   /*     // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        */
-
-        enableMyLocation();
         addMarkersToMap();
-        //mMap.setMyLocationEnabled(true);
+        enableMyLocation();
     }
 
     private void addMarkersToMap() {
@@ -77,41 +60,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
                 .draggable(true));
 
+        //add draggable marker. long press to drag
+        gemOne = mMap.addMarker(new MarkerOptions()
+                .position(DELTAPARKEN)
+                .title("1st gem")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny)));
+
     }
 
     private void enableMyLocation() {
         //check if user has granted permission to use fine location:
-/*
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            //permission already granted
-            mMap.setMyLocationEnabled(true);
-        } else {
-            // Show rationale and request permission.
-            Toast.makeText(this,"Location permission required", Toast.LENGTH_SHORT).show();
-            getLocationPermission();
-        }
-*/
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission to access the location is missing.
-            Toast.makeText(this,"Location permission required", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getActivity(),"Please provide location permission for app to work properly", Toast.LENGTH_SHORT).show();
             getLocationPermission();
 
         } else if (mMap != null) {
             // Access to the location has been granted to the app.
+
             mMap.setMyLocationEnabled(true);
         }
     }
 
     private void getLocationPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1 );
+        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1 );
     }
 
-
-    /* TODO in progress
-    //requires  ActivityCompat.OnRequestPermissionsResultCallback ?
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -123,10 +99,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (mMap != null) { mMap.setMyLocationEnabled(true);}
                 } else {
                     //permission denied.
-                    //notify user
+                    Toast.makeText(getActivity(),"Location permission required", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
-    */
+
+    //handle click events on markers
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        if (marker.equals(gemOne)) {
+            //doStuff
+        }
+
+        if (marker.equals(treasureChest)) {
+            //doOtherStuff
+        }
+
+        Toast.makeText(getActivity(), "JAY, clicking works" + marker.getTitle(),Toast.LENGTH_SHORT).show();
+
+        // We return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false;
+    }
+
 }
