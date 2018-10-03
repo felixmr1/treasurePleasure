@@ -2,18 +2,13 @@ package goteborgsuniversitet.maptestapp.ui.Presenters;
 
 import android.view.View;
 import goteborgsuniversitet.maptestapp.core.Player;
+import goteborgsuniversitet.maptestapp.core.TreasurePleasure;
 
 public class BackpackPresenter {
 
-  private Player player;
-  private View view;
 
-
-
-
-
-
-
+  View view;
+  TreasurePleasure model;
 
 
 }
