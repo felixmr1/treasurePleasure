@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         //instantiate and populate backpack //TODO should not be instantiated nor populated here
         backpackItemsList = new Backpack<>(5);
         try {
-            backpackItemsList.appendTo(new BackpackItemDummy(R.drawable.gem,5));
+            backpackItemsList.add(new BackpackItemDummy(R.drawable.gem,5));
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(),"CANT ADD TO EMPTY BACKPACK", Toast.LENGTH_SHORT).show();
         }
