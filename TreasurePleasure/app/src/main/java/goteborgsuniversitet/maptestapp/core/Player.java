@@ -4,6 +4,11 @@ package goteborgsuniversitet.maptestapp.core;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+enum Avatar {
+    MAN,
+    WOMAN,
+}
+
 class Player {
 
     private String username;
