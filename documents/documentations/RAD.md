@@ -34,22 +34,53 @@ The application can be used to encourage a group of people to become more active
 
 - **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
 
+#### Future implementations
+- **Settings** - Here one can access the highscore or change name and avatar.
+- **Hall of Fame** - A list or high score of the best performing players.
+
+
 ## 2 Requirements
 
-### 2.1 User Stories
+### 2.1 Epics & User Stories
 
-See Trello for user stories.
+The **bold** items are Epics and the sub-items are User Stories
+
+**1. As a player I want to see a map pinpointing my location and other objects location so that I get a feel for the virtual reality.**
+
+    1.1. As a player, I want my location to be displayed on a map so that I know where I am.
+    1.2. As a player, I want objects to have a location; so that I know where to find them.
+
+**2. As a player I want to be able to collect and store items. - Because I'm a hoarder.**
+    
+    2.1 As a player, I want to be able to pickup items that I'm near; because items are valuable to me.
+    2.2 As a player, I want to be able to see how many items I'm currently carrying, and how many more items I can collect before my backpack is full. - So that I can plan my walk.
+    2.3 As a player, I want a storage chest, with unlimited capacity, to unload my backpack contents into. - So that I can save all my valuables.
+
+**3. As a player I want to be able to buy upgrades for a more dynamic experience.**
+
+    3.1 As a player, I want to be able to improve my character with drop-bonuses. This will add a sense of progress to my game experience.
+    3.2 As a player, I want to be able to visit an upgrade center, where I can spend items (or item value) in exchange for bonuses.
+    
+**4. As a user I want to be able to customize my profile to get a more personalized experience.**
+
+    4.1 As a player I need a player class so that I can get a backpack, chest and upgrade center.
+    4.2 As a player I want a nickname and avatar. This will add flavour to the game.
+
+**5. As a player I want to compete with other players so that I'm motivated to continue playing.**
+
+    5.1 As a new player I want the game to have seasons with certain duration so that a winner is determined and everything resets and gives equal opportunities to all.
+    5.2 As a player I want to be able to see my and others current score to see how well I'm doing.
+    5.3 As a player I want to see the history of who has won previous season in case I am on that scoreboard.
 
 ### 2.2 User interface
 
+The main view is a map where various objects are displayed. The user of the application can interact with these objects if they are close enough, if not then they have to move to get closer to them. If e.g. a player is close enough to an item that is on the map the user can click on this item to collect it. The user can also interact with his or her chest and shop, where items can be dropped of or traded for increased drop rate.
+
+![Concept user interface](../images/concept-interface.png)
+
 ## 3 Domain model
 
+![Domain model](../diagrammes/DomainModel/domain3.0.png)
+
 ### 3.1 Class responsibilites
-
-
-
-### Future implementations
-- Settings - Here one can access the highscore or change name and avatar.
-- Season - A season is a specified length of e.g. 1 week. When the season has passed the winner is determined and is placed on the Hall of Fame, then a new season starts and all players progresses are reseted.
-- Hall of Fame - A list or high score of the best performing players.
 
