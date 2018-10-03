@@ -27,11 +27,11 @@ As a player I don’t want to see inactive players on my map (cleanliness)
 
 ## Dictionary:
 
-- Map - The map is the base and foreground of the whole game, other view like the Hall of Fame, Item Pickup Screen or Settings might appear on top of it.
+- Map: The map is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings.
 
-- Player - A player is any unique user using/playing the app/game
+- Player: A player is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
 
-- Collectables - Randomly spawned items on the map that can be picked up by players. These items is shared/same for all players so the one that picks an item up first gets it. There is always a certain number of collectables available, after one is picked up a new one is randomly spawned. Items have different value and size/weight depending on how rare they are.
+- Collectables: Randomly spawned items on the map that can be picked up by players. These items is shared/same for all players so the one that picks an item up first gets it. There is always a certain number of collectables available, after one is picked up a new one is randomly spawned. Items have different value and size/weight depending on how rare they are.
 
 - Item Pickup - When an item is picked up the player is prompted with a screen with details about the item.
 
