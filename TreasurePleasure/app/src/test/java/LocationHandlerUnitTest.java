@@ -78,6 +78,33 @@ public class LocationHandlerUnitTest {
     }
 
     @Test
+    public void locationNotCloseEnough() {
+        double long1 = 100;
+        double lat1 = 100;
+        double long2 = 10022;
+        double lat2 = 10023;
+
+        location1.updateLocation(long1, lat1);
+        location2.updateLocation(long2, lat2);
+
+        assertFalse(location1.isCloseEnough(location2));
+    }
+
+
+    @Test
+    public void updateMaxDistance() {
+        double long1 = 10020;
+        double lat1 = 10021;
+        double long2 = 10022;
+        double lat2 = 10023;
+
+        location1.updateLocation(long1, lat1);
+        location2.updateLocation(long2, lat2);
+
+
+    }
+
+    @Test
     public void updateWithFailedLocation() {
         /* TODO: ADD A FAILED LOCATION AND IT SHOULD THROW ERROR */
     }

@@ -14,6 +14,7 @@ public class LocationHandler {
     private LocationManager locationManager;
     private Location location; // getLongitude()
     private ArrayList<Location> lastLocations = new ArrayList<>();
+    private double maxInteractionDistance = 10;
    // private double longitude = location.getLongitude();
    // private double latitude = location.getLatitude();
    // private long time = location.getTime();
@@ -31,7 +32,14 @@ public class LocationHandler {
         if (!this.isValidLongitude(longitude1) || !this.isValidLatitude(latitude1) ) throw new IllegalArgumentException("Longitude1 or latitude1 is not a valid coordinate");
         if (!this.isValidLongitude(longitude2) || !this.isValidLatitude(latitude2) ) throw new IllegalArgumentException("Longitude2 or latitude2 is not a valid coordinate");
 
-        return true;
+        double longDiff = Math.abs(longitude1 - longitude2);
+        double latDiff = Math.abs(latitude1 - latitude2);
+
+        double totalDiff = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
+
+
+
+        return totalDiff <= this.maxInteractionDistance;
     }
 
     public boolean isCloseEnough(LocationHandler compareLocation) {
@@ -42,14 +50,6 @@ public class LocationHandler {
 
         return this.isCloseEnough(myLong, myLat, incLong, incLat);
     }
-
-    public boolean isCloseEnough(double incLong, double incLat) {
-        final double myLong = this.getLongitude();
-        final double myLat = this.getLatitude();
-
-        return this.isCloseEnough(myLong, myLat, incLong, incLat);
-    }
-
 
     public double getLongitude(){
         return this.location.getLongitude();
@@ -88,6 +88,10 @@ public class LocationHandler {
         this.setLongitude(longitude);
         this.setLatitude(latitude);
         this.setTime(time);
+    }
+
+    public void setMaxInteractionDistance(double maxDistance) {
+        this.maxInteractionDistance = maxDistance;
     }
 
     boolean isValidLongitude(double longitude) {
