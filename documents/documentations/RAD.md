@@ -1,4 +1,4 @@
-### Introduction:
+## 1 Introduction
 
 #### Purpose of the application:
 Encourage physical activity through an competitive and enjoyable game experience.
@@ -14,25 +14,7 @@ Each **player** has a **backpack** with a maximum capacity, when the capacity is
 #### In what situations can the application be used?
 The application can be used to encourage a group of people to become more active by adding some flavour to their physical activity. It can also be used more casually by anyone who want to explore and compete within a virtual reality in their spare time.
 
-### Epics / User Stories (example):
-
-See Trello for user stories.
-
-as a, 
-I want, 
-because:
-
-As a player I want to see a map pinpointing my location; so that I know where in the world I’m located relative to collectable items. 
-
-As a player I want to also see other players on my map (multiplayer); because a social game is more fun.
-
-As a player I want the possibility to toggle view (map, highscore, settings) through e.g. a side menu or menu button in the top right. 
-As a player I want the possibility of seeing what players won prior seasons (history/competitiveness)
-As a player I want to set a player name and a avatar/picture that is represented on the map for other players to see (personalize)
-As a developer I want to identify user id’s by either a register system or by automating a unique id for each unique device (user identification)
-As a player I don’t want to see inactive players on my map (cleanliness)
-
-### Wordlist:
+### 1.1 Wordlist
 
 - The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
 
@@ -51,6 +33,20 @@ As a player I don’t want to see inactive players on my map (cleanliness)
 - A **score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
 
 - **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
+
+## 2 Requirements
+
+### 2.1 User Stories
+
+See Trello for user stories.
+
+### 2.2 User interface
+
+## 3 Domain model
+
+### 3.1 Class responsibilites
+
+
 
 ### Future implementations
 - Settings - Here one can access the highscore or change name and avatar.
