@@ -1,11 +1,18 @@
-### Concept:
+### Introduction:
 
-A mobile multiplayer game for Android devices utilizing Google's geolocation API. It will use the mobile device GPS to locate and pinpoint players on a shared map where they can explore a virtual world and capture various objects and artifacts. Collectables are shown on the map and collected when stepped on, they have different values and can be combined and crafted into jewelries.
+#### Purpose of the application:
+Encourage physical activity through an competitive and enjoyable game experience.
 
-Each player has a backpack with a maximum capacity, when the capacity is full the backpack must be emptied at the players treasure chest before more things can be collected. Whoever has the most value contained in their treasure chest at the end of a virtual season wins that season and will appear on the “Hall of Fame”. 
+#### Who will it benefit:
+We believe the game can benefit anyone who enjoys a casual gaming experience while at the same time being outdoors. However the game will maybe mostly benefit those who aren't very physically active in their day to day life because of lack of motivation.
 
-Players get to place their treasure chest and jewelcraft on the map with a minimum distance (e.g. 200m) between them. This promotes fairness and whilst still encouraging physical activity.
+#### General description:
+TreasurePleasure is a competitive mobile multiplayer game for Android devices. It will use the users phone GPS to locate him/her on a shared **map** where multiple **players** compete with each other by collecting the most **items**.
 
+Each **player** has a **backpack** with a maximum capacity, when the capacity is full the backpack must be emptied at the players **chest** before more things can be collected. Whoever has the most value contained in their **chest** at the end of a **season** wins that season and will appear on the **score**.
+
+#### In what situations can the application be used?
+The application can be used to encourage a group of people to become more active by adding some flavour to their physical activity. It can also be used more casually by anyone who want to explore and compete within a virtual reality in their spare time.
 
 ### Epics / User Stories (example):
 
