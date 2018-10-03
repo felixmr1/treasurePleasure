@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "showBackPackButton clicked"); //logged in logcat
-
                 //show backpack
                 addBackPackFragment( backpackItemsList.getAllItems(), backpackItemsList.getnOfEmptySlots() );
             }

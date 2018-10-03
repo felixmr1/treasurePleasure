@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,17 +18,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import goteborgsuniversitet.maptestapp.R;
 
-public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
+public class MapFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
+    private static final String TAG = "MapFragment";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-
     private GoogleMap mMap;
 
     //Hardcoded locations
-    private static final LatLng KLATTERLABBET = new LatLng(57.6874709, 11.9782359);
+    private static final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
+    private static final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
 
     //Markers
     private Marker treasureChest;
+    private Marker gemOne;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,10 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
         //change style
         //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setOnMarkerClickListener(this);
 
         addMarkersToMap();
+        enableMyLocation();
     }
 
     private void addMarkersToMap() {
@@ -55,7 +60,12 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
                 .draggable(true));
 
-        enableMyLocation();
+        //add draggable marker. long press to drag
+        gemOne = mMap.addMarker(new MarkerOptions()
+                .position(DELTAPARKEN)
+                .title("1st gem")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny)));
+
     }
 
     private void enableMyLocation() {
@@ -93,6 +103,26 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
                 }
             }
         }
+    }
+
+    //handle click events on markers
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        if (marker.equals(gemOne)) {
+            //doStuff
+        }
+
+        if (marker.equals(treasureChest)) {
+            //doOtherStuff
+        }
+
+        Toast.makeText(getActivity(), "JAY, clicking works" + marker.getTitle(),Toast.LENGTH_SHORT).show();
+
+        // We return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return false;
     }
 
 }
