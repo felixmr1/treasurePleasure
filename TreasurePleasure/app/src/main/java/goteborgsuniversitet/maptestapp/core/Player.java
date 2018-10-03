@@ -13,7 +13,7 @@ enum Avatar {
     WOMAN,
 }
 
-class Player {
+ public class Player {
 
     private String username;
     private Avatar avatar;
