@@ -126,6 +126,7 @@ public class LocationHandler {
     if (from < 0) {
       from = 0;
     }
+    System.out.println(this.lastLocations);
     return this.lastLocations.subList(from, to);
   }
 }

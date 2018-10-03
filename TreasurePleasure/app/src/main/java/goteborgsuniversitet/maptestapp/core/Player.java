@@ -1,6 +1,7 @@
 package goteborgsuniversitet.maptestapp.core;
 
 
+import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,7 @@ class Player {
 
     private String username;
     private Avatar avatar;
-    private BackPack backpack;
+    private Backpack backpack;
     //private Chest chest;
     //private UpgradeCenter upgrades;
     private int dropBonus;
