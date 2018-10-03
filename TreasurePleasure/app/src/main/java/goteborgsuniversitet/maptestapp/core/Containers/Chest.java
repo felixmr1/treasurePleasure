@@ -22,6 +22,11 @@ public class Chest<T>  implements Inventory<T> {
 
     }
 
+    // Add multiple items at once
+    public void add(List<T> items) throws Exception {
+
+    }
+
 
 
     @Override

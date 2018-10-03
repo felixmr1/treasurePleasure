@@ -2,6 +2,9 @@ package goteborgsuniversitet.maptestapp.core;
 
 
 import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
+import goteborgsuniversitet.maptestapp.core.Containers.Chest;
+
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +17,8 @@ class Player {
 
     private String username;
     private Avatar avatar;
-    private Backpack backpack;
-    //private Chest chest;
+    private Backpack<Item> backpack;
+    private Chest chest;
     //private UpgradeCenter upgrades;
     private int dropBonus;
 
@@ -58,37 +61,14 @@ class Player {
         this.dropBonus = dropBonus;
     }
 
-    void addToBackpack(Item i){
-        /* check if close enough
-
-        if(backpack.isFull()) {
-            throw new IllegalException("Could not collect item: Backpack is full")
-        }
-
-        int a = Math.abs(i.location.getX() - this.location.getX());
-        int b = Math.abs(i.location.getY() - this.location.getY());
-
-        int distance = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))
-
-        if(distance < TreasurePleasure.minimumDistance){
-            this.backpack.addItem(i);
-        } else {
-            throw new IllegalException("Could not collect item: Too far away.");
-        }
-
-         */
+    void addToBackpack(Item i) throws Exception {
+        backpack.add(i);
     }
 
-    void emptyBackpackToChest() {
-        /*
-        if(backpack.isEmpty()){
-            throw new IllegalException("Could not empty backpack: No items in backpack")
-        } else {
-            while(backpack.items.size > 0) {
-                chest.addItem(backpack.items.remove(backpack.items.size() - 1))
-            }
-        }
-         */
+    void emptyBackpackToChest() throws Exception {
+        List<Item> items = backpack.getAllItems();
+        chest.add(items);
+        backpack.removeAll();
     }
 
 
