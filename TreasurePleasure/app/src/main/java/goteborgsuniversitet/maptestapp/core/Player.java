@@ -23,10 +23,10 @@ enum Avatar {
     private int dropBonus;
 
 
-    Player(String name, Avatar avatar, int dropBonus){
+    Player(String name, Avatar avatar){
         this.username = username;
         this.avatar = avatar;
-        this.dropBonus = dropBonus;
+        this.dropBonus = 1;
     }
 
     String getUsername() {
@@ -58,7 +58,11 @@ enum Avatar {
     }
 
     void setDropBonus(int dropBonus) {
-        this.dropBonus = dropBonus;
+        if(dropBonus < 1) {
+            throw new IllegalArgumentException("Could not change dropbonus: Dropbonus should be > 1");
+        } else {
+            this.dropBonus = dropBonus;
+        }
     }
 
     void addToBackpack(Item i) throws Exception {

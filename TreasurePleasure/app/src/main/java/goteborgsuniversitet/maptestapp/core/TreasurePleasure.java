@@ -20,7 +20,7 @@ public class TreasurePleasure {
 
 
     players = new ArrayList<>();
-    players.add(new Player("Noobpoop",Avatar.MAN,1));
+    players.add(new Player("Noobpoop",Avatar.MAN));
     items = new HashMap<>();
 
     /*
