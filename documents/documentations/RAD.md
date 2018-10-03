@@ -25,7 +25,7 @@ As a player I want to set a player name and a avatar/picture that is represented
 As a developer I want to identify user id’s by either a register system or by automating a unique id for each unique device (user identification)
 As a player I don’t want to see inactive players on my map (cleanliness)
 
-## Dictionary:
+## Wordlist:
 
 - The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
 
