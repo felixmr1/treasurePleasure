@@ -1,6 +1,7 @@
 package goteborgsuniversitet.maptestapp.view;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,9 +13,10 @@ import goteborgsuniversitet.maptestapp.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
 
-    private View MapView;
+    private MapFragment mf = new MapFragment();
     TreasurePleasurePresenter presenter = new TreasurePleasurePresenter(this);
     Button showBackPackButton;
+
 
 
     @Override

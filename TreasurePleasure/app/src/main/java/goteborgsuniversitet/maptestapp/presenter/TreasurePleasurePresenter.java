@@ -9,10 +9,13 @@ public class TreasurePleasurePresenter implements Presenter {
 
     private TreasurePleasureView view;
     private TreasurePleasure model;
+    private MapPresenter mp;
+
 
     public TreasurePleasurePresenter(TreasurePleasureView view) {
         this.view = view;
         this.model = TreasurePleasure.getInstance();
+        this.mp = new MapPresenter(model);
     }
 
     @Override
