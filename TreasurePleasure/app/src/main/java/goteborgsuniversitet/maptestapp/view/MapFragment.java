@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.ui;
+package goteborgsuniversitet.maptestapp.view;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class MapFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-  //Hardcoded locations
   //Hardcoded locations
   private final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
   private final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
@@ -149,24 +148,24 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
     }
   }
 
-    //handle click events on markers
-    @Override
-    public boolean onMarkerClick(final Marker marker) {
+  //handle click events on markers
+  @Override
+  public boolean onMarkerClick(final Marker marker) {
 
-        if (marker.equals(gemOne)) {
-            //doStuff
-        }
-
-        if (marker.equals(treasureChest)) {
-            //doOtherStuff
-        }
-
-        Toast.makeText(getActivity(), "JAY, clicking works" + marker.getTitle(),Toast.LENGTH_SHORT).show();
-
-        // We return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
-        return false;
+    if (marker.equals(gemOne)) {
+      //doStuff
     }
+
+    if (marker.equals(treasureChest)) {
+      //doOtherStuff
+    }
+
+    Toast.makeText(getActivity(), "JAY, clicking works" + marker.getTitle(),Toast.LENGTH_SHORT).show();
+
+    // We return false to indicate that we have not consumed the event and that we wish
+    // for the default behavior to occur (which is for the camera to move such that the
+    // marker is centered and for the marker's info window to open, if it has one).
+    return false;
+  }
 
 }
