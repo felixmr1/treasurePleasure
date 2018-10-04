@@ -31,7 +31,10 @@ public class TreasurePleasure {
       Item item = new Item(ItemType.DIAMOND,5);
     }
     */
+  }
 
+  public void addPlayer(Player p){
+    players.add(p);
   }
 
 

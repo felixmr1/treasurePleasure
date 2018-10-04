@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-enum Avatar {
-    MAN,
-    WOMAN,
-}
 
  public class Player {
 
@@ -23,7 +19,7 @@ enum Avatar {
     private int dropBonus;
 
 
-    Player(String name, Avatar avatar){
+    public Player(String name, Avatar avatar){
         this.username = username;
         this.avatar = avatar;
         this.dropBonus = 1;
