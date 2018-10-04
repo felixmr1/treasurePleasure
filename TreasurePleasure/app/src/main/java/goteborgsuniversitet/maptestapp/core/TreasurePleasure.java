@@ -1,5 +1,6 @@
 package goteborgsuniversitet.maptestapp.core;
 
+import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,6 @@ public class TreasurePleasure {
 
   private TreasurePleasure(int nOfItems) {
 
-
     players = new ArrayList<>();
     players.add(new Player("Noobpoop",Avatar.MAN));
     items = new HashMap<>();
@@ -32,6 +32,10 @@ public class TreasurePleasure {
     }
     */
   }
+
+
+
+
 
   public void addPlayer(Player p){
     players.add(p);

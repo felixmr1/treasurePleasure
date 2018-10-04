@@ -72,5 +72,12 @@ import java.util.regex.Pattern;
     }
 
 
+    public Backpack<Item> getBackPack(){
+
+      return this.backpack;
+
+    }
+
+
 
 }

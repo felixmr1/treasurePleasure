@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    backpackItemsList = new Backpack<>(5);
+    try {
+      backpackItemsList.add(new BackpackItemDummy(R.drawable.gem,5));
+    } catch (Exception e) {
+      Toast.makeText(getApplicationContext(), "CANT ADD TO FULL BACKPACK", Toast.LENGTH_SHORT);
+    }
 
     //Get button
     showBackPackButton = findViewById(R.id.backpackButton);
@@ -31,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     showBackPackButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Log.i(TAG, "showBackPackButton clicked"); //logged in logcat
+        Log.i(TAG,"showBackPackButton clicked"); //logged in logcat
 
         //show backpack
         addBackPackFragment(backpackItemsList.getAllItems(), backpackItemsList.getnOfEmptySlots());
