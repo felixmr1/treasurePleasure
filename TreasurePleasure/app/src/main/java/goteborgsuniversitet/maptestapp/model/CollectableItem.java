@@ -1,12 +1,7 @@
-package goteborgsuniversitet.maptestapp.core;
+package goteborgsuniversitet.maptestapp.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-enum collectable {
-  location,
-  item
-}
 
 public class CollectableItem {
   private int maxItems;

@@ -3,7 +3,7 @@ package UnitTests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import goteborgsuniversitet.maptestapp.core.Location;
+import goteborgsuniversitet.maptestapp.model.Location;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;

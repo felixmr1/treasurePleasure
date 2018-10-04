@@ -1,7 +1,5 @@
-package goteborgsuniversitet.maptestapp.core.Containers;
+package goteborgsuniversitet.maptestapp.model;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

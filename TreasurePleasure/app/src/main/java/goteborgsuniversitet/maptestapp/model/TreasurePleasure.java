@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.core;
+package goteborgsuniversitet.maptestapp.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,6 +1,4 @@
-package goteborgsuniversitet.maptestapp.core;
-
-import goteborgsuniversitet.maptestapp.core.Containers.ItemType;
+package goteborgsuniversitet.maptestapp.model;
 
 public class Item {
     private int value;

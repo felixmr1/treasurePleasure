@@ -27,7 +27,6 @@ public class BackpackRecyclerViewFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_backpack_test, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
-
         //improves performance (requires that changes in content do not change the layout size of the RecyclerView)
         mRecyclerView.setHasFixedSize(true);
 

@@ -1,14 +1,12 @@
 package UnitTests;
 
-import goteborgsuniversitet.maptestapp.core.Item;
-import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collection;
 import java.util.List;
 
-import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
+import goteborgsuniversitet.maptestapp.model.Backpack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

@@ -1,8 +1,5 @@
-package goteborgsuniversitet.maptestapp.core;
+package goteborgsuniversitet.maptestapp.model;
 
-
-import goteborgsuniversitet.maptestapp.core.Containers.Backpack;
-import goteborgsuniversitet.maptestapp.core.Containers.Chest;
 
 import java.util.List;
 import java.util.regex.Matcher;

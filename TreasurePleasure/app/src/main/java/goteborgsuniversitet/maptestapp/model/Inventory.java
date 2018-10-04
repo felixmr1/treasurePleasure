@@ -1,8 +1,5 @@
-package goteborgsuniversitet.maptestapp.core.Containers;
+package goteborgsuniversitet.maptestapp.model;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public interface  Inventory<T> {

@@ -1,8 +1,8 @@
 package goteborgsuniversitet.maptestapp.presenter;
 
-import goteborgsuniversitet.maptestapp.core.Avatar;
-import goteborgsuniversitet.maptestapp.core.Player;
-import goteborgsuniversitet.maptestapp.core.TreasurePleasure;
+import goteborgsuniversitet.maptestapp.model.Avatar;
+import goteborgsuniversitet.maptestapp.model.Player;
+import goteborgsuniversitet.maptestapp.model.TreasurePleasure;
 import goteborgsuniversitet.maptestapp.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter implements Presenter {
