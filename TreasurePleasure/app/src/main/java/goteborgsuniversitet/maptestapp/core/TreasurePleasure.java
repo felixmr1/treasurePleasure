@@ -1,6 +1,5 @@
 package goteborgsuniversitet.maptestapp.core;
 
-import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ public class TreasurePleasure {
   }
 
   private List<Player> players;
-  private Map<LocationHandler,Item> items;
+  private Map<Location,Item> items;
 
 
   private TreasurePleasure(int nOfItems) {
@@ -27,7 +26,7 @@ public class TreasurePleasure {
     We have to figure out how to handle locations - items // John
 
     for (int i = 0; i < nOfItems ; i++ ){
-      LocationHandler loc = new LocationHandler();
+      Location loc = new Location();
       Item item = new Item(ItemType.DIAMOND,5);
     }
     */

@@ -1,31 +1,33 @@
+package UnitTests;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import goteborgsuniversitet.maptestapp.core.LocationHandler;
+import goteborgsuniversitet.maptestapp.core.Location;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LocationHandlerUnitTest {
+public class LocationUnitTest {
 
-  LocationHandler location1;
-  LocationHandler location2;
-  LocationHandler inValidLocation;
+  Location location1;
+  Location location2;
+  Location inValidLocation;
 
   @Before
   public void initLocations() {
-    location1 = new LocationHandler();
-    location2 = new LocationHandler();
-    inValidLocation = new LocationHandler();
+    location1 = new Location();
+    location2 = new Location();
+    inValidLocation = new Location();
   }
 
   @Test
   public void setUniqueLocations() {
     // Test so all locations get individual long and lats.
-    double long1 = 10020;
-    double lat1 = 10021;
-    double long2 = 10022;
-    double lat2 = 10023;
+    double long1 = 20;
+    double lat1 = 21;
+    double long2 = 22;
+    double lat2 = 23;
 
     location1.update(long1, lat1);
     location2.update(long2, lat2);
@@ -39,14 +41,14 @@ public class LocationHandlerUnitTest {
 
   @Test
   public void updateLocationGetLastLocation() {
-    List<LocationHandler> locationHandlers;
-    LocationHandler lh;
-    double firstLong = 10020;
-    double firstLat = 10021;
-    long firstTimeStamp = 10000;
-    double secondLong = 10022;
-    double secondLat = 10023;
-    long secondTimeStamp = 10001;
+    List<Location> locationHandlers;
+    Location lh;
+    double firstLong = 20;
+    double firstLat = 21;
+    long firstTimeStamp = 10;
+    double secondLong = 22;
+    double secondLat = 23;
+    long secondTimeStamp = 11;
 
     location1.update(firstLong, firstLat, firstTimeStamp);
     location1.update(secondLong, secondLat, secondTimeStamp);

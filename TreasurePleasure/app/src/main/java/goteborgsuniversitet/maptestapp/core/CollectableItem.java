@@ -10,7 +10,7 @@ enum collectable {
 
 public class CollectableItem {
   private int maxItems;
-  private HashMap<LocationHandler, Item> collectables;
+  private HashMap<Location, Item> collectables;
   private ArrayList<Item> availableItems;
 
   public CollectableItem(int maxItems, ArrayList<Item> availableItems){
@@ -24,13 +24,13 @@ public class CollectableItem {
   }
 
   public void spawnRandomItem() {
-    LocationHandler locationHandler = createUniqueLocation();
+    Location locationHandler = createUniqueLocation();
     Item item = createRandomItem();
 
     addItem(locationHandler, item);
   }
 
-  private void addItem(LocationHandler locationHandler, Item item){
+  private void addItem(Location locationHandler, Item item){
 
   }
 
@@ -39,11 +39,15 @@ public class CollectableItem {
     return availableItems.get(random);
   }
 
-  public LocationHandler createUniqueLocation() {
-    return new LocationHandler();
+  public Location createUniqueLocation() {
+    return new Location();
   }
 
-  public void removeItem(int id) {
+  /**
+   *
+   * @param locationHandler
+   */
+  public void removeItem(Location locationHandler) {
 
   }
 
