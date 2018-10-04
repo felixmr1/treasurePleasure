@@ -1,5 +1,6 @@
 package goteborgsuniversitet.maptestapp.model;
 
+import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
+  private LatLng latLng;
 
   private ArrayList<Location> lastLocations = new ArrayList<>();
   private double maxInteractionDistance = 10;
@@ -31,6 +33,7 @@ public class Location {
     this.longitude = longitude;
     this.latitude =  latitude;
     this.timestamp = new Date().getTime();
+    this.latLng = new LatLng(this.latitude, this.longitude);
   }
 
   // Dont know how we want to handle this, so wrote 3 versions for now.
@@ -137,4 +140,9 @@ public class Location {
     }
     return this.lastLocations.subList(from, to);
   }
+
+  public LatLng getLatLng() {
+    return this.latLng;
+  }
+
 }

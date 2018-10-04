@@ -3,6 +3,7 @@ package UnitTests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.google.android.gms.maps.model.LatLng;
 import goteborgsuniversitet.maptestapp.model.Location;
 import java.util.List;
 import org.junit.Before;
@@ -12,12 +13,14 @@ public class LocationUnitTest {
 
   Location location1;
   Location location2;
+  Location location3;
   Location inValidLocation;
 
   @Before
   public void initLocations() {
     location1 = new Location();
     location2 = new Location();
+    location3 = new Location(57.6874681,11.9782412);
     inValidLocation = new Location();
   }
 
@@ -108,6 +111,17 @@ public class LocationUnitTest {
     location1.setMaxInteractionDistance(15);
     boolean closeEnough = location1.isCloseEnough(location2);
     assertTrue(closeEnough);
+  }
+
+  @Test
+  public void latLangCorrect() {
+    double latitude = location3.getLatitude();
+    double longitude = location3.getLongitude();
+
+    LatLng newlatLng = new LatLng(latitude, longitude);
+    LatLng latLng = location3.getLatLng();
+
+    assertTrue(latLng.equals(newlatLng));
   }
 
   @Test
