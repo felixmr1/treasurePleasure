@@ -32,7 +32,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
   private GoogleMap mMap;
   private final LatLng
-      MAPCENTER = new LatLng(57.6870245, 11.979927),
+      MAPCENTER  = new LatLng(57.6870245, 11.979927),
       mapLimitNW = new LatLng(57.863889, 11.410027), 
       mapLimitNE = new LatLng(57.848447, 12.387770),
       mapLimitSW = new LatLng(57.563985, 12.193909),
@@ -47,16 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   }};
 
   private Marker treasureChest;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_maps_raw);
-    // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-        .findFragmentById(R.id.map);
-    mapFragment.getMapAsync(this);
-  }
 
   @Override
   public void onMapReady(GoogleMap googleMap) {
@@ -86,6 +76,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
         .draggable(true));
 
+  }
+
+  private void createMap() {
+    //
+    Polygon polygon = mMap.addPolygon(new PolygonOptions()
+        .add(mapLimitNW, mapLimitNE, mapLimitSW, mapLimitSE)
+        .addHole(MAPBOUNDARY)
+        .strokeColor(Color.BLACK)
+        .fillColor(Color.argb(220,0,0,0)));
+
+  }
+
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_maps_raw);
+    // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        .findFragmentById(R.id.map);
+    mapFragment.getMapAsync(this);
   }
 
   private void enableMyLocation() {
@@ -118,16 +129,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   private void getLocationPermission() {
     ActivityCompat.requestPermissions(this,
         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1 );
-  }
-
-  private void createMap() {
-    //
-    Polygon polygon = mMap.addPolygon(new PolygonOptions()
-        .add(mapLimitNW, mapLimitNE, mapLimitSW, mapLimitSE)
-        .addHole(MAPBOUNDARY)
-        .strokeColor(Color.BLACK)
-        .fillColor(Color.argb(220,0,0,0)));
-
   }
 
 }
