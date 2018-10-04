@@ -1,5 +1,7 @@
 package goteborgsuniversitet.maptestapp.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /*
     Handles all the different locations in the project, for example player and a collectable Item
  */
-public class Location {
+class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
@@ -15,56 +17,56 @@ public class Location {
   private ArrayList<Location> lastLocations = new ArrayList<>();
   private double maxInteractionDistance = 10;
 
-  public Location() {
+  Location() {
     this.longitude = 0;
     this.latitude = 0;
     this.timestamp = new Date().getTime();
   }
 
-  public Location(Location location) {
+  Location(Location location) {
     this.longitude = location.getLongitude();
     this.latitude =  location.getLatitude();
     this.timestamp = location.getTimestamp();
   }
 
-  public Location(double longitude, double latitude) {
+  Location(double longitude, double latitude) {
     this.longitude = longitude;
     this.latitude =  latitude;
     this.timestamp = new Date().getTime();
   }
 
   // Dont know how we want to handle this, so wrote 3 versions for now.
-  public boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
+  boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
       double latitude2) {
     Location location = new Location(longitude1, latitude1);
     return location.distanceTo(longitude2, latitude2) <= this.maxInteractionDistance;
   }
 
-  public boolean isCloseEnough(Location compareLocation) {
+  boolean isCloseEnough(Location compareLocation) {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
     return distanceTo(incLong, incLat) <= this.maxInteractionDistance;
   }
 
-  public double getLongitude() {
+  double getLongitude() {
     return this.longitude;
   }
 
-  public double getLatitude() {
+  double getLatitude() {
     return this.latitude;
   }
 
-  public long getTimestamp() {
+  long getTimestamp() {
     return this.timestamp;
   }
 
-  public void update(double longitude, double latitude) {
+  void update(double longitude, double latitude) {
     Date date = new Date();
     this.update(longitude, latitude, date.getTime());
   }
 
-  public void update(double longitude, double latitude, long timestamp) {
+  void update(double longitude, double latitude, long timestamp) {
     // Don't know if its needed. Kinda expensive to remove first element in a arraylist...
     // int maxLocations = 1000;
     // if (lastLocations.size() > maxLocations)
@@ -114,22 +116,22 @@ public class Location {
     this.latitude = latitude;
   }
 
-  public double distanceTo(double toLongitude, double toLatitude) {
+  double distanceTo(double toLongitude, double toLatitude) {
     double longDiff = Math.abs(this.getLongitude() - toLongitude);
     double latDiff = Math.abs(this.getLatitude() - toLatitude);
     double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
     return distanceBetween;
   }
 
-  public void setMaxInteractionDistance(double maxDistance) {
+  void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;
   }
 
-  public List<Location> getAllLocations() {
+  List<Location> getAllLocations() {
     return this.getLastLocations(this.lastLocations.size());
   }
 
-  public List<Location> getLastLocations(int nrOfLocations) {
+  List<Location> getLastLocations(int nrOfLocations) {
     int to = this.lastLocations.size() - 1;
     int from = to - nrOfLocations;
     if (from < 0) {

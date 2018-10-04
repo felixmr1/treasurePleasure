@@ -1,7 +1,6 @@
 package goteborgsuniversitet.maptestapp.presenter;
 
 import goteborgsuniversitet.maptestapp.model.Avatar;
-import goteborgsuniversitet.maptestapp.model.Player;
 import goteborgsuniversitet.maptestapp.model.TreasurePleasure;
 import goteborgsuniversitet.maptestapp.view.TreasurePleasureView;
 
@@ -12,12 +11,16 @@ public class TreasurePleasurePresenter implements Presenter {
 
     public TreasurePleasurePresenter(TreasurePleasureView view) {
         this.view = view;
-        this.model = TreasurePleasure.getInstance();
+        this.model = TreasurePleasure.getInstance(); // skapa en instans av modellen
+    }
+
+    public void addPlayer(String name, Avatar avatar) {
+        model.addPlayer(name, avatar);
     }
 
     @Override
     public void onCreate() {
-        model = TreasurePleasure.getInstance();
+        this.model = TreasurePleasure.getInstance();
     }
 
     @Override
@@ -33,10 +36,6 @@ public class TreasurePleasurePresenter implements Presenter {
     @Override
     public void onDestroy() {
 
-    }
-
-    public void addPlayer(String name, Avatar avatar) {
-        model.addPlayer(new Player(name,avatar));
     }
 
 }

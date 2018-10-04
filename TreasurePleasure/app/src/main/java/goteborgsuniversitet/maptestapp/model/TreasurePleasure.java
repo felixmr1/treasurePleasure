@@ -16,7 +16,7 @@ public class TreasurePleasure {
   private Map<Location,Item> items;
 
 
-  private TreasurePleasure(int nOfItems) {
+  public TreasurePleasure(int nOfItems) {
 
     players = new ArrayList<>();
     players.add(new Player("Noobpoop",Avatar.MAN));
@@ -32,18 +32,9 @@ public class TreasurePleasure {
     */
   }
 
-
-
-
-
-  public void addPlayer(Player p){
-    players.add(p);
+  public void addPlayer(String name, Avatar avatar)
+  {
+    players.add(new Player(name, avatar));
   }
-
-
-
-
-
-
 
 }

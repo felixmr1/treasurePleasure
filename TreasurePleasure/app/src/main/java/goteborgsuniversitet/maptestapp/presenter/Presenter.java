@@ -1,6 +1,5 @@
 package goteborgsuniversitet.maptestapp.presenter;
 
-
 public interface Presenter {
 
     void onCreate();
@@ -9,3 +8,4 @@ public interface Presenter {
     void onDestroy();
 
 }
+

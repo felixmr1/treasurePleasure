@@ -8,7 +8,7 @@ import java.util.List;
  **/
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-public class Backpack<T> implements Inventory<T> {
+class Backpack<T> {
 
   private List<T> items;
 
@@ -17,7 +17,7 @@ public class Backpack<T> implements Inventory<T> {
   private int nOfBusySlots;
 
 
-  public Backpack(int maxSize) {
+  Backpack(int maxSize) {
     this.items = new ArrayList<>(maxSize);
 
     this.backPackLevel = 1;
@@ -29,16 +29,14 @@ public class Backpack<T> implements Inventory<T> {
   /**
    * @param nOfMoreSlots int > 0, if given negative input it will not mutate the object in any way
    */
-  public void upgrade(int nOfMoreSlots) {
+  void upgrade(int nOfMoreSlots) {
     if (nOfMoreSlots > 0) {
       this.maxSize = maxSize + nOfMoreSlots;
       this.backPackLevel++;
     }
   }
 
-
-  @Override
-  public void add(T item) throws Exception {
+  void add(T item) throws Exception {
 
     if (nOfBusySlots < maxSize) {
       items.add(item);
@@ -48,9 +46,7 @@ public class Backpack<T> implements Inventory<T> {
     }
   }
 
-
-  @Override
-  public void removeAll() {
+  void removeAll() {
 
     System.out.println(nOfBusySlots);
 
@@ -61,31 +57,31 @@ public class Backpack<T> implements Inventory<T> {
   }
 
 
-  public List<T> getAllItems() {
+  List<T> getAllItems() {
     return this.items;
   }
 
-  public boolean isFull() {
+  boolean isFull() {
     return nOfBusySlots >= maxSize;
   }
 
-  public boolean isEmpty() {
+  boolean isEmpty() {
     return (nOfBusySlots == 0);
   }
 
-  public int getnOfEmptySlots() {
+  int getnOfEmptySlots() {
     return (maxSize - items.size());
   }
 
-  public int getnOfBusySlots() {
+  int getnOfBusySlots() {
     return nOfBusySlots;
   }
 
-  public int getBackPackLevel() {
+  int getBackPackLevel() {
     return backPackLevel;
   }
 
-  public int getMaxSize() {
+  int getMaxSize() {
     return this.maxSize;
   }
 
