@@ -1,8 +1,4 @@
 package goteborgsuniversitet.maptestapp;
-
-//android imports
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +11,9 @@ import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
 import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackRecyclerViewFragment;
 import java.util.List;
 
-//java imports
-//own classes
-
 public class MainActivity extends AppCompatActivity {
 
   private static final String TAG = "MainActivity";
-
   public Backpack<BackpackItemDummy> backpackItemsList;
 
   //buttons
@@ -32,19 +24,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    Button testButton = findViewById(R.id.backpackButton);
-
-    //Make button action using an anonymous class
-    testButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Log.i("TestTag", "testButton clicked"); //logged in logcat
-        Toast.makeText(getApplicationContext(),"testButtonToast", Toast.LENGTH_SHORT).show();
-        //startActivity()
-        startActivity(new Intent (MainActivity.this, MapsActivity.class));
-      }
-    });
-
     //instantiate and populate backpack //TODO should not be instantiated nor populated here
     backpackItemsList = new Backpack<>(5);
     try {
@@ -54,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
           .show();
     }
 
-/*    //Get button
+    //Get button
     showBackPackButton = findViewById(R.id.backpackButton);
 
     //trigger to backpack button. Trigger launches a fragment representing the backpack
@@ -66,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //show backpack
         addBackPackFragment(backpackItemsList.getAllItems(), backpackItemsList.getnOfEmptySlots());
       }
-    });*/
+    });
   }
 
   /**

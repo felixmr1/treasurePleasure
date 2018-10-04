@@ -24,16 +24,29 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
   private static final String TAG = "MapsActivity";
 
   private GoogleMap mMap;
-  private static final LatLng KLATTERLABBET = new LatLng(57.6870245, 11.979927);
-  private Marker treasureChest;
+  private final LatLng
+      MAPCENTER = new LatLng(57.6870245, 11.979927),
+      mapLimitNW = new LatLng(57.863889, 11.410027), 
+      mapLimitNE = new LatLng(57.848447, 12.387770),
+      mapLimitSW = new LatLng(57.563985, 12.193909),
+      mapLimitSE = new LatLng(57.554888, 11.627327);
+  
+  private final ArrayList<LatLng> MAPBOUNDARY = new ArrayList<LatLng>() {{
+    add(new LatLng(57.689950, 11.972955));
+    add(new LatLng(57.691726, 11.980744));
+    add(new LatLng(57.684603, 11.985108));
+    add(new LatLng(57.682945, 11.979797));
+    add(new LatLng(57.689950, 11.972955));
+  }};
 
-  private LatLng polygonCenter;
+  private Marker treasureChest;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +62,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
   public void onMapReady(GoogleMap googleMap) {
     // Map settings
     mMap = googleMap;
+
+    // set style
     MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style);
     mMap.setMapStyle(style);
 
+    // Add markers and build play map
     enableMyLocation();
     addMarkersToMap();
-    addBoundary();
+    createMap();
+
+    // position camera
+    mMap.setMaxZoomPreference(15.0f);
     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(57.689950, 11.979797)));
   }
 
   private void addMarkersToMap() {
     //add draggable marker. long press to drag
     treasureChest = mMap.addMarker(new MarkerOptions()
-        .position(KLATTERLABBET)
+        .position(MAPCENTER)
         .title("CHESTY")
         .snippet("Hold to CHSET")
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
@@ -101,21 +120,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1 );
   }
 
-  private void addBoundary() {
-    ArrayList<LatLng> inner = new ArrayList<LatLng>();
-    inner.add(new LatLng(57.689950, 11.972955));
-    inner.add(new LatLng(57.691726, 11.980744));
-    inner.add(new LatLng(57.684603, 11.985108));
-    inner.add(new LatLng(57.682945, 11.979797));
-    inner.add(new LatLng(57.689950, 11.972955));
-
-    // Add a polygon around chalmers
+  private void createMap() {
+    //
     Polygon polygon = mMap.addPolygon(new PolygonOptions()
-        .add(new LatLng(57.683025, 11.963586), new LatLng(57.706543, 11.954100),
-            new LatLng(57.709564, 12.017778), new LatLng(57.690222, 12.015224))
-        .addHole(inner)
+        .add(mapLimitNW, mapLimitNE, mapLimitSW, mapLimitSE)
+        .addHole(MAPBOUNDARY)
         .strokeColor(Color.BLACK)
-        .fillColor(Color.argb(200,0,0,0)));
+        .fillColor(Color.argb(220,0,0,0)));
 
   }
 
