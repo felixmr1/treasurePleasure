@@ -1,16 +1,14 @@
 package UnitTests;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Collection;
-import java.util.List;
-
-import goteborgsuniversitet.maptestapp.model.Backpack;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import goteborgsuniversitet.maptestapp.model.Backpack;
+import java.util.Collection;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 
 public class BackpackTests {
@@ -84,9 +82,7 @@ public class BackpackTests {
       b.add(item4);
 
     } catch (Exception e) {
-
-      System.out.println("IM AN EXCEPTION");
-
+      System.out.println(e);
     }
 
     slots = b.getAllItems();
