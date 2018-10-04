@@ -27,6 +27,9 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
   //Hardcoded locations
+  //Hardcoded locations
+  private final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
+  private final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
   private final LatLng
       MAPCENTER = new LatLng(57.6870245, 11.979927),
       mapLimitNW = new LatLng(57.863889, 11.410027),
@@ -43,6 +46,7 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
   private GoogleMap mMap;
   //Markers
   private Marker treasureChest;
+  private Marker gemOne;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -83,13 +87,17 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
   private void addMarkersToMap() {
     //add draggable marker. long press to drag
     treasureChest = mMap.addMarker(new MarkerOptions()
-        .position(MAPCENTER)
+        .position(KLATTERLABBET)
         .title("Treasure Chest")
         .snippet("Hold to drag")
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
         .draggable(true));
 
-    enableMyLocation();
+    //add draggable marker. long press to drag
+    gemOne = mMap.addMarker(new MarkerOptions()
+        .position(DELTAPARKEN)
+        .title("1st gem")
+        .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny)));
   }
 
   private void enableMyLocation() {

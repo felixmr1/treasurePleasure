@@ -24,53 +24,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    private static final String TAG = "MainActivity";
-    public Backpack<BackpackItemDummy> backpackItemsList;
-
-    //buttons
-    Button showBackPackButton;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        //instantiate and populate backpack //TODO should not be instantiated nor populated here
-        backpackItemsList = new Backpack<>(5);
-        try {
-            backpackItemsList.add(new BackpackItemDummy(R.drawable.gem,5));
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(),"CANT ADD TO EMPTY BACKPACK", Toast.LENGTH_SHORT).show();
-        }
-
-
-        //Get buttons
-        Button testButton = findViewById(R.id.map_button);
-        showBackPackButton = findViewById(R.id.backpackButton);
-
-        //Hook up button with trigger action using an anonymous class
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("TAG", "testButton clicked"); //logged in logcat
-                Toast.makeText(getApplicationContext(),"testButtonToast", Toast.LENGTH_SHORT).show();
-                //startActivity()
-                startActivity(new Intent (MainActivity.this, MapsActivity.class));
-            }
-        });
-
-        //trigger to backpack button. Trigger launches a fragment representing the backpack
-        showBackPackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "showBackPackButton clicked"); //logged in logcat
-                //show backpack
-                addBackPackFragment( backpackItemsList.getAllItems(), backpackItemsList.getnOfEmptySlots() );
-            }
-        });
-    }
-
     //Get button
     showBackPackButton = findViewById(R.id.backpackButton);
 
