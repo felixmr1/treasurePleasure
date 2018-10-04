@@ -60,6 +60,8 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
     // Map settings
     mMap = googleMap;
 
+    mMap.setOnMarkerClickListener(this);
+
     // set style
     MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_style);
     mMap.setMapStyle(style);
