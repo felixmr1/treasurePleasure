@@ -35,13 +35,17 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
       mapLimitNW = new LatLng(57.863889, 11.410027),
       mapLimitNE = new LatLng(57.848447, 12.387770),
       mapLimitSW = new LatLng(57.563985, 12.193909),
-      mapLimitSE = new LatLng(57.554888, 11.627327);
+      mapLimitSE = new LatLng(57.554888, 11.627327),
+      mapNW = new LatLng(57.690700, 11.970995),
+      mapNE = new LatLng(57.690708, 11.976745),
+      mapSW = new LatLng(57.685446, 11.977415),
+      mapSE = new LatLng(57.685990, 11.982750);
   private final ArrayList<LatLng> MAPBOUNDARY = new ArrayList<LatLng>() {{
-    add(new LatLng(57.689950, 11.972955));
-    add(new LatLng(57.691726, 11.980744));
-    add(new LatLng(57.684603, 11.985108));
-    add(new LatLng(57.682945, 11.979797));
-    add(new LatLng(57.689950, 11.972955));
+    add(mapNW);
+    add(mapNE);
+    add(mapSW);
+    add(mapSE);
+    add(mapNW); // to "close" box
   }};
   private GoogleMap mMap;
   //Markers
