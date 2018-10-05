@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
+package treasure.pleasure.model;
 
 import java.util.ArrayList;
 import java.util.List;

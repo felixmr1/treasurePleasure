@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="goteborgsuniversitet.maptestapp">
+    package="treasure.pleasure">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -18,7 +18,14 @@
         android:theme="@style/AppTheme">
 
         <!-- Declare the starting point of app: -->
-
+        <activity android:name=".view.TreasurePleasureActivity" >
+            <intent-filter>
+                <!-- MAIN represents that it is the Main Activity-->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- Launcher Denotes that it will be the first launching activity-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

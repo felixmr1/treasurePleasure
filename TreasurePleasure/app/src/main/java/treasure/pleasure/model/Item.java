@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
+package treasure.pleasure.model;
 
 public class Item {
     private int value;

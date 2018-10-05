@@ -1,6 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
-
-import com.google.android.gms.maps.model.LatLng;
+package treasure.pleasure.model;
 
 import java.util.ArrayList;
 import java.util.Date;
