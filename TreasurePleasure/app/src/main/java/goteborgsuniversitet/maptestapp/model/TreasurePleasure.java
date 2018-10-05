@@ -1,6 +1,9 @@
 package goteborgsuniversitet.maptestapp.Model;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -11,15 +14,14 @@ public class TreasurePleasure {
     return ourInstance;
   }
 
-  private List<Player> players;
+  private Map<String,Player> players;
   private Map<Location,Item> items;
 
 
   private TreasurePleasure(int nOfItems) {
 
-    players = new ArrayList<>();
-    players.add(new Player("Noobpoop",Avatar.MAN));
-    items = new HashMap<>();
+    this.players = new HashMap<>();
+    this.items = new HashMap<>();
 
     /*
     We have to figure out how to handle locations - items // John
@@ -35,8 +37,12 @@ public class TreasurePleasure {
 
 
 
-  public void addPlayer(Player p){
-    players.add(p);
+
+  public void addPlayerToGame(String nickname, Avatar avatar){
+
+      players.put(nickname,new Player(nickname,avatar));
+
+
   }
 
 

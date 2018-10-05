@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import goteborgsuniversitet.maptestapp.model.Backpack;
+import goteborgsuniversitet.maptestapp.Model.Backpack;
 import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackItemDummy;
 import goteborgsuniversitet.maptestapp.ui.backpackStuff.BackpackRecyclerViewFragment;
 import java.util.List;

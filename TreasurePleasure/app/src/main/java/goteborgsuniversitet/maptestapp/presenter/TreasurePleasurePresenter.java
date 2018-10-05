@@ -1,8 +1,7 @@
 package goteborgsuniversitet.maptestapp.presenter;
 
-import goteborgsuniversitet.maptestapp.model.Avatar;
-import goteborgsuniversitet.maptestapp.model.Player;
-import goteborgsuniversitet.maptestapp.model.TreasurePleasure;
+import goteborgsuniversitet.maptestapp.Model.Avatar;
+import goteborgsuniversitet.maptestapp.Model.TreasurePleasure;
 import goteborgsuniversitet.maptestapp.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter implements Presenter {
@@ -35,8 +34,10 @@ public class TreasurePleasurePresenter implements Presenter {
 
     }
 
-    public void addPlayer(String name, Avatar avatar) {
-        model.addPlayer(new Player(name,avatar));
+
+
+    public void addPlayer(String nickname, Avatar avatar) {
+        model.addPlayerToGame(nickname,avatar);
     }
 
 }
