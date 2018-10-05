@@ -1,8 +1,7 @@
 package treasure.pleasure.model;
 
-import java.util.ArrayList;
+import com.google.android.gms.maps.model.LatLng;
 import java.util.Date;
-import java.util.List;
 
 /*
     Handles all the different locations in the project, for example player and a collectable Item
@@ -11,8 +10,6 @@ class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
-
-  private ArrayList<Location> lastLocations = new ArrayList<>();
   private double maxInteractionDistance = 10;
 
   Location() {
@@ -47,34 +44,39 @@ class Location {
     return distanceTo(incLong, incLat) <= this.maxInteractionDistance;
   }
 
-  double getLongitude() {
-    return this.longitude;
-  }
-
-  double getLatitude() {
-    return this.latitude;
-  }
-
-  long getTimestamp() {
-    return this.timestamp;
-  }
-
-  void update(double longitude, double latitude) {
+  /**
+   * Updates self with given longitude and latitude and takes the current time as timestamp
+   * @param longitude
+   * @param latitude
+   */
+  public void update(double longitude, double latitude) {
     Date date = new Date();
     this.update(longitude, latitude, date.getTime());
   }
 
-  void update(double longitude, double latitude, long timestamp) {
-    // Don't know if its needed. Kinda expensive to remove first element in a arraylist...
-    // int maxLocations = 1000;
-    // if (lastLocations.size() > maxLocations)
-
-    // Pushes a COPY of existing location
-    this.lastLocations.add(new Location(this));
-
+  /**
+   * Updates self with given params
+   * @param longitude
+   * @param latitude
+   * @param timestamp Milliseconds since 1972? (new Date().getTime)
+   */
+  public void update(double longitude, double latitude, long timestamp) {
     this.setLongitude(longitude);
     this.setLatitude(latitude);
     this.setTimestamp(timestamp);
+  }
+
+  /**
+   * Calculated the distance between given longitude and latitude and self.
+   * @param toLongitude
+   * @param toLatitude
+   * @return Distance between locations
+   */
+  public double distanceTo(double toLongitude, double toLatitude) {
+    double longDiff = Math.abs(this.getLongitude() - toLongitude);
+    double latDiff = Math.abs(this.getLatitude() - toLatitude);
+    double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
+    return distanceBetween;
   }
 
   private boolean isValidCoordinate(double coordinate) {
@@ -114,27 +116,30 @@ class Location {
     this.latitude = latitude;
   }
 
-  double distanceTo(double toLongitude, double toLatitude) {
-    double longDiff = Math.abs(this.getLongitude() - toLongitude);
-    double latDiff = Math.abs(this.getLatitude() - toLatitude);
-    double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
-    return distanceBetween;
-  }
-
+  /**
+   * Sets the distance between interactions on the map. Used when calculating if two locations is close enough.
+   * @param maxDistance
+   */
   void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;
   }
 
-  List<Location> getAllLocations() {
-    return this.getLastLocations(this.lastLocations.size());
+  double getLongitude() {
+    return this.longitude;
   }
 
-  List<Location> getLastLocations(int nrOfLocations) {
-    int to = this.lastLocations.size() - 1;
-    int from = to - nrOfLocations;
-    if (from < 0) {
-      from = 0;
-    }
-    return this.lastLocations.subList(from, to);
+  double getLatitude() {
+    return this.latitude;
+  }
+
+  long getTimestamp() {
+    return this.timestamp;
+  }
+
+  /**
+   * @return a new LatLng object
+   */
+  LatLng getLatLng() {
+    return new LatLng(this.latitude, this.longitude);
   }
 }

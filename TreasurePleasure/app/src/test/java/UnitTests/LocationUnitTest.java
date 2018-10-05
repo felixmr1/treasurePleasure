@@ -3,7 +3,8 @@ package UnitTests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import treasure.pleasure.model.Location;
+import com.google.android.gms.maps.model.LatLng;
+import goteborgsuniversitet.maptestapp.model.Location;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,9 +41,8 @@ public class LocationUnitTest {
   }
 
   @Test
-  public void updateLocationGetLastLocation() {
+  public void setUniqueLocationsUpdateSameLocations() {
     List<Location> locationHandlers;
-    Location lh;
     double firstLong = 20;
     double firstLat = 21;
     long firstTimeStamp = 10;
@@ -51,14 +51,12 @@ public class LocationUnitTest {
     long secondTimeStamp = 11;
 
     location1.update(firstLong, firstLat, firstTimeStamp);
-    location1.update(secondLong, secondLat, secondTimeStamp);
+    location2.update(secondLong, secondLat, secondTimeStamp);
     location1.update(secondLong, secondLat, secondTimeStamp);
 
-    lh = location1.getLastLocations(1).get(0);
-
-    assertTrue(lh.getLongitude() == firstLong);
-    assertTrue(lh.getLatitude() == firstLat);
-    assertTrue(lh.getTimestamp() == firstTimeStamp);
+    assertTrue(location1.getLongitude() == location1.getLongitude());
+    assertTrue(location1.getLatitude() == location1.getLatitude());
+    assertTrue(location1.getTimestamp() == location1.getTimestamp());
   }
 
   @Test
@@ -108,6 +106,55 @@ public class LocationUnitTest {
     location1.setMaxInteractionDistance(15);
     boolean closeEnough = location1.isCloseEnough(location2);
     assertTrue(closeEnough);
+  }
+
+  @Test
+  public void getDifferentLatLong() {
+    double longitude = 1;
+    double latitude = 2;
+    LatLng latLng1;
+
+    location1.update(longitude, latitude);
+
+    latLng1 = location1.getLatLng();
+
+    assertTrue(latLng1.longitude == longitude);
+    assertTrue(latLng1.latitude == latitude);
+  }
+
+  @Test
+  public void setUniqueLatLong() {
+    LatLng latLng1;
+    LatLng latLng2;
+
+    location1.update(1, 2);
+    location2.update(3, 4);
+
+    latLng1 = location1.getLatLng();
+    latLng2 = location2.getLatLng();
+
+    assertFalse(latLng1.equals(latLng2));
+    assertFalse(latLng1.latitude == latLng1.longitude);
+    assertFalse(latLng1.latitude == latLng2.latitude);
+    assertFalse(latLng1.longitude == latLng2.longitude);
+    assertFalse(latLng2.latitude == latLng2.longitude);
+  }
+
+  @Test
+  public void setUniqueLatLongThenUpdate() {
+    LatLng latLng1;
+    LatLng latLng2;
+
+    location1.update(1, 2);
+    location2.update(3, 4);
+
+    latLng1 = location1.getLatLng();
+    latLng2 = location2.getLatLng();
+
+    assertFalse(latLng1.equals(latLng2));
+    location1.update(3, 4);
+    latLng1 = location1.getLatLng();
+    assertTrue(latLng1.equals(latLng2));
   }
 
   @Test

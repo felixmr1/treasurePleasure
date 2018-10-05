@@ -25,7 +25,7 @@ public class CollectableItem {
     addItem(locationHandler, item);
   }
 
-  private void addItem(Location locationHandler, Item item){
+  private void addItem(Location location, Item item){
 
   }
 
@@ -40,10 +40,14 @@ public class CollectableItem {
 
   /**
    *
-   * @param locationHandler
+   * @param location
    */
   void removeItem(Location locationHandler) {
 
+  }
+
+  public Item collect(Location location) {
+    return createRandomItem();
   }
 
 }
