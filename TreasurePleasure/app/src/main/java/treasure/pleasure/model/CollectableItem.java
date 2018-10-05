@@ -1,4 +1,5 @@
-package goteborgsuniversitet.maptestapp.Model;
+package treasure.pleasure.model;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ public class CollectableItem {
   private HashMap<Location, Item> collectables;
   private ArrayList<Item> availableItems;
 
-  public CollectableItem(int maxItems, ArrayList<Item> availableItems){
+  CollectableItem(int maxItems, ArrayList<Item> availableItems){
     this.availableItems = availableItems;
     this.maxItems = maxItems;
     collectables = new HashMap<>();
@@ -17,7 +18,7 @@ public class CollectableItem {
     }
   }
 
-  public void spawnRandomItem() {
+  void spawnRandomItem() {
     Location locationHandler = createUniqueLocation();
     Item item = createRandomItem();
 
@@ -28,12 +29,12 @@ public class CollectableItem {
 
   }
 
-  public Item createRandomItem() {
+  Item createRandomItem() {
     int random = (int) (Math.random()* availableItems.size());
     return availableItems.get(random);
   }
 
-  public Location createUniqueLocation() {
+  Location createUniqueLocation() {
     return new Location();
   }
 
@@ -41,7 +42,7 @@ public class CollectableItem {
    *
    * @param location
    */
-  public void removeItem(Location location) {
+  void removeItem(Location locationHandler) {
 
   }
 

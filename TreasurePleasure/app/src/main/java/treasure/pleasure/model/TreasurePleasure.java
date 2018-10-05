@@ -1,4 +1,6 @@
-package goteborgsuniversitet.maptestapp.Model;
+package treasure.pleasure.model;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,7 +20,7 @@ public class TreasurePleasure {
   private Map<Location,Item> items;
 
 
-  private TreasurePleasure(int nOfItems) {
+  public TreasurePleasure(int nOfItems) {
 
     this.players = new HashMap<>();
     this.items = new HashMap<>();
@@ -45,10 +47,12 @@ public class TreasurePleasure {
 
   }
 
-
-
-
-
-
+  public ArrayList<String> getPlayerNames() {
+    ArrayList<String> names = new ArrayList<>();
+    for(Player player : players){
+      names.add(player.getUsername());
+    }
+    return names;
+  }
 
 }

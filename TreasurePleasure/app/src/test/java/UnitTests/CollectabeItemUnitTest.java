@@ -3,9 +3,9 @@ package UnitTests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import goteborgsuniversitet.maptestapp.model.CollectableItem;
-import goteborgsuniversitet.maptestapp.model.ItemType;
-import goteborgsuniversitet.maptestapp.model.Item;
+import treasure.pleasure.model.CollectableItem;
+import treasure.pleasure.model.ItemType;
+import treasure.pleasure.model.Item;
 
 import java.util.ArrayList;
 import org.junit.Before;

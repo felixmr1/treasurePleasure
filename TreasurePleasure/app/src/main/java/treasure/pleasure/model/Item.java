@@ -1,26 +1,27 @@
-package goteborgsuniversitet.maptestapp.Model;
+package treasure.pleasure.model;
+
 public class Item {
     private int value;
     private ItemType type;
 
-    public Item(ItemType type, int value){
+    Item(ItemType type, int value){
         this.type = type;
         this.value = value;
     }
 
-    public int getValue() {
+    int getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    void setValue(int value) {
         this.value = value;
     }
 
-    public ItemType getType() {
+    ItemType getType() {
         return type;
     }
 
-    public void setType(ItemType type) {
+    void setType(ItemType type) {
         this.type = type;
     }
 }
