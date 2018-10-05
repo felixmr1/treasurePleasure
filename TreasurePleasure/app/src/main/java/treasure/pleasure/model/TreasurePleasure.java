@@ -49,8 +49,8 @@ public class TreasurePleasure {
 
   public ArrayList<String> getPlayerNames() {
     ArrayList<String> names = new ArrayList<>();
-    for(Player player : players){
-      names.add(player.getUsername());
+    for(String username : this.players.keySet()){
+      names.add(username);
     }
     return names;
   }

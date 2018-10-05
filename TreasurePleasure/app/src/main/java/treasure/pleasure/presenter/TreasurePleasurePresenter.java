@@ -24,7 +24,7 @@ public class TreasurePleasurePresenter {
         } else {
             a = Avatar.WOMAN;
         }
-        model.addPlayer(name, a);
+        model.addPlayerToGame(name, a);
         view.updatePlayers(model.getPlayerNames());
     }
 

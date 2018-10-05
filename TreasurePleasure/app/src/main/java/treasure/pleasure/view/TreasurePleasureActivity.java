@@ -39,7 +39,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     public void updatePlayers(ArrayList<String> users){
         String allNames = "";
         for (String user:users) {
-            allNames += user;
+            allNames += user + ", ";
         }
         ((TextView)findViewById(R.id.usernameText)).setText("Users: " + allNames);
     }
