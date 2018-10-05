@@ -1,5 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
-
+package goteborgsuniversitet.maptestapp.Model;
 public class Item {
     private int value;
     private ItemType type;

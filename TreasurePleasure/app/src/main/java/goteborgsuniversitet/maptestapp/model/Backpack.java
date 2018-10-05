@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
+package goteborgsuniversitet.maptestapp.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  **/
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-public class Backpack<T> implements Inventory<T> {
+public class Backpack<T> {
 
   private List<T> items;
 
@@ -37,7 +37,6 @@ public class Backpack<T> implements Inventory<T> {
   }
 
 
-  @Override
   public void add(T item) throws Exception {
 
     if (nOfBusySlots < maxSize) {
@@ -49,7 +48,6 @@ public class Backpack<T> implements Inventory<T> {
   }
 
 
-  @Override
   public void removeAll() {
 
     System.out.println(nOfBusySlots);

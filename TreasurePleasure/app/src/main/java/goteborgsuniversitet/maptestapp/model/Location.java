@@ -1,5 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
-
+package goteborgsuniversitet.maptestapp.Model;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.Date;
 

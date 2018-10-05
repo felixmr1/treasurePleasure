@@ -1,5 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
-
+package goteborgsuniversitet.maptestapp.Model;
 
 import java.util.List;
 import java.util.regex.Matcher;

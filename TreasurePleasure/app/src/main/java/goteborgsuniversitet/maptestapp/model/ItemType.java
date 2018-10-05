@@ -1,5 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
-
+package goteborgsuniversitet.maptestapp.Model;
 public enum ItemType {
   DIAMOND,
   GOLD,

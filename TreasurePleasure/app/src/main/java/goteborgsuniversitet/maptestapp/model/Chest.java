@@ -1,12 +1,11 @@
-package goteborgsuniversitet.maptestapp.model;
-
+package goteborgsuniversitet.maptestapp.Model;
 import java.util.List;
 
 /**
  * Created by John on 2018-09-24.
 */
 
-public class Chest<T>  implements Inventory<T> {
+public class Chest<T>  {
 
 
     Chest(){
@@ -15,7 +14,6 @@ public class Chest<T>  implements Inventory<T> {
     }
 
 
-    @Override
     public void add(T item) throws Exception {
 
     }
@@ -27,12 +25,10 @@ public class Chest<T>  implements Inventory<T> {
 
 
 
-    @Override
     public void removeAll() throws Exception {
 
     }
 
-    @Override
     public List<T> getAllItems() {
         return null;
     }
