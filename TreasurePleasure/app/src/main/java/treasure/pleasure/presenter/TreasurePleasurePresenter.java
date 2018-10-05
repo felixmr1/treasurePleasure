@@ -4,7 +4,6 @@ import java.util.Random;
 
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
@@ -29,7 +28,7 @@ public class TreasurePleasurePresenter {
     }
 
     public void showBackpack(){
-        new BackpackFragment(); // Might not be best approach
+        //new BackpackFragment(); // Might not be best approach
     }
 
 }
