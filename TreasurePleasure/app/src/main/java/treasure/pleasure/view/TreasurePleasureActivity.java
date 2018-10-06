@@ -1,7 +1,9 @@
 package treasure.pleasure.view;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 
 import treasure.pleasure.R;
 
+import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
@@ -28,9 +31,8 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         presenter.createPlayer(username);
     }
 
-    public void onPressShowBackpack(View view){
-        presenter.showBackpack();
-        //setContentView(R.layout.backpack_item_template); Can it be done this way?
+    public void onPressBackpackButton(View view){
+        presenter.onPressShowBackpackButton();
     }
 
     // Functions that the Presenter calls (tells view to update)
@@ -42,5 +44,26 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
             allNames += user + ", ";
         }
         ((TextView)findViewById(R.id.usernameText)).setText("Users: " + allNames);
+    }
+
+    public void loadBackpackFragment(TreasurePleasure model) {
+        BackpackRecyclerViewFragment backpackFragment = new BackpackRecyclerViewFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment).commit();
+        //TODO handle passing of model in a different way
+        backpackFragment.setModel(model);
+    }
+
+    public void closeBackpackFragment() {
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().remove(fm.findFragmentById(R.id.backpack_container)).commit();
+    }
+
+    public boolean backpackFragmentIsActive(){
+        return (getSupportFragmentManager().findFragmentById(R.id.backpack_container) != null);
+    }
+
+    public void changeMapButtonText(String newText) {
+        Button mapButton = findViewById(R.id.showBackpackButton);
+        mapButton.setText(newText);
     }
 }

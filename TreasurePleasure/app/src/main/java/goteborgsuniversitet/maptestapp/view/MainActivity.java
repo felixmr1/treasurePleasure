@@ -1,4 +1,6 @@
+/*
 package goteborgsuniversitet.maptestapp.view;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +11,12 @@ import android.widget.Toast;
 import treasure.pleasure.R;
 import treasure.pleasure.view.BackpackRecyclerViewFragment;
 
+*/
 /**
  * Legacy starting point of app
  * @author David
- */
+ *//*
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     showBackPackButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Log.i(TAG,"showBackPackButton clicked"); //logged in logcat
-        //show backpack
-        addBackPackFragment();
+         addBackPackFragment();
       }
     });
   }
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
       showBackPackButton.setText("show backpack");
     }
   }
+*/
 /*
   //TEMPORARY FUNCTION TO TEST //TODO remove when model is properly implemented
   private void createFakeBackpack() {
@@ -92,5 +95,7 @@ public class MainActivity extends AppCompatActivity {
       Toast.makeText(getApplicationContext(), "CANT ADD TO FULL BACKPACK", Toast.LENGTH_SHORT);
     }
   }
-*/
+*//*
+
 }
+*/

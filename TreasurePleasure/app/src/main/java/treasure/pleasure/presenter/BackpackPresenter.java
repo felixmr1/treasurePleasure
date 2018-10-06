@@ -1,6 +1,5 @@
 package treasure.pleasure.presenter;
 
-import goteborgsuniversitet.maptestapp.model.Item;
 import java.util.ArrayList;
 
 /**
@@ -13,4 +12,6 @@ public interface BackpackPresenter {
   //void detachView();
   //void onResume();
   //void onItemSelected(int position);
+  ArrayList<Integer> getContentToDisplay();
+
 }

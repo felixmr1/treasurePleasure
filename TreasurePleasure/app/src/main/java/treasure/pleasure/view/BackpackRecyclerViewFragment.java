@@ -7,35 +7,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import goteborgsuniversitet.maptestapp.model.Backpack;
+import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.BackpackPresenterImpl;
 
-import goteborgsuniversitet.maptestapp.R;
+import treasure.pleasure.R;
 
 /**
  * @author David
  */
 public class BackpackRecyclerViewFragment extends Fragment {
 
-    //TODO to be replace by model
-    private Backpack mBackpack;
-    //private Model mModel;
-
     private BackpackPresenterImpl backpackPresenter;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-    //because the constructor cannot take arguments these are setable.
-    //private Model mModel;
-
+    private TreasurePleasure model;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //make reference to presenter
-        backpackPresenter = new BackpackPresenterImpl(this, mBackpack);
+        backpackPresenter = new BackpackPresenterImpl(this, model);
 
         View rootView = inflater.inflate(R.layout.fragment_backpack_test, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
@@ -53,12 +45,12 @@ public class BackpackRecyclerViewFragment extends Fragment {
         //hook up the adapter.
         //mAdapter = new BackpackRecyclerAdapter(backpackContent);
         //TODO refactor here?
-        mAdapter = new BackpackRecyclerAdapter(backpackPresenter.returnBackPackContents());
+        mAdapter = new BackpackRecyclerAdapter(backpackPresenter.getContentToDisplay());
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    //TODO to be replaced with model
-    public void setBackpack(Backpack backpack) {
-        this.mBackpack = backpack;
+    //TODO alternative ways of establishing communicaiton?
+    public void setModel(TreasurePleasure model) {
+        this.model = model;
     }
 }

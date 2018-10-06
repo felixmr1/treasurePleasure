@@ -1,6 +1,7 @@
 package treasure.pleasure.view;
 /**
  * @author David
+ * This is a support class for RecyclerViewFragment
  * Creates a card for each item and populates the view
  */
 
@@ -10,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import treasure.pleasure.presenter.BackpackPresenterImpl.ItemPathAndValue;
-import java.util.List;
 
-import goteborgsuniversitet.maptestapp.R;
+import java.util.ArrayList;
+import treasure.pleasure.R;
 
 public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecyclerAdapter.MyViewHolder> {
-    private List<ItemPathAndValue> mContentToDisplay;
+
+    private final ArrayList<Integer> mContentToDisplay;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -32,7 +33,7 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
         }
     }
 
-    public BackpackRecyclerAdapter(List<ItemPathAndValue> content) {
+    public BackpackRecyclerAdapter(ArrayList<Integer> content) {
         this.mContentToDisplay = content;
     }
 
@@ -48,16 +49,15 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        // get element from your dataset at this position
-        ItemPathAndValue currentItem = mContentToDisplay.get(position);
         // replace the contents of the view with that element
-        holder.mTextView.setText(String.valueOf(currentItem.getValue()));
-        holder.mImageView.setImageResource(currentItem.getImgPath());
+        holder.mImageView.setImageResource(mContentToDisplay.get(position*2));
+        holder.mTextView.setText(String.valueOf(mContentToDisplay.get(position*2+1)));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
+    // each item is represented by two consecutive int´s in the array. Therefore half the size for item count.
     @Override
     public int getItemCount() {
-        return mContentToDisplay.size();
+        return mContentToDisplay.size()/2;
     }
 }

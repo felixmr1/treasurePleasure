@@ -27,8 +27,14 @@ public class TreasurePleasurePresenter {
         view.updatePlayers(model.getPlayerNames());
     }
 
-    public void showBackpack(){
-        //new BackpackFragment(); // Might not be best approach
+    public void onPressShowBackpackButton(){
+        if (view.backpackFragmentIsActive()) {
+            view.closeBackpackFragment();
+            view.changeMapButtonText("Show backpack");
+        } else {
+            view.loadBackpackFragment(model);
+            view.changeMapButtonText("Close backpack");
+        }
     }
 
 }

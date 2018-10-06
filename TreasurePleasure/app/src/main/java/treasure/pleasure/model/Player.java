@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
         this.username = username;
         this.avatar = avatar;
         this.dropBonus = 1;
+        this.backpack = new Backpack<>(5);
     }
 
     String getUsername() {
@@ -69,7 +70,7 @@ import java.util.regex.Pattern;
     }
 
 
-    Backpack<Item> getBackPack(){
+    Backpack<Item> getBackpack(){
 
       return this.backpack;
 

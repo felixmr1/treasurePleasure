@@ -1,4 +1,4 @@
-package UnitTests;
+package treasure.pleasure.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
