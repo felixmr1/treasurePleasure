@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
+package treasure.pleasure.model;
 
 
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
- public class Player {
+ class Player {
 
     private String username;
     private Avatar avatar;
@@ -16,10 +16,11 @@ import java.util.regex.Pattern;
     private int dropBonus;
 
 
-    public Player(String name, Avatar avatar){
+    Player(String name, Avatar avatar){
         this.username = username;
         this.avatar = avatar;
         this.dropBonus = 1;
+        this.backpack = new Backpack<>(5);
     }
 
     String getUsername() {
@@ -69,7 +70,7 @@ import java.util.regex.Pattern;
     }
 
 
-    public Backpack<Item> getBackPack(){
+    Backpack<Item> getBackpack(){
 
       return this.backpack;
 

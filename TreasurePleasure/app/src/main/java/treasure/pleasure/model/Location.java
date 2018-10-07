@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.model;
+package treasure.pleasure.model;
 
 import com.google.android.gms.maps.model.LatLng;
 import java.util.Date;
@@ -6,57 +6,38 @@ import java.util.Date;
 /*
     Handles all the different locations in the project, for example player and a collectable Item
  */
-public class Location {
+class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
   private double maxInteractionDistance = 10;
 
-  /**
-   * Creates a location with longitude, latitude and timestamp set to 0
-   */
-  public Location() {
+  Location() {
     this.longitude = 0;
     this.latitude = 0;
     this.timestamp = new Date().getTime();
   }
 
-  /**
-   * Creates a NEW location that copies the longitude, latitude and timestamp from params
-   * @param location A initiated location
-   */
-  public Location(Location location) {
+  Location(Location location) {
     this.longitude = location.getLongitude();
     this.latitude =  location.getLatitude();
     this.timestamp = location.getTimestamp();
   }
 
-  /**
-   * Creates a location with given longitude and latitude
-   * @param longitude represents the real world longitude
-   * @param latitude represents the real world latitude
-   */
-  public Location(double longitude, double latitude) {
+  Location(double longitude, double latitude) {
     this.longitude = longitude;
     this.latitude =  latitude;
     this.timestamp = new Date().getTime();
   }
 
-  /**
-   * Calculated the distance between given the longitudes and latitudes and compares it to the set max interaction distance
-   * @return a boolean if the two coordinated are close enough.
-   */
-  public boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
+  // Dont know how we want to handle this, so wrote 3 versions for now.
+  boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
       double latitude2) {
     Location location = new Location(longitude1, latitude1);
     return location.distanceTo(longitude2, latitude2) <= this.maxInteractionDistance;
   }
 
-  /**
-   * Calculated the distande between given the longitudes and latitudes and compares it to the set max interaction distance
-   * @return true if the two coordinated are close enough.
-   */
-  public boolean isCloseEnough(Location compareLocation) {
+  boolean isCloseEnough(Location compareLocation) {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
@@ -139,26 +120,26 @@ public class Location {
    * Sets the distance between interactions on the map. Used when calculating if two locations is close enough.
    * @param maxDistance
    */
-  public void setMaxInteractionDistance(double maxDistance) {
+  void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;
   }
 
-  public double getLongitude() {
+  double getLongitude() {
     return this.longitude;
   }
 
-  public double getLatitude() {
+  double getLatitude() {
     return this.latitude;
   }
 
-  public long getTimestamp() {
+  long getTimestamp() {
     return this.timestamp;
   }
 
   /**
    * @return a new LatLng object
    */
-  public LatLng getLatLng() {
+  LatLng getLatLng() {
     return new LatLng(this.latitude, this.longitude);
   }
 }

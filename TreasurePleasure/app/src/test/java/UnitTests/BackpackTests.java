@@ -1,10 +1,10 @@
-package UnitTests;
+package treasure.pleasure.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import goteborgsuniversitet.maptestapp.model.Backpack;
+import treasure.pleasure.model.Backpack;
 import java.util.Collection;
 import java.util.List;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package goteborgsuniversitet.maptestapp.ui;
+package treasure.pleasure.view;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,13 +19,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
-import goteborgsuniversitet.maptestapp.R;
+
 import java.util.ArrayList;
+
+/**
+ * @author Felix
+ */
 
 public class MapFragment extends SupportMapFragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-  //Hardcoded locations
+
   //Hardcoded locations
   private final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
   private final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
@@ -67,7 +70,7 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
     mMap.setOnMarkerClickListener(this);
 
     // set style
-    MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_style);
+    MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(getContext(), treasure.pleasure.R.raw.map_style);
     mMap.setMapStyle(style);
 
     // Add markers and build play map
@@ -96,14 +99,14 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
         .position(KLATTERLABBET)
         .title("Treasure Chest")
         .snippet("Hold to drag")
-        .icon(BitmapDescriptorFactory.fromResource(R.drawable.chest))
+        .icon(BitmapDescriptorFactory.fromResource(treasure.pleasure.R.drawable.chest))
         .draggable(true));
 
     //add draggable marker. long press to drag
     gemOne = mMap.addMarker(new MarkerOptions()
         .position(DELTAPARKEN)
         .title("1st gem")
-        .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny)));
+        .icon(BitmapDescriptorFactory.fromResource(treasure.pleasure.R.drawable.gem_tiny)));
   }
 
   private void enableMyLocation() {
