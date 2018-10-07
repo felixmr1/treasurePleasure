@@ -47,8 +47,4 @@ public class TreasurePleasurePresenter {
       model.addMarker(latLng2);
     }
 
-    public void showBackpack(){
-        new BackpackFragment(); // Might not be best approach
-    }
-
 }

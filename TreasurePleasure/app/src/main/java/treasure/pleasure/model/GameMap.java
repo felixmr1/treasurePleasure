@@ -10,7 +10,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
-import goteborgsuniversitet.maptestapp.R;
 import java.util.ArrayList;
 
 class GameMap {
