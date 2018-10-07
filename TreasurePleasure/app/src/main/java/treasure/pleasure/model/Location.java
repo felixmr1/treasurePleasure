@@ -13,18 +13,36 @@ class Location {
   private long timestamp;
   private double maxInteractionDistance = 10;
 
+  /**
+   * Creates a empty location with longitude and latitude set to 0. Timestamp is the current timestamp
+   */
   Location() {
     this.longitude = 0;
     this.latitude = 0;
     this.timestamp = new Date().getTime();
   }
 
+  /**
+   * Creates a location with longitude, latitude and timnstamp from given location
+   */
   Location(Location location) {
     this.longitude = location.getLongitude();
     this.latitude =  location.getLatitude();
     this.timestamp = location.getTimestamp();
   }
 
+  /**
+   * Creates a location with longitude, latitude from given latLng. Sets timestamp to now
+   */
+  Location(LatLng latLng) {
+    this.longitude = latLng.longitude;
+    this.latitude =  latLng.latitude;
+    this.timestamp = new Date().getTime();
+  }
+
+  /**
+   * Creates a location with longitude, latitude and timnstamp from given params
+   */
   Location(double longitude, double latitude) {
     this.longitude = longitude;
     this.latitude =  latitude;
@@ -47,8 +65,6 @@ class Location {
 
   /**
    * Updates self with given longitude and latitude and takes the current time as timestamp
-   * @param longitude
-   * @param latitude
    */
   void update(double longitude, double latitude) {
     Date date = new Date();
@@ -57,8 +73,6 @@ class Location {
 
   /**
    * Updates self with given params
-   * @param longitude
-   * @param latitude
    * @param timestamp Milliseconds since 1972? (new Date().getTime)
    */
   void update(double longitude, double latitude, long timestamp) {
@@ -69,8 +83,6 @@ class Location {
 
   /**
    * Calculated the distance between given longitude and latitude and self.
-   * @param toLongitude
-   * @param toLatitude
    * @return Distance between locations
    */
   double distanceTo(double toLongitude, double toLatitude) {
