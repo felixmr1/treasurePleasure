@@ -34,7 +34,8 @@ public class CollectableItem {
     return availableItems.get(random);
   }
 
-  Location createUniqueLocation() {
+  public Location createUniqueLocation() {
+
     return new Location();
   }
 
@@ -42,7 +43,7 @@ public class CollectableItem {
    *
    * @param location
    */
-  void removeItem(Location locationHandler) {
+  void removeItem(Location location) {
 
   }
 
