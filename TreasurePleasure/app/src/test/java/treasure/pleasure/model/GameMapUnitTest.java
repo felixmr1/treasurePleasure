@@ -14,14 +14,11 @@ public class GameMapUnitTest {
   private final LatLng KLATTERLABBET = new LatLng(57.6874681, 11.9782412);
   private final LatLng DELTAPARKEN = new LatLng(57.6875713, 11.9795823);
 
-  TreasurePleasure tp;
   GameMap gameMap;
 
   @Before
   public void initGameMap() {
-
-    this.tp = new TreasurePleasure(0);
-    this.gameMap = this.tp.getGameMap();
+    gameMap = new GameMap();
   }
 
   @Test

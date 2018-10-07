@@ -12,20 +12,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CollectabeItemUnitTest {
-  CollectableItem collectableItems;
+  CollectableItem collectibleItems;
+  int maxCollectibles = 50;
+  ArrayList<Location> mapConstraints = new ArrayList<>();
+  ArrayList<Item> availableItems = new ArrayList<>();
 
   @Before
   public void initLocations() {
-    int maxItems = 50;
-    ArrayList<Item> availableItems = new ArrayList<>();
     availableItems.add(new Item(ItemType.DIAMOND , 30));
     availableItems.add(new Item(ItemType.GOLD , 10));
     availableItems.add(new Item(ItemType.STONE , 5));
-    collectableItems = new CollectableItem(maxItems, availableItems);
+    // collectibleItems = new CollectableItem(maxCollectibles, availableItems, mapConstraints);
   }
 
   @Test
   public void setUniqueLocations() {
+
+  }
+
+  @Test
+  public void createUniqueLocations() {
 
   }
 }
