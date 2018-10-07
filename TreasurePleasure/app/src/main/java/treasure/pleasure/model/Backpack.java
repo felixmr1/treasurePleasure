@@ -65,6 +65,8 @@ class Backpack<T> {
     return nOfBusySlots >= maxSize;
   }
 
+  boolean isNotFull() { return !isFull(); }
+
   boolean isEmpty() {
     return (nOfBusySlots == 0);
   }

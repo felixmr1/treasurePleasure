@@ -4,7 +4,6 @@ import java.util.Random;
 
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
@@ -28,8 +27,14 @@ public class TreasurePleasurePresenter {
         view.updatePlayers(model.getPlayerNames());
     }
 
-    public void showBackpack(){
-        new BackpackFragment(); // Might not be best approach
+    public void onPressShowBackpackButton(){
+        if (view.backpackFragmentIsActive()) {
+            view.closeBackpackFragment();
+            view.changeMapButtonText("Show backpack");
+        } else {
+            view.loadBackpackFragment(model);
+            view.changeMapButtonText("Close backpack");
+        }
     }
 
 }
