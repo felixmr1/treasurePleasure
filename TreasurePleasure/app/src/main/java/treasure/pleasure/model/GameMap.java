@@ -17,9 +17,6 @@ class GameMap {
   private final LatLng KLATTERLABBET = new LatLng(57.6874681, 11.9782412);
   private final LatLng DELTAPARKEN = new LatLng(57.6875713, 11.9795823);
 
-
-  private ArrayList<Location> mapLimit = new ArrayList<Location>();
-  private ArrayList<Location> mapReal = new ArrayList<Location>();
   private GoogleMap mMap;
   //Markers
   private Marker treasureChest;
@@ -29,14 +26,11 @@ class GameMap {
   private int numberOfItems;
 
   GameMap(ArrayList<Location> mapLimit, ArrayList<Location> mapReal) {
-    // Add markers and build play map
-    createPolygonMap();
+    createPolygonMap(mapLimit,mapReal);
     // position camera
     mMap.setMinZoomPreference(15.0f);
     // TODO: GET CENTER OF MAP AND MOVE CAMERA THERE
     mMap.moveCamera(CameraUpdateFactory.newLatLng(KLATTERLABBET));
-    this.mapLimit = mapLimit;
-    this.mapReal = mapReal;
 
     // Keep track of amount of items added.
     numberOfItems = 0;
@@ -57,7 +51,7 @@ class GameMap {
     return latLngArrayList;
   }
 
-  private void createPolygonMap() {
+  private void createPolygonMap(ArrayList<Location> mapLimit, ArrayList<Location> mapReal) {
     mMap.addPolygon(new PolygonOptions()
         .add(mapLimit.get(0).getLatLng(), mapLimit.get(1).getLatLng(),
             mapLimit.get(2).getLatLng(), mapLimit.get(3).getLatLng())
