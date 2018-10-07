@@ -39,6 +39,9 @@ class GameMap {
   private Marker treasureChest;
   private Marker gemOne;
 
+  // number of items on map
+  private int numberOfItems;
+
   GameMap() {
     // Add markers and build play map
     createPolygonMap();
@@ -46,6 +49,7 @@ class GameMap {
     // position camera
     mMap.setMinZoomPreference(15.0f);
     mMap.moveCamera(CameraUpdateFactory.newLatLng(MAPCENTER));
+    numberOfItems = 0;
 
   }
 
@@ -64,11 +68,15 @@ class GameMap {
         .title("hej")
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny))
     );
+    numberOfItems++;
   }
 
+  // getters
   GoogleMap getmMap() {
     return this.mMap;
   }
+  int getNumberOfItems() {return numberOfItems; }
+
 
 }
 

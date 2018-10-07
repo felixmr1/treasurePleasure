@@ -2,11 +2,14 @@ package treasure.pleasure.presenter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.TreasurePleasureView;
 
@@ -17,12 +20,25 @@ public class GameMapPresenter {
   private TreasurePleasureView view;
   private TreasurePleasure model;
   private Activity activity;
+  private Context context;
   private GoogleMap mMap;
 
   GameMapPresenter(TreasurePleasure model) {
     this.model = model;
     this.mMap = this.model.getmMap();
+    enableMyLocation();
+    setStyle();
+
+    //mMap.setOnMarkerClickListener(this);
+
   }
+
+  private void setStyle() {
+    MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(context, R.raw.map_style);
+    mMap.setMapStyle(style);
+  }
+
+  public void setContext(Context context) {this.context = context; }
 
   public void setActivity(Activity activity) {
     this.activity = activity;

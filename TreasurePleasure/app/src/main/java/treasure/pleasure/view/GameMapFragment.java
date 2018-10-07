@@ -35,6 +35,7 @@ public class GameMapFragment extends SupportMapFragment {
     super.onCreate(savedInstanceState);
     getMapAsync((OnMapReadyCallback) this);
     gameMapPresenter.setActivity(getActivity());
+    gameMapPresenter.setContext(getContext());
   }
 
 }
