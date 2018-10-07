@@ -18,7 +18,7 @@ public class TreasurePleasurePresenter {
         this.model = TreasurePleasure.getInstance();
 
         // Additional presenters
-        this.gameMapPresenter = new GameMapPresenter(model, view);
+        this.gameMapPresenter = new GameMapPresenter(model);
     }
 
     public void createPlayer(String name) {
