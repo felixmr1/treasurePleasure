@@ -5,25 +5,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.util.ArrayList;
+import treasure.pleasure.R;
 
 class GameMap {
 
-  private GoogleMap mMap;
-
-  //Markers
-  private Marker treasureChest;
-  private Marker gemOne;
-
   //Hardcoded locations
-  private final LatLng KLATTERLABBET = new LatLng(57.6874681,11.9782412);
-  private final LatLng DELTAPARKEN = new LatLng(57.6875713,11.9795823);
-
+  private final LatLng KLATTERLABBET = new LatLng(57.6874681, 11.9782412);
+  private final LatLng DELTAPARKEN = new LatLng(57.6875713, 11.9795823);
   // GameMap locations
   private final LatLng
       MAPCENTER = new LatLng(57.688067, 11.977898),
@@ -35,7 +27,6 @@ class GameMap {
       mapNE = new LatLng(57.690708, 11.976745),
       mapSW = new LatLng(57.685990, 11.982750),
       mapSE = new LatLng(57.685446, 11.977415);
-
   private final ArrayList<LatLng> MAPBOUNDARY = new ArrayList<LatLng>() {{
     add(mapNW);
     add(mapNE);
@@ -43,6 +34,10 @@ class GameMap {
     add(mapSE);
     add(mapNW); // to "close" box
   }};
+  private GoogleMap mMap;
+  //Markers
+  private Marker treasureChest;
+  private Marker gemOne;
 
   GameMap() {
     // Add markers and build play map
@@ -59,7 +54,7 @@ class GameMap {
         .add(mapLimitNW, mapLimitNE, mapLimitSW, mapLimitSE)
         .addHole(MAPBOUNDARY)
         .strokeColor(Color.BLACK)
-        .fillColor(Color.argb(220,0,0,0)));
+        .fillColor(Color.argb(220, 0, 0, 0)));
 
   }
 
