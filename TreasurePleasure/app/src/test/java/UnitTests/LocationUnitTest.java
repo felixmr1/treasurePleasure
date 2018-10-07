@@ -1,16 +1,14 @@
-package UnitTests;
+package treasure.pleasure.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.google.android.gms.maps.model.LatLng;
-import goteborgsuniversitet.maptestapp.model.Location;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
 public class LocationUnitTest {
-
   Location location1;
   Location location2;
   Location inValidLocation;

@@ -49,7 +49,7 @@ class Location {
    * @param longitude
    * @param latitude
    */
-  public void update(double longitude, double latitude) {
+  void update(double longitude, double latitude) {
     Date date = new Date();
     this.update(longitude, latitude, date.getTime());
   }
@@ -60,7 +60,7 @@ class Location {
    * @param latitude
    * @param timestamp Milliseconds since 1972? (new Date().getTime)
    */
-  public void update(double longitude, double latitude, long timestamp) {
+  void update(double longitude, double latitude, long timestamp) {
     this.setLongitude(longitude);
     this.setLatitude(latitude);
     this.setTimestamp(timestamp);
@@ -72,7 +72,7 @@ class Location {
    * @param toLatitude
    * @return Distance between locations
    */
-  public double distanceTo(double toLongitude, double toLatitude) {
+  double distanceTo(double toLongitude, double toLatitude) {
     double longDiff = Math.abs(this.getLongitude() - toLongitude);
     double latDiff = Math.abs(this.getLatitude() - toLatitude);
     double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
