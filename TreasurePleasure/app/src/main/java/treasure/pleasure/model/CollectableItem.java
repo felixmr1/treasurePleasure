@@ -28,7 +28,7 @@ class CollectableItem {
   }
 
   /**
-   * Spawns a random item within the current map
+   * Spawns a random item within the current map constraints
    */
   void spawnRandomItem() {
     Location loc = createUniqueLocation();
@@ -43,7 +43,7 @@ class CollectableItem {
    * @param item
    */
   private void addItem(Location loc, Item item){
-
+    collectibles.put(loc, item);
   }
 
   Item createRandomItem() {
@@ -61,21 +61,28 @@ class CollectableItem {
     double mapWidth = southEast.getLongitude() - northWest.getLongitude();
     double mapHeight = northWest.getLatitude() - southEast.getLatitude();
     double randX = northWest.getLongitude() + Math.random() * mapWidth;
-    double randY = northWest.getLatitude() + Math.random() * mapHeight;
+    double randY = southEast.getLatitude() + Math.random() * mapHeight;
 
     return new Location(randX, randY);
   }
 
   /**
-   *
+   * Removes item located at given location
    * @param location
    */
-  void removeItem(Location location) {
-
+  void removeItem(Location location){
+    collectibles.remove(location);
   }
 
+  /**
+   * Returns item at corresponding location and removes it from map
+   * @param location
+   * @return
+   */
   Item collect(Location location) {
-    return createRandomItem();
+    Item item = collectibles.get(location);
+    collectibles.remove(location);
+    return item;
   }
 
 }
