@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">TreasurePleasure</string>
     <string name="title_activity_maps">Map</string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
 </resources>
