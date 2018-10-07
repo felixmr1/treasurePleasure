@@ -3,6 +3,9 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,17 +15,23 @@ public class TreasurePleasure {
   private Map<String,Player> players;
   private Map<Location,Item> items;
   private Player player;
+  private GameMap gameMap;
 
 
   public TreasurePleasure(int nOfItems) {
     this.player = new Player("SkyriderOfSkyriders Master of the skies", Avatar.MAN);
     this.players = new HashMap<>();
     this.items = new HashMap<>();
-  }
+    this.gameMap = new GameMap();
 
-  private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
-  public static TreasurePleasure getInstance() {
-    return ourInstance;
+    /*
+    We have to figure out how to handle locations - items // John
+
+    for (int i = 0; i < nOfItems ; i++ ){
+      Location loc = new Location();
+      Item item = new Item(ItemType.DIAMOND,5);
+    }
+    */
   }
 
 
@@ -64,4 +73,12 @@ public class TreasurePleasure {
       contentToDisplayList.add(0);
     }
   }
+  public void addMarker(LatLng latLng) {
+    gameMap.addMarker(latLng);
+  }
+
+  public GoogleMap getmMap() {
+    return gameMap.getmMap();
+  }
+
 }
