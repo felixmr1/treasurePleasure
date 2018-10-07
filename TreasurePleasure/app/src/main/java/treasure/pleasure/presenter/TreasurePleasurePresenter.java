@@ -32,17 +32,19 @@ public class TreasurePleasurePresenter {
         view.updatePlayers(model.getPlayerNames());
     }
 
-    public void onPressShowBackpackButton(){
-        if (view.backpackFragmentIsActive()) {
-            view.closeBackpackFragment();
-            view.changeMapButtonText("Show backpack");
-        } else {
-            view.loadBackpackFragment(model);
-            view.changeMapButtonText("Close backpack");
-        }
-    public void addMarker(LatLng latLng) {
+    public void onPressShowBackpackButton() {
+      if (view.backpackFragmentIsActive()) {
+        view.closeBackpackFragment();
+        view.changeMapButtonText("Show backpack");
+      } else {
+        view.loadBackpackFragment(model);
+        view.changeMapButtonText("Close backpack");
+      }
+    }
+
+    public void addMarker(LatLng latlng) {
       LatLng latLng2 = new LatLng(57.688067, 11.977898);
-      model.addMarker(latLng);
+      model.addMarker(latLng2);
     }
 
     public void showBackpack(){

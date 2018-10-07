@@ -34,6 +34,11 @@ public class TreasurePleasure {
     */
   }
 
+  private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
+  public static TreasurePleasure getInstance() {
+    return ourInstance;
+  }
+
 
   public void addPlayerToGame(String nickname, Avatar avatar){
       players.put(nickname,new Player(nickname,avatar));
