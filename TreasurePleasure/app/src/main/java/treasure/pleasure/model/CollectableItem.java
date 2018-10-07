@@ -3,7 +3,7 @@ package treasure.pleasure.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CollectableItem {
+class CollectableItem {
   private int maxItems;
   private HashMap<Location, Item> collectables;
   private ArrayList<Item> availableItems;
@@ -34,7 +34,7 @@ public class CollectableItem {
     return availableItems.get(random);
   }
 
-  public Location createUniqueLocation() {
+  Location createUniqueLocation() {
 
     return new Location();
   }
@@ -47,7 +47,7 @@ public class CollectableItem {
 
   }
 
-  public Item collect(Location location) {
+  Item collect(Location location) {
     return createRandomItem();
   }
 
