@@ -49,13 +49,20 @@ class Location {
     this.timestamp = new Date().getTime();
   }
 
-  // Dont know how we want to handle this, so wrote 3 versions for now.
+  /**
+   * Calculates the distance between given coordinates and returns true if they are within Max Interaction Distance
+   * @return True if distance is less or equal to max interaction Distance
+   */
   boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
       double latitude2) {
     Location location = new Location(longitude1, latitude1);
     return location.distanceTo(longitude2, latitude2) <= this.maxInteractionDistance;
   }
 
+  /**
+   * Calculates the distance between given location and returns true if they are within Max Interaction Distance
+   * @return True if distance is less or equal to max interaction Distance
+   */
   boolean isCloseEnough(Location compareLocation) {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
@@ -73,7 +80,7 @@ class Location {
 
   /**
    * Updates self with given params
-   * @param timestamp Milliseconds since 1972? (new Date().getTime)
+   * @param timestamp Milliseconds since 1970 (new Date().getTime)
    */
   void update(double longitude, double latitude, long timestamp) {
     this.setLongitude(longitude);
@@ -90,6 +97,17 @@ class Location {
     double latDiff = Math.abs(this.getLatitude() - toLatitude);
     double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
     return distanceBetween;
+  }
+
+  /**
+   * Checks if a location is within given borders
+   * @param borders A arraylist that creates a border on a map (order mather!)
+   * @param point The point that is checked if it's within the border
+   * @return true if point is within given border
+   */
+  boolean isWithinCoordinates(ArrayList<Location> borders, Location point) {
+
+    return true;
   }
 
   private boolean isValidCoordinate(double coordinate) {
@@ -131,7 +149,6 @@ class Location {
 
   /**
    * Sets the distance between interactions on the map. Used when calculating if two locations is close enough.
-   * @param maxDistance
    */
   void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;
