@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import treasure.pleasure.R;
-import treasure.pleasure.view.BackpackRecyclerViewFragment;
+import treasure.treasure.pleasure.R;
+import treasure.treasure.pleasure.view.BackpackRecyclerViewFragment;
 
 */
 /**
