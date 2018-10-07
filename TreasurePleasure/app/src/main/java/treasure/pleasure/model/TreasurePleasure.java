@@ -17,12 +17,39 @@ public class TreasurePleasure {
   private Player player;
   private GameMap gameMap;
 
+  // Map coordinates
+  private final Location
+      mapLimitNW = new Location(57.863889, 11.410027),
+      mapLimitNE = new Location(57.848447, 12.387770),
+      mapLimitSW = new Location(57.563985, 12.193909),
+      mapLimitSE = new Location(57.554888, 11.627327),
+      mapNW = new Location(57.690700, 11.970995),
+      mapNE = new Location(57.690708, 11.976745),
+      mapSW = new Location(57.685990, 11.982750),
+      mapSE = new Location(57.685446, 11.977415);
+
+  private final ArrayList<Location> mapLimit = new ArrayList<Location>() {{
+    add(mapLimitNW);
+    add(mapLimitNE);
+    add(mapLimitSW);
+    add(mapLimitSE);
+    add(mapLimitNW); // to "close" box
+  }};
+
+  private final ArrayList<Location> mapReal = new ArrayList<Location>() {{
+    add(mapNW);
+    add(mapNE);
+    add(mapSW);
+    add(mapSE);
+    add(mapNW); // to "close" box
+  }};
+
 
   public TreasurePleasure(int nOfItems) {
     this.player = new Player("SkyriderOfSkyriders Master of the skies", Avatar.MAN);
     this.players = new HashMap<>();
     this.items = new HashMap<>();
-    this.gameMap = new GameMap();
+    this.gameMap = new GameMap(mapLimit, mapReal);
 
     /*
     We have to figure out how to handle locations - items // John
@@ -82,6 +109,7 @@ public class TreasurePleasure {
     gameMap.addMarker(latLng);
   }
 
+  public GameMap getGameMap() { return gameMap; }
   public GoogleMap getmMap() {
     return gameMap.getmMap();
   }

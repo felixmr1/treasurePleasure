@@ -1,6 +1,7 @@
 package treasure.pleasure.model;
 
 import com.google.android.gms.maps.model.LatLng;
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -142,4 +143,5 @@ class Location {
   LatLng getLatLng() {
     return new LatLng(this.latitude, this.longitude);
   }
+
 }
