@@ -43,10 +43,17 @@ class GameMap {
   }
 
   private ArrayList<LatLng> getLatLngArrayList(ArrayList<Location> locationArrayList) {
+    Location northWest = locationArrayList.get(0);
+    Location southEast = locationArrayList.get(1);
+    Location northEast = new Location(southEast.getLongitude(), northWest.getLatitude());
+    Location southWest = new Location(northWest.getLongitude(), southEast.getLatitude());
+
     ArrayList<LatLng> latLngArrayList = new ArrayList<>();
-    for (Location locItem: locationArrayList) {
-      latLngArrayList.add(locItem.getLatLng());
-    }
+    latLngArrayList.add(northWest.getLatLng());
+    latLngArrayList.add(northEast.getLatLng());
+    latLngArrayList.add(southEast.getLatLng());
+    latLngArrayList.add(southWest.getLatLng());
+    latLngArrayList.add(northWest.getLatLng());
     return latLngArrayList;
   }
 
