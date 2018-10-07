@@ -35,6 +35,7 @@ public class CollectableItem {
   }
 
   public Location createUniqueLocation() {
+
     return new Location();
   }
 
