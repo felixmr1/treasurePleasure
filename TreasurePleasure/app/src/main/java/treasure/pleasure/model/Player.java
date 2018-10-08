@@ -1,6 +1,7 @@
 package treasure.pleasure.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,15 +13,25 @@ import java.util.regex.Pattern;
     private Avatar avatar;
     private Backpack<Item> backpack;
     private Chest chest;
-    //private UpgradeCenter upgrades;
+    private UpgradeCenter upgradeCenter;
     private int dropBonus;
 
 
-    Player(String name, Avatar avatar){
-        this.username = username;
-        this.avatar = avatar;
-        this.dropBonus = 1;
-        this.backpack = new Backpack<>(5);
+    Player(String username, ArrayList<String> takenUsernames, Avatar avatar){
+        if(takenUsernames.contains(username)){
+            throw new ExceptionInInitializerError("Username is taken");
+        }
+        else {
+            this.username = username;
+            this.avatar = avatar;
+            this.chest = new Chest();
+            this.dropBonus = 1;
+            this.backpack = new Backpack<>(5);
+        }
+    }
+
+    void placeUpgradeCenter(){
+        this.upgradeCenter = new UpgradeCenter(this);
     }
 
     String getUsername() {
