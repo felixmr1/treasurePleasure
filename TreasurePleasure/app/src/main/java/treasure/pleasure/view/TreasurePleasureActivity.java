@@ -22,6 +22,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         presenter = new TreasurePleasurePresenter(this);
+
     }
 
     // Functions that the XML triggers (user-actions)
@@ -66,4 +67,5 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         Button mapButton = findViewById(R.id.showBackpackButton);
         mapButton.setText(newText);
     }
+
 }
