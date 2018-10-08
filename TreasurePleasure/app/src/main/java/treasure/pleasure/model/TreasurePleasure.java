@@ -5,11 +5,13 @@ package treasure.pleasure.model;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import treasure.pleasure.data.AndroidImageAssets;
+import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
   private Map<String,Player> players;
@@ -66,7 +68,8 @@ public class TreasurePleasure {
 
 
   public void addPlayerToGame(String nickname, Avatar avatar){
-      players.put(nickname,new Player(nickname,avatar));
+    String lowCaseNick = nickname.toLowerCase();
+      players.put(lowCaseNick,new Player(nickname,avatar));
   }
 
   public ArrayList<String> getPlayerNames() {
@@ -76,6 +79,40 @@ public class TreasurePleasure {
     }
     return names;
   }
+
+
+  /**
+   * Uses Tuple class : adds the pair itemtype and value to a List which is sent to the controller
+   * of the application
+   * @return List<Tuple<ItemTYpe,Double>
+   */
+
+public List<Tuple<ItemType,Double>> getBackPackContent(){
+
+
+    List<Tuple<ItemType,Double>> content = new ArrayList();
+    int index = 0;
+    for (Item item : player.getBackpack().getAllItems()) {
+
+      content.add(new Tuple<>(item.getType(), item.getValue()));
+      index ++;
+    }
+
+    if(player.getBackpack().isNotFull()){
+
+      while(index < player.getBackpack().getMaxSize()){
+        content.add(new Tuple<>(ItemType.VOID,0.0));
+      }
+
+    }
+
+
+    return content;
+
+}
+
+
+/*
 
   //get backpack items and translate it for the backpack presenter.
   // One item is represented by two consecutive ints in the array {resourcePath, value}.
@@ -92,6 +129,8 @@ public class TreasurePleasure {
     if (backpack.isNotFull()) {addEmptySlotsToList(contentToDisplayList, backpack.getnOfEmptySlots());}
     return contentToDisplayList;
   }
+
+  */
 
   //getBackpackContents helper method
   // The backpack ui is supposed to show current content and available slots, this method populates the backpack with images representing space available

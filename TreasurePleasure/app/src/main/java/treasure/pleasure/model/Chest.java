@@ -3,31 +3,52 @@ package treasure.pleasure.model;
 import java.util.List;
 
 /**
- * Created by John on 2018-09-24.
+ * Chest is where the
 */
 
-public class Chest<T> {
+public class Chest<T extends ItemCallBack>{
+
+    private Location location;
+    private double score;
 
 
-    Chest(){
+    /**
+     * Constructor to call when all values need to be parameterized, for example when fetchign data
+     * from db and re-creating the player.
+     *
+     * @param score current score of the player.
 
-
+     * @param  location sets the location of a chest
+     */
+    Chest(double score, Location location){
+        this.location = location;
+        this.score = score;
     }
 
-    void add(T item) throws Exception {
-
+    /**
+     * constructor of the chest to be called when a player is initilized.
+     *
+     * @param location  sets the location of a chest
+     */
+    Chest(Location location){
+        this.score = 0;
+        this.location = location;
     }
 
     // Add multiple items at once
-    void add(List<T> items) throws Exception {
+    void sell(List<T> items)  {
+        for (T item: items)  {
+            sell(item);
+        }
 
     }
 
-    void removeAll() throws Exception {
-
+    double sell(T item) {
+        return item.getValueCallBack();
     }
 
-    List<T> getAllItems() {
-        return null;
+    Location getLocation(){
+        return new Location(location);
     }
+
 }

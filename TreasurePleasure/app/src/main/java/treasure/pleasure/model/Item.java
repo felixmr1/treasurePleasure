@@ -1,7 +1,9 @@
 package treasure.pleasure.model;
+import java.text.DecimalFormat;
 
-public class Item {
-    private int value;
+public class Item implements ItemCallBack {
+    private final DecimalFormat dm = new DecimalFormat("##.#");
+    private double value;
     private ItemType type;
 
     Item(ItemType type, int value){
@@ -9,7 +11,7 @@ public class Item {
         this.value = value;
     }
 
-    int getValue() {
+    double getValue() {
         return value;
     }
 
@@ -23,5 +25,15 @@ public class Item {
 
     void setType(ItemType type) {
         this.type = type;
+    }
+
+    @Override
+    public double getValueCallBack() {
+
+        String val = dm.format(Math.round(value));
+
+        return  Double.parseDouble(val);
+
+
     }
 }

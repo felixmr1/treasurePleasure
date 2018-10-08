@@ -10,7 +10,7 @@ import java.util.List;
 //TODO: write method for removing(Item), moveItem(index1,index2), 
 class Backpack<T> {
 
-  private List<T> items;
+  private List<T>  items;
 
   private int backPackLevel;
   private int maxSize;

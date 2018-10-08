@@ -13,13 +13,12 @@ import java.util.regex.Pattern;
     private Backpack<Item> backpack;
     private Chest chest;
     //private UpgradeCenter upgrades;
-    private int dropBonus;
+    private double dropBonus;
 
 
     Player(String name, Avatar avatar){
-        this.username = username;
+        this.username = name;
         this.avatar = avatar;
-        this.dropBonus = 1;
         this.backpack = new Backpack<>(5);
     }
 
@@ -31,7 +30,7 @@ import java.util.regex.Pattern;
         return this.avatar;
     }
 
-    int getDropBonus() {
+    double getDropBonus() {
         return this.dropBonus;
     }
 
@@ -65,13 +64,12 @@ import java.util.regex.Pattern;
 
     void emptyBackpackToChest() throws Exception {
         List<Item> items = backpack.getAllItems();
-        chest.add(items);
+        chest.sell(items);
         backpack.removeAll();
     }
 
 
     Backpack<Item> getBackpack(){
-
       return this.backpack;
 
     }

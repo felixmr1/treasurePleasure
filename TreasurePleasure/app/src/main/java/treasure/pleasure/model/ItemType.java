@@ -3,5 +3,8 @@ package treasure.pleasure.model;
 public enum ItemType {
   DIAMOND,
   GOLD,
-  STONE
+  STONE,
+
+  VOID
+
 }
