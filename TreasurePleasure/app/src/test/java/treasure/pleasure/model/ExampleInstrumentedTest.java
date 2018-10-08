@@ -1,3 +1,5 @@
+package treasure.pleasure.model;
+
 import static org.junit.Assert.assertEquals;
 
 import android.content.Context;
