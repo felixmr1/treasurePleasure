@@ -25,7 +25,7 @@
 # Document locations
 ## Requirements and Analysis Document
 
-[RAD](/documents/documentations/RAD.md)
+[RAD](/documents/documentations/RAD.md#1-introduction)
 
 ## System Design Document
 
