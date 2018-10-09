@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.presenter.BackpackPresenterImpl;
+import treasure.pleasure.presenter.BackpackPresenter;
 
 import treasure.pleasure.R;
 
@@ -19,7 +19,7 @@ import treasure.pleasure.R;
  */
 public class BackpackRecyclerViewFragment extends Fragment {
 
-    private BackpackPresenterImpl backpackPresenter;
+    private BackpackPresenter backpackPresenter;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -27,7 +27,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.fragment_backpack_test, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_backpack, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         setupRecyclerView();
         backpackPresenter.retrieveAndDisplayContent();
@@ -52,8 +52,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
 
     //Create and reference presenter. Pass model to presenter.
     public void setPresenter(TreasurePleasure model) {
-        backpackPresenter = new BackpackPresenterImpl(this);
+        backpackPresenter = new BackpackPresenter(this);
         backpackPresenter.setModel(model);
     }
-
 }

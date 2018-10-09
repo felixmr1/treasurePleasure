@@ -5,15 +5,15 @@ import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackRecyclerViewFragment;
 
 /**
- * BackpackPresenterImpl handles logic and communication to model for the backpack
+ * BackpackPresenter handles logic and communication to model for the backpack
  * @author David
  */
 
-public class BackpackPresenterImpl {
+public class BackpackPresenter {
   private TreasurePleasure mModel;
   private BackpackRecyclerViewFragment mView;
 
-  public BackpackPresenterImpl (BackpackRecyclerViewFragment view) {
+  public BackpackPresenter(BackpackRecyclerViewFragment view) {
     if (view == null) {
       throw new IllegalArgumentException("view can't be null");
     }
