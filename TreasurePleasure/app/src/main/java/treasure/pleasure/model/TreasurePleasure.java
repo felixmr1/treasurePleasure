@@ -85,6 +85,7 @@ public class TreasurePleasure {
 
 public List<Tuple<ItemType,Double>> getBackPackContent(){
 
+  Player player = players.get("Donald");
 
     List<Tuple<ItemType,Double>> content = new ArrayList();
     int index = 0;

@@ -1,6 +1,10 @@
 package treasure.pleasure.presenter;
 
 import java.util.ArrayList;
+import java.util.List;
+import treasure.pleasure.data.AndroidImageAssets;
+import treasure.pleasure.data.Tuple;
+import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackRecyclerViewFragment;
 
@@ -20,10 +24,39 @@ public class BackpackPresenter {
     this.mView = view;
   }
 
+  private List<Tuple<Integer, String>> convertBackPackContent() {
+    List<Tuple<Integer, String>> dataToView = new ArrayList();
+
+
+
+    for (Tuple<ItemType, Double> tuple : mModel.getBackPackContent()) {
+
+      ItemType itemType = tuple.getArg1();
+      String score = tuple.getArg2().toString();
+
+      dataToView.add(new Tuple<>(getImages(itemType),score));
+
+    }
+
+    return dataToView;
+  }
+
+
+
+  private Integer getImages(ItemType type){
+
+    return AndroidImageAssets.getImages().get(type);
+
+  }
+
+
+
   //Retrieves arrayList from model representing the backpack content.
   //Passes list to backpackRecyclerView to be displayed.
   public void retrieveAndDisplayContent() {
-        mView.displayContent(mModel.getBackpackContents());
+
+
+        mView.displayContent(convertBackPackContent());
   }
 
   public void setModel(TreasurePleasure model) {
@@ -32,7 +65,7 @@ public class BackpackPresenter {
 
   //John asked for this one (I think)
   //TODO change to two arrays or write invariant
-  public void displayContent(ArrayList<Integer> contentList) {
+  public void displayContent(List<Tuple<Integer,String>> contentList) {
     mView.displayContent(contentList);
   }
 

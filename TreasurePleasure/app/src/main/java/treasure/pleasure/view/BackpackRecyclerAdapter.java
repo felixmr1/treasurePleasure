@@ -63,6 +63,6 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     @Override
     // each item is represented by two consecutive int´s in the array, {imgResource, value} respectively. Therefore half the array size is the total item count.
     public int getItemCount() {
-        return mContentToDisplay.size()/2;
+        return mContentToDisplay.size();
     }
 }

@@ -10,7 +10,7 @@ public class UpgradeCenter {
         this.belongsTo = p;
     }
 
-    int upgradeDropBonus(Item i) {
+    double upgradeDropBonus(Item i) {
        return belongsTo.getDropBonus() + 1;
     }
 

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
+import java.util.List;
+import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.BackpackPresenter;
 
@@ -44,7 +46,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
     }
 
     //creates an adapter that provides a view for each item represented in contentList. Each item is represented by two consecutive int´s in the array, {imgResource, value} respectively.
-    public void displayContent(ArrayList<Integer> contentList) {
+    public void displayContent(List<Tuple<Integer, String>> contentList) {
         //hook up adapter and set content
         mAdapter = new BackpackRecyclerAdapter(contentList);
         mRecyclerView.setAdapter(mAdapter);

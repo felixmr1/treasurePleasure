@@ -12,6 +12,14 @@ public class Chest<T extends ItemCallBack>{
     private double score;
 
 
+
+
+
+    Chest(){
+        // location of chest hard coded, will change later.
+        this.location = new Location(57.686952,11.980587);
+    }
+
     /**
      * Constructor to call when all values need to be parameterized, for example when fetchign data
      * from db and re-creating the player.
@@ -50,5 +58,6 @@ public class Chest<T extends ItemCallBack>{
     Location getLocation(){
         return new Location(location);
     }
+
 
 }

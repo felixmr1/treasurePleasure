@@ -13,18 +13,10 @@ import java.util.regex.Pattern;
     private Avatar avatar;
     private Backpack<Item> backpack;
     private Chest chest;
-<<<<<<< HEAD
     //private UpgradeCenter upgrades;
-    private double dropBonus;
-
-
-    Player(String name, Avatar avatar){
-        this.username = name;
-        this.avatar = avatar;
-        this.backpack = new Backpack<>(5);
-=======
-    private UpgradeCenter upgradeCenter;
     private int dropBonus;
+    private UpgradeCenter upgradeCenter;
+
 
 
     Player(String username, ArrayList<String> takenUsernames, Avatar avatar){
@@ -42,7 +34,6 @@ import java.util.regex.Pattern;
 
     void placeUpgradeCenter(){
         this.upgradeCenter = new UpgradeCenter(this);
->>>>>>> master
     }
 
     String getUsername() {
