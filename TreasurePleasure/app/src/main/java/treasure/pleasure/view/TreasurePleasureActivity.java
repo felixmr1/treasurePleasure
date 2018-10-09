@@ -21,8 +21,9 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new TreasurePleasurePresenter(this);
-
+        GameMapFragment gameMapFragment = (GameMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        presenter = new TreasurePleasurePresenter(this, gameMapFragment);
+        gameMapFragment.setPresenter(presenter);
     }
 
     // Functions that the XML triggers (user-actions)

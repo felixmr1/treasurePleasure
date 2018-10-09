@@ -2,6 +2,7 @@ package treasure.pleasure.presenter;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import com.google.android.gms.maps.model.PolygonOptions;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
+import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
@@ -21,14 +23,12 @@ public class TreasurePleasurePresenter {
   private TreasurePleasureView view;
   private BackpackFragment backpackView;
   private TreasurePleasure model;
-  private GameMapPresenter gameMapPresenter;
+  private GameMapFragment gameMapView;
 
-  public TreasurePleasurePresenter(TreasurePleasureView view) {
+  public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
     this.view = view;
     this.model = TreasurePleasure.getInstance();
-
-    // Additional presenters
-    // this.gameMapPresenter = new GameMapPresenter(model);
+    this.gameMapView = gameMapFragment;
   }
 
   public void createPlayer(String name) {
@@ -98,7 +98,11 @@ public class TreasurePleasurePresenter {
     return AndroidImageAssets.getImages().get(type);
 
   }
-
-
   //----------------------backpack stuff end--------------------------------
+  //----------------------map stuff ----------------------------------------
+
+  public PolygonOptions getPolygon() {
+    return model.getPolygonMap();
+  }
+  //----------------------map end ------------------------------------------
 }

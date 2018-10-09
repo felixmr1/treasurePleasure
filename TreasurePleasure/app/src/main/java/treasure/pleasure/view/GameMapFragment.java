@@ -17,14 +17,14 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.presenter.GameMapPresenter;
+import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class GameMapFragment extends SupportMapFragment implements OnMapReadyCallback,
     OnMarkerClickListener {
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+  private TreasurePleasurePresenter presenter;
 
-  private GameMapPresenter gameMapPresenter;
   private GoogleMap mMap;
   private TreasurePleasure model;
 
@@ -32,13 +32,12 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getMapAsync(this);
-    gameMapPresenter = new GameMapPresenter(this);
   }
 
   @Override
   public void onMapReady(GoogleMap googleMap) {
     mMap = googleMap;
-    mMap.addPolygon(gameMapPresenter.getPolygon());
+    mMap.addPolygon(presenter.getPolygon());
     mMap.setOnMarkerClickListener(this);
 
     // position camera
@@ -102,5 +101,9 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   @Override
   public boolean onMarkerClick(Marker marker) {
     return false;
+  }
+
+  public void setPresenter(TreasurePleasurePresenter presenter) {
+    this.presenter = presenter;
   }
 }
