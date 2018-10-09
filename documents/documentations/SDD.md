@@ -2,6 +2,14 @@
 
 General info. What is this? What does it describe?
 
+### 1.0.1 Purpose
+This Software Design Document provides design details for the TreasurePleasure mobile application and its implementation.
+
+Section 1 strive to give a overall specification of the high-level architecture
+Section 2 goes into detail about the low-level architecture of the system and all of its subcomponents
+Section 3 describes how data is managed and stored between different user sessions
+Section 4 will reveal the different roles in the game
+
 
 ### 1.1 Definitions, acronyms and abbreviations
 Some definitons etc. probably same as in RAD..
