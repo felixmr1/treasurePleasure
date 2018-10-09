@@ -5,7 +5,8 @@ package treasure.pleasure.model;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-
+import com.google.android.gms.maps.model.PolygonOptions;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +16,8 @@ import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
   private Map<String,Player> players;
+  private ArrayList<String> takenUsernames;
   private Map<Location,Item> items;
-  private Player player;
   private GameMap gameMap;
 
   // Map coordinates
@@ -46,8 +47,8 @@ public class TreasurePleasure {
 
 
   public TreasurePleasure(int nOfItems) {
-    this.player = new Player("SkyriderOfSkyriders Master of the skies", Avatar.MAN);
-    this.players = new HashMap<>();
+    this.players = new HashMap<String,Player>(){{put("Donald", new Player("Donald", new ArrayList<String>(), Avatar.MAN));}};
+    this.takenUsernames = new ArrayList<String>(){{add("Donald");}};
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
 
@@ -67,17 +68,12 @@ public class TreasurePleasure {
   }
 
 
-  public void addPlayerToGame(String nickname, Avatar avatar){
-    String lowCaseNick = nickname.toLowerCase();
-      players.put(lowCaseNick,new Player(nickname,avatar));
+  public void addPlayerToGame(String username, Avatar avatar) throws ExceptionInInitializerError {
+      players.put(username.toLowerCase(),new Player(username, this.takenUsernames, avatar));
   }
 
   public ArrayList<String> getPlayerNames() {
-    ArrayList<String> names = new ArrayList<>();
-    for(String username : this.players.keySet()){
-      names.add(username);
-    }
-    return names;
+    return this.takenUsernames;
   }
 
 
@@ -118,7 +114,7 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
   // One item is represented by twogoteborgsuniversitet.maptestapp.Model.Containers.Inventory consecutive ints in the array {resourcePath, value}.
   public ArrayList<Integer> getBackpackContents() {
     ArrayList<Integer> contentToDisplayList = new ArrayList<>();
-    Backpack<Item> backpack = player.getBackpack();
+    Backpack<Item> backpack = players.get("Donald").getBackpack();
 
     for (Item item : backpack.getAllItems()) {
       //get img resource corresponding to item type
@@ -146,9 +142,7 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
     gameMap.addMarker(latLng);
   }
 
-  public GameMap getGameMap() { return gameMap; }
-  public GoogleMap getmMap() {
-    return gameMap.getmMap();
+  public PolygonOptions getPolygonMap() {
+    return gameMap.getPolygonMap();
   }
-
 }

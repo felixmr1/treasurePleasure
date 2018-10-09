@@ -22,6 +22,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         presenter = new TreasurePleasurePresenter(this);
+
     }
 
     // Functions that the XML triggers (user-actions)
@@ -50,7 +51,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         BackpackRecyclerViewFragment backpackFragment = new BackpackRecyclerViewFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment).commit();
         //TODO handle passing of model in a different way
-        backpackFragment.setModel(model);
+        backpackFragment.setPresenter(model);
     }
 
     public void closeBackpackFragment() {
@@ -66,4 +67,5 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         Button mapButton = findViewById(R.id.showBackpackButton);
         mapButton.setText(newText);
     }
+
 }
