@@ -115,7 +115,7 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
 /*
 
   //get backpack items and translate it for the backpack presenter.
-  // One item is represented by two consecutive ints in the array {resourcePath, value}.
+  // One item is represented by twogoteborgsuniversitet.maptestapp.Model.Containers.Inventory consecutive ints in the array {resourcePath, value}.
   public ArrayList<Integer> getBackpackContents() {
     ArrayList<Integer> contentToDisplayList = new ArrayList<>();
     Backpack<Item> backpack = player.getBackpack();

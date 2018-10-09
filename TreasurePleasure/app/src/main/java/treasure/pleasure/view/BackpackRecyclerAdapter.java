@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import treasure.pleasure.R;
+import treasure.pleasure.data.Tuple;
 
 public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecyclerAdapter.MyViewHolder> {
 
-    private final ArrayList<Integer> mContentToDisplay;
+    private final List<Tuple<Integer,String>> mContentToDisplay;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -33,7 +35,7 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
         }
     }
 
-    public BackpackRecyclerAdapter(ArrayList<Integer> content) {
+    public BackpackRecyclerAdapter(List<Tuple<Integer,String>> content) {
         this.mContentToDisplay = content;
     }
 
@@ -50,8 +52,10 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // replace the contents of the view with that element
-        holder.mImageView.setImageResource(mContentToDisplay.get(position*2));
-        holder.mTextView.setText(String.valueOf(mContentToDisplay.get(position*2+1)));
+        Tuple<Integer, String> itemTuple =  mContentToDisplay.get(position);
+        holder.mImageView.setImageResource(itemTuple.getArg1());
+        holder.mTextView.setText(itemTuple.getArg2());
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -45,7 +45,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
         //hook up the adapter.
         //mAdapter = new BackpackRecyclerAdapter(backpackContent);
         //TODO refactor here?
-        mAdapter = new BackpackRecyclerAdapter(backpackPresenter.getContentToDisplay());
+        mAdapter = new BackpackRecyclerAdapter(backpackPresenter.convertBackPackContent());
         mRecyclerView.setAdapter(mAdapter);
     }
 

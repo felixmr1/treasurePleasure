@@ -3,6 +3,7 @@ package treasure.pleasure.presenter;
 import java.util.ArrayList;
 
 import treasure.pleasure.R;
+import treasure.pleasure.data.AndroidImageAssets;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.data.Tuple;
@@ -14,7 +15,8 @@ import java.util.List;
  * @author David
  */
 
-public class BackpackPresenterImpl implements BackpackPresenter {
+public class BackpackPresenterImpl {
+
   private TreasurePleasure mModel;
   private BackpackRecyclerViewFragment mView;
 
@@ -28,59 +30,33 @@ public class BackpackPresenterImpl implements BackpackPresenter {
   }
 
 
-  public List<Tuple<Integer, Double>> backPackDisplayData () {
-    List <Tuple<Integer,Double>> dataToView = new ArrayList();
-
-    for (Tuple<ItemType,Double> tuple: mModel.getBackPackContent()){
-        Tuple<Integer,Double> data = EnumToImageAsset(tuple.getArg1(),tuple.getArg2());
-        dataToView.add(data);
-
-       }
+  public List<Tuple<Integer, String>> convertBackPackContent() {
+    List<Tuple<Integer, String>> dataToView = new ArrayList();
 
 
-       return dataToView;
-    }
 
+    for (Tuple<ItemType, Double> tuple : mModel.getBackPackContent()) {
 
-  private Tuple<Integer,Double> EnumToImageAsset(ItemType type, Double value) {
+      ItemType itemType = tuple.getArg1();
+      String score = tuple.getArg2().toString();
 
-    Tuple<Integer,Double> target;
-
-    switch (type) {
-      case DIAMOND: {
-        return new Tuple<>(R.drawable.gem, value);
-
-      }
-      case GOLD: {
-        return  new Tuple<>(R.drawable.gem, value);
-
-      }
-      case STONE: {
-       return  new Tuple<>(R.drawable.gem, value);
-
-      }
-      case VOID: {
-        return new Tuple<>(R.drawable.cobweb, 0.0);
-
-
-      }default:{
-        throw new AssertionError("Some enum that was not filtered went through the mapping");
-      }
+      dataToView.add(new Tuple<>(getImages(itemType),score));
 
     }
+
+    return dataToView;
   }
 
+  /**
+   * wrapper for convertBackPackContent
+  */
+    private Integer getImages(ItemType type){
 
+      return AndroidImageAssets.getImages().get(type);
 
-
-
-
-
-    //TODO temporary, testing functionality.
-    public ArrayList<Integer> getContentToDisplay () {
-      return mModel.getBackpackContents;
-      //mView.displayContent(contentToDisplayList);
     }
+
+
 
 
   }
