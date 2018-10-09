@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
+import treasure.pleasure.view.BackpackRecyclerViewFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
 
   private TreasurePleasureView view;
+  private BackpackRecyclerViewFragment backpackView;
   private TreasurePleasure model;
   private GameMapPresenter gameMapPresenter;
 
@@ -49,4 +51,19 @@ public class TreasurePleasurePresenter {
     model.addMarker(latLng2);
   }
 
+  //----------------------backpack stuff------------------------------------
+  public void setBackpackView (BackpackRecyclerViewFragment view){
+    this.backpackView = view;
+  }
+  //Retrieves arrayList from model representing the backpack content.
+  //Passes list to backpackRecyclerView to be displayed.
+  public void retrieveAndDisplayContent() {
+    backpackView.displayContent(model.getBackpackContents());
+  }
+
+  //public void detachView() {
+  //  mView=null;
+  //}
+
+  //----------------------backpack stuff end--------------------------------
 }
