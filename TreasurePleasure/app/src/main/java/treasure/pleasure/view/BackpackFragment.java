@@ -7,11 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
 import java.util.List;
 import treasure.pleasure.data.Tuple;
-import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.presenter.BackpackPresenter;
 
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
@@ -57,11 +54,5 @@ public class BackpackFragment extends Fragment {
     public void setPresenter(TreasurePleasurePresenter presenter) {
         mPresenter = presenter;
         presenter.setBackpackView(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        //mPresenter.detachView();
-        super.onDestroy();
     }
 }

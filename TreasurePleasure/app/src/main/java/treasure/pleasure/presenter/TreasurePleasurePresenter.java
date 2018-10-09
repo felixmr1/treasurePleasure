@@ -67,9 +67,6 @@ public class TreasurePleasurePresenter {
     backpackView.displayContent(backPackItemsToDisplay());
   }
 
-
-
-
   private List<Tuple<Integer, String>> backPackItemsToDisplay() {
     List<Tuple<Integer, String>> dataToView = new ArrayList();
 
@@ -92,13 +89,6 @@ public class TreasurePleasurePresenter {
 
   }
 
-
-
-
-
-  //public void detachView() {
-  //  mView=null;
-  //}
 
   //----------------------backpack stuff end--------------------------------
 }
