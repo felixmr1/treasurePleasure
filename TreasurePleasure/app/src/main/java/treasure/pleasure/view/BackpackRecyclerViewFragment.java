@@ -8,10 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.presenter.BackpackPresenter;
 
 import treasure.pleasure.R;
+import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
  * Creates a viewfragment showing the backpack.
@@ -19,7 +18,7 @@ import treasure.pleasure.R;
  */
 public class BackpackRecyclerViewFragment extends Fragment {
 
-    private BackpackPresenter backpackPresenter;
+    private TreasurePleasurePresenter mPresenter;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -30,7 +29,7 @@ public class BackpackRecyclerViewFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_backpack, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         setupRecyclerView();
-        backpackPresenter.retrieveAndDisplayContent();
+        mPresenter.retrieveAndDisplayContent();
 
         return rootView;
     }
@@ -51,14 +50,14 @@ public class BackpackRecyclerViewFragment extends Fragment {
     }
 
     //Create and reference presenter. Pass model to presenter.
-    public void setPresenter(TreasurePleasure model) {
-        backpackPresenter = new BackpackPresenter(this);
-        backpackPresenter.setModel(model);
+    public void setPresenter(TreasurePleasurePresenter presenter) {
+        mPresenter = presenter;
+        presenter.setBackpackView(this);
     }
 
     @Override
     public void onDestroy() {
-        backpackPresenter.detachView();
+        //mPresenter.detachView();
         super.onDestroy();
     }
 }

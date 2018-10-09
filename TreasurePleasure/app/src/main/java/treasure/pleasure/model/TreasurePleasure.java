@@ -89,7 +89,6 @@ public class TreasurePleasure {
     if (backpack.isNotFull()) {addEmptySlotsToList(contentToDisplayList, backpack.getnOfEmptySlots());}
     return contentToDisplayList;
   }
-
   //getBackpackContents helper method
   // The backpack ui is supposed to show current content and available slots, this method populates the backpack with images representing space available
   private void addEmptySlotsToList(ArrayList<Integer> contentToDisplayList, int availableSlots) {
