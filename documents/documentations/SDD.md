@@ -1,6 +1,6 @@
 ## 1 Introduction
 
-## 1.1 Purpose
+### 1.1 Purpose
 This Software Design Document provides design details for the TreasurePleasure mobile application and its implementation.
 
 Section 1 strive to give a overall specification of the high-level architecture
