@@ -36,5 +36,8 @@ public class BackpackPresenter {
     mView.displayContent(contentList);
   }
 
+  public void detachView() {
+    mView=null;
+  }
 }
 

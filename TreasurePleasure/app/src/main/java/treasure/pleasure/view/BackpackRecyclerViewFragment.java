@@ -55,4 +55,10 @@ public class BackpackRecyclerViewFragment extends Fragment {
         backpackPresenter = new BackpackPresenter(this);
         backpackPresenter.setModel(model);
     }
+
+    @Override
+    public void onDestroy() {
+        backpackPresenter.detachView();
+        super.onDestroy();
+    }
 }
