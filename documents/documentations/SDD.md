@@ -3,24 +3,20 @@
 ### 1.1 Purpose
 This Software Design Document provides design details for the TreasurePleasure mobile application and its implementation.
 
-Section 1 strive to give a overall specification of the high-level architecture
-Section 2 goes into detail about the low-level architecture of the system and all of its subcomponents
-Section 3 describes how data is managed and stored between different user sessions
-Section 4 will reveal the different roles in the game
+[Sec.1](#1-introduction) strive to give a overall specification of the high-level architecture \
+[Sec.2](#2-system-architecture) goes into detail about the low-level architecture of the system and all of its subcomponents \
+[Sec.3](#3-persistent-data-management) describes how data is managed and stored between different user sessions \
+[Sec.4](#4-access-control-and-security) will reveal the different roles in the game \
 
-### 1.1.1 Designgoals
+### 1.2 Designgoals
 The design of the code follows a [MVP](#mvp) pattern. With MVP the code is modular and decoupled. The goal with strictly following a MVP pattern is to easily expand the application with more functionality. All public components in the model has tests to make it easy to upgrade components without breaking the application.  
 
-### 1.1.2 Definitions, acronyms and abbreviations
-Some definitons etc. probably same as in RAD..
-##### MVP
+### 1.3 Definitions, acronyms and abbreviations
+##### MVP: 
+The application follows a MVP architecture. Mvp, short for model-view-presenter, the **model** stores the application logic and data. The model is responsible for the distribution and manipulation of the data and the model does not depend on anything other than its own components. To visualize the data from the model a **view** is implemented *....* The view is dumb and does not know the structure of the model, neither *should* it have any responsibility over data manipulation and logics. Since the view is dumb we need a way to communicate between the view and the model, this is why we need a middleman. The presenters job is to update the view and give jobs to the model. For example when a user interacts with the UI the view forwards the action to the presenter. The presenter then interprets the user action and calls the model to execute/hand the appropriate jobs/data. When the presenter retrieves the result from the model it tells the view what to display.
 
 
-
-
-### 1.1 Definitions, acronyms and abbreviations
-Some definitons etc. probably same as in RAD..
-
+##### Game definitions
 - The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
 
 - A **player** is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
@@ -38,6 +34,10 @@ Some definitons etc. probably same as in RAD..
 - A **score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
 
 - **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
+
+### 1.1 Definitions, acronyms and abbreviations
+Some definitons etc. probably same as in RAD..
+
 
 #### Future implementations
 - **Settings** - Here one can access the highscore or change name and avatar.
