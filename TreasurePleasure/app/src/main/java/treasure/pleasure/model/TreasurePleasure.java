@@ -53,6 +53,12 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
 
+    //testing to add gem to backpack
+    try {
+      getPlayer("Donald").getBackpack().add(new Item(ItemType.DIAMOND, 9000.010000003));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private static final TreasurePleasure ourInstance = new TreasurePleasure(0);

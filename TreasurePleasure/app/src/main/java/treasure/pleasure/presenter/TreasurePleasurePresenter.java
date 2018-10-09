@@ -2,6 +2,7 @@ package treasure.pleasure.presenter;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +16,7 @@ import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
+  DecimalFormat dm = new DecimalFormat("#.##");
 
   private TreasurePleasureView view;
   private BackpackFragment backpackView;
@@ -72,13 +74,21 @@ public class TreasurePleasurePresenter {
 
     for (Tuple<ItemType, Double> tuple : model.getBackPackContent()) {
       ItemType itemType = tuple.getField1();
-      String score = tuple.getField2().toString();
+      Double score = tuple.getField2();
 
-      dataToView.add(new Tuple<>(getImages(itemType),score));
+      dataToView.add(new Tuple<>(getImages(itemType),addScore(score)));
 
     }
 
     return dataToView;
+  }
+
+  private String addScore(Double score) {
+    if (score <= 0) {
+      return "Empty";
+    } else {
+      return dm.format(score);
+    }
   }
 
 

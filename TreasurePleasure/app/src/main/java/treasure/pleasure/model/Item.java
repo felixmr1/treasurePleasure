@@ -6,7 +6,7 @@ public class Item implements ItemCallBack {
     private double value;
     private ItemType type;
 
-    Item(ItemType type, int value){
+    Item(ItemType type, double value){
         this.type = type;
         this.value = value;
     }
