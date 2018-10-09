@@ -2,12 +2,11 @@ package treasure.pleasure.presenter;
 
 import java.util.ArrayList;
 
-import treasure.pleasure.R;
 import treasure.pleasure.data.AndroidImageAssets;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.data.Tuple;
-import treasure.pleasure.view.BackpackRecyclerViewFragment;
+import treasure.pleasure.view.BackpackFragment;
 import java.util.List;
 
 /**
@@ -18,9 +17,9 @@ import java.util.List;
 public class BackpackPresenterImpl {
 
   private TreasurePleasure mModel;
-  private BackpackRecyclerViewFragment mView;
+  private BackpackFragment mView;
 
-  public BackpackPresenterImpl(BackpackRecyclerViewFragment view, TreasurePleasure model) {
+  public BackpackPresenterImpl(BackpackFragment view, TreasurePleasure model) {
 
     if (view == null) {
       throw new IllegalArgumentException("view can't be null");

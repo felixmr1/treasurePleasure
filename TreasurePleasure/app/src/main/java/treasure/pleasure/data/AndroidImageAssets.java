@@ -16,6 +16,7 @@ public class AndroidImageAssets {
     put(ItemType.DIAMOND, R.drawable.gem);
     put(ItemType.GOLD, R.drawable.gem);
     put(ItemType.STONE, R.drawable.gem);
+    put(ItemType.VOID, R.drawable.cobweb);
   }};
 
   public static Integer getEmptySlotImg() {

@@ -33,6 +33,8 @@ public class TreasurePleasurePresenter {
   }
 
   public void onPressShowBackpackButton() {
+
+
     if (view.backpackFragmentIsActive()) {
       view.closeBackpackFragment();
       view.changeMapButtonText("Show backpack");

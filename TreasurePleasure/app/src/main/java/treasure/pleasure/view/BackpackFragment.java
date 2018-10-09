@@ -19,7 +19,7 @@ import treasure.pleasure.R;
  * Creates a viewfragment showing the backpack.
  * @author David
  */
-public class BackpackRecyclerViewFragment extends Fragment {
+public class BackpackFragment extends Fragment {
 
     private BackpackPresenter backpackPresenter;
 

@@ -7,6 +7,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,14 +53,6 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
 
-    /*
-    We have to figure out how to handle locations - items // John
-
-    for (int i = 0; i < nOfItems ; i++ ){
-      Location loc = new Location();
-      Item item = new Item(ItemType.DIAMOND,5);
-    }
-    */
   }
 
   private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
@@ -99,6 +92,7 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
 
       while(index < player.getBackpack().getMaxSize()){
         content.add(new Tuple<>(ItemType.VOID,0.0));
+        index ++;
       }
 
     }
