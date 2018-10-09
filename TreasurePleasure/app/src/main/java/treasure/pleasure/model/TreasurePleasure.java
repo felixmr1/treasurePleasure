@@ -48,8 +48,8 @@ public class TreasurePleasure {
 
 
   public TreasurePleasure(int nOfItems) {
-    this.players = new HashMap<String,Player>(){{put("Donald", new Player("Donald", new ArrayList<String>(), Avatar.MAN));}};
-    this.takenUsernames = new ArrayList<String>(){{add("Donald");}};
+    this.players = new HashMap<String,Player>(){{put("Donald".toLowerCase(), new Player("Donald", Avatar.MAN));}};
+    this.takenUsernames = new ArrayList<String>(){{add("Donald".toLowerCase());}};
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
 
@@ -62,7 +62,13 @@ public class TreasurePleasure {
 
 
   public void addPlayerToGame(String username, Avatar avatar) throws ExceptionInInitializerError {
-      players.put(username.toLowerCase(),new Player(username, this.takenUsernames, avatar));
+
+      if (takenUsernames.contains(username.toLowerCase() )){
+        throw  new ExceptionInInitializerError();
+
+      }else {
+        players.put(username.toLowerCase(),new Player(username ,avatar));
+      }
   }
 
   public ArrayList<String> getPlayerNames() {
@@ -71,19 +77,17 @@ public class TreasurePleasure {
 
 
   /**
-   * Uses Tuple class : adds the pair itemtype and value to a List which is sent to the controller
-   * of the application
+   * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    * @return List<Tuple<ItemTYpe,Double>
    */
-
 public List<Tuple<ItemType,Double>> getBackPackContent(){
 
-  Player player = players.get("Donald");
+  Player player = getPlayer("Donald");
 
     List<Tuple<ItemType,Double>> content = new ArrayList();
     int index = 0;
-    for (Item item : player.getBackpack().getAllItems()) {
 
+    for (Item item : player.getBackpack().getAllItems()) {
       content.add(new Tuple<>(item.getType(), item.getValue()));
       index ++;
     }
@@ -94,45 +98,12 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
         content.add(new Tuple<>(ItemType.VOID,0.0));
         index ++;
       }
-
     }
-
-
     return content;
 
 }
 
 
-/*
-
-  //get backpack items and translate it for the backpack presenter.
-  // One item is represented by twogoteborgsuniversitet.maptestapp.Model.Containers.Inventory consecutive ints in the array {resourcePath, value}.
-  public ArrayList<Integer> getBackpackContents() {
-    ArrayList<Integer> contentToDisplayList = new ArrayList<>();
-    Backpack<Item> backpack = players.get("Donald").getBackpack();
-
-    for (Item item : backpack.getAllItems()) {
-      //get img resource corresponding to item type
-      contentToDisplayList.add(AndroidImageAssets.getImages().get(item.getType()));
-      //getvalue
-      contentToDisplayList.add(item.getValue());
-    }
-    if (backpack.isNotFull()) {addEmptySlotsToList(contentToDisplayList, backpack.getnOfEmptySlots());}
-    return contentToDisplayList;
-  }
-
-  */
-
-  //getBackpackContents helper method
-  // The backpack ui is supposed to show current content and available slots, this method populates the backpack with images representing space available
-  private void addEmptySlotsToList(ArrayList<Integer> contentToDisplayList, int availableSlots) {
-    for (int i = 0; i < availableSlots; i++) {
-      //add image path
-      contentToDisplayList.add(AndroidImageAssets.getEmptySlotImg());
-      //add value.
-      contentToDisplayList.add(0);
-    }
-  }
   public void addMarker(LatLng latLng) {
     gameMap.addMarker(latLng);
   }
@@ -140,4 +111,12 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
   public PolygonOptions getPolygonMap() {
     return gameMap.getPolygonMap();
   }
+
+  Player getPlayer(String username){
+    return players.get(username.toLowerCase());
+
+  }
+
+
+
 }

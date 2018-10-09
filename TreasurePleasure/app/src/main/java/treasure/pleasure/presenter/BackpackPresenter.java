@@ -1,6 +1,5 @@
 package treasure.pleasure.presenter;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import treasure.pleasure.data.AndroidImageAssets;
@@ -30,12 +29,8 @@ public class BackpackPresenter {
 
     for (Tuple<ItemType, Double> tuple : mModel.getBackPackContent()) {
 
-      System.out.println("ITEMTYPE: " + tuple.getArg1().toString());
-      System.out.println("SCORE: " + tuple.getArg2().toString());
-
-
-      ItemType itemType = tuple.getArg1();
-      String score = tuple.getArg2().toString();
+      ItemType itemType = tuple.getField1();
+      String score = tuple.getField2().toString();
 
       dataToView.add(new Tuple<>(getImages(itemType),score));
 

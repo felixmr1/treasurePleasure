@@ -14,11 +14,11 @@ public class Tuple<X,Y> {
 
      }
 
-  public X getArg1(){
+  public X getField1(){
          return  x;
   }
 
-  public Y getArg2(){
+  public Y getField2(){
          return y;
   }
 

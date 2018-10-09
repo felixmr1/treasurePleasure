@@ -13,23 +13,19 @@ import java.util.regex.Pattern;
     private Avatar avatar;
     private Backpack<Item> backpack;
     private Chest chest;
-    //private UpgradeCenter upgrades;
     private int dropBonus;
     private UpgradeCenter upgradeCenter;
 
 
 
-    Player(String username, ArrayList<String> takenUsernames, Avatar avatar){
-        if(takenUsernames.contains(username)){
-            throw new ExceptionInInitializerError("Username is taken");
-        }
-        else {
+    Player(String username, Avatar avatar){
+
             this.username = username;
             this.avatar = avatar;
             this.chest = new Chest();
             this.dropBonus = 1;
             this.backpack = new Backpack<>(5);
-        }
+
     }
 
     void placeUpgradeCenter(){

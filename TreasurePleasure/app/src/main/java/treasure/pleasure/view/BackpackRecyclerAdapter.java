@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import treasure.pleasure.R;
 import treasure.pleasure.data.Tuple;
@@ -53,14 +52,10 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        System.out.println("INDEX OF POSITION:" + position);
-        System.out.println("ARG 1 !!!" + mContentToDisplay.get(position).getArg1());
-        System.out.println("ARG 2 !!!" + mContentToDisplay.get(position).getArg2());
-
         // replace the contents of the view with that element
         Tuple<Integer, String> itemTuple =  mContentToDisplay.get(position);
-        holder.mImageView.setImageResource(itemTuple.getArg1());
-        holder.mTextView.setText(itemTuple.getArg2());
+        holder.mImageView.setImageResource(itemTuple.getField1());
+        holder.mTextView.setText(itemTuple.getField2());
 
     }
 
