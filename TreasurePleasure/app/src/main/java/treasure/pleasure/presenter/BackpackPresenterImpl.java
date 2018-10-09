@@ -3,30 +3,38 @@ package treasure.pleasure.presenter;
 import java.util.ArrayList;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackRecyclerViewFragment;
-import java.util.List;
 
 /**
  * BackpackPresenterImpl handles logic and communication to model for the backpack
  * @author David
  */
 
-public class BackpackPresenterImpl implements BackpackPresenter {
+public class BackpackPresenterImpl {
   private TreasurePleasure mModel;
   private BackpackRecyclerViewFragment mView;
 
-  public BackpackPresenterImpl (BackpackRecyclerViewFragment view , TreasurePleasure model) {
-
+  public BackpackPresenterImpl (BackpackRecyclerViewFragment view) {
     if (view == null) {
       throw new IllegalArgumentException("view can't be null");
     }
     this.mView = view;
+  }
+
+  //Retrieves arrayList from model representing the backpack content.
+  //Passes list to backpackRecyclerView to be displayed.
+  public void retrieveAndDisplayContent() {
+        mView.displayContent(mModel.getBackpackContents());
+  }
+
+  public void setModel(TreasurePleasure model) {
     this.mModel = model;
   }
 
-  //TODO temporary, testing functionality.
-  public ArrayList<Integer> getContentToDisplay() {
-    return mModel.getBackpackContents();
-    //mView.displayContent(contentToDisplayList);
+  //John asked for this one (I think)
+  //TODO change to two arrays or write invariant
+  public void displayContent(ArrayList<Integer> contentList) {
+    mView.displayContent(contentList);
   }
+
 }
 

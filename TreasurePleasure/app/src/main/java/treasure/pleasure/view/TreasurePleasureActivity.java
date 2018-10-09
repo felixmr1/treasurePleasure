@@ -51,7 +51,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         BackpackRecyclerViewFragment backpackFragment = new BackpackRecyclerViewFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment).commit();
         //TODO handle passing of model in a different way
-        backpackFragment.setModel(model);
+        backpackFragment.setPresenter(model);
     }
 
     public void closeBackpackFragment() {

@@ -1,8 +1,10 @@
 package treasure.pleasure.view;
 /**
- * @author David
- * This is a support class for RecyclerViewFragment
- * Creates a card for each item and populates the view
+ * Support class for RecyclerViewFragment. Responsible for providing views that represent items in a data set.
+ * Uses backpack_item_template.xml as a template, and replaces text and resourcepath of that view to represent each item.
+ *
+ * This is a standard android implementation, to read more visit https://developer.android.com/reference/android/support/v7/widget/RecyclerView
+ *  @author David
  */
 
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +22,6 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
     private final ArrayList<Integer> mContentToDisplay;
 
     // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
@@ -54,9 +55,9 @@ public class BackpackRecyclerAdapter extends RecyclerView.Adapter<BackpackRecycl
         holder.mTextView.setText(String.valueOf(mContentToDisplay.get(position*2+1)));
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
-    // each item is represented by two consecutive int´s in the array. Therefore half the size for item count.
+    // Return the size of dataset (invoked by the layout manager)
     @Override
+    // each item is represented by two consecutive int´s in the array, {imgResource, value} respectively. Therefore half the array size is the total item count.
     public int getItemCount() {
         return mContentToDisplay.size()/2;
     }
