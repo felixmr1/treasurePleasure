@@ -1,5 +1,10 @@
 ## 1 Introduction
 
+#### TODO
+- Skriv mer teknsikt i 1.3 och länka variabler till ordlista
+- Meningar med *...* bör ses över och bytas ut
+
+
 ### 1.1 Purpose
 This Software Design Document provides design details for the TreasurePleasure mobile application and its implementation.
 
@@ -13,31 +18,27 @@ The design of the code follows a [MVP](#mvp) pattern. With MVP the code is modul
 
 ### 1.3 Definitions, acronyms and abbreviations
 ##### MVP: 
-The application follows a MVP architecture. Mvp, short for model-view-presenter, the **model** stores the application logic and data. The model is responsible for the distribution and manipulation of the data and the model does not depend on anything other than its own components. To visualize the data from the model a **view** is implemented *....* The view is dumb and does not know the structure of the model, neither *should* it have any responsibility over data manipulation and logics. Since the view is dumb we need a way to communicate between the view and the model, this is why we need a middleman. The presenters job is to update the view and give jobs to the model. For example when a user interacts with the UI the view forwards the action to the presenter. The presenter then interprets the user action and calls the model to execute/hand the appropriate jobs/data. When the presenter retrieves the result from the model it tells the view what to display.
+The application follows a MVP architecture. Mvp, short for model-view-presenter, the **model** stores the application logic and data. The model is responsible for the distribution and manipulation of the data and the model does not depend on anything other than its own components. To visualize the data from the model a **view** is implemented *....* The view is dumb and does not know the structure of the model, neither *should* it have any responsibility over data manipulation and logics. Since the view is dumb we need a way to communicate between the view and the model, this is why we need a middleman. The presenters job is to update the view and give jobs to the model. \
 
+For example when a user interacts with the UI the view forwards the action to the presenter. The presenter then interprets the user action and calls the model to execute/hand the appropriate jobs/data. When the presenter retrieves the result from the model it tells the view what to display.
 
-##### Game definitions
-- The **map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
+##### Treasure pleasure init.
+Attributes that are part of the initiation of the model, e.g. Map coordinates that defines the size and real world location of the map, number of items that are always collectible on the map
 
-- A **player** is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
+##### Google maps SDK
+The SDK is an API proviced by google that accesses googles servers to display a map. We can append objects on the map with given coordinates. The SDK has built in functionalities for user gestures so that the player can interract with plcaed objects.
 
-- **Collectables** are randomly spawned items on the map. Collectables can be interacted with by players, and collected if the player is close enough to the collectable. These items are shared for all players so the one that picks an item up first gets it, and the collectable is removed from the global map. There is always a certain amount of collectables available, when one is collected a new collectable is randomly spawned.
+##### Location handling
+We use the GPS coordinates from a users cellphone and saves them in our location class. The reason why we dont use the built in location service is becuase its not posible to unit-test it on fake coordinates/an emulator. Defining our own location handler made it so that we could extend with more functionality e.g. checking if a given location is within an specified area. 
 
-- A **item** is a valueble in the game. There are different items and each item has a value and a unique type/id. The type can for example be diamond and gold.
+##### Item generation
+The map always contains a certain amount of spawned items. When a item is collected by a player the model automaticliy spawns a new random item at a random location such that two items has atleast a [interaction radius](#4-access-control-and-security) between them.
 
-- A **backpack** is a local inventory that every player carries with them. Backpacks are unique to each player and can only carry a limited amount of items in them. When a players backpack is full the player has to empty it to his/hers tresure chest.
+##### Inventory
+Backpack and tresure chest both contain a list of items, so we made a abstarct Inventory class *for this*.
 
-- A **Treasure chest** is stationary inventory with unlimited size. A player has one unique treasure chest that the player choses where to place when first starting the game. When a player empty his/hers backpack into the treasure chest a total value is calculated and dispalyed.
-
-- A **shop** is a way for the player to buy a higher value multiplier. The value mulitplier increases the value of collected items from the map.
-
-- A **score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
-
-- **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
-
-### 1.1 Definitions, acronyms and abbreviations
-Some definitons etc. probably same as in RAD..
-
+##### Score calculation
+Each item type has a value and each player has a value multiplier. For a more dynamic experience we made it so that a user can sell items to increase the value multiplier which increases the value of future pickups. The player class holds the multiplier and manipulates the item value when its picked up.
 
 #### Future implementations
 - **Settings** - Here one can access the highscore or change name and avatar.
