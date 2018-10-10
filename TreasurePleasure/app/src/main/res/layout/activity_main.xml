@@ -14,29 +14,16 @@
     android:layout_height="match_parent"
     map:cameraZoom="15"/>
 
-    <EditText
-        android:id="@+id/usernameInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="140dp"
-        android:inputType="textPersonName"
-        android:hint="Enter Username"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/createPlayerButton"
+        android:id="@+id/showSettingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="196dp"
         android:layout_marginEnd="8dp"
-        android:onClick="onPressCreatePlayer"
-        android:text="Create"
+        android:onClick="onPressShowSettingsButton"
+        android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,5 +65,22 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/settings_container"
+        android:layout_width="351dp"
+        android:layout_height="321dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="116dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

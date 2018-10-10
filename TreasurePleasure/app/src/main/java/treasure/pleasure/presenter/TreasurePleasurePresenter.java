@@ -15,6 +15,7 @@ import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.GameMapFragment;
+import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 public class TreasurePleasurePresenter {
@@ -24,6 +25,7 @@ public class TreasurePleasurePresenter {
   private BackpackFragment backpackView;
   private TreasurePleasure model;
   private GameMapFragment gameMapView;
+  private SettingsFragment settingsView;
 
   public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
     this.view = view;
@@ -52,6 +54,10 @@ public class TreasurePleasurePresenter {
       view.loadBackpackFragment(model);
       view.changeMapButtonText("Close backpack");
     }
+  }
+
+  public void setSettingsView (SettingsFragment view){
+    this.settingsView = view;
   }
 
   public void addMarker(LatLng latlng) {

@@ -28,9 +28,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
     // Functions that the XML triggers (user-actions)
 
-    public void onPressCreatePlayer(View view){
-        String username = ((EditText)findViewById(R.id.usernameInput)).getText().toString();
-        presenter.createPlayer(username);
+    public void onPressShowSettingsButton(View view){
+        SettingsFragment settingsFragment = new SettingsFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment).commit();
+        settingsFragment.setPresenter(presenter);
     }
 
     public void onPressBackpackButton(View view){
