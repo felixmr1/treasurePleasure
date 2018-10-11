@@ -29,8 +29,6 @@ public class TreasurePleasure {
       mapLimitSW = new Location(57.563985, 12.193909),
       mapLimitSE = new Location(57.554888, 11.627327),
       mapNW = new Location(57.690085, 11.973020),
-      //mapNE = new Location(57.690708, 11.976745),
-      //mapSW = new Location(57.685990, 11.982750),
       mapSE = new Location(57.684923, 11.984177);
 
   private final ArrayList<Location> mapLimit = new ArrayList<Location>() {{
@@ -38,21 +36,20 @@ public class TreasurePleasure {
     add(mapLimitNE);
     add(mapLimitSW);
     add(mapLimitSE);
-    add(mapLimitNW); // to "close" box
   }};
 
   private final ArrayList<Location> mapReal = new ArrayList<Location>() {{
     add(mapNW);
     add(mapSE);
-    add(mapNW); // to "close" box
   }};
 
 
-  public TreasurePleasure(int nOfItems) {
-    this.players = new HashMap<String,Player>(){{put("Donald".toLowerCase(), new Player("Donald", Avatar.MAN));}};
-    this.takenUsernames = new ArrayList<String>(){{add("Donald".toLowerCase());}};
+  private TreasurePleasure(int nOfItems) {
+    this.players = new HashMap<>();
+    this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
+    addPlayerToGame("Donald",Avatar.MAN);
 
     //testing to add gem to backpack
     try {
@@ -68,13 +65,14 @@ public class TreasurePleasure {
   }
 
 
-  public void addPlayerToGame(String username, Avatar avatar) throws ExceptionInInitializerError {
+  public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
 
       if (takenUsernames.contains(username.toLowerCase() )){
-        throw  new ExceptionInInitializerError();
+        throw  new ArrayStoreException();
 
       }else {
         players.put(username.toLowerCase(),new Player(username ,avatar));
+          this.takenUsernames.add(username.toLowerCase());
       }
   }
 
