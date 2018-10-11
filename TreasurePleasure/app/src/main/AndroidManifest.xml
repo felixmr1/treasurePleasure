@@ -18,7 +18,10 @@
         android:theme="@style/AppTheme">
 
         <!-- Declare the starting point of app: -->
-        <activity android:name=".view.TreasurePleasureActivity" >
+        <activity
+          android:name=".view.TreasurePleasureActivity"
+          android:screenOrientation="sensorPortrait" >
+
             <intent-filter>
                 <!-- MAIN represents that it is the Main Activity-->
                 <action android:name="android.intent.action.MAIN" />

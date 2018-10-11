@@ -28,6 +28,10 @@ public class TreasurePleasurePresenter {
   private SettingsFragment settingsView;
 
   public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
+
+    if (gameMapFragment == null) {
+      throw new IllegalArgumentException("gameMapFragment null");
+    }
     this.view = view;
     this.model = TreasurePleasure.getInstance();
     this.gameMapView = gameMapFragment;
