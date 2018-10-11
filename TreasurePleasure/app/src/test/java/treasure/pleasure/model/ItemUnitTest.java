@@ -6,28 +6,24 @@ import org.junit.Test;
 public class ItemUnitTest {
 
 
-    Item i;
+  Item i;
 
 
-    @Before
-    public void initItem(){
+  @Before
+  public void initItem() {
 
-        i = new Item(ItemType.DIAMOND,5);
+    i = new Item(ItemType.DIAMOND, 5);
 
-    }
-
-
+  }
 
 
-    @Test
-    public void getValueCallbackrounding_test(){
+  @Test
+  public void getValueCallbackrounding_test() {
 
-        i.getValueCallBack();
-
-
+    i.getValueCallBack();
 
 
-    }
+  }
 
 
 }

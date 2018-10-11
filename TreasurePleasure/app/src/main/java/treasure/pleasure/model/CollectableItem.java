@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class CollectableItem {
+
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
   private ArrayList<Item> availableItems;
@@ -11,12 +12,14 @@ class CollectableItem {
 
   /**
    * Creates an instance of collectible items, only one of these exist for each game.
+   *
    * @param nrCollectibles Number of collectibles on the map
    * @param availableItems All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
    */
 
-  CollectableItem(int nrCollectibles, ArrayList<Item> availableItems, ArrayList<Location> mapConstraint){
+  CollectableItem(int nrCollectibles, ArrayList<Item> availableItems,
+      ArrayList<Location> mapConstraint) {
     this.availableItems = availableItems;
     this.nrCollectibles = nrCollectibles;
     this.collectibles = new HashMap<>();
@@ -39,10 +42,8 @@ class CollectableItem {
 
   /**
    * Adds an item
-   * @param loc
-   * @param item
    */
-  private void addItem(Location loc, Item item){
+  private void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
   }
 
@@ -53,6 +54,7 @@ class CollectableItem {
 
   /**
    * Creates a location within mapConstraint that is TODO unique
+   *
    * @return Location
    */
   Location createUniqueLocation() {
@@ -68,16 +70,13 @@ class CollectableItem {
 
   /**
    * Removes item located at given location
-   * @param location
    */
-  void removeItem(Location location){
+  void removeItem(Location location) {
     collectibles.remove(location);
   }
 
   /**
    * Returns item at corresponding location and removes it from map
-   * @param location
-   * @return
    */
   Item collect(Location location) {
     Item item = collectibles.get(location);

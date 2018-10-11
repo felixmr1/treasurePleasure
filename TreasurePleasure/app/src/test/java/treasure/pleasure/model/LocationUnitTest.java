@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LocationUnitTest {
+
   Location location1;
   Location location2;
   Location inValidLocation;

@@ -1,12 +1,7 @@
 package treasure.pleasure.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import treasure.pleasure.model.Backpack;
-import java.util.Collection;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +41,7 @@ public class ItemTests {
 
   @Test
   public void testGetType() {
-    assertTrue(diamond.getType() == ItemType.DIAMOND );
+    assertTrue(diamond.getType() == ItemType.DIAMOND);
     assertTrue(gold.getType() == ItemType.GOLD);
     assertTrue(stone.getType() == ItemType.STONE);
   }
@@ -57,11 +52,10 @@ public class ItemTests {
     gold.setType(ItemType.STONE);
     stone.setType(ItemType.DIAMOND);
 
-    assertTrue(diamond.getType() == ItemType.DIAMOND );
+    assertTrue(diamond.getType() == ItemType.DIAMOND);
     assertTrue(gold.getType() == ItemType.GOLD);
     assertTrue(stone.getType() == ItemType.STONE);
   }
-
 
 
 }
