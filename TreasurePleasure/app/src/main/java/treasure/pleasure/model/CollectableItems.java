@@ -103,4 +103,7 @@ class CollectableItems {
     return item;
   }
 
+  public HashMap<Location, Item> getCollectibles() {
+    return collectibles;
+  }
 }

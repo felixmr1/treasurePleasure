@@ -1,26 +1,51 @@
 package treasure.pleasure.model;
 
-import java.util.ArrayList;
+import static junit.framework.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
-public class CollectabeItemUnitTest {
+public class CollectabeItemsUnitTest {
 
-  CollectableItem collectibleItems;
-  int maxCollectibles = 50;
-  ArrayList<Location> mapConstraints = new ArrayList<>();
-  ArrayList<Item> availableItems = new ArrayList<>();
+  CollectableItems collectibleItems;
+  int maxCollectibles;
+  TreasurePleasure model;
 
   @Before
   public void initLocations() {
-    availableItems.add(new Item(ItemType.DIAMOND, 30));
-    availableItems.add(new Item(ItemType.GOLD, 10));
-    availableItems.add(new Item(ItemType.STONE, 5));
-    // collectibleItems = new CollectableItem(maxCollectibles, availableItems, mapConstraints);
+    this.maxCollectibles = 50;
+    this.model = new TreasurePleasure(maxCollectibles);
+    this.collectibleItems = model.getCollectableItems();
   }
 
   @Test
-  public void setUniqueLocations() {
+  public void spawnRandomItemTest() {
+    int sizeBefore = collectibleItems.getCollectibles().size();
+    collectibleItems.spawnRandomItem();
+    int sizeAfter = collectibleItems.getCollectibles().size();
+
+    // Size after add
+    assertTrue(sizeAfter == 1 + sizeBefore);
+
+  }
+
+  @Test
+  public void collectTest() {
+    int sizeBefore = collectibleItems.getCollectibles().size();
+    int i = 0;
+    collectibleItems.spawnRandomItem();
+
+    for (Location loc: collectibleItems.getCollectibles().keySet()
+        ) {
+      i++;
+      if (i == sizeBefore) { // only collect last item.
+        collectibleItems.collect(loc);
+      }
+    }
+
+    int sizeAfter = collectibleItems.getCollectibles().size();
+
+    assertTrue(sizeBefore == sizeAfter);
 
   }
 
@@ -28,4 +53,10 @@ public class CollectabeItemUnitTest {
   public void createUniqueLocations() {
 
   }
+
+  @Test
+  void getRandomLocationWithinBounds() {
+
+  }
+  
 }
