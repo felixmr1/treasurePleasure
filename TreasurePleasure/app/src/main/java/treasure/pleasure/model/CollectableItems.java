@@ -1,26 +1,26 @@
 package treasure.pleasure.model;
 
+import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class CollectableItem {
-
+class CollectableItems {
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
-  private ArrayList<Item> availableItems;
+  private ArrayList<ItemType> availableItemTypes;
   private ArrayList<Location> mapConstraint;
 
   /**
    * Creates an instance of collectible items, only one of these exist for each game.
    *
    * @param nrCollectibles Number of collectibles on the map
-   * @param availableItems All possible items that can be created
+   * @param availableItemTypes All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
    */
 
-  CollectableItem(int nrCollectibles, ArrayList<Item> availableItems,
-      ArrayList<Location> mapConstraint) {
-    this.availableItems = availableItems;
+  CollectableItems(int nrCollectibles, ArrayList<ItemType> availableItemTypes, ArrayList<Location>
+      mapConstraint){
+    this.availableItemTypes = availableItemTypes;
     this.nrCollectibles = nrCollectibles;
     this.collectibles = new HashMap<>();
     this.mapConstraint = mapConstraint;
@@ -34,7 +34,10 @@ class CollectableItem {
    * Spawns a random item within the current map constraints
    */
   void spawnRandomItem() {
-    Location loc = createUniqueLocation();
+    Location loc = getRandomLocationWithinBounds();
+    while (isNotAvailableLocation(loc)) {
+      loc = getRandomLocationWithinBounds();
+    }
     Item collectible = createRandomItem();
 
     addItem(loc, collectible);
@@ -48,16 +51,17 @@ class CollectableItem {
   }
 
   Item createRandomItem() {
-    int random = (int) (Math.random() * availableItems.size());
-    return availableItems.get(random);
+    ItemType randomItemType = availableItemTypes.get( (int) (Math.random() * availableItemTypes.size
+        ()));
+    int randomItemValue = (int) (Math.random() * 20);
+    return new Item(randomItemType, randomItemValue);
   }
 
   /**
-   * Creates a location within mapConstraint that is TODO unique
-   *
+   * Creates a Location within map constraints
    * @return Location
    */
-  Location createUniqueLocation() {
+  Location getRandomLocationWithinBounds() {
     Location northWest = mapConstraint.get(0);
     Location southEast = mapConstraint.get(1);
     double mapWidth = southEast.getLongitude() - northWest.getLongitude();
@@ -65,14 +69,29 @@ class CollectableItem {
     double randX = northWest.getLongitude() + Math.random() * mapWidth;
     double randY = southEast.getLatitude() + Math.random() * mapHeight;
 
-    return new Location(randX, randY);
+    return new Location(randY, randX);
+  }
+
+  Boolean isNotAvailableLocation(Location loc) {
+    for ( Location occupiedLoc : collectibles.keySet()
+    ) {
+      if (occupiedLoc.isCloseEnough(loc)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
    * Removes item located at given location
    */
-  void removeItem(Location location) {
+  void removeItem(Location location){
+    // Remove item
     collectibles.remove(location);
+    // Create a new one
+    // Get random location that does not collide with an existing item
+
+    spawnRandomItem();
   }
 
   /**
@@ -84,4 +103,7 @@ class CollectableItem {
     return item;
   }
 
+  public HashMap<Location, Item> getCollectibles() {
+    return collectibles;
+  }
 }

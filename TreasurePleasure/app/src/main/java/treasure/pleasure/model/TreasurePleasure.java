@@ -3,25 +3,18 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import treasure.pleasure.data.AndroidImageAssets;
 import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
-  private Map<String,Player> players;
-  private ArrayList<String> takenUsernames;
-  private Map<Location,Item> items;
-  private GameMap gameMap;
 
+  private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
   // Map coordinates
   private final Location
       mapLimitNW = new Location(57.863889, 11.410027),
@@ -37,12 +30,20 @@ public class TreasurePleasure {
     add(mapLimitSW);
     add(mapLimitSE);
   }};
-
   private final ArrayList<Location> mapReal = new ArrayList<Location>() {{
     add(mapNW);
     add(mapSE);
   }};
-
+  private Map<String, Player> players;
+  private ArrayList<String> takenUsernames;
+  private Map<Location, Item> items;
+  private GameMap gameMap;
+  private CollectableItems collectableItems;
+  private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
+    add(ItemType.DIAMOND);
+    add(ItemType.GOLD);
+    add(ItemType.STONE);
+  }};
 
   private TreasurePleasure(int nOfItems) {
     this.players = new HashMap<>();
@@ -50,6 +51,9 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
     addPlayerToGame("Donald",Avatar.MAN);
+
+    // create without inital items
+    this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
 
     //testing to add gem to backpack
     try {
@@ -59,7 +63,6 @@ public class TreasurePleasure {
     }
   }
 
-  private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
   public static TreasurePleasure getInstance() {
     return ourInstance;
   }
@@ -83,30 +86,31 @@ public class TreasurePleasure {
 
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
-   * @return List<Tuple<ItemTYpe,Double>
+   *
+   * @return List<Tuple   <   ItemTYpe   ,   Double>
    */
-public List<Tuple<ItemType,Double>> getBackPackContent(){
+  public List<Tuple<ItemType, Double>> getBackPackContent() {
 
-  Player player = getPlayer("Donald");
+    Player player = getPlayer("Donald");
 
-    List<Tuple<ItemType,Double>> content = new ArrayList();
+    List<Tuple<ItemType, Double>> content = new ArrayList();
     int index = 0;
 
     for (Item item : player.getBackpack().getAllItems()) {
       content.add(new Tuple<>(item.getType(), item.getValue()));
-      index ++;
+      index++;
     }
 
-    if(player.getBackpack().isNotFull()){
+    if (player.getBackpack().isNotFull()) {
 
-      while(index < player.getBackpack().getMaxSize()){
-        content.add(new Tuple<>(ItemType.VOID,0.0));
-        index ++;
+      while (index < player.getBackpack().getMaxSize()) {
+        content.add(new Tuple<>(ItemType.VOID, 0.0));
+        index++;
       }
     }
     return content;
 
-}
+  }
 
 
   public MarkerOptions addMarker(LatLng latLng) {
@@ -117,11 +121,14 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
     return gameMap.getPolygonMap();
   }
 
-  Player getPlayer(String username){
+  Player getPlayer(String username) {
     return players.get(username.toLowerCase());
 
   }
 
+  CollectableItems getCollectableItems() {
+    return collectableItems;
+  }
 
 
 }

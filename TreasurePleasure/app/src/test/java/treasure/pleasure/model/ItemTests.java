@@ -52,9 +52,9 @@ public class ItemTests {
     gold.setType(ItemType.STONE);
     stone.setType(ItemType.DIAMOND);
 
-    assertTrue(diamond.getType() == ItemType.DIAMOND);
-    assertTrue(gold.getType() == ItemType.GOLD);
-    assertTrue(stone.getType() == ItemType.STONE);
+    assertTrue(diamond.getType() == ItemType.GOLD);
+    assertTrue(gold.getType() == ItemType.STONE);
+    assertTrue(stone.getType() == ItemType.DIAMOND);
   }
 
 

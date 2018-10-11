@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
     private Avatar avatar;
     private Backpack<Item> backpack;
     private Chest chest;
-    private int dropBonus;
+    private double dropBonus;
     private UpgradeCenter upgradeCenter;
 
 
@@ -60,7 +60,7 @@ import java.util.regex.Pattern;
         this.avatar = avatar;
     }
 
-    void setDropBonus(int dropBonus) {
+    void setDropBonus(double dropBonus) {
         if(dropBonus < 1) {
             throw new IllegalArgumentException("Could not change dropbonus: Dropbonus should be > 1");
         } else {
