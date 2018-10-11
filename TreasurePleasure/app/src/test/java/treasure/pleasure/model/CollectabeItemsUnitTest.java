@@ -58,5 +58,5 @@ public class CollectabeItemsUnitTest {
   void getRandomLocationWithinBounds() {
 
   }
-  
+
 }
