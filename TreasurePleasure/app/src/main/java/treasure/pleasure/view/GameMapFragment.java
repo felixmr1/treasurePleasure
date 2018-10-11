@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -29,7 +30,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
   private TreasurePleasurePresenter presenter;
   private FusedLocationProviderClient mFusedLocationClient;
-  private Location myLocation;
+  private LatLng myLatLng;
 
   private GoogleMap mMap;
   @Override
@@ -105,22 +106,31 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   *
-   * @return latest known player location
+   * attempt to update player location then return last known location.
+   * If no location is found, KLATTERLABBET is returned
+   * @return LatLng of last known location
    */
-  public Location getCurrentLocation() {
+  public LatLng getMyCurrentLatLng() {
     updateMyLocation();
-    return myLocation;
+    if(myLatLng != null ) {
+      return myLatLng;
+    } else {
+      //TODO return center of map, maybe exception
+      return new LatLng(57.6874681, 11.9782412);
+    }
   }
 
   private void updateMyLocation() {
-    mFusedLocationClient.getLastLocation()
+       mFusedLocationClient.getLastLocation()
         .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
           @Override
           public void onSuccess(Location location) {
             // Got last known location. In some rare situations this can be null.
             if (location != null) {
-              myLocation = location;
+              myLatLng = new LatLng(location.getLatitude(),location.getLongitude());
+            }
+            else {
+              Log.w("GameMapFragment", "mFusedLocation returns null");
             }
           }
         });

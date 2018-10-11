@@ -1,5 +1,6 @@
 package treasure.pleasure.presenter;
 
+import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -109,6 +110,18 @@ public class TreasurePleasurePresenter {
   public PolygonOptions getPolygon() {
     return model.getPolygonMap();
   }
-  public MarkerOptions addMarker(LatLng latLng) { return model.addMarker(latLng);}
+  public MarkerOptions addMarker(LatLng latLng) {
+    return model.addMarker(latLng);
+  }
+
+  /**
+   * Request current location from MapFragment. MapFragment attempts to poll for current location.
+   *  When unable to retrieve a new location; the last known location will be returned. If no location has ever been established it will return a fixed location.
+   * @return the LatLng of current location. See above for details
+   */
+  public LatLng getMyCurrentLatLng() {
+    return gameMapView.getMyCurrentLatLng();
+  }
+
   //----------------------map end ------------------------------------------
 }
