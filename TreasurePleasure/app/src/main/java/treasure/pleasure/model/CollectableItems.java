@@ -12,6 +12,7 @@ class CollectableItems {
 
   /**
    * Creates an instance of collectible items, only one of these exist for each game.
+   *
    * @param nrCollectibles Number of collectibles on the map
    * @param availableItemTypes All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
@@ -44,10 +45,8 @@ class CollectableItems {
 
   /**
    * Adds an item
-   * @param loc
-   * @param item
    */
-  private void addItem(Location loc, Item item){
+  private void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
   }
 
@@ -85,7 +84,6 @@ class CollectableItems {
 
   /**
    * Removes item located at given location
-   * @param location
    */
   void removeItem(Location location){
     // Remove item
@@ -98,8 +96,6 @@ class CollectableItems {
 
   /**
    * Returns item at corresponding location and removes it from map
-   * @param location
-   * @return
    */
   Item collect(Location location) {
     Item item = collectibles.get(location);

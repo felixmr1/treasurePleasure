@@ -8,13 +8,15 @@ import java.util.Date;
     Handles all the different locations in the project, for example player and a collectable Item
  */
 class Location {
+
   private double longitude;
   private double latitude;
   private long timestamp;
   private double maxInteractionDistance = 10;
 
   /**
-   * Creates a empty location with longitude and latitude set to 0. Timestamp is the current timestamp
+   * Creates a empty location with longitude and latitude set to 0. Timestamp is the current
+   * timestamp
    */
   Location() {
     this.longitude = 0;
@@ -27,7 +29,7 @@ class Location {
    */
   Location(Location location) {
     this.longitude = location.getLongitude();
-    this.latitude =  location.getLatitude();
+    this.latitude = location.getLatitude();
     this.timestamp = location.getTimestamp();
   }
 
@@ -36,7 +38,7 @@ class Location {
    */
   Location(LatLng latLng) {
     this.longitude = latLng.longitude;
-    this.latitude =  latLng.latitude;
+    this.latitude = latLng.latitude;
     this.timestamp = new Date().getTime();
   }
 
@@ -45,12 +47,14 @@ class Location {
    */
   Location(double latitude, double longitude) {
     this.longitude = longitude;
-    this.latitude =  latitude;
+    this.latitude = latitude;
     this.timestamp = new Date().getTime();
   }
 
   /**
-   * Calculates the distance between given coordinates and returns true if they are within Max Interaction Distance
+   * Calculates the distance between given coordinates and returns true if they are within Max
+   * Interaction Distance
+   *
    * @return True if distance is less or equal to max interaction Distance
    */
   boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
@@ -60,7 +64,9 @@ class Location {
   }
 
   /**
-   * Calculates the distance between given location and returns true if they are within Max Interaction Distance
+   * Calculates the distance between given location and returns true if they are within Max
+   * Interaction Distance
+   *
    * @return True if distance is less or equal to max interaction Distance
    */
   boolean isCloseEnough(Location compareLocation) {
@@ -80,6 +86,7 @@ class Location {
 
   /**
    * Updates self with given params
+   *
    * @param timestamp Milliseconds since 1970 (new Date().getTime)
    */
   void update(double longitude, double latitude, long timestamp) {
@@ -90,6 +97,7 @@ class Location {
 
   /**
    * Calculated the distance between given longitude and latitude and self.
+   *
    * @return Distance between locations
    */
   double distanceTo(double toLongitude, double toLatitude) {
@@ -100,13 +108,12 @@ class Location {
   }
 
   /**
-   * Checks if a location is within given borders
+   * Checks if this location is within given borders
+   *
    * @param borders A arraylist that creates a border on a map (order mather!)
-   * @param point The point that is checked if it's within the border
-   * @return true if point is within given border
+   * @return true if this location is within given border
    */
-  boolean isWithinCoordinates(ArrayList<Location> borders, Location point) {
-
+  boolean isWithinCoordinates(ArrayList<Location> borders) {
     return true;
   }
 
@@ -148,7 +155,8 @@ class Location {
   }
 
   /**
-   * Sets the distance between interactions on the map. Used when calculating if two locations is close enough.
+   * Sets the distance between interactions on the map. Used when calculating if two locations is
+   * close enough.
    */
   void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;

@@ -86,7 +86,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           //permission was granted
           if (mMap != null) {
-            mMap.setMyLocationEnabled(true);
+            System.out.println("mMao != null, assert this error");
+            //mMap.setMyLocationEnabled(true);
           }
         } else {
           //permission denied.
