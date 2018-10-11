@@ -19,16 +19,32 @@ public class PlayerTests {
 
     @Before
     public void init(){
-        tp = new TreasurePleasure(0);
+        tp = TreasurePleasure.getInstance();
         usernames = new ArrayList<>();
         usernames2 = new ArrayList<>();
     }
 
     @Test
-    private void noDuplicateUsernames() {
+    public void addPlayerIncrementsPlayers() {
+        usernames = tp.getPlayerNames();
+        try {
+            tp.addPlayerToGame("Jenny", Avatar.WOMAN);
+            usernames2 = tp.getPlayerNames();
+            assertTrue(usernames.size() < usernames2.size());
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void noDuplicateUsernames() {
         tp.addPlayerToGame("Anders",Avatar.MAN);
         usernames = tp.getPlayerNames();
-        tp.addPlayerToGame("Anders",Avatar.MAN);
+        try {
+            tp.addPlayerToGame("Anders", Avatar.MAN);
+        } catch(Exception e){
+            System.out.println(e);
+        }
         assertEquals(usernames.size(), tp.getPlayerNames().size());
     }
 
