@@ -21,6 +21,12 @@ public class TreasurePleasure {
   private ArrayList<String> takenUsernames;
   private Map<Location,Item> items;
   private GameMap gameMap;
+  private CollectableItems collectableItems;
+  private ArrayList<ItemType> availableItems = new ArrayList<ItemType>(){{
+    add(ItemType.DIAMOND);
+    add(ItemType.GOLD);
+    add(ItemType.STONE);
+  }};
 
   // Map coordinates
   private final Location
@@ -38,13 +44,11 @@ public class TreasurePleasure {
     add(mapLimitNE);
     add(mapLimitSW);
     add(mapLimitSE);
-    add(mapLimitNW); // to "close" box
   }};
 
   private final ArrayList<Location> mapReal = new ArrayList<Location>() {{
     add(mapNW);
     add(mapSE);
-    add(mapNW); // to "close" box
   }};
 
 
@@ -53,6 +57,7 @@ public class TreasurePleasure {
     this.takenUsernames = new ArrayList<String>(){{add("Donald".toLowerCase());}};
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
+    this.collectableItems = new CollectableItems(nOfItems, availableItems, mapReal);
 
     //testing to add gem to backpack
     try {
