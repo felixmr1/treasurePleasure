@@ -129,6 +129,10 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
 
   }
 
+  CollectableItems getCollectableItems() {
+    return collectableItems;
+  }
+
 
 
 }
