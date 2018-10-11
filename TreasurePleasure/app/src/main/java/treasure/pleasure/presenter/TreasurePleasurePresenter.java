@@ -2,6 +2,7 @@ package treasure.pleasure.presenter;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -64,11 +65,6 @@ public class TreasurePleasurePresenter {
     this.settingsView = view;
   }
 
-  public void addMarker(LatLng latlng) {
-    LatLng latLng2 = new LatLng(57.688067, 11.977898);
-    model.addMarker(latLng2);
-  }
-
   //----------------------backpack stuff------------------------------------
   public void setBackpackView (BackpackFragment view){
     this.backpackView = view;
@@ -110,9 +106,9 @@ public class TreasurePleasurePresenter {
   }
   //----------------------backpack stuff end--------------------------------
   //----------------------map stuff ----------------------------------------
-
   public PolygonOptions getPolygon() {
     return model.getPolygonMap();
   }
+  public MarkerOptions addMarker(LatLng latLng) { return model.addMarker(latLng);}
   //----------------------map end ------------------------------------------
 }

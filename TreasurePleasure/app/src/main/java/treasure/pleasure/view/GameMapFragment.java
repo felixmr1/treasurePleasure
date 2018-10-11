@@ -26,8 +26,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private TreasurePleasurePresenter presenter;
 
   private GoogleMap mMap;
-  private TreasurePleasure model;
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -39,7 +37,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap = googleMap;
     mMap.addPolygon(presenter.getPolygon());
     mMap.setOnMarkerClickListener(this);
-
+    mMap.addMarker(presenter.addMarker(new LatLng(57.6874681, 11.9782412)));
     // position camera
     mMap.setMinZoomPreference(15.0f);
     // TODO: GET CENTER OF MAP AND MOVE CAMERA THERE

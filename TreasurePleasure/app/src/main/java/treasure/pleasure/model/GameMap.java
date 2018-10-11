@@ -1,6 +1,7 @@
 package treasure.pleasure.model;
 
 import android.graphics.Color;
+import android.util.Log;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,15 +35,14 @@ class GameMap {
   private ArrayList<LatLng> getLatLngArrayList(ArrayList<Location> locationArrayList) {
     Location northWest = locationArrayList.get(0);
     Location southEast = locationArrayList.get(1);
-    Location northEast = new Location(southEast.getLongitude(), northWest.getLatitude());
-    Location southWest = new Location(northWest.getLongitude(), southEast.getLatitude());
+    Location northEast = new Location(southEast.getLatitude(), northWest.getLongitude());
+    Location southWest = new Location(northWest.getLatitude(), southEast.getLongitude());
 
     ArrayList<LatLng> latLngArrayList = new ArrayList<>();
     latLngArrayList.add(northWest.getLatLng());
     latLngArrayList.add(northEast.getLatLng());
     latLngArrayList.add(southEast.getLatLng());
     latLngArrayList.add(southWest.getLatLng());
-    latLngArrayList.add(northWest.getLatLng());
     return latLngArrayList;
   }
 
@@ -55,12 +55,13 @@ class GameMap {
         .fillColor(Color.argb(220, 0, 0, 0));
   }
 
-  void addMarker(LatLng latLng) {
-    MarkerOptions marker = new MarkerOptions()
+  MarkerOptions addMarker(LatLng latLng) {
+     MarkerOptions marker = new MarkerOptions()
         .position(latLng)
         .title("hej")
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny));
     numberOfItems++;
+    return marker;
   }
 
   // getters

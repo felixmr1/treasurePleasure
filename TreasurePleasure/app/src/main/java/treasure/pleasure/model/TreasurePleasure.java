@@ -5,6 +5,7 @@ package treasure.pleasure.model;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
@@ -110,8 +111,8 @@ public List<Tuple<ItemType,Double>> getBackPackContent(){
 }
 
 
-  public void addMarker(LatLng latLng) {
-    gameMap.addMarker(latLng);
+  public MarkerOptions addMarker(LatLng latLng) {
+    return gameMap.addMarker(latLng);
   }
 
   public PolygonOptions getPolygonMap() {

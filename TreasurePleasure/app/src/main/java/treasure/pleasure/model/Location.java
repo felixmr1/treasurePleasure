@@ -43,7 +43,7 @@ class Location {
   /**
    * Creates a location with longitude, latitude and timnstamp from given params
    */
-  Location(double longitude, double latitude) {
+  Location(double latitude, double longitude) {
     this.longitude = longitude;
     this.latitude =  latitude;
     this.timestamp = new Date().getTime();
