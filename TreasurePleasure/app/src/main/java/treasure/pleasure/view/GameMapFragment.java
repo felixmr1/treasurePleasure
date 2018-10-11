@@ -2,11 +2,14 @@ package treasure.pleasure.view;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -15,8 +18,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.tasks.OnSuccessListener;
 import treasure.pleasure.R;
-import treasure.pleasure.model.TreasurePleasure;
+
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class GameMapFragment extends SupportMapFragment implements OnMapReadyCallback,
@@ -24,11 +28,14 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
   private TreasurePleasurePresenter presenter;
+  private FusedLocationProviderClient mFusedLocationClient;
+  private Location myLocation;
 
   private GoogleMap mMap;
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
     getMapAsync(this);
   }
 
@@ -94,6 +101,28 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         }
       }
     }
+  }
+
+  /**
+   *
+   * @return latest known player location
+   */
+  public Location getCurrentLocation() {
+    updateMyLocation();
+    return myLocation;
+  }
+
+  private void updateMyLocation() {
+    mFusedLocationClient.getLastLocation()
+        .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+          @Override
+          public void onSuccess(Location location) {
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+              myLocation = location;
+            }
+          }
+        });
   }
 
   @Override
