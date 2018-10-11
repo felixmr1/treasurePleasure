@@ -14,7 +14,7 @@ public class CollectabeItemsUnitTest {
   @Before
   public void initLocations() {
     this.maxCollectibles = 50;
-    this.model = new TreasurePleasure(maxCollectibles);
+    this.model = TreasurePleasure.getInstance();
     this.collectibleItems = model.getCollectableItems();
   }
 
@@ -55,7 +55,7 @@ public class CollectabeItemsUnitTest {
   }
 
   @Test
-  void getRandomLocationWithinBounds() {
+  public void getRandomLocationWithinBounds() {
 
   }
 
