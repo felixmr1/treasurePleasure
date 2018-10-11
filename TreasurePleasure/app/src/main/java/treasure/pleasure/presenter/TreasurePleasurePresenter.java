@@ -1,10 +1,9 @@
 package treasure.pleasure.presenter;
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
-
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;

@@ -20,8 +20,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnSuccessListener;
-import treasure.pleasure.R;
 
+import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class GameMapFragment extends SupportMapFragment implements OnMapReadyCallback,
@@ -30,7 +30,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
   private TreasurePleasurePresenter presenter;
   private FusedLocationProviderClient mFusedLocationClient;
-  private LatLng myLatLng;
+  private LatLng myCurrentLatLng;
 
   private GoogleMap mMap;
   @Override
@@ -94,7 +94,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           //permission was granted
           if (mMap != null) {
-            System.out.println("mMao != null, assert this error");
+            System.out.println("mMap != null, assert this error");
             //mMap.setMyLocationEnabled(true);
           }
         } else {
@@ -112,8 +112,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   public LatLng getMyCurrentLatLng() {
     updateMyLocation();
-    if(myLatLng != null ) {
-      return myLatLng;
+    if(myCurrentLatLng != null ) {
+      return myCurrentLatLng;
     } else {
       //TODO return center of map, maybe exception
       return new LatLng(57.6874681, 11.9782412);
@@ -127,7 +127,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
           public void onSuccess(Location location) {
             // Got last known location. In some rare situations this can be null.
             if (location != null) {
-              myLatLng = new LatLng(location.getLatitude(),location.getLongitude());
+              myCurrentLatLng = new LatLng(location.getLatitude(),location.getLongitude());
             }
             else {
               Log.w("GameMapFragment", "mFusedLocation returns null");
