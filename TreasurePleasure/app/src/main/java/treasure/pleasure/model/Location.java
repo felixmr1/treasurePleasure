@@ -100,13 +100,11 @@ class Location {
   }
 
   /**
-   * Checks if a location is within given borders
+   * Checks if this location is within given borders
    * @param borders A arraylist that creates a border on a map (order mather!)
-   * @param point The point that is checked if it's within the border
-   * @return true if point is within given border
+   * @return true if this location is within given border
    */
-  boolean isWithinCoordinates(ArrayList<Location> borders, Location point) {
-
+  boolean isWithinCoordinates(ArrayList<Location> borders) {
     return true;
   }
 
