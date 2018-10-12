@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import treasure.pleasure.R;
 import treasure.pleasure.data.AndroidImageAssets;
 import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
@@ -98,20 +99,45 @@ public class TreasurePleasurePresenter {
   }
 
 
-
+  /**
+   * Looks in AndoidImageAssets for an image path corresponding to supplied type.
+   * Item type is defined in ENUM ItemType.
+   * @param type of item
+   * @return imagePath (int)
+   */
   private Integer getImages(ItemType type){
 
     return AndroidImageAssets.getImages().get(type);
 
   }
+
   //----------------------backpack stuff end--------------------------------
   //----------------------map stuff ----------------------------------------
   public PolygonOptions getPolygon() {
     return model.getPolygonMap();
   }
+
+  public void drawMarkers() {
+    for (Tuple<ItemType, LatLng> tuple : model.getMarkers()) {
+      drawMarker(tuple.getField1(),tuple.getField2());
+    }
+  }
+
+  public void drawMarker(ItemType itemType, LatLng latLng) {
+    //TODO draw depending on itemType. Setting to gem_tiny for now
+    gameMapView.drawMarker(latLng, R.drawable.gem_tiny);
+  }
+
+  private Integer getMapImages(ItemType type) {
+    return AndroidImageAssets.getMapImages().get(type);
+  }
+
+  //felix old class. delete?
+  /*
   public MarkerOptions addMarker(LatLng latLng) {
     return model.addMarker(latLng);
   }
+  */
 
   /**
    * Request current location from MapFragment. MapFragment attempts to poll for current location.
@@ -120,6 +146,23 @@ public class TreasurePleasurePresenter {
    */
   public LatLng getMyCurrentLatLng() {
     return gameMapView.getMyCurrentLatLng();
+  }
+
+  public void drawMarker(LatLng latLng, ItemType itemType) {
+    gameMapView.drawMarker(latLng,getImages(itemType));
+  }
+
+  public String attemptPickup(double itemLat, double itemLng) {
+    LatLng playerLatLng = getMyCurrentLatLng();
+    //check if collectible is close enough to pick up
+    if (!model.isCloseEnough(playerLatLng.latitude, playerLatLng.longitude, itemLat, itemLng)) {
+      return "Item too far away";
+    }
+    if (model.isBackpackFull()) {
+      return "Backpack is full! Turn in items in chest.";
+    }
+    model.collectItem(itemLat, itemLng);
+    return "Item collected! Check your backpack =D";
   }
 
   //----------------------map end ------------------------------------------

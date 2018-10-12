@@ -46,7 +46,9 @@ class CollectableItems {
   /**
    * Adds an item
    */
-  private void addItem(Location loc, Item item) {
+  //TODO set to public temporarily. Using location to identify item will not work. It uses the Object Location to identify the item, not the locations. see the test
+  //maybe use hash code instead.
+  public void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
   }
 

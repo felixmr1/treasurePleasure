@@ -17,9 +17,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import treasure.pleasure.R;
@@ -50,13 +52,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap = googleMap;
     mMap.addPolygon(presenter.getPolygon());
     mMap.setOnMarkerClickListener(this);
-    mMap.addMarker(presenter.addMarker(new LatLng(57.6874681, 11.9782412)));
     // position camera
     mMap.setMinZoomPreference(15.0f);
     // TODO: GET CENTER OF MAP AND MOVE CAMERA THERE
     //KLATTERLABBET for now
     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(57.6874681, 11.9782412)));
-
+    //fetches collectibles from model to be drawn on map.
+    presenter.drawMarkers();
     setStyle();
     enableMyLocation();
   }
@@ -153,6 +155,14 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   @Override
   public boolean onMarkerClick(Marker marker) {
+    //TODO handle chest and store marker clicks
+
+    //for now this is assumed to be a collectible
+    String returnString = presenter.attemptPickup(marker.getPosition().latitude, marker.getPosition().longitude);
+    Toast.makeText(getActivity(), returnString,
+        Toast.LENGTH_SHORT).show();
+    //TODO delete marker, make model spawn new item.
+    // return false to keep other default behaviour of onMarkerClick.
     return false;
   }
 
@@ -172,5 +182,14 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private void showMissingPermissionToast() {
     Toast.makeText(getActivity(), "Please provide location permission for app to work properly",
         Toast.LENGTH_SHORT).show();
+  }
+
+  public void drawMarker(LatLng latLng, int imagePath) {
+    MarkerOptions marker = new MarkerOptions()
+        .position(latLng)
+        .title("bajs")
+        .icon(BitmapDescriptorFactory.fromResource(imagePath));
+
+    mMap.addMarker(marker);
   }
 }

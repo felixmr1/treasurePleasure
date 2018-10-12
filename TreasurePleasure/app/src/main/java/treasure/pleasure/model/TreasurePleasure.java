@@ -3,6 +3,7 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
+import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -14,7 +15,7 @@ import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
 
-  private static final TreasurePleasure ourInstance = new TreasurePleasure(0);
+  private static final TreasurePleasure ourInstance = new TreasurePleasure(1);
   // Map coordinates
   private final Location
       mapLimitNW = new Location(57.863889, 11.410027),
@@ -34,6 +35,8 @@ public class TreasurePleasure {
     add(mapNW);
     add(mapSE);
   }};
+
+  private Player player;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
   private Map<Location, Item> items;
@@ -51,6 +54,7 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
     addPlayerToGame("Donald",Avatar.MAN);
+    this.player = getPlayer("Donald");
 
     // create without inital items
     this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
@@ -67,6 +71,20 @@ public class TreasurePleasure {
     return ourInstance;
   }
 
+  //Get all markers from model. Chest and store might as well have their own methods.
+  public List<Tuple<ItemType, LatLng>> getMarkers() {
+    //TODO add chest
+    //TODO add store
+
+    //TODO discuss android types in model, translations are needed everywhere LatLng and imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new Class type, Triple instead of Tuple. Or Tuple in Tuple.
+    //get collectibles
+    List<Tuple<ItemType, LatLng>> markers = new ArrayList<>();
+    for (Map.Entry<Location, Item> entry : getCollectableItems().getCollectibles().entrySet()) {
+      //get ItemType and Location. Translate Location to LatLang.
+      markers.add(new Tuple<>(entry.getValue().getType(), new LatLng(entry.getKey().getLatitude(), entry.getKey().getLongitude())));
+    }
+    return markers;
+  }
 
   public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
 
@@ -113,6 +131,7 @@ public class TreasurePleasure {
   }
 
 
+  //felix´s old method
   public MarkerOptions addMarker(LatLng latLng) {
     return gameMap.addMarker(latLng);
   }
@@ -131,4 +150,33 @@ public class TreasurePleasure {
   }
 
 
+  //---------------------------item pickup--------------------------------------
+  //should check if item is close enough TODO might aswell move this functionality from Location to presenter?
+  public boolean isCloseEnough(double playerLat, double playerLng, double itemLat, double itemLng) {
+    Location playerLocation = new Location(playerLat, playerLng);
+    Location itemLocation = new Location(itemLat, itemLng);
+
+    return(playerLocation.isCloseEnough(itemLocation));
+  }
+
+  public boolean isBackpackFull(){
+    return player.getBackpack().isFull();
+  }
+
+
+  public void collectItem(double itemLat, double itemLng) {
+    Location itemLocation = new Location(itemLat, itemLng);
+    Item itemCollected = collectableItems.collect(itemLocation);
+    if (itemCollected==null) {
+      Log.w("ITEM","ISNULL");
+    }
+    //TODO is this exception handling really necessary?
+    try {
+      //TODO use itemCollected instead of hardcoded. itemCollected is null
+      player.getBackpack().add(new Item(ItemType.DIAMOND, 3000.010000003));//(itemCollected);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  //--------------------------item pickup end-----------------------------------
 }

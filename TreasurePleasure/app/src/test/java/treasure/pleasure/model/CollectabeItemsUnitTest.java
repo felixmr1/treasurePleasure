@@ -1,5 +1,6 @@
 package treasure.pleasure.model;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 import org.junit.Before;
@@ -47,6 +48,19 @@ public class CollectabeItemsUnitTest {
 
     assertTrue(sizeBefore == sizeAfter);
 
+  }
+
+  @Test
+  public void collectTestWithDavid() {
+    Location loc = new Location(57.6874681, 11.9782412);
+    collectibleItems.addItem(loc, new Item(ItemType.DIAMOND, 1000));
+    assertNotNull(collectibleItems.collect(loc));
+  }
+
+  @Test
+  public void collectTestWithDavid2() {
+    collectibleItems.addItem(new Location(57.6874681, 11.9782412), new Item(ItemType.DIAMOND, 1000));
+    assertNotNull(collectibleItems.collect(new Location(57.6874681, 11.9782412)));
   }
 
   @Test
