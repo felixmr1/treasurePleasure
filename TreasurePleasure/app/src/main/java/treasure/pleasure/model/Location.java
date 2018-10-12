@@ -3,6 +3,7 @@ package treasure.pleasure.model;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /*
     Handles all the different locations in the project, for example player and a collectable Item
@@ -181,4 +182,20 @@ class Location {
     return new LatLng(this.latitude, this.longitude);
   }
 
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null ) return false;
+      if (obj == this) return true;
+      if (!(obj instanceof Location)) return false;
+
+      Location other = (Location) obj;
+      if (this.latitude != other.latitude) return false;
+      if (this.longitude != other.longitude) return false;
+      return true;
+  }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(latitude, longitude);
+    }
 }
