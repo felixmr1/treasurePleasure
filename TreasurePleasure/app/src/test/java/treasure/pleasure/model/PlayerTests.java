@@ -28,9 +28,10 @@ public class PlayerTests {
     public void addPlayerIncrementsPlayers() {
         usernames = tp.getPlayerNames();
         try {
+            int sizeBefore = usernames.size();
             tp.addPlayerToGame("Jenny", Avatar.WOMAN);
-            usernames2 = tp.getPlayerNames();
-            assertTrue(usernames.size() < usernames2.size());
+            int sizeAfter = usernames.size();
+            assertTrue(sizeBefore < sizeAfter);
         } catch(Exception e) {
             System.out.println(e);
         }

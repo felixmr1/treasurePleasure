@@ -1,6 +1,7 @@
 package treasure.pleasure.view;
 
 import android.Manifest;
+import android.Manifest.permission;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -28,11 +29,15 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     OnMarkerClickListener {
 
   private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+  private boolean locationPermissionDenied = false;
+
   private TreasurePleasurePresenter presenter;
   private FusedLocationProviderClient mFusedLocationClient;
+  private GoogleMap mMap;
+
+  //TODO make persist between launches.
   private LatLng myCurrentLatLng;
 
-  private GoogleMap mMap;
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -61,15 +66,15 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap.setMapStyle(style);
   }
 
-
+  /**
+   * Check if access to location has been granted. If granted enable location, else ask for permission.
+   */
   private void enableMyLocation() {
     //check if user has granted permission to use fine location:
     if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       // Permission to access the location is missing.
-
-      Toast.makeText(getActivity(), "Please provide location permission for app to work properly",
-          Toast.LENGTH_SHORT).show();
+      showMissingPermissionToast();
       getLocationPermission();
 
     } else if (mMap != null) {
@@ -85,7 +90,10 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
             1);
   }
 
-  public void onRequestPermissionsResult(int requestCode, String permissions[],
+  /**
+   * handles result from permission of location services. If granted, enable mylocation.
+   */
+   public void onRequestPermissionsResult(int requestCode, String permissions[],
       int[] grantResults) {
     switch (requestCode) {
       case LOCATION_PERMISSION_REQUEST_CODE: {
@@ -94,12 +102,12 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           //permission was granted
           if (mMap != null) {
-            System.out.println("mMap != null, assert this error");
-            //mMap.setMyLocationEnabled(true);
+            enableMyLocation();
           }
         } else {
-          //permission denied.
-          Toast.makeText(getActivity(), "Location permission required", Toast.LENGTH_SHORT).show();
+          //permission is denied.
+          Toast.makeText(getActivity(), "Location permission is required for App to work properly", Toast.LENGTH_SHORT).show();
+          locationPermissionDenied = true;
         }
       }
     }
@@ -112,7 +120,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   public LatLng getMyCurrentLatLng() {
     updateMyLocation();
-    if(myCurrentLatLng != null ) {
+    if (myCurrentLatLng != null) {
       return myCurrentLatLng;
     } else {
       //TODO return center of map, maybe exception
@@ -121,19 +129,26 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   private void updateMyLocation() {
-       mFusedLocationClient.getLastLocation()
-        .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-          @Override
-          public void onSuccess(Location location) {
-            // Got last known location. In some rare situations this can be null.
-            if (location != null) {
-              myCurrentLatLng = new LatLng(location.getLatitude(),location.getLongitude());
+    if (ActivityCompat.checkSelfPermission(getContext(), permission.ACCESS_FINE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED) {
+      //permission missing.
+      showMissingPermissionToast();
+      getLocationPermission();
+    } else {
+      //permission granted
+      mFusedLocationClient.getLastLocation()
+          .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+              // Got last known location. In some rare situations this can be null.
+              if (location != null) {
+                myCurrentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+              } else {
+                Log.w("GameMapFragment", "mFusedLocation returns null");
+              }
             }
-            else {
-              Log.w("GameMapFragment", "mFusedLocation returns null");
-            }
-          }
-        });
+          });
+    }
   }
 
   @Override
@@ -143,5 +158,19 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   public void setPresenter(TreasurePleasurePresenter presenter) {
     this.presenter = presenter;
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (locationPermissionDenied) {
+      showMissingPermissionToast();
+      getLocationPermission();
+    }
+  }
+
+  private void showMissingPermissionToast() {
+    Toast.makeText(getActivity(), "Please provide location permission for app to work properly",
+        Toast.LENGTH_SHORT).show();
   }
 }

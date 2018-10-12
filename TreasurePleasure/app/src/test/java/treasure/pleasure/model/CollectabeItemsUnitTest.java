@@ -29,18 +29,18 @@ public class CollectabeItemsUnitTest {
 
   }
 
+
   @Test
   public void collectTest() {
     int sizeBefore = collectibleItems.getCollectibles().size();
     int i = 0;
     collectibleItems.spawnRandomItem();
 
-    for (Location loc: collectibleItems.getCollectibles().keySet()
-        ) {
-      i++;
+    for (Location loc: collectibleItems.getCollectibles().keySet()) {
       if (i == sizeBefore) { // only collect last item.
         collectibleItems.collect(loc);
       }
+      i++;
     }
 
     int sizeAfter = collectibleItems.getCollectibles().size();
