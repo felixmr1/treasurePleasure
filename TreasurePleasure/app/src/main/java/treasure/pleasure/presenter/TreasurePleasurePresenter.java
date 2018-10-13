@@ -36,6 +36,7 @@ public class TreasurePleasurePresenter {
     }
     this.view = view;
     this.model = TreasurePleasure.getInstance();
+    model.setPresenter(this);
     this.gameMapView = gameMapFragment;
   }
 
@@ -126,6 +127,10 @@ public class TreasurePleasurePresenter {
   public void drawMarker(ItemType itemType, LatLng latLng) {
     //TODO draw depending on itemType. Setting to gem_tiny for now
     gameMapView.drawMarker(latLng, R.drawable.gem_tiny);
+  }
+
+  public void drawMarker(ItemType itemType, double lat, double lng) {
+    gameMapView.drawMarker(new LatLng(lat,lng), R.drawable.gem_tiny);
   }
 
   private Integer getMapImages(ItemType type) {

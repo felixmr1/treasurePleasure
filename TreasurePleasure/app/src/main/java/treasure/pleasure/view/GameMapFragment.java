@@ -161,6 +161,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     String returnString = presenter.attemptPickup(marker.getPosition().latitude, marker.getPosition().longitude);
     Toast.makeText(getActivity(), returnString,
         Toast.LENGTH_SHORT).show();
+    //TODO handle full backpack. shouldnt remove marker.
+    marker.remove();
     //TODO delete marker, make model spawn new item.
     // return false to keep other default behaviour of onMarkerClick.
     return false;

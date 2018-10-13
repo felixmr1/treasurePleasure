@@ -182,6 +182,7 @@ class Location {
     return new LatLng(this.latitude, this.longitude);
   }
 
+    //override equals and hashcode to make matching work in CollectableItems hashmap
     @Override
     public boolean equals(Object obj) {
       if (obj == null ) return false;

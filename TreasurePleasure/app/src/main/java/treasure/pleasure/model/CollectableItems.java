@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class CollectableItems {
+  private TreasurePleasure model;
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
   private ArrayList<ItemType> availableItemTypes;
@@ -43,12 +44,20 @@ class CollectableItems {
     addItem(loc, collectible);
   }
 
+  void spawnAndDrawRandomItem() {
+    Location loc = getRandomLocationWithinBounds();
+    while (isNotAvailableLocation(loc)) {
+      loc = getRandomLocationWithinBounds();
+    }
+    Item collectible = createRandomItem();
+    addItem(loc, collectible);
+    model.drawCollectibleOnMap(collectible.getType(), loc);
+  }
+
   /**
    * Adds an item
    */
-  //TODO set to public temporarily. Using location to identify item will not work. It uses the Object Location to identify the item, not the locations. see the test
-  //maybe use hash code instead.
-  public void addItem(Location loc, Item item) {
+  private void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
   }
 
@@ -102,10 +111,15 @@ class CollectableItems {
   Item collect(Location location) {
     Item item = collectibles.get(location);
     collectibles.remove(location);
+    spawnAndDrawRandomItem();
     return item;
   }
 
   public HashMap<Location, Item> getCollectibles() {
     return collectibles;
+  }
+
+  public void setModel(TreasurePleasure model){
+    this.model = model;
   }
 }

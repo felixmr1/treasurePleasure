@@ -12,9 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import treasure.pleasure.data.Tuple;
+import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
-
+    //TODO only one item works for now. Probably distance between each collectible is too big for more to fit the map.
   private static final TreasurePleasure ourInstance = new TreasurePleasure(1);
   // Map coordinates
   private final Location
@@ -36,6 +37,7 @@ public class TreasurePleasure {
     add(mapSE);
   }};
 
+  private TreasurePleasurePresenter presenter;
   private Player player;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -58,6 +60,7 @@ public class TreasurePleasure {
 
     // create without inital items
     this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
+    collectableItems.setModel(this);
 
     //testing to add gem to backpack
     try {
@@ -69,6 +72,10 @@ public class TreasurePleasure {
 
   public static TreasurePleasure getInstance() {
     return ourInstance;
+  }
+
+  public void setPresenter(TreasurePleasurePresenter presenter){
+    this.presenter = presenter;
   }
 
   //Get all markers from model. Chest and store might as well have their own methods.
@@ -142,7 +149,6 @@ public class TreasurePleasure {
 
   Player getPlayer(String username) {
     return players.get(username.toLowerCase());
-
   }
 
   CollectableItems getCollectableItems() {
@@ -172,11 +178,14 @@ public class TreasurePleasure {
     }
     //TODO is this exception handling really necessary?
     try {
-      //TODO use itemCollected instead of hardcoded. itemCollected is null
-      player.getBackpack().add(new Item(ItemType.DIAMOND, 3000.010000003));//(itemCollected);
+      player.getBackpack().add(itemCollected);
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  void drawCollectibleOnMap(ItemType type, Location location) {
+    presenter.drawMarker(type, location.getLatitude(), location.getLongitude());
   }
   //--------------------------item pickup end-----------------------------------
 }
