@@ -15,7 +15,6 @@ import treasure.pleasure.data.Tuple;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
-    //TODO only one item works for now. Probably distance between each collectible is too big for more to fit the map.
   private static final TreasurePleasure ourInstance = new TreasurePleasure(1);
   // Map coordinates
   private final Location
@@ -62,12 +61,6 @@ public class TreasurePleasure {
     this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
     collectableItems.setModel(this);
 
-    //testing to add gem to backpack
-    try {
-      getPlayer("Donald").getBackpack().add(new Item(ItemType.DIAMOND, 9000.010000003));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   public static TreasurePleasure getInstance() {

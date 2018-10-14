@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
@@ -69,6 +71,11 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public void changeMapButtonText(String newText) {
     Button mapButton = findViewById(R.id.showBackpackButton);
     mapButton.setText(newText);
+  }
+
+  public void showToast(String s){
+    Toast.makeText(this, s,
+            Toast.LENGTH_SHORT).show();
   }
 
 }

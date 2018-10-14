@@ -157,17 +157,20 @@ public class TreasurePleasurePresenter {
     gameMapView.drawMarker(latLng,getImages(itemType));
   }
 
-  public String attemptPickup(double itemLat, double itemLng) {
+  public boolean attemptPickup(double itemLat, double itemLng) {
     LatLng playerLatLng = getMyCurrentLatLng();
     //check if collectible is close enough to pick up
     if (!model.isCloseEnough(playerLatLng.latitude, playerLatLng.longitude, itemLat, itemLng)) {
-      return "Item too far away";
+        view.showToast("Item too far away");
+      return false;
     }
     if (model.isBackpackFull()) {
-      return "Backpack is full! Turn in items in chest.";
+        view.showToast("Backpack is full! turn in items in chest.");
+        return false;
     }
     model.collectItem(itemLat, itemLng);
-    return "Item collected! Check your backpack =D";
+    view.showToast("Item collected! Check your backpack =D");
+    return true;
   }
 
   //----------------------map end ------------------------------------------

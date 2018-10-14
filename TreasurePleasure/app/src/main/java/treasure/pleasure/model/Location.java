@@ -13,7 +13,7 @@ class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
-  private double maxInteractionDistance = 10;
+  private double maxInteractionDistance = 100;  //TODO tune this value 0.001 seems to work fairly well. Set to 100 for testing when not close to chalmers campus
 
   /**
    * Creates a empty location with longitude and latitude set to 0. Timestamp is the current

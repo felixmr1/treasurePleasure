@@ -158,12 +158,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     //TODO handle chest and store marker clicks
 
     //for now this is assumed to be a collectible
-    String returnString = presenter.attemptPickup(marker.getPosition().latitude, marker.getPosition().longitude);
-    Toast.makeText(getActivity(), returnString,
-        Toast.LENGTH_SHORT).show();
-    //TODO handle full backpack. shouldnt remove marker.
-    marker.remove();
-    //TODO delete marker, make model spawn new item.
+    boolean pickupSuccessful = presenter.attemptPickup(marker.getPosition().latitude, marker.getPosition().longitude);
+    if (pickupSuccessful) { marker.remove();}
     // return false to keep other default behaviour of onMarkerClick.
     return false;
   }

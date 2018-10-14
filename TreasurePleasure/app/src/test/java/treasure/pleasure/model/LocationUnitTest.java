@@ -1,6 +1,7 @@
 package treasure.pleasure.model;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -159,5 +160,15 @@ public class LocationUnitTest {
   @Test
   public void updateWithFailedLocation() {
     /* TODO: ADD A FAILED LOCATION AND IT SHOULD THROW ERROR */
+  }
+
+  @Test
+  public void twoCloseLocationsDifferent (){
+    location1.update(57.6874681, 11.9782412);
+    location2.update(57.6874681, 11.9782413);
+    assertNotEquals(location1,location2);
+    location1.update(57.6874681, 11.9782412);
+    location2.update(57.6874680, 11.9782412);
+    assertNotEquals(location1,location2);
   }
 }
