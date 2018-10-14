@@ -59,7 +59,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(57.6874681, 11.9782412)));
     //fetches collectibles from model to be drawn on map.
     // TODO: PRESENTER SHOULD NOT BE CALLED?
-    presenter.drawMarkers();
+    presenter.drawAllMapMarkers();
     setStyle();
     enableMyLocation();
   }
@@ -162,6 +162,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   @Override
   public boolean onMarkerClick(Marker marker) {
+    //TODO assumes a collectible has been clicked. Handle Chest and store.
+
      presenter.attemptCollect(marker);
     // return false to keep other default behaviour of onMarkerClick.
     return false;

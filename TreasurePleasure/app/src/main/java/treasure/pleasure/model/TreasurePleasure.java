@@ -68,9 +68,13 @@ public class TreasurePleasure {
     this.presenter = presenter;
   }
 
+  public LatLng getChestLocation(String username){
+    Location backpackLocation = getPlayer(username).getChestLocation();
+    return new LatLng(backpackLocation.getLatitude(), backpackLocation.getLongitude());
+  }
+
   //Get all markers from model. Chest and store might as well have their own methods.
   public List<Tuple<ItemType, LatLng>> getMarkers() {
-    //TODO add chest
     //TODO add store
 
     //TODO discuss android types in model, translations are needed everywhere LatLng and imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new Class type, Triple instead of Tuple. Or Tuple in Tuple.
@@ -179,6 +183,7 @@ public class TreasurePleasure {
     boolean backpackIsFull = player.backpackIsFull();
     boolean playerCloseEnoughToItem = playerLocation.isCloseEnough(itemLocation);
 
+    //TODO exceptions is to catch and handle exceptions, i.e unexpected behaviour. It is not a tool to control the flow of the application.
     if (backpackIsFull) {
       throw new Exception("Players backpack is full");
     }

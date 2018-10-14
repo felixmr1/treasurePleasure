@@ -11,6 +11,8 @@ import treasure.pleasure.model.ItemType;
 //TODO add images for different types of items
 public class AndroidImageAssets {
 
+  private static final Integer chestImage = R.drawable.chest;
+
   private static final EnumMap<ItemType, Integer> itemImageList = new EnumMap<ItemType, Integer>(ItemType.class) {{
     put(ItemType.DIAMOND, R.drawable.gem);
     put(ItemType.GOLD, R.drawable.gem);
@@ -31,5 +33,9 @@ public class AndroidImageAssets {
 
   public static EnumMap<ItemType, Integer> getMapImages() {
     return mapItemImageList;
+  }
+
+  public static Integer getChestImage() {
+    return chestImage;
   }
 }

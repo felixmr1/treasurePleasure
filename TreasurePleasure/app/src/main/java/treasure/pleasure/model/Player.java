@@ -97,6 +97,8 @@ import java.util.regex.Pattern;
         return this.backpack.getMaxSize();
     }
 
-
+    Location getChestLocation() {
+        return chest.getLocation();
+    }
 
 }

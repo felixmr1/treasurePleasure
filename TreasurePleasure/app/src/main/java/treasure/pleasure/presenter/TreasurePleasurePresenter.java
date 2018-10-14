@@ -130,10 +130,21 @@ public class TreasurePleasurePresenter {
     return model.getPolygonMap();
   }
 
+  public void drawAllMapMarkers() {
+    drawCollectibles();
+    drawChest();
+    //TODO drawStore.
+  }
+
+  private void drawChest(){
+    LatLng chestLocation = model.getChestLocation(username);
+    gameMapView.drawMarker(chestLocation, AndroidImageAssets.getChestImage());
+  }
+
   /**
    * fetches all collectibles from the model and draws them on the map
    */
-  public void drawMarkers() {
+  public void drawCollectibles() {
     for (Tuple<ItemType, LatLng> tuple : model.getMarkers()) {
       drawMarker(tuple.getField1(), tuple.getField2());
     }
@@ -193,12 +204,13 @@ public class TreasurePleasurePresenter {
     LatLng itemLatLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
     LatLng playerLatLng = getMyCurrentLatLng();
 
+    //TODO collectibles on map do not always disappear
     try {
       model.moveCollectibleToPlayerBackpack(username, playerLatLng, itemLatLng);
       gameMapView.removeMarker(marker);
       onBackpackUpdate();
       view.showToast("Item collected! Check your backpack =D");
-      drawMarkers();
+      drawCollectibles();
     } catch (Exception e) {
       view.showToast(e.getMessage());
     }
