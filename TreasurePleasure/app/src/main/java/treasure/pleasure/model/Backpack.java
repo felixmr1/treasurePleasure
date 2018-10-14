@@ -87,6 +87,5 @@ class Backpack<T> {
     return this.maxSize;
   }
 
-
 }
 

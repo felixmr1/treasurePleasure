@@ -70,11 +70,21 @@ public class TreasurePleasurePresenter {
   }
 
   //----------------------backpack stuff------------------------------------
+
+  /**
+   * If backpack widget is being displayed, update backpack
+   */
+  public void onBackpackUpdate(){
+    if (view.backpackFragmentIsActive()){
+      retrieveAndDisplayContent();
+    }
+  }
+
   public void setBackpackView (BackpackFragment view){
     this.backpackView = view;
   }
   //Retrieves arrayList from model representing the backpack content.
-  //Passes list to backpackRecyclerView to be displayed.
+  //Passes list to backpack view to be displayed.
   public void retrieveAndDisplayContent() {
     backpackView.displayContent(backPackItemsToDisplay());
   }
@@ -188,6 +198,7 @@ public class TreasurePleasurePresenter {
         return false;
     }
     model.collectItem(itemLat, itemLng);
+    onBackpackUpdate();
     view.showToast("Item collected! Check your backpack =D");
     return true;
   }
