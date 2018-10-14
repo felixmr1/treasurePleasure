@@ -107,19 +107,21 @@ public class TreasurePleasure {
    *
    * @return List<Tuple   <   ItemTYpe   ,   Double>
    */
-  public List<Tuple<ItemType, Double>> getBackPackContent() {
+
+  // TODO: hardcoded player
+  public List<Tuple<ItemType, Double>> getBackPackContentForPlayer() {
 
     Player player = getPlayer("Donald");
 
     List<Tuple<ItemType, Double>> content = new ArrayList();
     int index = 0;
 
-    for (Item item : player.getBackpack().getAllItems()) {
+    for (Item item : player.getBackpackItems()) {
       content.add(new Tuple<>(item.getType(), item.getValue()));
       index++;
     }
 
-    if (player.getBackpack().isNotFull()) {
+    if (!player.backpackIsFull()) {
 
       while (index < player.getBackpack().getMaxSize()) {
         content.add(new Tuple<>(ItemType.VOID, 0.0));
@@ -158,8 +160,9 @@ public class TreasurePleasure {
     return(playerLocation.isCloseEnough(itemLocation));
   }
 
+  // TODO: player is hardcoded
   public boolean isBackpackFull(){
-    return player.getBackpack().isFull();
+    return player.backpackIsFull();
   }
 
 

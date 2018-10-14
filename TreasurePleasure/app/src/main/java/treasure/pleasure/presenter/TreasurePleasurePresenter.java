@@ -82,7 +82,7 @@ public class TreasurePleasurePresenter {
   private List<Tuple<Integer, String>> backPackItemsToDisplay() {
     List<Tuple<Integer, String>> dataToView = new ArrayList();
 
-    for (Tuple<ItemType, Double> tuple : model.getBackPackContent()) {
+    for (Tuple<ItemType, Double> tuple : model.getBackPackContentForPlayer()) {
       ItemType itemType = tuple.getField1();
       Double score = tuple.getField2();
 

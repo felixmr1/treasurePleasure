@@ -78,6 +78,13 @@ import java.util.regex.Pattern;
         backpack.removeAll();
     }
 
+    boolean backpackIsFull() {
+        return this.backpack.isFull();
+    }
+
+    List<Item> getBackpackItems() {
+        return this.backpack.getAllItems();
+    }
 
     Backpack<Item> getBackpack(){
       return this.backpack;
