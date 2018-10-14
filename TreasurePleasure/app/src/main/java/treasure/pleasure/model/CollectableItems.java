@@ -78,7 +78,7 @@ class CollectableItems {
    * Creates a Location within map constraints
    * @return Location
    */
-  Location getRandomLocationWithinBounds() {
+  public Location getRandomLocationWithinBounds() {
     Location northWest = mapConstraint.get(0);
     Location southEast = mapConstraint.get(1);
 
