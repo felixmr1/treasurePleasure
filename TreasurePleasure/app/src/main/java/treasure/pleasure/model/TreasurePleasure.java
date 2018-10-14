@@ -54,11 +54,10 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
     addPlayerToGame("Donald",Avatar.MAN);
-
+    System.out.println("2");
     // create without inital items
     this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
     collectableItems.setModel(this);
-
   }
 
   public static TreasurePleasure getInstance() {

@@ -218,13 +218,12 @@ public class LocationUnitTest {
 
   @Test
   public void createRandomLocationWithinCoordinates() {
-   int iterations = 10000;
+   int iterations = 100;
    Location randomLocation;
    Location northWest = new Location(northWestLat, northWestLong);
    Location southEast = new Location(southEastLat, southEastLong);
    for (int i = 0; i < iterations; i++) {
      randomLocation = location1.getLocationWithinCoordinates(northWest, southEast);
-     System.out.println(randomLocation.getLatLng());
      assertTrue(randomLocation.isWithinCoordinates(northWest, southEast));
    }
   }

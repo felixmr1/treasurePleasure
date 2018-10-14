@@ -35,8 +35,11 @@ class CollectableItems {
    * Spawns a random item within the current map constraints
    */
   void spawnRandomItem() {
+    int i = 0;
+    int maxIterations = 10000;
     Location loc = getRandomLocationWithinBounds();
-    while (isNotAvailableLocation(loc)) {
+    while (!isAvailableLocation(loc) && i < maxIterations) {
+      i++;
       loc = getRandomLocationWithinBounds();
     }
     Item collectible = createRandomItem();
@@ -45,8 +48,11 @@ class CollectableItems {
   }
 
   void spawnAndDrawRandomItem() {
+    int i = 0;
+    int maxIterations = 10000;
     Location loc = getRandomLocationWithinBounds();
-    while (isNotAvailableLocation(loc)) {
+    while (!isAvailableLocation(loc) && i < maxIterations) {
+      i++;
       loc = getRandomLocationWithinBounds();
     }
     Item collectible = createRandomItem();
@@ -75,15 +81,11 @@ class CollectableItems {
   Location getRandomLocationWithinBounds() {
     Location northWest = mapConstraint.get(0);
     Location southEast = mapConstraint.get(1);
-    double mapWidth = southEast.getLongitude() - northWest.getLongitude();
-    double mapHeight = northWest.getLatitude() - southEast.getLatitude();
-    double randX = northWest.getLongitude() + Math.random() * mapWidth;
-    double randY = southEast.getLatitude() + Math.random() * mapHeight;
 
-    return new Location(randY, randX);
+    return northWest.getLocationWithinCoordinates(northWest, southEast);
   }
 
-  Boolean isNotAvailableLocation(Location loc) {
+  Boolean isAvailableLocation(Location loc) {
     for ( Location occupiedLoc : collectibles.keySet()
     ) {
       if (occupiedLoc.isCloseEnough(loc)) {
