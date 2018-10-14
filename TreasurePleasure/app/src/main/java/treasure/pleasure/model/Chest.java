@@ -12,9 +12,6 @@ public class Chest<T extends ItemCallBack>{
     private double score;
 
 
-
-
-
     Chest(){
         // location of chest hard coded, will change later.
         this.location = new Location(57.686952,11.980587);

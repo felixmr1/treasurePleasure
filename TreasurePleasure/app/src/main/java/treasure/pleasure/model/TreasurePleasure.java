@@ -37,7 +37,6 @@ public class TreasurePleasure {
   }};
 
   private TreasurePleasurePresenter presenter;
-  private Player player;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
   private Map<Location, Item> items;
@@ -55,7 +54,6 @@ public class TreasurePleasure {
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
     addPlayerToGame("Donald",Avatar.MAN);
-    this.player = getPlayer("Donald");
 
     // create without inital items
     this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
@@ -109,9 +107,9 @@ public class TreasurePleasure {
    */
 
   // TODO: hardcoded player
-  public List<Tuple<ItemType, Double>> getBackPackContentForPlayer() {
+  public List<Tuple<ItemType, Double>> getBackPackContentForPlayer(String username) {
 
-    Player player = getPlayer("Donald");
+    Player player = getPlayer(username);
 
     List<Tuple<ItemType, Double>> content = new ArrayList();
     int index = 0;
@@ -161,20 +159,21 @@ public class TreasurePleasure {
   }
 
   // TODO: player is hardcoded
-  public boolean isBackpackFull(){
-    return player.backpackIsFull();
+  public boolean isBackpackFullForPlayer(String username){
+    return getPlayer(username).backpackIsFull();
   }
 
 
-  public void collectItem(double itemLat, double itemLng) {
+  public void moveCollectibleToPlayerBackpack(String username, double itemLat, double itemLng) {
     Location itemLocation = new Location(itemLat, itemLng);
+    Player player = getPlayer(username);
     Item itemCollected = collectableItems.collect(itemLocation);
-    if (itemCollected==null) {
+    if (itemCollected == null) {
       Log.w("ITEM","ISNULL");
     }
     //TODO is this exception handling really necessary?
     try {
-      player.getBackpack().add(itemCollected);
+      player.addToBackpack(itemCollected);
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -28,6 +28,7 @@ public class TreasurePleasurePresenter {
   private TreasurePleasure model;
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
+  private String username = "Donald";
 
   public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
 
@@ -92,7 +93,7 @@ public class TreasurePleasurePresenter {
   private List<Tuple<Integer, String>> backPackItemsToDisplay() {
     List<Tuple<Integer, String>> dataToView = new ArrayList();
 
-    for (Tuple<ItemType, Double> tuple : model.getBackPackContentForPlayer()) {
+    for (Tuple<ItemType, Double> tuple : model.getBackPackContentForPlayer(username)) {
       ItemType itemType = tuple.getField1();
       Double score = tuple.getField2();
 
@@ -193,11 +194,11 @@ public class TreasurePleasurePresenter {
         view.showToast("Item too far away");
       return false;
     }
-    if (model.isBackpackFull()) {
+    if (model.isBackpackFullForPlayer(username)) {
         view.showToast("Backpack is full! turn in items in chest.");
         return false;
     }
-    model.collectItem(itemLat, itemLng);
+    model.moveCollectibleToPlayerBackpack(username, itemLat, itemLng);
     onBackpackUpdate();
     view.showToast("Item collected! Check your backpack =D");
     return true;
