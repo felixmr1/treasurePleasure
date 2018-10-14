@@ -88,7 +88,10 @@ import java.util.regex.Pattern;
 
     Backpack<Item> getBackpack(){
       return this.backpack;
+    }
 
+    Integer getBackpackMaxSize() {
+        return this.backpack.getMaxSize();
     }
 
 

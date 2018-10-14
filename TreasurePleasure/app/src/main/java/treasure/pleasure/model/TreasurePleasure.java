@@ -123,7 +123,7 @@ public class TreasurePleasure {
 
     if (!player.backpackIsFull()) {
 
-      while (index < player.getBackpack().getMaxSize()) {
+      while (index < player.getBackpackMaxSize()) {
         content.add(new Tuple<>(ItemType.VOID, 0.0));
         index++;
       }
