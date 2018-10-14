@@ -20,7 +20,7 @@ public class GameMapUnitTest {
   @Before
   public void initGameMap() {
 
-    this.tp = new TreasurePleasure(0);
+    this.tp = TreasurePleasure.getInstance();
     //this.gameMap = this.tp.getGameMap();
   }
 

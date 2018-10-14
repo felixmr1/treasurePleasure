@@ -10,4 +10,5 @@ public interface TreasurePleasureView {
     boolean backpackFragmentIsActive();
     void loadBackpackFragment(TreasurePleasure model);
     void closeBackpackFragment();
+    void showToast(String s);
 }

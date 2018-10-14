@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class CollectableItems {
+  private TreasurePleasure model;
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
   private ArrayList<ItemType> availableItemTypes;
@@ -41,6 +42,16 @@ class CollectableItems {
     Item collectible = createRandomItem();
 
     addItem(loc, collectible);
+  }
+
+  void spawnAndDrawRandomItem() {
+    Location loc = getRandomLocationWithinBounds();
+    while (isNotAvailableLocation(loc)) {
+      loc = getRandomLocationWithinBounds();
+    }
+    Item collectible = createRandomItem();
+    addItem(loc, collectible);
+    model.drawCollectibleOnMap(collectible.getType(), loc);
   }
 
   /**
@@ -100,10 +111,15 @@ class CollectableItems {
   Item collect(Location location) {
     Item item = collectibles.get(location);
     collectibles.remove(location);
+    spawnAndDrawRandomItem();
     return item;
   }
 
   public HashMap<Location, Item> getCollectibles() {
     return collectibles;
+  }
+
+  public void setModel(TreasurePleasure model){
+    this.model = model;
   }
 }

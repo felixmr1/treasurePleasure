@@ -1,14 +1,20 @@
 package treasure.pleasure.model;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.google.android.gms.maps.model.LatLng;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
 public class LocationUnitTest {
+  final double northWestLat = 57.690085;
+  final double southEastLat = 57.684923;
+  final double northWestLong = 11.973020;
+  final double southEastLong = 11.984177;
 
   Location location1;
   Location location2;
@@ -157,7 +163,79 @@ public class LocationUnitTest {
   }
 
   @Test
-  public void updateWithFailedLocation() {
-    /* TODO: ADD A FAILED LOCATION AND IT SHOULD THROW ERROR */
+  public void locationNotWithinCoordinates() {
+    double latOffset  = 0.001;
+    double longOffset = 0.001;
+
+    double north = northWestLat + latOffset;
+    double west = northWestLong - longOffset;
+    double south = southEastLat - latOffset;
+    double east = southEastLong + longOffset;
+
+    Location toNorth = new Location(north, northWestLong);
+    Location toWest = new Location(southEastLat, west);
+    Location toSouth = new Location(south, southEastLong);
+    Location toEast = new Location(southEastLat, east);
+    Location toNorthAndWest = new Location(north, west);
+    Location toNorthAndEast = new Location(north, east);
+    Location toSouthAndWest = new Location(south, west);
+    Location toSouthAndEast = new Location(south, east);
+
+
+    Location northWest = new Location(northWestLat, northWestLong);
+    Location southEast = new Location(southEastLat, southEastLong);
+
+    assertFalse(toNorth.isWithinCoordinates(northWest, southEast));
+    assertFalse(toWest.isWithinCoordinates(northWest, southEast));
+    assertFalse(toSouth.isWithinCoordinates(northWest, southEast));
+    assertFalse(toEast.isWithinCoordinates(northWest, southEast));
+    assertFalse(toNorthAndWest.isWithinCoordinates(northWest, southEast));
+    assertFalse(toNorthAndEast.isWithinCoordinates(northWest, southEast));
+    assertFalse(toSouthAndEast.isWithinCoordinates(northWest, southEast));
+    assertFalse(toSouthAndWest.isWithinCoordinates(northWest, southEast));
+  }
+
+  @Test
+  public void locationWithinCoordinates() {
+    Location northWest = new Location(northWestLat, northWestLong);
+    Location southEast = new Location(southEastLat, southEastLong);
+    Location northEast = new Location(northWestLat, southEastLong);
+    Location southWest = new Location(southEastLat, northWestLong);
+
+    double latOffset  = 0.001;
+    double longOffset = 0.001;
+
+    Location inCoordinates1 = new Location(northWest.getLatitude() - latOffset,northWestLong + longOffset);
+    Location inCoordinates2 = new Location(southEastLat + latOffset, southEastLong - longOffset);
+
+    assertTrue(inCoordinates1.isWithinCoordinates(northWest, southEast));
+    assertTrue(inCoordinates2.isWithinCoordinates(northWest, southEast));
+    assertTrue(northWest.isWithinCoordinates(northWest, southEast));
+    assertTrue(southEast.isWithinCoordinates(northWest, southEast));
+    assertTrue(northEast.isWithinCoordinates(northWest, southEast));
+    assertTrue(southWest.isWithinCoordinates(northWest, southEast));
+  }
+
+  @Test
+  public void createRandomLocationWithinCoordinates() {
+   int iterations = 10000;
+   Location randomLocation;
+   Location northWest = new Location(northWestLat, northWestLong);
+   Location southEast = new Location(southEastLat, southEastLong);
+   for (int i = 0; i < iterations; i++) {
+     randomLocation = location1.getLocationWithinCoordinates(northWest, southEast);
+     System.out.println(randomLocation.getLatLng());
+     assertTrue(randomLocation.isWithinCoordinates(northWest, southEast));
+   }
+  }
+
+  @Test
+  public void twoCloseLocationsDifferent (){
+    location1.update(57.6874681, 11.9782412);
+    location2.update(57.6874681, 11.9782413);
+    assertNotEquals(location1,location2);
+    location1.update(57.6874681, 11.9782412);
+    location2.update(57.6874680, 11.9782412);
+    assertNotEquals(location1,location2);
   }
 }

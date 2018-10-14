@@ -1,10 +1,10 @@
 package treasure.pleasure.view;
 /**
- * Support class for RecyclerViewFragment. Responsible for providing views that represent items in a data set.
+ * Support class for BackpackFragment, which is of type RecyclerViewFragment. Responsible for providing views that represent items in a data set.
  * Uses backpack_item_template.xml as a template, and replaces text and resourcepath of that view to represent each item.
  *
- * This is a standard android implementation, to read more visit https://developer.android.com/reference/android/support/v7/widget/RecyclerView
- *  @author David
+ * This is a standard android implementation, for details visit https://developer.android.com/reference/android/support/v7/widget/RecyclerView
+ *  @author David & John
  */
 
 import android.support.v7.widget.RecyclerView;

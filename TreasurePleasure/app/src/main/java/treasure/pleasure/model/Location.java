@@ -3,6 +3,7 @@ package treasure.pleasure.model;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /*
     Handles all the different locations in the project, for example player and a collectable Item
@@ -12,7 +13,7 @@ class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
-  private double maxInteractionDistance = 10;
+  private double maxInteractionDistance = 100;  //TODO tune this value 0.001 seems to work fairly well. Set to 100 for testing when not close to chalmers campus
 
   /**
    * Creates a empty location with longitude and latitude set to 0. Timestamp is the current
@@ -108,13 +109,39 @@ class Location {
   }
 
   /**
-   * Checks if this location is within given borders
-   *
-   * @param borders A arraylist that creates a border on a map (order mather!)
-   * @return true if this location is within given border
+   * Checks if a location is within map/border (Only supports a rectangular box for now)
+   * @param northWest The northwest locaiton of the map/border
+   * @param southEast The soutEast location of the map/border
    */
-  boolean isWithinCoordinates(ArrayList<Location> borders) {
+  boolean isWithinCoordinates(Location northWest, Location southEast) {
+    boolean isWithin = true;
+    double mapWidth = southEast.getLongitude() - northWest.getLongitude();
+    double mapHeight = northWest.getLatitude() - southEast.getLatitude();
+    Location northEast = new Location(northWest.getLatitude() + 0, northWest.getLongitude() + mapWidth);
+    Location southWest = new Location(southEast.getLatitude(), southEast.getLongitude() - mapWidth);
+
+    if (this.getLatitude() > northWest.getLatitude()) return false;
+    if (this.getLongitude() < northWest.getLongitude()) return false;
+
+    if (this.getLatitude() < southEast.getLatitude()) return false;
+    if (this.getLongitude() > southEast.getLongitude()) return false;
+
     return true;
+  }
+
+  /**
+   * Returns a new random location
+   * @param northWest The northwest locaiton of the map/border
+   * @param southEast The soutEast location of the map/border
+   * @return A new location that is randomly spawned within given map/border
+   */
+  Location getLocationWithinCoordinates(Location northWest, Location southEast) {
+    double mapWidth = southEast.getLongitude() - northWest.getLongitude();
+    double mapHeight = northWest.getLatitude() - southEast.getLatitude();
+    double randX = northWest.getLongitude() + Math.random() * mapWidth;
+    double randY = southEast.getLatitude() + Math.random() * mapHeight;
+
+    return new Location(randY, randX);
   }
 
   private boolean isValidCoordinate(double coordinate) {
@@ -181,4 +208,21 @@ class Location {
     return new LatLng(this.latitude, this.longitude);
   }
 
+    //override equals and hashcode to make matching work in CollectableItems hashmap
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null ) return false;
+      if (obj == this) return true;
+      if (!(obj instanceof Location)) return false;
+
+      Location other = (Location) obj;
+      if (this.latitude != other.latitude) return false;
+      if (this.longitude != other.longitude) return false;
+      return true;
+  }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(latitude, longitude);
+    }
 }
