@@ -69,7 +69,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * Check if access to location has been granted. If granted enable location, else ask for permission.
+   * Check if access to user location has been granted. If granted, then enable myLocation, else ask for permission.
    */
   private void enableMyLocation() {
     //check if user has granted permission to use fine location:
@@ -93,7 +93,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * handles result from permission of location services. If granted, enable mylocation.
+   * handles result from permission of user location services. If granted, enable mylocation, else display on screen message explaining app failure.
    */
    public void onRequestPermissionsResult(int requestCode, String permissions[],
       int[] grantResults) {
@@ -153,12 +153,17 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     }
   }
 
+  /**
+   * logic for user interaction on map
+   * @param marker that has just been clicked.
+   * @return boolean required by google map api. Regulates onClick UI behaviour.
+   */
   @Override
   public boolean onMarkerClick(Marker marker) {
     //TODO handle chest and store marker clicks
 
     //for now this is assumed to be a collectible
-    boolean pickupSuccessful = presenter.attemptPickup(marker.getPosition().latitude, marker.getPosition().longitude);
+    boolean pickupSuccessful = presenter.attemptCollect(marker.getPosition().latitude, marker.getPosition().longitude);
     if (pickupSuccessful) { marker.remove();}
     // return false to keep other default behaviour of onMarkerClick.
     return false;
@@ -182,6 +187,11 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         Toast.LENGTH_SHORT).show();
   }
 
+  /**
+   * Draw marker on map.
+   * @param latLng coordinates for the marker
+   * @param imagePath to the icon to be displayed
+   */
   public void drawMarker(LatLng latLng, int imagePath) {
     MarkerOptions marker = new MarkerOptions()
         .position(latLng)

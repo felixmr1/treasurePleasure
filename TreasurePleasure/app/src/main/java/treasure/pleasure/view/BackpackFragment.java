@@ -14,8 +14,9 @@ import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
+ * TODO add a description
  * Creates a viewfragment showing the backpack.
- * @author David
+ * @author David & John
  */
 public class BackpackFragment extends Fragment {
 
@@ -50,7 +51,10 @@ public class BackpackFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    //Create and reference presenter. Pass model to presenter.
+    /**
+     * Establish communication between TreasurePleasurePresenter and BackpackFragment
+     * @param presenter
+     */
     public void setPresenter(TreasurePleasurePresenter presenter) {
         mPresenter = presenter;
         presenter.setBackpackView(this);

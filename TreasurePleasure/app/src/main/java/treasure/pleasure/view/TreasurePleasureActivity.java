@@ -51,6 +51,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     ((TextView) findViewById(R.id.usernameText)).setText("Users: " + allNames);
   }
 
+  /**
+   * Create a widget onscreen displaying the backpack content.
+   * @param model reference is passed to establish communication between BackpackFragment and model.
+   */
   public void loadBackpackFragment(TreasurePleasure model) {
     BackpackFragment backpackFragment = new BackpackFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment)
@@ -64,6 +68,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     fm.beginTransaction().remove(fm.findFragmentById(R.id.backpack_container)).commit();
   }
 
+  /**
+   * Check if backpack widget already being displayed
+   * @return true if backpack is already onscreen, else false
+   */
   public boolean backpackFragmentIsActive() {
     return (getSupportFragmentManager().findFragmentById(R.id.backpack_container) != null);
   }
@@ -73,8 +81,12 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     mapButton.setText(newText);
   }
 
-  public void showToast(String s){
-    Toast.makeText(this, s,
+  /**
+   * Show on screen message.
+   * @param string to be displayed
+   */
+  public void showToast(String string){
+    Toast.makeText(this, string,
             Toast.LENGTH_SHORT).show();
   }
 

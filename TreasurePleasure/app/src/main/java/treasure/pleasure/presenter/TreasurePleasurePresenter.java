@@ -51,8 +51,10 @@ public class TreasurePleasurePresenter {
     view.updatePlayers(model.getPlayerNames());
   }
 
+  /**
+   * Show or close backpack widget. Update button text accordingly.
+   */
   public void onPressShowBackpackButton() {
-
 
     if (view.backpackFragmentIsActive()) {
       view.closeBackpackFragment();
@@ -101,40 +103,54 @@ public class TreasurePleasurePresenter {
 
 
   /**
-   * Looks in AndoidImageAssets for an image path corresponding to supplied type.
-   * Item type is defined in ENUM ItemType.
-   * @param type of item
+   * Retrieve image path from AndroidImageAssets.Images corresponding to ItemType
+   * @param itemType to be displayed
    * @return imagePath (int)
    */
-  private Integer getImages(ItemType type){
+  private Integer getImages(ItemType itemType){
 
-    return AndroidImageAssets.getImages().get(type);
+    return AndroidImageAssets.getImages().get(itemType);
 
   }
 
   //----------------------backpack stuff end--------------------------------
+
   //----------------------map stuff ----------------------------------------
+
   public PolygonOptions getPolygon() {
     return model.getPolygonMap();
   }
 
+  /**
+   * fetches all collectibles from the model and draws them on the map
+   */
   public void drawMarkers() {
     for (Tuple<ItemType, LatLng> tuple : model.getMarkers()) {
       drawMarker(tuple.getField1(),tuple.getField2());
     }
   }
 
+  /**
+   * make MapView draw a single marker on map.
+   * @param itemType the item type to be displayed
+   * @param latLng the latitude and longitude to draw the marker on
+   */
   public void drawMarker(ItemType itemType, LatLng latLng) {
-    //TODO draw depending on itemType. Setting to gem_tiny for now
-    gameMapView.drawMarker(latLng, R.drawable.gem_tiny);
+    gameMapView.drawMarker(latLng, getMapImages(itemType));
   }
 
+  //TODO overloaded, discuss how to pass locations.
   public void drawMarker(ItemType itemType, double lat, double lng) {
-    gameMapView.drawMarker(new LatLng(lat,lng), R.drawable.gem_tiny);
+    gameMapView.drawMarker(new LatLng(lat,lng), getMapImages(itemType));
   }
 
-  private Integer getMapImages(ItemType type) {
-    return AndroidImageAssets.getMapImages().get(type);
+  /**
+   * Retrieve image path from AndroidImageAssets.MapImages corresponding to ItemType
+   * @param itemType to retrieve image for.
+   * @return imagePath of type Integer.
+   */
+  private Integer getMapImages(ItemType itemType) {
+    return AndroidImageAssets.getMapImages().get(itemType);
   }
 
   //felix old class. delete?
@@ -147,19 +163,22 @@ public class TreasurePleasurePresenter {
   /**
    * Request current location from MapFragment. MapFragment attempts to poll for current location.
    *  When unable to retrieve a new location; the last known location will be returned. If no location has ever been established it will return a fixed location.
-   * @return the LatLng of current location. See above for details
+   * @return LatLng of current location.
    */
   public LatLng getMyCurrentLatLng() {
     return gameMapView.getMyCurrentLatLng();
   }
 
-  public void drawMarker(LatLng latLng, ItemType itemType) {
-    gameMapView.drawMarker(latLng,getImages(itemType));
-  }
-
-  public boolean attemptPickup(double itemLat, double itemLng) {
+  /**
+   * Check: if player is close enough to the item AND backpack is not full, then the item is collected to backpack.
+   * provide feedback to player by onscreen message.
+   * @param itemLat latitude of item to be collected
+   * @param itemLng longitude of item to be collected
+   * @return true if collect successful, else false
+   */
+  public boolean attemptCollect(double itemLat, double itemLng) {
     LatLng playerLatLng = getMyCurrentLatLng();
-    //check if collectible is close enough to pick up
+    //check if collectible is close enough to collect
     if (!model.isCloseEnough(playerLatLng.latitude, playerLatLng.longitude, itemLat, itemLng)) {
         view.showToast("Item too far away");
       return false;
