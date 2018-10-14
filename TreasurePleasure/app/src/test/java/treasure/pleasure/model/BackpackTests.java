@@ -11,7 +11,7 @@ import org.junit.Test;
 
 
 public class BackpackTests {
-
+  TreasurePleasure tp;
   Backpack<Object> b;
   Object item;
   Object item2;
@@ -21,6 +21,7 @@ public class BackpackTests {
 
   @Before
   public void initBackPack() {
+    tp = TreasurePleasure.getInstance();
     b = new Backpack<Object>(3);
     item = new Object();
     item2 = new Object();
@@ -122,6 +123,21 @@ public class BackpackTests {
 
   }
 
+
+  // TODO collectItemIncrementsBackpackContent
+  @Test
+  public void collectItemIncrementsBackpackContent() {
+    String playerName = "TATA";
+    tp.addPlayerToGame(playerName, Avatar.MAN);
+  
+  }
+
+  @Test
+  public void isEmptyAtStart() {
+    String playerName = "TATA";
+    tp.addPlayerToGame(playerName, Avatar.MAN);
+    assertTrue(tp.isBackpackEmptyForPlayer(playerName));
+  }
 
   private void testClassInvariant() {
 

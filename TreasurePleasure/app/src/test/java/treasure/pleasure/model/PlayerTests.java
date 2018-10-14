@@ -36,16 +36,25 @@ public class PlayerTests {
 
   @Test
   public void noDuplicateUsernames() {
-    System.out.println("freeeze");
     tp.addPlayerToGame("Anders", Avatar.MAN);
     usernames = tp.getPlayerNames();
 
     try {
       tp.addPlayerToGame("Anders", Avatar.MAN);
+    } catch (Exception e) { }
+    assertEquals(usernames.size(), tp.getPlayerNames().size());
+  }
+
+  @Test
+  public void addPlayerCreatesCorrectPlayerName() {
+    String username = "olle";
+    try {
+      tp.addPlayerToGame(username, Avatar.MAN);
     } catch (Exception e) {
       System.out.println(e);
     }
-    assertEquals(usernames.size(), tp.getPlayerNames().size());
+
+    assertTrue(tp.getPlayerNames().contains(username));
   }
 
 

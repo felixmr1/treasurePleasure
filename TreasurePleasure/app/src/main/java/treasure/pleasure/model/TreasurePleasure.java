@@ -3,7 +3,6 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -15,7 +14,8 @@ import treasure.pleasure.data.Tuple;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
-  private static final TreasurePleasure ourInstance = new TreasurePleasure(1);
+
+  private static final TreasurePleasure ourInstance = new TreasurePleasure(10);
   // Map coordinates
   private final Location
       mapLimitNW = new Location(57.863889, 11.410027),
@@ -36,6 +36,7 @@ public class TreasurePleasure {
     add(mapSE);
   }};
 
+  private int nrOfCollectibles;
   private TreasurePleasurePresenter presenter;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -48,23 +49,22 @@ public class TreasurePleasure {
     add(ItemType.STONE);
   }};
 
-  private TreasurePleasure(int nOfItems) {
+  private TreasurePleasure(int nrOfCollectibles) {
+    this.nrOfCollectibles = nrOfCollectibles;
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
-    addPlayerToGame("Donald",Avatar.MAN);
-    System.out.println("2");
-    // create without inital items
-    this.collectableItems = new CollectableItems(nOfItems, availableItemTypes, mapReal);
-    collectableItems.setModel(this);
+    addPlayerToGame("Donald", Avatar.MAN);
+
+    this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, mapReal);
   }
 
   public static TreasurePleasure getInstance() {
     return ourInstance;
   }
 
-  public void setPresenter(TreasurePleasurePresenter presenter){
+  public void setPresenter(TreasurePleasurePresenter presenter) {
     this.presenter = presenter;
   }
 
@@ -78,20 +78,21 @@ public class TreasurePleasure {
     List<Tuple<ItemType, LatLng>> markers = new ArrayList<>();
     for (Map.Entry<Location, Item> entry : getCollectableItems().getCollectibles().entrySet()) {
       //get ItemType and Location. Translate Location to LatLang.
-      markers.add(new Tuple<>(entry.getValue().getType(), new LatLng(entry.getKey().getLatitude(), entry.getKey().getLongitude())));
+      markers.add(new Tuple<>(entry.getValue().getType(),
+          new LatLng(entry.getKey().getLatitude(), entry.getKey().getLongitude())));
     }
     return markers;
   }
 
   public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
 
-      if (takenUsernames.contains(username.toLowerCase() )){
-        throw  new ArrayStoreException();
+    if (takenUsernames.contains(username.toLowerCase())) {
+      throw new ArrayStoreException();
 
-      }else {
-        players.put(username.toLowerCase(),new Player(username ,avatar));
-          this.takenUsernames.add(username.toLowerCase());
-      }
+    } else {
+      players.put(username.toLowerCase(), new Player(username, avatar));
+      this.takenUsernames.add(username.toLowerCase());
+    }
   }
 
   public ArrayList<String> getPlayerNames() {
@@ -102,7 +103,7 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple   <   ItemTYpe   ,   Double>
+   * @return List<Tuple       <       ItemTYpe       ,       Double>
    */
 
   // TODO: hardcoded player
@@ -139,10 +140,6 @@ public class TreasurePleasure {
     return gameMap.getPolygonMap();
   }
 
-  Player getPlayer(String username) {
-    return players.get(username.toLowerCase());
-  }
-
   CollectableItems getCollectableItems() {
     return collectableItems;
   }
@@ -154,32 +151,53 @@ public class TreasurePleasure {
     Location playerLocation = new Location(playerLat, playerLng);
     Location itemLocation = new Location(itemLat, itemLng);
 
-    return(playerLocation.isCloseEnough(itemLocation));
+    return (playerLocation.isCloseEnough(itemLocation));
   }
 
-  // TODO: player is hardcoded
-  public boolean isBackpackFullForPlayer(String username){
+  public boolean isBackpackFullForPlayer(String username) {
     return getPlayer(username).backpackIsFull();
   }
 
+  public boolean isBackpackEmptyForPlayer(String username) {
+    return getPlayer(username).backpackIsEmpty();
+  }
 
-  public void moveCollectibleToPlayerBackpack(String username, double itemLat, double itemLng) {
-    Location itemLocation = new Location(itemLat, itemLng);
+  Integer getNrOfCollectibles() {
+    return this.nrOfCollectibles;
+  }
+
+  /**
+   *
+   * @throws Exception
+   */
+  public void moveCollectibleToPlayerBackpack(String username, LatLng playerLatLng,
+      LatLng itemLatLng) throws Exception {
     Player player = getPlayer(username);
-    Item itemCollected = collectableItems.collect(itemLocation);
-    if (itemCollected == null) {
-      Log.w("ITEM","ISNULL");
+    Location playerLocation = new Location(playerLatLng);
+    Location itemLocation = new Location(itemLatLng);
+
+    boolean backpackIsFull = player.backpackIsFull();
+    boolean playerCloseEnoughToItem = playerLocation.isCloseEnough(itemLocation);
+
+    if (backpackIsFull) {
+      throw new Exception("Players backpack is full");
     }
-    //TODO is this exception handling really necessary?
+    if (!playerCloseEnoughToItem) {
+      throw new Exception("Player is not close enough to interact with item");
+    }
+
     try {
-      player.addToBackpack(itemCollected);
+      Item itemCollected = collectableItems.takeItem(itemLocation);
+      if (itemCollected != null) {
+        collectableItems.spawnRandomItem();
+        player.addToBackpack(itemCollected);
+      }
     } catch (Exception e) {
-      e.printStackTrace();
+      throw new Exception(e.getMessage());
     }
   }
 
-  void drawCollectibleOnMap(ItemType type, Location location) {
-    presenter.drawMarker(type, location.getLatitude(), location.getLongitude());
+  private Player getPlayer(String username) {
+    return players.get(username.toLowerCase());
   }
-  //--------------------------item pickup end-----------------------------------
 }

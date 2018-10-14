@@ -77,4 +77,12 @@ public class CollectabeItemsUnitTest {
 
   }
 
+  /**
+   * TODO: nrOfCollectiblesRemainsAfterCollect
+   */
+  @Test
+  public void nrOfCollectiblesRemainsAfterCollect() {
+
+  }
+
 }

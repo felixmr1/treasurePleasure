@@ -1,11 +1,17 @@
 package treasure.pleasure.model;
 
-import com.google.android.gms.maps.model.LatLng;
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 class CollectableItems {
-  private TreasurePleasure model;
+
+  // private TreasurePleasure model;
+  /*
+  public void setModel(TreasurePleasure model) {
+    this.model = model;
+  }
+  */
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
   private ArrayList<ItemType> availableItemTypes;
@@ -18,9 +24,8 @@ class CollectableItems {
    * @param availableItemTypes All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
    */
-
   CollectableItems(int nrCollectibles, ArrayList<ItemType> availableItemTypes, ArrayList<Location>
-      mapConstraint){
+      mapConstraint) {
     this.availableItemTypes = availableItemTypes;
     this.nrCollectibles = nrCollectibles;
     this.collectibles = new HashMap<>();
@@ -36,28 +41,21 @@ class CollectableItems {
    */
   void spawnRandomItem() {
     int i = 0;
-    int maxIterations = 10000;
+    int maxIterations = this.nrCollectibles * 1000;
     Location loc = getRandomLocationWithinBounds();
     while (!isAvailableLocation(loc) && i < maxIterations) {
       i++;
       loc = getRandomLocationWithinBounds();
     }
-    Item collectible = createRandomItem();
-
-    addItem(loc, collectible);
-  }
-
-  void spawnAndDrawRandomItem() {
-    int i = 0;
-    int maxIterations = 10000;
-    Location loc = getRandomLocationWithinBounds();
-    while (!isAvailableLocation(loc) && i < maxIterations) {
-      i++;
-      loc = getRandomLocationWithinBounds();
+    if (i >= maxIterations) {
+      // throw new RuntimeException("Could not get a new location within borders after: " + maxIterations + " tries");
     }
     Item collectible = createRandomItem();
+
     addItem(loc, collectible);
-    model.drawCollectibleOnMap(collectible.getType(), loc);
+
+    // Old way to draw items on map
+    // model.drawCollectibleOnMap(collectible.getType(), loc);
   }
 
   /**
@@ -68,7 +66,7 @@ class CollectableItems {
   }
 
   Item createRandomItem() {
-    ItemType randomItemType = availableItemTypes.get( (int) (Math.random() * availableItemTypes.size
+    ItemType randomItemType = availableItemTypes.get((int) (Math.random() * availableItemTypes.size
         ()));
     int randomItemValue = (int) (Math.random() * 20);
     return new Item(randomItemType, randomItemValue);
@@ -76,6 +74,7 @@ class CollectableItems {
 
   /**
    * Creates a Location within map constraints
+   *
    * @return Location
    */
   public Location getRandomLocationWithinBounds() {
@@ -86,8 +85,8 @@ class CollectableItems {
   }
 
   Boolean isAvailableLocation(Location loc) {
-    for ( Location occupiedLoc : collectibles.keySet()
-    ) {
+    for (Location occupiedLoc : collectibles.keySet()
+        ) {
       if (occupiedLoc.isCloseEnough(loc)) {
         return true;
       }
@@ -98,30 +97,25 @@ class CollectableItems {
   /**
    * Removes item located at given location
    */
-  void removeItem(Location location){
-    // Remove item
+  void removeItem(Location location) {
     collectibles.remove(location);
-    // Create a new one
-    // Get random location that does not collide with an existing item
-
-    spawnRandomItem();
   }
 
   /**
    * Returns item at corresponding location and removes it from map
    */
-  Item collect(Location location) {
+  Item takeItem(Location location) throws Exception {
     Item item = collectibles.get(location);
-    collectibles.remove(location);
-    spawnAndDrawRandomItem();
-    return item;
+    if (item == null) {
+      throw new Exception("There's no corresponding item to collect");
+    } else {
+      this.removeItem(location);
+      return item;
+    }
   }
 
   public HashMap<Location, Item> getCollectibles() {
     return collectibles;
   }
 
-  public void setModel(TreasurePleasure model){
-    this.model = model;
-  }
 }

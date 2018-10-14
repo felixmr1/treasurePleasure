@@ -58,6 +58,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     //KLATTERLABBET for now
     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(57.6874681, 11.9782412)));
     //fetches collectibles from model to be drawn on map.
+    // TODO: PRESENTER SHOULD NOT BE CALLED?
     presenter.drawMarkers();
     setStyle();
     enableMyLocation();
@@ -131,6 +132,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   private void updateMyLocation() {
+
     if (ActivityCompat.checkSelfPermission(getContext(), permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       //permission missing.
@@ -160,17 +162,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   @Override
   public boolean onMarkerClick(Marker marker) {
-    //TODO handle chest and store marker clicks
-
-    //for now this is assumed to be a collectible
-    boolean pickupSuccessful = presenter.attemptCollect(marker.getPosition().latitude, marker.getPosition().longitude);
-    if (pickupSuccessful) { marker.remove();}
+     presenter.attemptCollect(marker);
     // return false to keep other default behaviour of onMarkerClick.
     return false;
   }
 
-  public void setPresenter(TreasurePleasurePresenter presenter) {
-    this.presenter = presenter;
+  public void removeMarker(Marker marker) {
+     marker.remove();
   }
 
   @Override
@@ -199,5 +197,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         .icon(BitmapDescriptorFactory.fromResource(imagePath));
 
     mMap.addMarker(marker);
+  }
+  public void setPresenter(TreasurePleasurePresenter presenter) {
+    this.presenter = presenter;
   }
 }

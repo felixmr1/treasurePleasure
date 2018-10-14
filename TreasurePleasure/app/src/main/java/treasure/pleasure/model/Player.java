@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
             this.avatar = avatar;
             this.chest = new Chest();
             this.dropBonus = 1;
-            this.backpack = new Backpack<>(5);
+            this.backpack = new Backpack<>(50);
 
     }
 
@@ -81,6 +81,9 @@ import java.util.regex.Pattern;
     boolean backpackIsFull() {
         return this.backpack.isFull();
     }
+    boolean backpackIsEmpty() {
+     return this.backpack.isEmpty();
+   }
 
     List<Item> getBackpackItems() {
         return this.backpack.getAllItems();
