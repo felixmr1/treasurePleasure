@@ -191,6 +191,20 @@ public class TreasurePleasure {
     }
   }
 
+  /**
+   * Changes a username by removing the corresponding Player and
+   * adding a new Player with the new username
+   * @throws Exception if the username already exists
+   */
+  public void changeUsername(String oldUsername, String newUsername) throws Exception {
+    if(this.takenUsernames.contains(newUsername.toLowerCase())){
+      throw new Exception("Username is taken");
+    } else {
+      Avatar oldAvatar = this.getPlayer(oldUsername).getAvatar();
+      this.addPlayerToGame(newUsername, oldAvatar);
+    }
+  }
+
   private Player getPlayer(String username) {
     return players.get(username.toLowerCase());
   }

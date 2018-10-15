@@ -65,6 +65,17 @@ public class TreasurePleasurePresenter {
     }
   }
 
+  public void showSettings() {
+
+    if (view.settingsFragmentIsActive()) {
+      view.hideSettingsFragment();
+      view.changeSettingsButtonText("Settings");
+    } else {
+      view.showSettingsFragment();
+      view.changeSettingsButtonText("Close");
+    }
+  }
+
   public void setSettingsView(SettingsFragment view) {
     this.settingsView = view;
   }
@@ -219,5 +230,17 @@ public class TreasurePleasurePresenter {
     return true;
   }
 
-  //----------------------map end ------------------------------------------
+  /**
+   * SettingsFragment ask Presenter to call Model to change name. Presenter updates
+   * SettingsFragment with result.
+   */
+  public void changeUsername(String username) {
+    try {
+      this.model.changeUsername(this.username, username);
+      this.username = username;
+      settingsView.setSubtitleText("Username was successfully changed to: " + username);
+    } catch (Exception e) {
+      settingsView.setSubtitleText(e.getMessage());
+    }
+  }
 }
