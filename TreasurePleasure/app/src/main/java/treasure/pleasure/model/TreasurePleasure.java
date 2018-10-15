@@ -205,4 +205,11 @@ public class TreasurePleasure {
   private Player getPlayer(String username) {
     return players.get(username.toLowerCase());
   }
+
+  // Test function to check how git commits is shared
+  private Chest getPlayerChest(String username) {
+    Location chestLocation = new Location(mapNW);
+    Chest playerChest = new Chest(chestLocation);
+    return playerChest;
+  }
 }
