@@ -15,7 +15,6 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
 
-  //private static final TreasurePleasure ourInstance = new TreasurePleasure(10);
   // Map coordinates
   private final Location
       mapLimitNW = new Location(57.863889, 11.410027),
@@ -57,10 +56,6 @@ public class TreasurePleasure {
 
     this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, mapReal);
   }
-
-  //public static TreasurePleasure getInstance() {
-    //return ourInstance;
-  //}
 
   public LatLng getChestLocation(String username){
     Location backpackLocation = getPlayer(username).getChestLocation();
