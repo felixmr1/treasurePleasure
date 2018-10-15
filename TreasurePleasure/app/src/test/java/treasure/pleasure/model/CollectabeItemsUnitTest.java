@@ -15,7 +15,7 @@ public class CollectabeItemsUnitTest {
   @Before
   public void initLocations() {
     this.maxCollectibles = 50;
-    this.model = TreasurePleasure.getInstance();
+    this.model = new TreasurePleasure(10);
     this.collectibleItems = model.getCollectableItems();
   }
 

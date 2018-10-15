@@ -15,7 +15,7 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
 
-  private static final TreasurePleasure ourInstance = new TreasurePleasure(10);
+  //private static final TreasurePleasure ourInstance = new TreasurePleasure(10);
   // Map coordinates
   private final Location
       mapLimitNW = new Location(57.863889, 11.410027),
@@ -37,7 +37,6 @@ public class TreasurePleasure {
   }};
 
   private int nrOfCollectibles;
-  private TreasurePleasurePresenter presenter;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
   private Map<Location, Item> items;
@@ -49,24 +48,19 @@ public class TreasurePleasure {
     add(ItemType.STONE);
   }};
 
-  private TreasurePleasure(int nrOfCollectibles) {
+  public TreasurePleasure(int nrOfCollectibles) {
     this.nrOfCollectibles = nrOfCollectibles;
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
     this.gameMap = new GameMap(mapLimit, mapReal);
-    addPlayerToGame("Donald", Avatar.MAN);
 
     this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, mapReal);
   }
 
-  public static TreasurePleasure getInstance() {
-    return ourInstance;
-  }
-
-  public void setPresenter(TreasurePleasurePresenter presenter) {
-    this.presenter = presenter;
-  }
+  //public static TreasurePleasure getInstance() {
+    //return ourInstance;
+  //}
 
   public LatLng getChestLocation(String username){
     Location backpackLocation = getPlayer(username).getChestLocation();

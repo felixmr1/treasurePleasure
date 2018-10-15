@@ -27,6 +27,7 @@ public class TreasurePleasurePresenter {
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
   private String username = "Donald";
+  private Avatar avatar = Avatar.MAN;
 
   public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
 
@@ -34,8 +35,8 @@ public class TreasurePleasurePresenter {
       throw new IllegalArgumentException("gameMapFragment null");
     }
     this.view = view;
-    this.model = TreasurePleasure.getInstance();
-    model.setPresenter(this);
+    this.model = new TreasurePleasure(10);
+    this.model.addPlayerToGame(this.username,Avatar.MAN);
     this.gameMapView = gameMapFragment;
   }
 

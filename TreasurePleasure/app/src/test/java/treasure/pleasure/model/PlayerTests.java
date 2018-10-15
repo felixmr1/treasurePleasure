@@ -10,52 +10,7 @@ import org.junit.Test;
 
 public class PlayerTests {
 
-  TreasurePleasure tp;
-  ArrayList<String> usernames;
-  ArrayList<String> usernames2;
 
-  @Before
-  public void init() {
-    tp = TreasurePleasure.getInstance();
-    usernames = new ArrayList<>();
-    usernames2 = new ArrayList<>();
-  }
-
-  @Test
-  public void addPlayerIncrementsPlayers() {
-    usernames = tp.getPlayerNames();
-    try {
-      int sizeBefore = usernames.size();
-      tp.addPlayerToGame("Jenny", Avatar.WOMAN);
-      int sizeAfter = usernames.size();
-      assertTrue(sizeBefore < sizeAfter);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-  }
-
-  @Test
-  public void noDuplicateUsernames() {
-    tp.addPlayerToGame("Anders", Avatar.MAN);
-    usernames = tp.getPlayerNames();
-
-    try {
-      tp.addPlayerToGame("Anders", Avatar.MAN);
-    } catch (Exception e) { }
-    assertEquals(usernames.size(), tp.getPlayerNames().size());
-  }
-
-  @Test
-  public void addPlayerCreatesCorrectPlayerName() {
-    String username = "olle";
-    try {
-      tp.addPlayerToGame(username, Avatar.MAN);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
-
-    assertTrue(tp.getPlayerNames().contains(username));
-  }
 
 
 }
