@@ -84,6 +84,7 @@ class CollectableItems {
     return northWest.getLocationWithinCoordinates(northWest, southEast);
   }
 
+  // Todo: write test for this
   Boolean isAvailableLocation(Location loc) {
     for (Location occupiedLoc : collectibles.keySet()
         ) {
