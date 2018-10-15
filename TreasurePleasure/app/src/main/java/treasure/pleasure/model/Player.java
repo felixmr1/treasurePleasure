@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
         return this.username;
     }
 
-    Enum getAvatar() {
+    Avatar getAvatar() {
         return this.avatar;
     }
 
