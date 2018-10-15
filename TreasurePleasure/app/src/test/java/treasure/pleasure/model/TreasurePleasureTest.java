@@ -78,57 +78,35 @@ public class TreasurePleasureTest {
     }
 
     @Test
-    public void getChestLocation() {
-    }
-
-    @Test
-    public void getMarkers() {
-    }
-
-
-    @Test
     public void getBackPackContentForPlayer() {
-    }
-
-    @Test
-    public void addMarker() {
-    }
-
-    @Test
-    public void getPolygonMap() {
-    }
-
-    @Test
-    public void getCollectableItems() {
+        String playerName = "TATA";
+        tp.addPlayerToGame(playerName, Avatar.MAN);
+        assertFalse(tp.getBackPackContentForPlayer(playerName).size() == 0);
     }
 
     @Test
     public void isCloseEnough() {
+        double longitude = 10;
+        double latitude = 10;
+        assertTrue(tp.isCloseEnough(latitude, longitude, latitude, longitude));
     }
 
     @Test
     public void isBackpackFullForPlayer() {
+        String playerName = "TATA";
+        tp.addPlayerToGame(playerName, Avatar.MAN);
+        assertFalse(tp.isBackpackFullForPlayer(playerName));
     }
 
     @Test
     public void isBackpackEmptyForPlayer() {
+        String playerName = "TATA";
+        tp.addPlayerToGame(playerName, Avatar.MAN);
+        assertTrue(tp.isBackpackEmptyForPlayer(playerName));
     }
 
     @Test
     public void moveCollectibleToPlayerBackpack() {
     }
 
-    // TODO collectItemIncrementsBackpackContent
-    @Test
-    public void collectItemIncrementsBackpackContent() {
-        String playerName = "TATA";
-        tp.addPlayerToGame(playerName, Avatar.MAN);
-    }
-
-    @Test
-    public void isEmptyAtStart() {
-        String playerName = "TATA";
-        tp.addPlayerToGame(playerName, Avatar.MAN);
-        assertTrue(tp.isBackpackEmptyForPlayer(playerName));
-    }
 }

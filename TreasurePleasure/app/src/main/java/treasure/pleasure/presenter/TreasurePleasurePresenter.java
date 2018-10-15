@@ -36,7 +36,7 @@ public class TreasurePleasurePresenter {
     }
     this.view = view;
     this.model = new TreasurePleasure(10);
-    this.model.addPlayerToGame(this.username,Avatar.MAN);
+    this.model.addPlayerToGame(this.username,this.avatar);
     this.gameMapView = gameMapFragment;
   }
 
