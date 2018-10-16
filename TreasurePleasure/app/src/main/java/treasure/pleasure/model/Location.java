@@ -61,10 +61,10 @@ class Location {
    *
    * @return True if distance is less or equal to max interaction Distance
    */
-  boolean isCloseEnough(double longitude1, double latitude1, double longitude2,
-      double latitude2) {
-    Location location = new Location(longitude1, latitude1);
-    return location.distanceTo(longitude2, latitude2) <= this.maxInteractionDistance;
+  boolean isCloseEnough(double latitude1, double longitude1, double latitude2,
+      double longitude2) {
+    Location location = new Location(latitude1, longitude1);
+    return location.distanceTo(latitude2, longitude2) <= this.maxInteractionDistance;
   }
 
   /**
@@ -77,13 +77,13 @@ class Location {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
-    return distanceTo(incLong, incLat) <= this.maxInteractionDistance;
+    return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
   }
 
   /**
    * Updates self with given longitude and latitude and takes the current time as timestamp
    */
-  void update(double longitude, double latitude) {
+  void update(double latitude, double longitude) {
     Date date = new Date();
     this.update(longitude, latitude, date.getTime());
   }
@@ -93,21 +93,46 @@ class Location {
    *
    * @param timestamp Milliseconds since 1970 (new Date().getTime)
    */
-  void update(double longitude, double latitude, long timestamp) {
+  void update(double latitude, double longitude, long timestamp) {
     this.setLongitude(longitude);
     this.setLatitude(latitude);
     this.setTimestamp(timestamp);
   }
 
+  double degToRad(double degree) {
+    return degree * Math.PI / 180;
+  }
+
+  double radToDeg(double radian) {
+    return radian * 180 / Math.PI;
+  }
+
   /**
-   * Calculated the distance between given longitude and latitude and self.
+   * Calculated the distance between given longitude and latitude and self
    *
-   * @return Distance between locations
+   * @return Distance IN METERS between locations
    */
-  double distanceTo(double toLongitude, double toLatitude) {
-    double longDiff = Math.abs(this.getLongitude() - toLongitude);
-    double latDiff = Math.abs(this.getLatitude() - toLatitude);
-    double distanceBetween = Math.sqrt(Math.pow(longDiff, 2) + Math.pow(latDiff, 2));
+  double distanceTo(double toLatitude, double toLongitude) {
+    // Calculated using Haversine formula (https://en.wikipedia.org/wiki/Haversine_formula)
+    double radius = 6378137; // Radius of earth in meters
+
+    double latFromRad = this.degToRad(this.getLatitude());
+    double lngFromRad = this.degToRad(this.getLongitude());
+    double latToRad = this.degToRad(toLatitude);
+    double lngToRad = this.degToRad(toLongitude);
+
+    double latDiff = latToRad - latFromRad;
+    double longDiff = lngToRad - lngFromRad;
+
+    double sinLatDiff = Math.pow(Math.sin(latDiff/2), 2);
+    double sinLongDiff = Math.pow(Math.sin(longDiff/2), 2);
+    double cosLatDiff = Math.cos(latFromRad) * Math.cos(latToRad);
+
+    double alpha = sinLatDiff + cosLatDiff * sinLongDiff;
+    double circumference = 2 * Math.atan2(Math.sqrt(alpha), Math.sqrt(1 - alpha));
+
+    double distanceBetween = circumference * radius;
+
     return distanceBetween;
   }
 
@@ -185,8 +210,9 @@ class Location {
   }
 
   /**
-   * Sets the distance between interactions on the map. Used when calculating if two locations is
-   * close enough.
+   * * Sets the distance between interactions on the map. Used when calculating if two locations is
+   *    * close enough.
+   * @param maxDistance distance in meters
    */
   void setMaxInteractionDistance(double maxDistance) {
     this.maxInteractionDistance = maxDistance;

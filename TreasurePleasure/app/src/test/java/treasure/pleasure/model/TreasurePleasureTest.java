@@ -20,7 +20,7 @@ public class TreasurePleasureTest {
 
     @Before
     public void init() {
-        tp = new TreasurePleasure(10);
+        tp = new TreasurePleasure();
         usernames = new ArrayList<>();
         usernames2 = new ArrayList<>();
     }

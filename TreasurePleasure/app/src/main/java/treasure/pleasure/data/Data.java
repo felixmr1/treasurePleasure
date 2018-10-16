@@ -15,7 +15,8 @@ public class Data {
 
   ;
   // Location
-  private static double maxInteractionDistance = 0.0001; //TODO tune this value 0.001
+  // Max interactionDistance is given in meters!
+  private static double maxInteractionDistance = 15;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");

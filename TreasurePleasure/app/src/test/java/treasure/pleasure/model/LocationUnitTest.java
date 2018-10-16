@@ -66,10 +66,10 @@ public class LocationUnitTest {
 
   @Test
   public void locationIsCloseEnough() {
-    double long1 = 10020;
-    double lat1 = 10021;
-    double long2 = 10022;
-    double lat2 = 10023;
+    double long1 = 10.000021;
+    double lat1 = 10.000022;
+    double long2 = 10.000022;
+    double lat2 = 10.000023;
 
     location1.update(long1, lat1);
     location2.update(long2, lat2);
@@ -79,10 +79,10 @@ public class LocationUnitTest {
 
   @Test
   public void locationNotCloseEnough() {
-    double long1 = 100;
-    double lat1 = 100;
-    double long2 = 10022;
-    double lat2 = 10023;
+    double long1 = 10.000021;
+    double lat1 = 10.000021;
+    double long2 = 1.000021;
+    double lat2 = 1.000021;
 
     location1.update(long1, lat1);
     location2.update(long2, lat2);
@@ -93,21 +93,18 @@ public class LocationUnitTest {
 
   @Test
   public void updateMaxInteractionDistance() {
-    // Distance is 15 (15^2 = 9^2 + 12^2)
-    double long1 = 1;
-    double long2 = 10;
-    double lat1 = 1;
-    double lat2 = 13;
+    double long1 = 10.000000;
+    double long2 = 10.000000;
+    double lat1 = 10.000000;
+    double lat2 = 10.000100;
 
     location1.update(long1, lat1);
     location2.update(long2, lat2);
-
-    // Distance between locations is 15, and maxInteractionDistance is 10
+    // Given those coordinates, distance is about 11 meters.
     location1.setMaxInteractionDistance(10);
     boolean notCloseEnough = location1.isCloseEnough(location2);
     assertFalse(notCloseEnough);
 
-    // Distance between locations is 15, and maxInteractionDistance is 15
     location1.setMaxInteractionDistance(15);
     boolean closeEnough = location1.isCloseEnough(location2);
     assertTrue(closeEnough);
