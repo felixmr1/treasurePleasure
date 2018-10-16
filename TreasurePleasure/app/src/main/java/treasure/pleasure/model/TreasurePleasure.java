@@ -23,7 +23,21 @@ public class TreasurePleasure {
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
     add(ItemType.DIAMOND);
     add(ItemType.GOLD);
+    add(ItemType.GOLD);
+    add(ItemType.IRON);
+    add(ItemType.IRON);
+    add(ItemType.IRON);
     add(ItemType.STONE);
+    add(ItemType.STONE);
+    add(ItemType.STONE);
+    add(ItemType.STONE);
+    add(ItemType.STONE);
+    add(ItemType.WOOD);
+    add(ItemType.WOOD);
+    add(ItemType.WOOD);
+    add(ItemType.WOOD);
+    add(ItemType.WOOD);
+    add(ItemType.WOOD);
   }};
 
   private treasure.pleasure.model.Map map;

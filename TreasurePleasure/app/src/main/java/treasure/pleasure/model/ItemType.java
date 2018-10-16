@@ -4,6 +4,7 @@ public enum ItemType {
   DIAMOND,
   GOLD,
   STONE,
-  VOID
-
+  VOID,
+  IRON,
+  WOOD
 }

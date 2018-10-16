@@ -27,7 +27,7 @@ public class Data {
   // CollectibleItems
   private static final int nrCollecteblesIncrementer = 1000;
   private static final int itemValueIncrementer = 20;
-  private static final int nrOfCollecatbles = 2;
+  private static final int nrOfCollecatbles = 30;
 
   // Player
   private static final int backpackMaxSize = 50;

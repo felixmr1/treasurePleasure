@@ -14,16 +14,20 @@ public class AndroidImageAssets {
   private static final Integer chestImage = R.drawable.chest;
 
   private static final EnumMap<ItemType, Integer> itemImageList = new EnumMap<ItemType, Integer>(ItemType.class) {{
-    put(ItemType.DIAMOND, R.drawable.gem);
-    put(ItemType.GOLD, R.drawable.gem);
-    put(ItemType.STONE, R.drawable.gem);
+    put(ItemType.DIAMOND, R.drawable.diamond_bp);
+    put(ItemType.GOLD, R.drawable.gold_bp);
+    put(ItemType.STONE, R.drawable.stone_bp);
+    put(ItemType.WOOD, R.drawable.wood_bp);
+    put(ItemType.IRON, R.drawable.iron_bp);
     put(ItemType.VOID, R.drawable.cobweb);
   }};
 
   private static final EnumMap<ItemType, Integer> mapItemImageList = new EnumMap<ItemType, Integer>(ItemType.class) {{
-    put(ItemType.DIAMOND, R.drawable.gem_tiny);
-    put(ItemType.GOLD, R.drawable.gem_tiny);
-    put(ItemType.STONE, R.drawable.gem_tiny);
+    put(ItemType.DIAMOND, R.drawable.diamond_tiny);
+    put(ItemType.GOLD, R.drawable.gold_tiny);
+    put(ItemType.STONE, R.drawable.stone_tiny);
+    put(ItemType.WOOD, R.drawable.wood_tiny);
+    put(ItemType.IRON, R.drawable.iron_tiny);
     put(ItemType.VOID, R.drawable.gem_tiny);
   }};
 
