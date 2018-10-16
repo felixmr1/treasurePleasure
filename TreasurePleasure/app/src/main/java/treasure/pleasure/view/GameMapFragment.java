@@ -164,8 +164,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public boolean onMarkerClick(Marker marker) {
     //TODO assumes a collectible has been clicked. Handle Chest and store.
 
-     boolean success = presenter.attemptCollect(marker);
-     if (success) removeMarker(marker);
+    presenter.attemptCollect(marker);
     // return false to keep other default behaviour of onMarkerClick.
     return false;
   }
