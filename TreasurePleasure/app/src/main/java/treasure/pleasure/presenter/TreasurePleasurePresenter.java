@@ -156,7 +156,7 @@ public class TreasurePleasurePresenter {
 
   private void drawChest(){
     LatLng chestLocation = model.getChestLocation(username);
-    gameMapView.drawMarker(chestLocation, AndroidImageAssets.getChestImage());
+    gameMapView.drawChest(chestLocation, AndroidImageAssets.getChestImage());
   }
 
   /**
@@ -227,6 +227,12 @@ public class TreasurePleasurePresenter {
       view.showToast(e.getMessage());
     }
 
+  }
+
+  //chestclick
+  public void onChestClick() {
+    //TODO
+    view.showToast("Chest has been clicked.");
   }
 
   /**

@@ -109,10 +109,10 @@ class CollectableItems {
     for (Location occupiedLoc : collectibles.keySet()
         ) {
       if (occupiedLoc.isCloseEnough(loc)) {
-        return true;
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
   /**

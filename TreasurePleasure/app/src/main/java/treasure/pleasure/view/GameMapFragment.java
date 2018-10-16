@@ -39,6 +39,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   //TODO make persist between launches.
   private LatLng myCurrentLatLng;
+  private Marker myChest;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -162,13 +163,18 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   @Override
   public boolean onMarkerClick(Marker marker) {
-    //TODO assumes a collectible has been clicked. Handle Chest and store.
+
+    if (marker.equals(myChest)) {
+      presenter.onChestClick();
+    }
+    //TODO assumes a collectible has been clicked. Handle store.
 
     presenter.attemptCollectAndRemove(marker);
     // return false to keep other default behaviour of onMarkerClick.
     return true;
   }
 
+  //Did not provide expected behaviour
   public void removeMarker(Marker marker) {
     marker.remove();
   }
@@ -210,4 +216,12 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void drawPolygon() {
     mMap.addPolygon(presenter.getPolygon());
   }
+
+  public void drawChest(LatLng latLng, int imagePath) {
+    myChest = mMap.addMarker(new MarkerOptions()
+            .position(latLng)
+            .icon(BitmapDescriptorFactory.fromResource(imagePath)));
+  }
+
+  //public void drawStore() {//TODO}
 }

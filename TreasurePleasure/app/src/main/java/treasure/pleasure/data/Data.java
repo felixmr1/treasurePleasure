@@ -15,7 +15,7 @@ public class Data {
 
   ;
   // Location
-  private static double maxInteractionDistance = 100; //TODO tune this value 0.001
+  private static double maxInteractionDistance = 0.0001; //TODO tune this value 0.001
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -27,7 +27,7 @@ public class Data {
   // CollectibleItems
   private static final int nrCollecteblesIncrementer = 1000;
   private static final int itemValueIncrementer = 20;
-  private static final int nrOfCollecatbles = 30;
+  private static final int nrOfCollecatbles = 15;
 
   // Player
   private static final int backpackMaxSize = 50;
