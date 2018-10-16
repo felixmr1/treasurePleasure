@@ -202,4 +202,12 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void setPresenter(TreasurePleasurePresenter presenter) {
     this.presenter = presenter;
   }
+
+  public void clearMap() {
+    mMap.clear();
+  }
+
+  public void drawPolygon() {
+    mMap.addPolygon(presenter.getPolygon());
+  }
 }
