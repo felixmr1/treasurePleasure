@@ -21,14 +21,13 @@ class CollectableItems {
   /**
    * Creates an instance of collectible items, only one of these exist for each game.
    *
-   * @param nrCollectibles Number of collectibles on the map
    * @param availableItemTypes All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
    */
-  CollectableItems(int nrCollectibles, ArrayList<ItemType> availableItemTypes, ArrayList<Location>
+  CollectableItems(ArrayList<ItemType> availableItemTypes, ArrayList<Location>
       mapConstraint) {
     this.availableItemTypes = availableItemTypes;
-    this.nrCollectibles = nrCollectibles;
+    this.nrCollectibles = Data.getNrOfCollectables();
     this.collectibles = new HashMap<>();
     this.mapConstraint = mapConstraint;
 
@@ -108,12 +107,12 @@ class CollectableItems {
    */
   Item takeItem(Location location) throws Exception {
     Item item = collectibles.get(location);
+    this.removeItem(location);
+
     if (item == null) {
       throw new Exception("There's no corresponding item to collect");
-    } else {
-      this.removeItem(location);
-      return item;
     }
+    return item;
   }
 
   int getNrCollectibles() {

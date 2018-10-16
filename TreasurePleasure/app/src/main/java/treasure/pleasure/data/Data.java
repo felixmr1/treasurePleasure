@@ -13,8 +13,9 @@ public class Data {
   // Map
   private static final double mapLimitIncrementer = 0.1;
 
+  ;
   // Location
-  private static final int maxInteractionDistance = 100; //TODO tune this value 0.001
+  private static double maxInteractionDistance = 100; //TODO tune this value 0.001
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -26,6 +27,7 @@ public class Data {
   // CollectibleItems
   private static final int nrCollecteblesIncrementer = 1000;
   private static final int itemValueIncrementer = 20;
+  private static final int nrOfCollecatbles = 2;
 
   // Player
   private static final int backpackMaxSize = 50;
@@ -72,7 +74,7 @@ public class Data {
     return backpackMaxSize;
   }
 
-  public static int getMaxInteractionDistance() {
+  public static double getMaxInteractionDistance() {
     return maxInteractionDistance;
   }
 
@@ -107,4 +109,6 @@ public class Data {
   public static int getInitialNOfBusySlots() {
     return initialNOfBusySlots;
   }
+
+  public static int getNrOfCollectables() { return nrOfCollecatbles; }
 }

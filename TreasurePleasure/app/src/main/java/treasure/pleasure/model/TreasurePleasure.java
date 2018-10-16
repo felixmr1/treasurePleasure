@@ -3,6 +3,7 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
+import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -11,11 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import treasure.pleasure.data.Tuple;
-import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
 
-  private int nrOfCollectibles;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
   private Map<Location, Item> items;
@@ -29,15 +28,14 @@ public class TreasurePleasure {
 
   private treasure.pleasure.model.Map map;
 
-  public TreasurePleasure(int nrOfCollectibles) {
-    this.nrOfCollectibles = nrOfCollectibles;
+  public TreasurePleasure() {
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
 
-    this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, map.getMapReal());
+    this.collectableItems = new CollectableItems(availableItemTypes, map.getMapReal());
   }
 
   public LatLng getChestLocation(String username){
@@ -136,10 +134,6 @@ public class TreasurePleasure {
 
   public boolean isBackpackEmptyForPlayer(String username) {
     return getPlayer(username).backpackIsEmpty();
-  }
-
-  Integer getNrOfCollectibles() {
-    return this.nrOfCollectibles;
   }
 
   /**

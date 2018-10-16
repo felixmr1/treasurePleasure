@@ -1,5 +1,6 @@
 package treasure.pleasure.presenter;
 
+import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -35,7 +36,7 @@ public class TreasurePleasurePresenter {
       throw new IllegalArgumentException("gameMapFragment null");
     }
     this.view = view;
-    this.model = new TreasurePleasure(10);
+    this.model = new TreasurePleasure();
     this.model.addPlayerToGame(this.username,this.avatar);
     this.gameMapView = gameMapFragment;
   }
@@ -215,11 +216,13 @@ public class TreasurePleasurePresenter {
   public boolean attemptCollect(Marker marker) {
     LatLng itemLatLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
     LatLng playerLatLng = getMyCurrentLatLng();
+    boolean succes = false;
 
     //TODO collectibles on map do not always disappear
     try {
       model.moveCollectibleToPlayerBackpack(username, playerLatLng, itemLatLng);
-      gameMapView.removeMarker(marker);
+      succes = true;
+      // gameMapView.removeMarker(marker);
       onBackpackUpdate();
       view.showToast("Item collected! Check your backpack =D");
       drawCollectibles();
@@ -227,7 +230,7 @@ public class TreasurePleasurePresenter {
       view.showToast(e.getMessage());
     }
 
-    return true;
+    return succes;
   }
 
   /**
