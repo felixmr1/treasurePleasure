@@ -1,6 +1,5 @@
 package treasure.pleasure.presenter;
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -143,6 +142,12 @@ public class TreasurePleasurePresenter {
     return model.getPolygonMap();
   }
 
+  public void redrawMap() {
+    gameMapView.clearMap();
+    gameMapView.drawPolygon();
+    drawAllMapMarkers();
+  }
+
   public void drawAllMapMarkers() {
     drawCollectibles();
     drawChest();
@@ -171,11 +176,6 @@ public class TreasurePleasurePresenter {
    */
   public void drawMarker(ItemType itemType, LatLng latLng) {
     gameMapView.drawMarker(latLng, getMapImages(itemType));
-  }
-
-  //TODO overloaded, discuss how to pass locations.
-  public void drawMarker(ItemType itemType, double lat, double lng) {
-    gameMapView.drawMarker(new LatLng(lat, lng), getMapImages(itemType));
   }
 
   /**
@@ -219,7 +219,7 @@ public class TreasurePleasurePresenter {
     //TODO collectibles on map do not always disappear
     try {
       model.moveCollectibleToPlayerBackpack(username, playerLatLng, marker.getPosition());
-      gameMapView.removeMarker(marker);
+      redrawMap();
       onBackpackUpdate();
       view.showToast("Item collected! Check your backpack =D");
       drawCollectibles();
