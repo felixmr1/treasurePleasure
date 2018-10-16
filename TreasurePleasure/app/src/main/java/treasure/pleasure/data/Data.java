@@ -6,24 +6,9 @@ import java.text.DecimalFormat;
 
 public class Data {
 
-  // Map coordinates
-//      mapLimitNW = new Location(57.863889, 11.410027),
-//      mapLimitNE = new Location(57.848447, 12.387770),
-//      mapLimitSW = new Location(57.563985, 12.193909),
-//      mapLimitSE = new Location(57.554888, 11.627327),
-//      mapNW = new Location(57.690085, 11.973020),
-//      mapSE = new Location(57.684923, 11.984177);
-//
-//  private final ArrayList<Location> mapLimit = new ArrayList<Location>() {{
-//    add(mapLimitNW);
-//    add(mapLimitNE);
-//    add(mapLimitSW);
-//    add(mapLimitSE);
-//  }};
-
   // Coordinates
-  private static final LatLng nortWest = new LatLng(57.690085, 11.973020);
-  private static final LatLng soutEast = new LatLng(57.684923, 11.984177);
+  private static final LatLng northWest = new LatLng(57.690085, 11.973020);
+  private static final LatLng southEast = new LatLng(57.684923, 11.984177);
 
   // Map
   private static final double mapLimitIncrementer = 0.1;
@@ -31,11 +16,14 @@ public class Data {
   // Location
   private static final int maxInteractionDistance = 100; //TODO tune this value 0.001
 
+  // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
 
+  // GameMap
   private static final int fillColor = Color.argb(220, 0, 0, 0);
   private static final int strokeColor = Color.BLACK;
 
+  // CollectibleItems
   private static final int nrCollecteblesIncrementer = 1000;
   private static final int itemValueIncrementer = 20;
 
@@ -57,11 +45,11 @@ public class Data {
 
   // Getters
   public static LatLng getNorthWest() {
-    return nortWest;
+    return northWest;
   }
 
   public static LatLng getSouthEast() {
-    return soutEast;
+    return southEast;
   }
 
   public static double getMapLimitIncrementer() {
