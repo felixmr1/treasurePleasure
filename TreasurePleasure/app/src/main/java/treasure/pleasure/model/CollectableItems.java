@@ -80,7 +80,7 @@ class CollectableItems {
    */
   public Location getRandomLocationWithinBounds() {
     Location northWest = mapConstraint.get(0);
-    Location southEast = mapConstraint.get(1);
+    Location southEast = mapConstraint.get(2);
 
     return northWest.getLocationWithinCoordinates(northWest, southEast);
   }
