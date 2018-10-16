@@ -27,19 +27,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+ <RelativeLayout
+     android:id="@+id/InnerRelativeLayout"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" >
     <Button
         android:id="@+id/showBackpackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="120dp"
         android:onClick="onPressBackpackButton"
         android:text="Show backpack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+ </RelativeLayout>
 
     <TextView
         android:id="@+id/usernameText"

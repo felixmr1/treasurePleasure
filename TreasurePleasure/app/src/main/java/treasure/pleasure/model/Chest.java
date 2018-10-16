@@ -1,6 +1,7 @@
 package treasure.pleasure.model;
 
 import java.util.List;
+import treasure.pleasure.data.Data;
 
 /**
  * Chest is where the
@@ -36,7 +37,7 @@ public class Chest<T extends ItemCallBack>{
      * @param location  sets the location of a chest
      */
     Chest(Location location){
-        this.score = 0;
+        this.score = Data.getInitialChestValue();
         this.location = location;
     }
 

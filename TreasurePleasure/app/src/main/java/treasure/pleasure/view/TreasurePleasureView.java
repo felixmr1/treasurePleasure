@@ -11,4 +11,10 @@ public interface TreasurePleasureView {
     void loadBackpackFragment(TreasurePleasure model);
     void closeBackpackFragment();
     void showToast(String s);
+
+    // For settings fragment
+    void showSettingsFragment();
+    void hideSettingsFragment();
+    boolean settingsFragmentIsActive();
+    void changeSettingsButtonText(String s);
 }

@@ -1,4 +1,12 @@
+System design document for Treasure Pleasure.
+Team:     Skyriders
+Authors:  Skyriders
+Date:     18-10-16
+Version:  1.0
+
 ## 1 Introduction
+
+This document provides an introduction to architecture, and design details, for Treasure Pleasure. The intended audience is our fellow students assigned to peer review Treasure Pleasure; as well as relevant teaching staff.
 
 #### TODO
 - Skriv mer teknsikt i 1.3 och länka variabler till ordlista

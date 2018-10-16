@@ -15,26 +15,6 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 public class TreasurePleasure {
 
-  // Map coordinates
-  private final Location
-      mapLimitNW = new Location(57.863889, 11.410027),
-      mapLimitNE = new Location(57.848447, 12.387770),
-      mapLimitSW = new Location(57.563985, 12.193909),
-      mapLimitSE = new Location(57.554888, 11.627327),
-      mapNW = new Location(57.690085, 11.973020),
-      mapSE = new Location(57.684923, 11.984177);
-
-  private final ArrayList<Location> mapLimit = new ArrayList<Location>() {{
-    add(mapLimitNW);
-    add(mapLimitNE);
-    add(mapLimitSW);
-    add(mapLimitSE);
-  }};
-  private final ArrayList<Location> mapReal = new ArrayList<Location>() {{
-    add(mapNW);
-    add(mapSE);
-  }};
-
   private int nrOfCollectibles;
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -47,14 +27,17 @@ public class TreasurePleasure {
     add(ItemType.STONE);
   }};
 
+  private treasure.pleasure.model.Map map;
+
   public TreasurePleasure(int nrOfCollectibles) {
     this.nrOfCollectibles = nrOfCollectibles;
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
-    this.gameMap = new GameMap(mapLimit, mapReal);
+    this.map = new treasure.pleasure.model.Map();
+    this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
 
-    this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, mapReal);
+    this.collectableItems = new CollectableItems(nrOfCollectibles, availableItemTypes, map.getMapReal());
   }
 
   public LatLng getChestLocation(String username){
@@ -191,13 +174,27 @@ public class TreasurePleasure {
     }
   }
 
+  /**
+   * Changes a username by removing the corresponding Player and
+   * adding a new Player with the new username
+   * @throws Exception if the username already exists
+   */
+  public void changeUsername(String oldUsername, String newUsername) throws Exception {
+    if(this.takenUsernames.contains(newUsername.toLowerCase())){
+      throw new Exception("Username is taken");
+    } else {
+      Avatar oldAvatar = this.getPlayer(oldUsername).getAvatar();
+      this.addPlayerToGame(newUsername, oldAvatar);
+    }
+  }
+
   private Player getPlayer(String username) {
     return players.get(username.toLowerCase());
   }
 
   // Test function to check how git commits is shared
   private Chest getPlayerChest(String username) {
-    Location chestLocation = new Location(mapNW);
+    Location chestLocation = new Location(map.getNorthWest());
     Chest playerChest = new Chest(chestLocation);
     return playerChest;
   }

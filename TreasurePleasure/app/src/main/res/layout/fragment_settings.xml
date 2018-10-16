@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF55250">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/settingsHeader"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,16 +17,60 @@
         android:textStyle="bold"
         android:text="Settings" />
 
+    <TextView
+        android:id="@+id/settingsSubtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="70dp"
+        android:textStyle="bold"
+        android:text="Hi Username! Here you can change things" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/usernameInput"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="-179dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
     <EditText
         android:id="@+id/usernameInput"
-        android:layout_centerHorizontal="true"
-        android:inputType="textPersonName"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="18sp"
-        android:layout_marginTop="80dp"
+        android:layout_alignParentStart="true"
         android:layout_marginHorizontal="20dp"
-        android:textStyle="bold"
-        android:hint="Username" />
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="300dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/playerAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="101dp"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <Button
+        android:id="@+id/changeUsernameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/usernameInput"
+        android:onClick="changeUsername"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="0dp"
+        android:text="Change username" />
+
 </RelativeLayout>

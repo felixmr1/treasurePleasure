@@ -30,10 +30,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   // Functions that the XML triggers (user-actions)
 
   public void onPressShowSettingsButton(View view) {
-    SettingsFragment settingsFragment = new SettingsFragment();
-    getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment)
-        .commit();
-    settingsFragment.setPresenter(presenter);
+    presenter.showSettings();
   }
 
   public void onPressBackpackButton(View view) {
@@ -63,9 +60,21 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     backpackFragment.setPresenter(presenter);
   }
 
+  public void showSettingsFragment() {
+    SettingsFragment settingsFragment = new SettingsFragment();
+    getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment)
+            .commit();
+    settingsFragment.setPresenter(presenter);
+  }
+
   public void closeBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.backpack_container)).commit();
+  }
+
+  public void hideSettingsFragment() {
+    FragmentManager fm = getSupportFragmentManager();
+    fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
   }
 
   /**
@@ -76,8 +85,17 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     return (getSupportFragmentManager().findFragmentById(R.id.backpack_container) != null);
   }
 
+  public boolean settingsFragmentIsActive() {
+    return (getSupportFragmentManager().findFragmentById(R.id.settings_container) != null);
+  }
+
   public void changeMapButtonText(String newText) {
     Button mapButton = findViewById(R.id.showBackpackButton);
+    mapButton.setText(newText);
+  }
+
+  public void changeSettingsButtonText(String newText) {
+    Button mapButton = findViewById(R.id.showSettingsButton);
     mapButton.setText(newText);
   }
 

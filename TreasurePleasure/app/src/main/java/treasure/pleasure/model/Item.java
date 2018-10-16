@@ -1,8 +1,9 @@
 package treasure.pleasure.model;
 import java.text.DecimalFormat;
+import treasure.pleasure.data.Data;
 
 public class Item implements ItemCallBack {
-    private final DecimalFormat dm = new DecimalFormat("##.#");
+    private final DecimalFormat dm = Data.getDm();
     private double value;
     private ItemType type;
 

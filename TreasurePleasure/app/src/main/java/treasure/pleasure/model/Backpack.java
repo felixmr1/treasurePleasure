@@ -2,6 +2,7 @@ package treasure.pleasure.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import treasure.pleasure.data.Data;
 
 /**
  * class invariant : nOfBusySlots <= maxSize
@@ -20,9 +21,9 @@ class Backpack<T> {
   Backpack(int maxSize) {
     this.items = new ArrayList<>(maxSize);
 
-    this.backPackLevel = 1;
+    this.backPackLevel = Data.getInitialBackpackLevel();
     this.maxSize = maxSize;
-    this.nOfBusySlots = 0;
+    this.nOfBusySlots = Data.getInitialNOfBusySlots();
   }
 
 
@@ -51,7 +52,7 @@ class Backpack<T> {
     System.out.println(nOfBusySlots);
 
       this.items = new ArrayList<>(0);
-      nOfBusySlots = 0;
+      nOfBusySlots = Data.getInitialNOfBusySlots();
 
 
   }

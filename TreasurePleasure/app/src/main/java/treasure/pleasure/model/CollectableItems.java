@@ -3,6 +3,7 @@ package treasure.pleasure.model;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
+import treasure.pleasure.data.Data;
 
 class CollectableItems {
 
@@ -41,7 +42,7 @@ class CollectableItems {
    */
   void spawnRandomItem() {
     int i = 0;
-    int maxIterations = this.nrCollectibles * 1000;
+    int maxIterations = this.nrCollectibles * Data.getNrCollecteblesIncrementer();
     Location loc = getRandomLocationWithinBounds();
     while (!isAvailableLocation(loc) && i < maxIterations) {
       i++;
@@ -68,7 +69,7 @@ class CollectableItems {
   Item createRandomItem() {
     ItemType randomItemType = availableItemTypes.get((int) (Math.random() * availableItemTypes.size
         ()));
-    int randomItemValue = (int) (Math.random() * 20);
+    int randomItemValue = (int) (Math.random() * Data.getItemValueIncrementer());
     return new Item(randomItemType, randomItemValue);
   }
 
@@ -79,7 +80,7 @@ class CollectableItems {
    */
   public Location getRandomLocationWithinBounds() {
     Location northWest = mapConstraint.get(0);
-    Location southEast = mapConstraint.get(1);
+    Location southEast = mapConstraint.get(2);
 
     return northWest.getLocationWithinCoordinates(northWest, southEast);
   }
