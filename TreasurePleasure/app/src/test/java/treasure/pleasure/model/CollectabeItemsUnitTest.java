@@ -20,7 +20,6 @@ public class CollectabeItemsUnitTest {
   }
 
 
-  /* Cannot be run right now because there is no more room to spawn the random item (distance between to large)
   @Test
   public void spawnRandomItemTest() {
     int sizeBefore = collectibleItems.getCollectibles().size();
@@ -29,28 +28,29 @@ public class CollectabeItemsUnitTest {
 
     // Size after add
     assertTrue(sizeAfter == 1 + sizeBefore);
-
   }
 
 
   @Test
-  public void collectTest() {
-    int sizeBefore = collectibleItems.getCollectibles().size();
-    int i = 0;
+  public void collectItem() {
     collectibleItems.spawnRandomItem();
-
+    int sizeBefore = collectibleItems.getCollectibles().size();
     for (Location loc: collectibleItems.getCollectibles().keySet()) {
-      if (i == sizeBefore) { // only collect last item.
-        collectibleItems.collect(loc);
-      }
-      i++;
-    }
+        try {
+          Item item = collectibleItems.takeItem(loc);
+          System.out.println(item.getType());
 
+        } catch (Exception e) {
+          System.out.println(e);
+          assertTrue(e.getMessage(), false);
+        }
+    }
     int sizeAfter = collectibleItems.getCollectibles().size();
 
+    System.out.println(sizeBefore);
+    System.out.println(sizeAfter);
     assertTrue(sizeBefore == sizeAfter);
-
-  }*/
+  }
 
   /*
   @Test
