@@ -213,13 +213,12 @@ public class TreasurePleasurePresenter {
    * @param marker longitude and latitude of item to be collected
    * @return true if collect successful, else false
    */
-  public void attemptCollect(Marker marker) {
-    LatLng itemLatLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
+  public void attemptCollectAndRemove(Marker marker) {
     LatLng playerLatLng = getMyCurrentLatLng();
 
     //TODO collectibles on map do not always disappear
     try {
-      model.moveCollectibleToPlayerBackpack(username, playerLatLng, itemLatLng);
+      model.moveCollectibleToPlayerBackpack(username, playerLatLng, marker.getPosition());
       gameMapView.removeMarker(marker);
       onBackpackUpdate();
       view.showToast("Item collected! Check your backpack =D");

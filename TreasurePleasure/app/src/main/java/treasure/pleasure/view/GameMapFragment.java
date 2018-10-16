@@ -164,13 +164,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public boolean onMarkerClick(Marker marker) {
     //TODO assumes a collectible has been clicked. Handle Chest and store.
 
-    presenter.attemptCollect(marker);
+    presenter.attemptCollectAndRemove(marker);
     // return false to keep other default behaviour of onMarkerClick.
-    return false;
+    return true;
   }
 
   public void removeMarker(Marker marker) {
-     marker.remove();
+    marker.remove();
   }
 
   @Override
@@ -195,7 +195,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void drawMarker(LatLng latLng, int imagePath) {
     MarkerOptions marker = new MarkerOptions()
         .position(latLng)
-        .title("bajs")
         .icon(BitmapDescriptorFactory.fromResource(imagePath));
 
     mMap.addMarker(marker);
