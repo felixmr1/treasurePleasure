@@ -116,6 +116,10 @@ class CollectableItems {
     }
   }
 
+  int getNrCollectibles() {
+    return this.nrCollectibles;
+  }
+
   public HashMap<Location, Item> getCollectibles() {
     return collectibles;
   }
