@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
+import treasure.pleasure.data.Data;
 
 /*
     Handles all the different locations in the project, for example player and a collectable Item
@@ -13,7 +14,9 @@ class Location {
   private double longitude;
   private double latitude;
   private long timestamp;
-  private double maxInteractionDistance = 100;  //TODO tune this value 0.001 seems to work fairly well. Set to 100 for testing when not close to chalmers campus
+  private double maxInteractionDistance = Data.getMaxInteractionDistance();
+  // seems to work fairly
+  // well. Set to 100 for testing when not close to chalmers campus
 
   /**
    * Creates a empty location with longitude and latitude set to 0. Timestamp is the current

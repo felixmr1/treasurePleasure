@@ -8,20 +8,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import java.util.ArrayList;
 import treasure.pleasure.R;
+import treasure.pleasure.data.Data;
 
 class GameMap {
 
-  //Hardcoded locations
-  private final LatLng KLATTERLABBET = new LatLng(57.6874681, 11.9782412);
-  private final LatLng DELTAPARKEN = new LatLng(57.6875713, 11.9795823);
-
-  private ArrayList<Location> mapLimit;
-  private ArrayList<Location> mapReal;
+  private ArrayList<LatLng> mapLimit;
+  private ArrayList<LatLng> mapReal;
 
   // number of items on map
   private int numberOfItems;
 
-  GameMap(ArrayList<Location> mapLimit, ArrayList<Location> mapReal) {
+  GameMap(ArrayList<LatLng> mapLimit, ArrayList<LatLng> mapReal) {
 
     // instantiate coordinates
     this.mapLimit = mapLimit;
@@ -31,28 +28,13 @@ class GameMap {
     numberOfItems = 0;
   }
 
-
-  private ArrayList<LatLng> getLatLngArrayList(ArrayList<Location> locationArrayList) {
-    Location northWest = locationArrayList.get(0);
-    Location southEast = locationArrayList.get(1);
-    Location northEast = new Location(southEast.getLatitude(), northWest.getLongitude());
-    Location southWest = new Location(northWest.getLatitude(), southEast.getLongitude());
-
-    ArrayList<LatLng> latLngArrayList = new ArrayList<>();
-    latLngArrayList.add(northWest.getLatLng());
-    latLngArrayList.add(northEast.getLatLng());
-    latLngArrayList.add(southEast.getLatLng());
-    latLngArrayList.add(southWest.getLatLng());
-    return latLngArrayList;
-  }
-
   private PolygonOptions createPolygonMap() {
     return new PolygonOptions()
-        .add(mapLimit.get(0).getLatLng(), mapLimit.get(1).getLatLng(),
-            mapLimit.get(2).getLatLng(), mapLimit.get(3).getLatLng())
-        .addHole(getLatLngArrayList(mapReal))
-        .strokeColor(Color.BLACK)
-        .fillColor(Color.argb(220, 0, 0, 0));
+        .add(mapLimit.get(0), mapLimit.get(1),
+            mapLimit.get(2), mapLimit.get(3))
+        .addHole(mapReal)
+        .strokeColor(Data.getStrokeColor())
+        .fillColor(Data.getFillColor());
   }
 
   MarkerOptions addMarker(LatLng latLng) {

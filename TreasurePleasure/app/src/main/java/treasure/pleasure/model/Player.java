@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import treasure.pleasure.data.Data;
 
 
- class Player {
+class Player {
 
     private String username;
     private Avatar avatar;
@@ -23,8 +24,8 @@ import java.util.regex.Pattern;
             this.username = username;
             this.avatar = avatar;
             this.chest = new Chest();
-            this.dropBonus = 1;
-            this.backpack = new Backpack<>(50);
+            this.dropBonus = Data.getDropBonus();
+            this.backpack = new Backpack<>(Data.getBackpackMaxSize());
 
     }
 
@@ -61,7 +62,7 @@ import java.util.regex.Pattern;
     }
 
     void setDropBonus(double dropBonus) {
-        if(dropBonus < 1) {
+        if(dropBonus < Data.getMaxDropBonus()) {
             throw new IllegalArgumentException("Could not change dropbonus: Dropbonus should be > 1");
         } else {
             this.dropBonus = dropBonus;
