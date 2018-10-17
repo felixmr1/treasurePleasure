@@ -13,6 +13,7 @@
         android:paddingRight="24dp">
 
         <ImageView
+            android:background="@color/app_background"
             android:layout_width="402dp"
             android:layout_height="209dp"
             android:layout_gravity="center_horizontal"
@@ -27,12 +28,30 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:textColor="@color/colorAccentSecondary"
-                android:id="@+id/input_email"
+                android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="@string/user_name" />
         </android.support.design.widget.TextInputLayout>
+
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/female"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
 
 
         <android.support.v7.widget.AppCompatButton

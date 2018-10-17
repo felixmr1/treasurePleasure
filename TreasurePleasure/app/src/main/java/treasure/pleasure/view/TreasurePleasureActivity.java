@@ -22,7 +22,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     GameMapFragment gameMapFragment = (GameMapFragment) getSupportFragmentManager()
-        .findFragmentById(R.id.map);
+            .findFragmentById(R.id.map);
     presenter = new TreasurePleasurePresenter(this, gameMapFragment);
     gameMapFragment.setPresenter(presenter);
   }
@@ -55,7 +55,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public void loadBackpackFragment(TreasurePleasure model) {
     BackpackFragment backpackFragment = new BackpackFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment)
-        .commit();
+            .commit();
     //TODO handle passing of model in a different way
     backpackFragment.setPresenter(presenter);
   }

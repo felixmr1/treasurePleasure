@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="treasure.pleasure">
 
@@ -27,6 +26,18 @@
             android:name=".view.TreasurePleasureActivity"
             android:screenOrientation="sensorPortrait">
 
+
+            <intent-filter>
+                <!-- MAIN represents that it is the Main Activity -->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- Launcher Denotes that it will be the first launching activity -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.SignupActivity"
+            android:label="@string/activity_signup">
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -44,18 +55,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".view.SignupActivity"
-            android:label="@string/activity_signup">
-            <intent-filter>
 
-                <!-- MAIN represents that it is the Main Activity -->
-                <action android:name="android.intent.action.MAIN" />
-                <!-- Launcher Denotes that it will be the first launching activity -->
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
     </application>
 
 </manifest>

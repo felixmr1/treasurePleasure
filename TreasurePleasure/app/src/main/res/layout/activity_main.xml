@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context=".view.TreasurePleasureActivity">
-
-   <fragment
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/map"
-    class="treasure.pleasure.view.GameMapFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    map:cameraZoom="15"/>
+    tools:context=".view.TreasurePleasureActivity">
+
+    <fragment
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/map"
+        class="treasure.pleasure.view.GameMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraZoom="15"/>
 
     <Button
         android:id="@+id/showSettingsButton"
@@ -27,23 +27,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
- <RelativeLayout
-     android:id="@+id/InnerRelativeLayout"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content" >
-    <Button
-        android:id="@+id/showBackpackButton"
+    <RelativeLayout
+        android:id="@+id/InnerRelativeLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="120dp"
-        android:onClick="onPressBackpackButton"
-        android:text="Show backpack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
- </RelativeLayout>
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/showBackpackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="120dp"
+            android:onClick="onPressBackpackButton"
+            android:text="Show backpack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/usernameText"
