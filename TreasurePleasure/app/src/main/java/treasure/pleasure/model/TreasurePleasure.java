@@ -1,9 +1,5 @@
 package treasure.pleasure.model;
-/**
- * This is the god class. it does everything
- */
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -11,15 +7,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import treasure.pleasure.data.Data;
 import treasure.pleasure.data.Tuple;
 
+/**
+ * Handles and redirects information.
+ * Collaborates with player, location, backpack and collectibles to handle Collects.
+ * Initiates players and collectibles.
+ * This model is also responsible for translating the inner struction of our models to general types, I.E location to latLng
+ *
+ * @author Oskar, John, Felix, Jesper
+ */
 public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
   private Map<Location, Item> items;
   private GameMap gameMap;
-  private CollectableItems collectableItems;
+  private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
     add(ItemType.DIAMOND);
     add(ItemType.GOLD);
@@ -37,15 +42,15 @@ public class TreasurePleasure {
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
 
-    this.collectableItems = new CollectableItems(availableItemTypes, map.getMapReal());
+    this.collectibleItems = new CollectibleItems(availableItemTypes, map.getMapReal());
   }
 
-  public LatLng getChestLocation(String username){
+  public LatLng getChestLocation(String username) {
     Location backpackLocation = getPlayer(username).getChestLocation();
     return new LatLng(backpackLocation.getLatitude(), backpackLocation.getLongitude());
   }
 
-  public LatLng getStoreLocation(String username){
+  public LatLng getStoreLocation(String username) {
     Location storeLocation = getPlayer(username).getStoreLocation();
     return new LatLng(storeLocation.getLatitude(), storeLocation.getLongitude());
   }
@@ -56,7 +61,7 @@ public class TreasurePleasure {
     //TODO discuss android types in model, translations are needed everywhere LatLng and imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new Class type, Triple instead of Tuple. Or Tuple in Tuple.
     //get collectibles
     List<Tuple<ItemType, LatLng>> markers = new ArrayList<>();
-    for (Map.Entry<Location, Item> entry : getCollectableItems().getCollectibles().entrySet()) {
+    for (Map.Entry<Location, Item> entry : getCollectibleItems().getCollectibles().entrySet()) {
       //get ItemType and Location. Translate Location to LatLang.
       markers.add(new Tuple<>(entry.getValue().getType(),
           new LatLng(entry.getKey().getLatitude(), entry.getKey().getLongitude())));
@@ -65,12 +70,15 @@ public class TreasurePleasure {
   }
 
   public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
-
     if (takenUsernames.contains(username.toLowerCase())) {
       throw new ArrayStoreException();
 
     } else {
-      players.put(username.toLowerCase(), new Player(username, avatar));
+      Player player = new Player(username, avatar);
+      player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
+      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()));
+
+      players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
     }
   }
@@ -79,11 +87,10 @@ public class TreasurePleasure {
     return this.takenUsernames;
   }
 
-
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple       <       ItemTYpe       ,       Double>
+   * @return List<Tuple               <               ItemTYpe               ,               Double>
    */
 
   // TODO: hardcoded player
@@ -100,14 +107,12 @@ public class TreasurePleasure {
     }
 
     if (!player.backpackIsFull()) {
-
       while (index < player.getBackpackMaxSize()) {
         content.add(new Tuple<>(ItemType.VOID, 0.0));
         index++;
       }
     }
     return content;
-
   }
 
 
@@ -120,8 +125,8 @@ public class TreasurePleasure {
     return gameMap.getPolygonMap();
   }
 
-  CollectableItems getCollectableItems() {
-    return collectableItems;
+  CollectibleItems getCollectibleItems() {
+    return collectibleItems;
   }
 
 
@@ -164,9 +169,9 @@ public class TreasurePleasure {
     }
 
     try {
-      Item itemCollected = collectableItems.takeItem(itemLocation);
+      Item itemCollected = collectibleItems.takeItem(itemLocation);
       if (itemCollected != null) {
-        collectableItems.spawnRandomItem();
+        collectibleItems.spawnRandomItem();
         player.addToBackpack(itemCollected);
       }
     } catch (Exception e) {
@@ -175,12 +180,13 @@ public class TreasurePleasure {
   }
 
   /**
-   * Changes a username by removing the corresponding Player and
-   * adding a new Player with the new username
+   * Changes a username by removing the corresponding Player and adding a new Player with the new
+   * username
+   *
    * @throws Exception if the username already exists
    */
   public void changeUsername(String oldUsername, String newUsername) throws Exception {
-    if(this.takenUsernames.contains(newUsername.toLowerCase())){
+    if (this.takenUsernames.contains(newUsername.toLowerCase())) {
       throw new Exception("Username is taken");
     } else {
       Avatar oldAvatar = this.getPlayer(oldUsername).getAvatar();

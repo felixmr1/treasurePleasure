@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CollectabeItemsUnitTest {
 
-  CollectableItems collectibleItems;
+  CollectibleItems collectibleItems;
   int maxCollectibles;
   TreasurePleasure model;
 
@@ -16,7 +16,7 @@ public class CollectabeItemsUnitTest {
   public void initLocations() {
     this.maxCollectibles = 50;
     this.model = new TreasurePleasure();
-    this.collectibleItems = model.getCollectableItems();
+    this.collectibleItems = model.getCollectibleItems();
   }
 
 

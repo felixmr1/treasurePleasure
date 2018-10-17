@@ -4,6 +4,12 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import treasure.pleasure.data.Data;
 
+
+/**
+ * Todo
+ *
+ * @author Felix
+ */
 public class Map {
 
   private Location northWest;

@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,10 +22,15 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
+
+/**
+ * TODO
+ *
+ * @author David, Felix and John
+ */
 public class GameMapFragment extends SupportMapFragment implements OnMapReadyCallback,
     OnMarkerClickListener {
 
@@ -72,7 +76,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * Check if access to user location has been granted. If granted, then enable myLocation, else ask for permission.
+   * Check if access to user location has been granted. If granted, then enable myLocation, else ask
+   * for permission.
    */
   private void enableMyLocation() {
     //check if user has granted permission to use fine location:
@@ -96,9 +101,10 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * handles result from permission of user location services. If granted, enable mylocation, else display on screen message explaining app failure.
+   * handles result from permission of user location services. If granted, enable mylocation, else
+   * display on screen message explaining app failure.
    */
-   public void onRequestPermissionsResult(int requestCode, String permissions[],
+  public void onRequestPermissionsResult(int requestCode, String permissions[],
       int[] grantResults) {
     switch (requestCode) {
       case LOCATION_PERMISSION_REQUEST_CODE: {
@@ -111,7 +117,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
           }
         } else {
           //permission is denied.
-          Toast.makeText(getActivity(), "Location permission is required for App to work properly", Toast.LENGTH_SHORT).show();
+          Toast.makeText(getActivity(), "Location permission is required for App to work properly",
+              Toast.LENGTH_SHORT).show();
           locationPermissionDenied = true;
         }
       }
@@ -119,8 +126,9 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * attempt to update player location then return last known location.
-   * If no location is found, KLATTERLABBET is returned
+   * attempt to update player location then return last known location. If no location is found,
+   * KLATTERLABBET is returned
+   *
    * @return LatLng of last known location
    */
   public LatLng getMyCurrentLatLng() {
@@ -159,6 +167,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   /**
    * logic for user interaction on map
+   *
    * @param marker that has just been clicked.
    * @return boolean required by google map api. Regulates onClick UI behaviour.
    */
@@ -198,6 +207,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   /**
    * Draw marker on map.
+   *
    * @param latLng coordinates for the marker
    * @param imagePath to the icon to be displayed
    */
@@ -223,8 +233,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   public void drawChest(LatLng latLng, int imagePath) {
     myChest = mMap.addMarker(new MarkerOptions()
-            .position(latLng)
-            .icon(BitmapDescriptorFactory.fromResource(imagePath)));
+        .position(latLng)
+        .icon(BitmapDescriptorFactory.fromResource(imagePath)));
   }
 
   public void drawStore(LatLng latLng, int imagePath) {
@@ -232,6 +242,4 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         .position(latLng)
         .icon(BitmapDescriptorFactory.fromResource(imagePath)));
   }
-
-
 }

@@ -1,40 +1,46 @@
 package treasure.pleasure.model;
+
 import java.text.DecimalFormat;
 import treasure.pleasure.data.Data;
 
+
+/**
+ * Maps a itemType with a given value
+ *
+ * @author jonh
+ */
 public class Item implements ItemCallBack {
-    private final DecimalFormat dm = Data.getDm();
-    private double value;
-    private ItemType type;
 
-    Item(ItemType type, double value){
-        this.type = type;
-        this.value = value;
-    }
+  private final DecimalFormat dm = Data.getDm();
+  private double value;
+  private ItemType type;
 
-    double getValue() {
-        return value;
-    }
+  Item(ItemType type, double value) {
+    this.type = type;
+    this.value = value;
+  }
 
-    void setValue(int value) {
-        this.value = value;
-    }
+  double getValue() {
+    return value;
+  }
 
-    ItemType getType() {
-        return type;
-    }
+  void setValue(int value) {
+    this.value = value;
+  }
 
-    void setType(ItemType type) {
-        this.type = type;
-    }
+  ItemType getType() {
+    return type;
+  }
 
-    @Override
-    public double getValueCallBack() {
+  void setType(ItemType type) {
+    this.type = type;
+  }
 
-        String val = dm.format(Math.round(value));
+  @Override
+  public double getValueCallBack() {
 
-        return  Double.parseDouble(val);
+    String val = dm.format(Math.round(value));
 
-
-    }
+    return Double.parseDouble(val);
+  }
 }

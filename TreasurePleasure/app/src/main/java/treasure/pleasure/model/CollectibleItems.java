@@ -1,18 +1,18 @@
 package treasure.pleasure.model;
 
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import treasure.pleasure.data.Data;
 
-class CollectableItems {
+/**
+ * Contains items and their location for all items on the map.
+ * This class can also spawn new random items at random locations on the map.
+ *
+ * @author jesper, oskar and david
+ */
 
-  // private TreasurePleasure model;
-  /*
-  public void setModel(TreasurePleasure model) {
-    this.model = model;
-  }
-  */
+class CollectibleItems {
+
   private int nrCollectibles;
   private HashMap<Location, Item> collectibles;
   private ArrayList<ItemType> availableItemTypes;
@@ -24,7 +24,7 @@ class CollectableItems {
    * @param availableItemTypes All possible items that can be created
    * @param mapConstraint The area of the map which all collectible items must be within
    */
-  CollectableItems(ArrayList<ItemType> availableItemTypes, ArrayList<Location>
+  CollectibleItems(ArrayList<ItemType> availableItemTypes, ArrayList<Location>
       mapConstraint) {
     this.availableItemTypes = availableItemTypes;
     this.nrCollectibles = Data.getNrOfCollectables();

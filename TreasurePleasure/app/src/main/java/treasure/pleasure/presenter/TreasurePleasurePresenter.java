@@ -17,6 +17,14 @@ import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
+/**
+ * The presenter handles calls between views and the model. It makes sure that we dont need
+ * any logic in the views and translates information from the model to the view.
+ *
+ * The presenter is also responsible for initiating the model
+ *
+ * @author david, oskar, jesper, felix and john
+ */
 public class TreasurePleasurePresenter {
 
   DecimalFormat dm = new DecimalFormat("#.##");
@@ -36,7 +44,7 @@ public class TreasurePleasurePresenter {
     }
     this.view = view;
     this.model = new TreasurePleasure();
-    this.model.addPlayerToGame(this.username,this.avatar);
+    this.model.addPlayerToGame(this.username, this.avatar);
     this.gameMapView = gameMapFragment;
   }
 
@@ -87,7 +95,7 @@ public class TreasurePleasurePresenter {
    */
   public void onBackpackUpdate() {
     if (view.backpackFragmentIsActive()) {
-     retrieveAndDisplayContent();
+      retrieveAndDisplayContent();
     }
   }
 
@@ -95,8 +103,10 @@ public class TreasurePleasurePresenter {
     this.backpackView = view;
   }
 
-  //Retrieves arrayList from model representing the backpack content.
-  //Passes list to backpack view to be displayed.
+  /**
+   * Retrieves arrayList from model representing the backpack content. Passes list to backpack view
+   * to be displayed.
+   */
   public void retrieveAndDisplayContent() {
     backpackView.displayContent(backPackItemsToDisplay());
   }
@@ -115,7 +125,7 @@ public class TreasurePleasurePresenter {
 
   private String addScore(Double score) {
     if (score <= 0) {
-      return "Empty";
+      return " ";
     } else {
       return dm.format(score);
     }
@@ -129,14 +139,8 @@ public class TreasurePleasurePresenter {
    * @return imagePath (int)
    */
   private Integer getImages(ItemType itemType) {
-
     return AndroidImageAssets.getImages().get(itemType);
-
   }
-
-  //----------------------backpack stuff end--------------------------------
-
-  //----------------------map stuff ----------------------------------------
 
   public PolygonOptions getPolygon() {
     return model.getPolygonMap();
@@ -154,32 +158,23 @@ public class TreasurePleasurePresenter {
     drawStore();
   }
 
-  private void drawChest(){
+  private void drawChest() {
     LatLng chestLocation = model.getChestLocation(username);
     gameMapView.drawChest(chestLocation, AndroidImageAssets.getChestImage());
   }
 
-  private void drawStore(){
+  private void drawStore() {
     LatLng storeLocation = model.getStoreLocation(username);
     gameMapView.drawStore(storeLocation, AndroidImageAssets.getStoreImage());
   }
 
-  /**
-   * fetches all collectibles from the model and draws them on the map
-   */
-  public void drawCollectibles() {
+  private void drawCollectibles() {
     for (Tuple<ItemType, LatLng> tuple : model.getMarkers()) {
       drawMarker(tuple.getField1(), tuple.getField2());
     }
   }
 
-  /**
-   * make MapView draw a single marker on map.
-   *
-   * @param itemType the item type to be displayed
-   * @param latLng the latitude and longitude to draw the marker on
-   */
-  public void drawMarker(ItemType itemType, LatLng latLng) {
+  private void drawMarker(ItemType itemType, LatLng latLng) {
     gameMapView.drawMarker(latLng, getMapImages(itemType));
   }
 
@@ -193,13 +188,6 @@ public class TreasurePleasurePresenter {
     return AndroidImageAssets.getMapImages().get(itemType);
   }
 
-  //felix old class. delete?
-  /*
-  public MarkerOptions addMarker(LatLng latLng) {
-    return model.addMarker(latLng);
-  }
-  */
-
   /**
    * Request current location from MapFragment. MapFragment attempts to poll for current location.
    * When unable to retrieve a new location; the last known location will be returned. If no
@@ -211,19 +199,19 @@ public class TreasurePleasurePresenter {
     return gameMapView.getMyCurrentLatLng();
   }
 
+
   /**
-   * Check: if player is close enough to the item AND backpack is not full, then the item is
-   * collected to backpack. provide feedback to player by onscreen message.
-   *
-   * @param marker longitude and latitude of item to be collected
-   * @return true if collect successful, else false
+   * Attempts to collect a item (marker) from the map to the players backpack. If successful, marker
+   * is removed and a new item is spawned
    */
   public void attemptCollectAndRemove(Marker marker) {
     LatLng playerLatLng = getMyCurrentLatLng();
 
-    //TODO collectibles on map do not always disappear
+    //TODO Is exception really the right way to code and decode messages
     try {
+      // Will throw error if backpack us full OR player is not close enough.
       model.moveCollectibleToPlayerBackpack(username, playerLatLng, marker.getPosition());
+      // Redraws the map due to a bug with marker.remove()
       redrawMap();
       onBackpackUpdate();
       view.showToast("Item collected! Check your backpack =D");
@@ -234,21 +222,20 @@ public class TreasurePleasurePresenter {
 
   }
 
-  //chestclick
+  /**
+   * TODO
+   */
   public void onChestClick() {
-    //TODO
     view.showToast("Chest has been clicked.");
   }
 
+  /**
+   * TODO
+   */
   public void onStoreClick() {
-    //TODO
     view.showToast("Store has been clicked");
   }
 
-  /**
-   * SettingsFragment ask Presenter to call Model to change name. Presenter updates
-   * SettingsFragment with result.
-   */
   public void changeUsername(String username) {
     try {
       this.model.changeUsername(this.username, username);

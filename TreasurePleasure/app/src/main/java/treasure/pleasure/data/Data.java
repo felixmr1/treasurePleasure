@@ -4,6 +4,12 @@ import android.graphics.Color;
 import com.google.android.gms.maps.model.LatLng;
 import java.text.DecimalFormat;
 
+/**
+ * Contains all the different model attributes that can be changed for a different player experience
+ * and testing.
+ *
+ * @author felix
+ */
 public class Data {
 
   // Coordinates
@@ -16,7 +22,7 @@ public class Data {
   ;
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 15;
+  private static double maxInteractionDistance = 1000;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -34,6 +40,11 @@ public class Data {
   private static final int backpackMaxSize = 50;
   private static final int maxDropBonus = 1;
   private static final int dropBonus = 1;
+  private static double chestLat = 57.687630;
+  private static double chestLong = 11.978355;
+  private static double storeLat = 57.689168;
+  private static double storeLong = 11.974161;
+
 
   // Backpack
   private static final int initialBackpackLevel = 1;
@@ -69,6 +80,26 @@ public class Data {
 
   public static int getMaxDropBonus() {
     return maxDropBonus;
+  }
+
+  public static int getNrOfCollecatbles() {
+    return nrOfCollecatbles;
+  }
+
+  public static double getChestLat() {
+    return chestLat;
+  }
+
+  public static double getChestLong() {
+    return chestLong;
+  }
+
+  public static double getStoreLat() {
+    return storeLat;
+  }
+
+  public static double getStoreLong() {
+    return storeLong;
   }
 
   public static int getBackpackMaxSize() {
@@ -111,5 +142,7 @@ public class Data {
     return initialNOfBusySlots;
   }
 
-  public static int getNrOfCollectables() { return nrOfCollecatbles; }
+  public static int getNrOfCollectables() {
+    return nrOfCollecatbles;
+  }
 }

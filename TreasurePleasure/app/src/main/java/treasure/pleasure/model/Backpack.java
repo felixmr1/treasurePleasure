@@ -5,18 +5,20 @@ import java.util.List;
 import treasure.pleasure.data.Data;
 
 /**
- * class invariant : nOfBusySlots <= maxSize
- **/
+ *
+ *
+ * class invariant : nOfBusySlots < maxSize
+ * @author John
+ */
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
 class Backpack<T> {
 
-  private List<T>  items;
+  private List<T> items;
 
   private int backPackLevel;
   private int maxSize;
   private int nOfBusySlots;
-
 
   Backpack(int maxSize) {
     this.items = new ArrayList<>(maxSize);
@@ -25,7 +27,6 @@ class Backpack<T> {
     this.maxSize = maxSize;
     this.nOfBusySlots = Data.getInitialNOfBusySlots();
   }
-
 
   /**
    * @param nOfMoreSlots int > 0, if given negative input it will not mutate the object in any way
@@ -51,12 +52,11 @@ class Backpack<T> {
 
     System.out.println(nOfBusySlots);
 
-      this.items = new ArrayList<>(0);
-      nOfBusySlots = Data.getInitialNOfBusySlots();
+    this.items = new ArrayList<>(0);
+    nOfBusySlots = Data.getInitialNOfBusySlots();
 
 
   }
-
 
   List<T> getAllItems() {
     return this.items;
@@ -66,7 +66,9 @@ class Backpack<T> {
     return nOfBusySlots >= maxSize;
   }
 
-  boolean isNotFull() { return !isFull(); }
+  boolean isNotFull() {
+    return !isFull();
+  }
 
   boolean isEmpty() {
     return (nOfBusySlots == 0);

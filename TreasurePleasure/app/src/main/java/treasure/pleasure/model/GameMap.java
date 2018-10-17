@@ -1,7 +1,5 @@
 package treasure.pleasure.model;
 
-import android.graphics.Color;
-import android.util.Log;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -9,6 +7,12 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import java.util.ArrayList;
 import treasure.pleasure.R;
 import treasure.pleasure.data.Data;
+
+/**
+ * TODO
+ *
+ * @author felix
+ */
 
 class GameMap {
 
@@ -38,7 +42,7 @@ class GameMap {
   }
 
   MarkerOptions addMarker(LatLng latLng) {
-     MarkerOptions marker = new MarkerOptions()
+    MarkerOptions marker = new MarkerOptions()
         .position(latLng)
         .title("hej")
         .icon(BitmapDescriptorFactory.fromResource(R.drawable.gem_tiny));

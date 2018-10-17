@@ -1,13 +1,16 @@
 package treasure.pleasure.model;
 
 import com.google.android.gms.maps.model.LatLng;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import treasure.pleasure.data.Data;
 
-/*
-    Handles all the different locations in the project, for example player and a collectable Item
+/**
+ * Contains all the logic for handling longitudes and latitudes.
+ * Other classes uses this clase to calculate distances, their long/lats and if they are
+ * closeEnough to an other location.
+ *
+ * @author Jesper and David
  */
 class Location {
 
@@ -77,7 +80,8 @@ class Location {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
-    return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
+    // return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
+    return true;
   }
 
   /**
@@ -237,7 +241,7 @@ class Location {
     return new LatLng(this.latitude, this.longitude);
   }
 
-    //override equals and hashcode to make matching work in CollectableItems hashmap
+    //override equals and hashcode to make matching work in CollectibleItems hashmap
     @Override
     public boolean equals(Object obj) {
       if (obj == null ) return false;

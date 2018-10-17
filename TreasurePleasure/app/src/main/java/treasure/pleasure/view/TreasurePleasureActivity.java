@@ -7,11 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
+
+/**
+ * This is the main activity, which means that android calls onCreate() when the app is launched.
+ * The activity is responsible for creating a new view and the presenter. It also starts 3 main
+ * views; gameMapFragment, BackpackFragment and settingsFragment
+ *
+ * This class is also responsible for starting the ...
+ *
+ * @author oskar, david, jesper, felix and john
+ */
 
 public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
 
@@ -28,7 +37,6 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   // Functions that the XML triggers (user-actions)
-
   public void onPressShowSettingsButton(View view) {
     presenter.showSettings();
   }
@@ -38,7 +46,6 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   // Functions that the Presenter calls (tells view to update)
-
   @Override
   public void updatePlayers(ArrayList<String> users) {
     String allNames = "";
@@ -50,7 +57,9 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   /**
    * Create a widget onscreen displaying the backpack content.
-   * @param model reference is passed to establish communication between BackpackFragment and model.
+   *
+   * @param model reference is passed to establish communication between BackpackFragment and
+   * model.
    */
   public void loadBackpackFragment(TreasurePleasure model) {
     BackpackFragment backpackFragment = new BackpackFragment();
@@ -63,7 +72,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public void showSettingsFragment() {
     SettingsFragment settingsFragment = new SettingsFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment)
-            .commit();
+        .commit();
     settingsFragment.setPresenter(presenter);
   }
 
@@ -79,6 +88,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   /**
    * Check if backpack widget already being displayed
+   *
    * @return true if backpack is already onscreen, else false
    */
   public boolean backpackFragmentIsActive() {
@@ -101,11 +111,12 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   /**
    * Show on screen message.
+   *
    * @param string to be displayed
    */
-  public void showToast(String string){
+  public void showToast(String string) {
     Toast.makeText(this, string,
-            Toast.LENGTH_SHORT).show();
+        Toast.LENGTH_SHORT).show();
   }
 
 }
