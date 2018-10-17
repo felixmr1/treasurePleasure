@@ -51,36 +51,47 @@ The application can be used to encourage a group of people to become more active
 
 ## 2 Requirements
 
-### 2.1 Epics & User Stories
+### 2.1 Epics / User Stories
 
-The **bold** items are Epics and the sub-items are User Stories
+**1. As a player I want to see a map pinpointing my location so that I get a sense of belonging in the game**
 
-**1. As a player I want to see a map pinpointing my location and other objects location so that I get a feel for the virtual reality.**
+    Implement Google Map that appears in application
+    Map is constrained to specific area
 
-    1.1. As a player, I want my location to be displayed on a map so that I know where I am.
-    1.2. As a player, I want objects to have a location; so that I know where to find them.
-
-**2. As a player I want to be able to collect and store items. - Because I'm a hoarder.**
+**2. As a player I want to have a choosable nick and an avatar so that I get a personalized experience**
     
-    2.1 As a player, I want to be able to pickup items that I'm near; because items are valuable to me.
-    2.2 As a player, I want to be able to see how many items I'm currently carrying, and how many more items I can collect before my backpack is full. - So that I can plan my walk.
-    2.3 As a player, I want a storage chest, with unlimited capacity, to unload my backpack contents into. - So that I can save all my valuables.
+    Can choose nick and avatar on first time playing game
+    Player cannot take already taken nick
+    Can change nick and avatar when in game
+    Information about current nick and avatar is available
 
-**3. As a player I want to be able to buy upgrades for a more dynamic experience.**
+**3. As a player I want to see different items on the map so that I know what I can collect**
 
-    3.1 As a player, I want to be able to improve my character with drop-bonuses. This will add a sense of progress to my game experience.
-    3.2 As a player, I want to be able to visit an upgrade center, where I can spend items (or item value) in exchange for bonuses.
+    There is always a certain amount of items on the map
+    Items are spread out rather than clustered
+    Items has value and type
+    There are at least 3 items differing in appearance and value
     
-**4. As a user I want to be able to customize my profile to get a more personalized experience.**
+**4.As a player I want to pick up item that appears on the map and put them in my backpack**
 
-    4.1 As a player I need a player class so that I can get a backpack, chest and upgrade center.
-    4.2 As a player I want a nickname and avatar. This will add flavour to the game.
+    The player needs to be close enough to the item
+    Backpack has capacity, i.e. max number of items or max weight
+    If backpack is full then the item stays on the map
+    On pickup the item is removed from map and added to backpack
+    There is a backpack view where player can view its content
 
-**5. As a player I want to compete with other players so that I'm motivated to continue playing.**
+**5. As a player I need a chest where I can empty my backpack and gain points in the game**
 
-    5.1 As a new player I want the game to have seasons with certain duration so that a winner is determined and everything resets and gives equal opportunities to all.
-    5.2 As a player I want to be able to see my and others current score to see how well I'm doing.
-    5.3 As a player I want to see the history of who has won previous season in case I am on that scoreboard.
+    The chest appears on the map
+    When close enough to chest user can interact with it and empty the backpack
+    When emptying the sum of the content in backpack should be added to the chest as points
+
+**5. As a player I want to see a shop on the map where I can go so that I can trade items for better values on picked up items**
+
+    The shop appears on the map
+    When close enough player can interact with shop
+    Ability to choose items from backpack and trade them for drop bonus (e.g. dropbonus increases by 1/100*(value of item))
+
 
 ### 2.2 User interface
 
