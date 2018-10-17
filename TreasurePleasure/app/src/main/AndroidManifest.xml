@@ -46,7 +46,7 @@
 
         <activity
             android:name=".view.SignupActivity"
-            android:label="@string/title_activity_signup">
+            android:label="@string/activity_signup">
             <intent-filter>
 
                 <!-- MAIN represents that it is the Main Activity -->
