@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import treasure.pleasure.data.Data;
 
 
@@ -18,14 +19,30 @@ class Player {
     private UpgradeCenter upgradeCenter;
 
 
-
+    /**
+     * Constructor that initilizes a NEW player, with standard values
+     *
+     * @param username string value : username of the player
+     * @param avatar Enum value, avatar of player
+     */
     Player(String username, Avatar avatar){
+        this.username = username;
+        this.avatar = avatar;
+        this.chest = new Chest();
+        this.dropBonus = Data.getDropBonus();
+        this.backpack = new Backpack<>(Data.getBackpackMaxSize(),Data.getInitialBackpackLevel());
+    }
 
+
+
+
+
+    Player(String username, Avatar avatar, int backpackSize, int backpackLevel, double dropBonus){
             this.username = username;
             this.avatar = avatar;
             this.chest = new Chest();
-            this.dropBonus = Data.getDropBonus();
-            this.backpack = new Backpack<>(Data.getBackpackMaxSize());
+            this.dropBonus = dropBonus;
+            this.backpack = new Backpack<>(backpackSize, backpackLevel);
 
     }
 
@@ -62,7 +79,7 @@ class Player {
     }
 
     void setDropBonus(double dropBonus) {
-        if(dropBonus < Data.getMaxDropBonus()) {
+        if(dropBonus < this.dropBonus) {
             throw new IllegalArgumentException("Could not change dropbonus: Dropbonus should be > 1");
         } else {
             this.dropBonus = dropBonus;

@@ -20,7 +20,7 @@ public class BackpackTests {
 
   @Before
   public void initBackPack() {
-    b = new Backpack<Object>(3);
+    b = new Backpack<Object>(3,1);
     item = new Object();
     item2 = new Object();
     item3 = new Object();

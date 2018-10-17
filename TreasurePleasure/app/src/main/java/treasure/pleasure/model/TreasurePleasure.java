@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import treasure.pleasure.data.Data;
 import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
@@ -66,7 +68,7 @@ public class TreasurePleasure {
       throw new ArrayStoreException();
 
     } else {
-      players.put(username.toLowerCase(), new Player(username, avatar));
+      players.put(username.toLowerCase(), new Player(username, avatar, Data.getBackpackMaxSize(),Data.getInitialBackpackLevel(),Data.getDropBonus()));
       this.takenUsernames.add(username.toLowerCase());
     }
   }
@@ -122,7 +124,8 @@ public class TreasurePleasure {
 
 
   //---------------------------item pickup--------------------------------------
-  //should check if item is close enough TODO might aswell move this functionality from Location to presenter?
+  //should check if item is close enough
+  // TODO might aswell move this functionality from Location to presenter?
   public boolean isCloseEnough(double playerLat, double playerLng, double itemLat, double itemLng) {
     Location playerLocation = new Location(playerLat, playerLng);
     Location itemLocation = new Location(itemLat, itemLng);
@@ -152,12 +155,12 @@ public class TreasurePleasure {
     boolean playerCloseEnoughToItem = playerLocation.isCloseEnough(itemLocation);
 
     //TODO exceptions is to catch and handle exceptions, i.e unexpected behaviour. It is not a tool to control the flow of the application.
-    if (backpackIsFull) {
-      throw new Exception("Players backpack is full");
-    }
-    if (!playerCloseEnoughToItem) {
+
+/*    if (!playerCloseEnoughToItem) {
       throw new Exception("Player is not close enough to interact with item");
     }
+
+ */
 
     try {
       Item itemCollected = collectableItems.takeItem(itemLocation);

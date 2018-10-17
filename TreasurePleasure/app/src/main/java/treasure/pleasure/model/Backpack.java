@@ -2,7 +2,6 @@ package treasure.pleasure.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import treasure.pleasure.data.Data;
 
 /**
  * class invariant : nOfBusySlots <= maxSize
@@ -18,12 +17,26 @@ class Backpack<T> {
   private int nOfBusySlots;
 
 
-  Backpack(int maxSize) {
+  /**
+   *
+   * @param copy copy of backpack that one wants to copy
+   */
+  Backpack(Backpack copy){
+
+    this.items = copy.getAllItems();
+    this.backPackLevel = copy.getBackPackLevel();
+    this.maxSize = copy.getMaxSize();
+    this.nOfBusySlots = copy.getnOfBusySlots();
+
+  }
+
+
+  Backpack(int maxSize, int backPackLevel) {
     this.items = new ArrayList<>(maxSize);
 
-    this.backPackLevel = Data.getInitialBackpackLevel();
+    this.backPackLevel = backPackLevel;
     this.maxSize = maxSize;
-    this.nOfBusySlots = Data.getInitialNOfBusySlots();
+    this.nOfBusySlots = 0;
   }
 
 
@@ -43,16 +56,15 @@ class Backpack<T> {
       items.add(item);
       nOfBusySlots++;
     } else {
-      throw new Exception();
+      throw new Exception("Players backpack is full");
+
     }
   }
 
   void removeAll() {
 
-    System.out.println(nOfBusySlots);
-
       this.items = new ArrayList<>(0);
-      nOfBusySlots = Data.getInitialNOfBusySlots();
+      nOfBusySlots = 0;
 
 
   }
