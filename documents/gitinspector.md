@@ -1,4 +1,5 @@
-Gitinspector PRE and POST adding class auther and auto formating
+Gitinspector PRE and POST adding class auther and auto formating \
+    
     Author                     Rows      Stability          Age       % in comments
     Felix Rosén                 570           46.0          0.7                6.67
     Felix Rosén                 561           45.3          0.7                6.77
