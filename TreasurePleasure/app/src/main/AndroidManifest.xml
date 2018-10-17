@@ -5,9 +5,14 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -20,14 +25,8 @@
         <!-- Declare the starting point of app: -->
         <activity
             android:name=".view.TreasurePleasureActivity"
-            android:screenOrientation="sensorPortrait" >
+            android:screenOrientation="sensorPortrait">
 
-            <intent-filter>
-                <!-- MAIN represents that it is the Main Activity-->
-                <action android:name="android.intent.action.MAIN" />
-                <!-- Launcher Denotes that it will be the first launching activity-->
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -40,16 +39,23 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <!--
-        Google play services version number.
-        -->
+        <!--         Google play services version number. -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".view.SignupActivity"
+            android:label="@string/title_activity_signup">
+            <intent-filter>
 
+                <!-- MAIN represents that it is the Main Activity -->
+                <action android:name="android.intent.action.MAIN" />
+                <!-- Launcher Denotes that it will be the first launching activity -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
-
-
 
 </manifest>
