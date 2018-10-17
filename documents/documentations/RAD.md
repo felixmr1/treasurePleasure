@@ -86,7 +86,7 @@ The application can be used to encourage a group of people to become more active
     When close enough to chest user can interact with it and empty the backpack
     When emptying the sum of the content in backpack should be added to the chest as points
 
-**5. As a player I want to see a shop on the map where I can go so that I can trade items for better values on picked up items**
+**6. As a player I want to see a shop on the map where I can go so that I can trade items for better values on picked up items**
 
     The shop appears on the map
     When close enough player can interact with shop
