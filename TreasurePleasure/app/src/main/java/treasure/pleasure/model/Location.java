@@ -80,8 +80,8 @@ class Location {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
-    // return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
-    return true;
+    return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
+
   }
 
   /**

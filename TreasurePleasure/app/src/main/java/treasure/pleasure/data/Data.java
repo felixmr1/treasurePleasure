@@ -22,7 +22,7 @@ public class Data {
   ;
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 1000;
+  private static double maxInteractionDistance = 25;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
