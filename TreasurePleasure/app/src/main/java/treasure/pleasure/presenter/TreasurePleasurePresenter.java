@@ -151,12 +151,17 @@ public class TreasurePleasurePresenter {
   public void drawAllMapMarkers() {
     drawCollectibles();
     drawChest();
-    //TODO drawStore.
+    drawStore();
   }
 
   private void drawChest(){
     LatLng chestLocation = model.getChestLocation(username);
     gameMapView.drawChest(chestLocation, AndroidImageAssets.getChestImage());
+  }
+
+  private void drawStore(){
+    LatLng storeLocation = model.getStoreLocation(username);
+    gameMapView.drawStore(storeLocation, AndroidImageAssets.getStoreImage());
   }
 
   /**
@@ -233,6 +238,11 @@ public class TreasurePleasurePresenter {
   public void onChestClick() {
     //TODO
     view.showToast("Chest has been clicked.");
+  }
+
+  public void onStoreClick() {
+    //TODO
+    view.showToast("Store has been clicked");
   }
 
   /**

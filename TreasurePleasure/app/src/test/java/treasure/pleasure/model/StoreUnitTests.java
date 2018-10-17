@@ -2,13 +2,12 @@ package treasure.pleasure.model;
 
 import static junit.framework.Assert.assertTrue;
 
-import android.util.Log;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UpgradeCenterUnitTests {
+public class StoreUnitTests {
 
-  UpgradeCenter uc;
+  Store uc;
 
   Location at;
   Player p;
@@ -17,7 +16,7 @@ public class UpgradeCenterUnitTests {
   public void initUpgradeCenter(){
     this.at = new Location();
     this.p = new Player("Luke Skyrider", Avatar.MAN);
-    this.uc = new UpgradeCenter(p);
+    this.uc = new Store(p, new Location(57.6880122,11.9792264));
   }
 
   @Test

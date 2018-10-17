@@ -45,9 +45,13 @@ public class TreasurePleasure {
     return new LatLng(backpackLocation.getLatitude(), backpackLocation.getLongitude());
   }
 
+  public LatLng getStoreLocation(String username){
+    Location storeLocation = getPlayer(username).getStoreLocation();
+    return new LatLng(storeLocation.getLatitude(), storeLocation.getLongitude());
+  }
+
   //Get all markers from model. Chest and store might as well have their own methods.
   public List<Tuple<ItemType, LatLng>> getMarkers() {
-    //TODO add store
 
     //TODO discuss android types in model, translations are needed everywhere LatLng and imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new Class type, Triple instead of Tuple. Or Tuple in Tuple.
     //get collectibles

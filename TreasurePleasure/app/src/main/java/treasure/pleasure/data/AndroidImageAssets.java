@@ -13,6 +13,8 @@ public class AndroidImageAssets {
 
   private static final Integer chestImage = R.drawable.chest;
 
+  private static final Integer storeImage = R.drawable.store_tiny;
+
   private static final EnumMap<ItemType, Integer> itemImageList = new EnumMap<ItemType, Integer>(ItemType.class) {{
     put(ItemType.DIAMOND, R.drawable.diamond_bp);
     put(ItemType.GOLD, R.drawable.gold_bp);
@@ -41,5 +43,9 @@ public class AndroidImageAssets {
 
   public static Integer getChestImage() {
     return chestImage;
+  }
+
+  public static Integer getStoreImage() {
+    return storeImage;
   }
 }

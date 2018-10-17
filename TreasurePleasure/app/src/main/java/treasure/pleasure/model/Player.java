@@ -1,7 +1,6 @@
 package treasure.pleasure.model;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +14,7 @@ class Player {
     private Backpack<Item> backpack;
     private Chest chest;
     private double dropBonus;
-    private UpgradeCenter upgradeCenter;
+    private Store store;
 
 
 
@@ -26,11 +25,11 @@ class Player {
             this.chest = new Chest();
             this.dropBonus = Data.getDropBonus();
             this.backpack = new Backpack<>(Data.getBackpackMaxSize());
-
+            this.store = new Store(this, new Location(57.6880122,11.9792264)); //TODO hardcoded for now
     }
 
-    void placeUpgradeCenter(){
-        this.upgradeCenter = new UpgradeCenter(this);
+    void placeUpgradeCenter(Location location){
+        this.store = new Store(this, location);
     }
 
     String getUsername() {
@@ -101,5 +100,9 @@ class Player {
     Location getChestLocation() {
         return chest.getLocation();
     }
+
+    Location getStoreLocation() {
+    return store.getLocation();
+  }
 
 }

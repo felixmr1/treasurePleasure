@@ -2,15 +2,16 @@ package treasure.pleasure.model;
 
 import treasure.pleasure.data.Data;
 
-public class UpgradeCenter {
+public class Store {
 
-    Location at;
+    private Location location;
     Player belongsTo;
     int dropBonusIncrement;
 
-    UpgradeCenter(Player p){
-        this.at = new Location();
-        this.belongsTo = p;
+    Store(Player player, Location location){
+        //TODO hardcoded for now
+        this.location = location;
+        this.belongsTo = player;
         this.dropBonusIncrement = Data.getDropBonusIncrementer();
     }
 
@@ -18,5 +19,7 @@ public class UpgradeCenter {
        belongsTo.setDropBonus(belongsTo.getDropBonus() + dropBonusIncrement);
     }
 
-
+    public Location getLocation() {
+        return location;
+    }
 }
