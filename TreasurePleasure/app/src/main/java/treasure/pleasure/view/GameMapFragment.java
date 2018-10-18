@@ -51,6 +51,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private LatLng myCurrentLatLng;
   private Marker myChest;
   private Marker myStore;
+  private Marker myAvatar;
   private int avatarPath;
 
   @Override
@@ -80,9 +81,10 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    * Disables the original map marker and adds a custom marker at the players location
    */
   private void setCustomUserMarker() {
+
     // Sets the original position marker to false.
     try {
-      mMap.setMyLocationEnabled(false);
+      mMap.setMyLocationEnabled(true);
     } catch (SecurityException e) {
       Log.w("LOCATION", e.getMessage());
     }
@@ -92,7 +94,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     GoogleMap.OnMyLocationChangeListener locationListener = new GoogleMap.OnMyLocationChangeListener() {
       @Override
       public void onMyLocationChange(Location location) {
-
         drawCustomUserMarker(new LatLng(location.getLatitude(), location.getLongitude()));
       }
     };
@@ -162,12 +163,12 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   public LatLng getMyCurrentLatLng() {
     updateMyLocation();
-    if (myCurrentLatLng != null) {
+    if (myCurrentLatLng == null) {
+      // TODO this spawns us in the middle of the map
+      // return presenter.getDefualtPlayerLocation();
       return myCurrentLatLng;
-    } else {
-      //TODO return center of map, maybe exception
-      return presenter.getDefualtPlayerLocation();
     }
+    return myCurrentLatLng;
   }
 
   private void updateMyLocation() {
@@ -258,7 +259,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   public void drawCustomUserMarker (LatLng currentPosition) {
-    mMap.addMarker(new MarkerOptions()
+    if (myAvatar != null) myAvatar.remove();
+    myAvatar = mMap.addMarker(new MarkerOptions()
         .position(currentPosition)
         .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(avatarPath)));
