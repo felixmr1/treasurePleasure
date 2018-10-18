@@ -37,7 +37,7 @@ public class Data {
   private static final int nrOfCollecatbles = 15;
 
   // Player
-  private static final int backpackMaxSize = 50;
+  private static final int backpackMaxSize = 10;
   private static final int maxDropBonus = 1;
   private static final int dropBonus = 1;
   private static double chestLat = 57.687630;

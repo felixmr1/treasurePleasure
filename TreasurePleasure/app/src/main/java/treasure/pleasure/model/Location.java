@@ -1,5 +1,6 @@
 package treasure.pleasure.model;
 
+import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.Date;
 import java.util.Objects;
@@ -81,7 +82,6 @@ class Location {
     final double incLat = compareLocation.getLatitude();
 
     return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
-
   }
 
   /**

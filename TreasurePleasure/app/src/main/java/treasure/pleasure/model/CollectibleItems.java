@@ -1,5 +1,6 @@
 package treasure.pleasure.model;
 
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import treasure.pleasure.data.Data;
@@ -32,14 +33,19 @@ class CollectibleItems {
     this.mapConstraint = mapConstraint;
 
     for (int i = 0; i < nrCollectibles; i++) {
-      this.spawnRandomItem();
+      try {
+        this.spawnRandomItem();
+      } catch (Exception e) {
+        Log.w("CollectibleItems", "Could not spawn a item since its to close to other items");
+      }
+
     }
   }
 
   /**
    * Spawns a random item within the current map constraints
    */
-  void spawnRandomItem() {
+  void spawnRandomItem() throws Exception {
     int i = 0;
     int maxIterations = this.nrCollectibles * Data.getNrCollecteblesIncrementer();
     Location loc = getRandomLocationWithinBounds();
@@ -48,14 +54,11 @@ class CollectibleItems {
       loc = getRandomLocationWithinBounds();
     }
     if (i >= maxIterations) {
-      // throw new RuntimeException("Could not get a new location within borders after: " + maxIterations + " tries");
+      throw new Exception("Could not get a new location within borders after: " + maxIterations + " tries");
     }
     Item collectible = createRandomItem();
 
     addItem(loc, collectible);
-
-    // Old way to draw items on map
-    // model.drawCollectibleOnMap(collectible.getType(), loc);
   }
 
   /**
