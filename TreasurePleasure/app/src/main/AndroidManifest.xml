@@ -26,6 +26,11 @@
             android:name=".view.TreasurePleasureActivity"
             android:screenOrientation="sensorPortrait">
 
+        </activity>
+
+        <activity
+            android:name=".view.SignupActivity"
+            android:label="@string/activity_signup">
 
             <intent-filter>
                 <!-- MAIN represents that it is the Main Activity -->
@@ -33,11 +38,8 @@
                 <!-- Launcher Denotes that it will be the first launching activity -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <activity
-            android:name=".view.SignupActivity"
-            android:label="@string/activity_signup">
+
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

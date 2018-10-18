@@ -1,9 +1,14 @@
 package treasure.pleasure.presenter;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.SignUpView;
 
-public class SignUpPresenter {
+public class SignUpPresenter extends BasePresenter{
 
     private SignUpView view;
     private TreasurePleasure model;
@@ -14,22 +19,9 @@ public class SignUpPresenter {
         this.model = new TreasurePleasure();
     }
 
-
-
     public void onSubmit() {
 
     }
-
-     public void setAvatarSelection(String selection){
-        this.selection = selection;
-    }
-
-
-
-
-
-
-
 
 
 }
