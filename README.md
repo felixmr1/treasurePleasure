@@ -22,6 +22,7 @@
 - Google maps api example app: https://github.com/googlemaps/android-samples
 - Travis test runs: https://travis-ci.com/TheFelixR/treasurePleasure/jobs/145987848
 - Stan: http://stan4j.com/
+- jacoco
 
 # Document locations
 ## Requirements and Analysis Document
