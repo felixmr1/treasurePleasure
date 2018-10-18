@@ -218,6 +218,7 @@ public class TreasurePleasurePresenter {
       view.showToast("Item collected! Check your backpack =D");
       drawCollectibles();
     } catch (Exception e) {
+      gameMapView.drawCustomUserMarker(getMyCurrentLatLng());
       view.showToast(e.getMessage());
     } finally {
       gameMapView.drawInteractionCircle(playerLatLng, model.getMaxInteractionDistance(), 1500);
