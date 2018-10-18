@@ -28,4 +28,10 @@ public interface TreasurePleasureView {
   boolean settingsFragmentIsActive();
 
   void changeSettingsButtonText(String s);
+
+  // For chest fragment
+
+  void showChestFragment();
+  boolean chestFragmentIsActive();
+  void closeChestFragment();
 }

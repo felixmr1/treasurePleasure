@@ -69,6 +69,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     backpackFragment.setPresenter(presenter);
   }
 
+  public void showChestFragment () {
+    ChestFragment chestFragment = new ChestFragment();
+    getSupportFragmentManager().beginTransaction().add(R.id.chest_container, chestFragment)
+            .commit();
+    chestFragment.setPresenter(presenter);
+  }
+
   public void showSettingsFragment() {
     SettingsFragment settingsFragment = new SettingsFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment)
@@ -76,9 +83,15 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     settingsFragment.setPresenter(presenter);
   }
 
+
   public void closeBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.backpack_container)).commit();
+  }
+
+  public void closeChestFragment() {
+    FragmentManager fm = getSupportFragmentManager();
+    fm.beginTransaction().remove(fm.findFragmentById(R.id.chest_container)).commit();
   }
 
   public void hideSettingsFragment() {
@@ -98,6 +111,11 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public boolean settingsFragmentIsActive() {
     return (getSupportFragmentManager().findFragmentById(R.id.settings_container) != null);
   }
+
+  public boolean chestFragmentIsActive() {
+    return (getSupportFragmentManager().findFragmentById(R.id.chest_container) != null);
+  }
+
 
   public void changeMapButtonText(String newText) {
     Button mapButton = findViewById(R.id.showBackpackButton);
