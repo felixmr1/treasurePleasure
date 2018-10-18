@@ -1,22 +1,20 @@
 package treasure.pleasure.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
 import treasure.pleasure.R;
-import treasure.pleasure.presenter.BasePresenter;
-import treasure.pleasure.presenter.SignUpPresenter;
+import treasure.pleasure.model.TreasurePleasure;
 
 
-public class SignupActivity extends BaseActivity implements SignUpView {
+public class SignupActivity extends AppCompatActivity {
 
-
+    private TreasurePleasure mPresenter;
     private Button submitButton;
     private EditText editText;
     private boolean isMale;
@@ -34,40 +32,11 @@ public class SignupActivity extends BaseActivity implements SignUpView {
 
     }
 
-
-    /**
-     * The superclass runs this method. So the presenter will automatically be created in the onCreate method
-     * @param context
-     * @return The presenter of this view
-     */
-    @NonNull
-    @Override
-    protected SignUpPresenter createPresenter(@NonNull Context context) {
-        return new SignUpPresenter(this);
-    }
-
-
-    /**
-     * Calls the presenter
-     * @param userName the username given by the user
-     */
-    @Override
-    public void onSubmit(String userName) {
-
-        mPresenter.
-
-    }
-
-
-
-
-
    private void setSubmitButtonListener(){
 
         submitButton.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
-               mPresenter.
 
                Intent toTreasurePleasure = new Intent(getApplicationContext(),TreasurePleasureActivity.class);
                startActivity(toTreasurePleasure);
@@ -76,13 +45,6 @@ public class SignupActivity extends BaseActivity implements SignUpView {
        });
     }
 
-
-
-
-
-
-
-    @Override
     public void onRadioButtonClicked(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
@@ -99,9 +61,6 @@ public class SignupActivity extends BaseActivity implements SignUpView {
                 break;
         }
 
-
-
     }
-
 
 }

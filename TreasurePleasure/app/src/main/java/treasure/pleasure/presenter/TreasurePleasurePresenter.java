@@ -40,6 +40,13 @@ public class TreasurePleasurePresenter {
     this.gameMapView = gameMapFragment;
   }
 
+
+  public void onSignup(){
+
+  }
+
+
+
   public void createPlayer(String name) {
     Avatar a;
     if (new Random().nextBoolean()) {

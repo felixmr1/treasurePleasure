@@ -7,7 +7,5 @@ public interface SignUpView {
 
     void onSubmit(String userName);
 
-    void onRadioButtonClicked(View view);
-
 
 }
