@@ -67,10 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/usernameInput"
-        android:onClick="changeUsername"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="0dp"
+        android:onClick="changeUsername"
         android:text="Change username" />
 
 </RelativeLayout>
