@@ -45,8 +45,11 @@ class Player {
     return this.dropBonus;
   }
 
-  void setStore(Location location) {
+  void setStore(Location location, int defaultBackpackSize, int defaultAmountOfCollectibles, double defaultInteractionDistance) {
     this.store = new Store(this, location);
+    this.store.setDefaultBackpackSize(defaultBackpackSize);
+    this.store.setDefaultAmountOfCollectibles(defaultAmountOfCollectibles);
+    this.store.setDefaultInteractionDistance(defaultInteractionDistance);
   }
 
   void setChest(Location location) {

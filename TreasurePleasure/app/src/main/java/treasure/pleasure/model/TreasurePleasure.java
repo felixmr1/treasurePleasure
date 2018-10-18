@@ -77,7 +77,7 @@ public class TreasurePleasure {
       Player player = new Player(username, avatar);
 
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
-      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()));
+      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()), Data.getBackpackMaxSize(), Data.getNrOfCollectables(), Data.getMaxInteractionDistance());
 
       players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
