@@ -49,6 +49,4 @@ public class Chest<T extends ItemCallBack> {
   Location getLocation() {
     return new Location(location);
   }
-
-
 }

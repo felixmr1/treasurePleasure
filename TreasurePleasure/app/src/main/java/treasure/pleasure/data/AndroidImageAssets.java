@@ -2,6 +2,7 @@ package treasure.pleasure.data;
 
 import java.util.EnumMap;
 import treasure.pleasure.R;
+import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
 
 /**
@@ -34,12 +35,21 @@ public class AndroidImageAssets {
     put(ItemType.VOID, R.drawable.cobweb);
   }};
 
+  private static final EnumMap<Avatar, Integer> avatarImageList = new EnumMap<Avatar, Integer>(Avatar.class) {{
+    put(Avatar.MAN, R.drawable.man_hipster_map);
+    put(Avatar.WOMAN, R.drawable.woman_normal_map);
+  }};
+
   public static EnumMap<ItemType, Integer> getImages() {
     return itemImageList;
   }
 
   public static EnumMap<ItemType, Integer> getMapImages() {
     return mapItemImageList;
+  }
+
+  public static EnumMap<Avatar, Integer> getAvatarImages() {
+    return avatarImageList;
   }
 
   public static Integer getChestImage() {
@@ -49,4 +59,6 @@ public class AndroidImageAssets {
   public static Integer getStoreImage() {
     return storeImage;
   }
+
+
 }

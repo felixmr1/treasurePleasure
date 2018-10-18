@@ -33,22 +33,18 @@ class CollectibleItems {
     this.mapConstraint = mapConstraint;
 
     for (int i = 0; i < nrCollectibles; i++) {
-      this.spawnRandomItem();
-      /* TODO
       try {
         this.spawnRandomItem();
       } catch (Exception e) {
         Log.w("CollectibleItems", "Could not spawn a item since its to close to other items");
       }
-      */
-
     }
   }
 
   /**
    * Spawns a random item within the current map constraints
    */
-  void spawnRandomItem()  {
+  void spawnRandomItem() throws Exception {
     int i = 0;
     int maxIterations = this.nrCollectibles * Data.getNrCollecteblesIncrementer();
     Location loc = getRandomLocationWithinBounds();
@@ -57,8 +53,7 @@ class CollectibleItems {
       loc = getRandomLocationWithinBounds();
     }
     if (i >= maxIterations) {
-      // TODO
-      //throw new Exception("Could not get a new location within borders after: " + maxIterations + " tries");
+      throw new Exception("Could not get a new location within borders after: " + maxIterations + " tries");
     }
     Item collectible = createRandomItem();
 

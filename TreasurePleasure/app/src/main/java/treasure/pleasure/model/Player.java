@@ -19,6 +19,7 @@ class Player {
   private Chest chest;
   private double dropBonus;
   private Store store;
+  private float score;
 
 
   Player(String username, Avatar avatar) {
@@ -81,10 +82,24 @@ class Player {
     backpack.add(i);
   }
 
-  void emptyBackpackToChest() throws Exception {
+  void emptyBackpackToChest() {
     List<Item> items = backpack.getAllItems();
-    chest.sell(items);
+    for (int i = 0; i < items.size(); i++) {
+      addScore((float) (items.get(i).getValue() * dropBonus));
+    }
     backpack.removeAll();
+  }
+
+  void emptyBackpack() {
+    backpack.removeAll();
+  }
+
+  void addScore(float newScorePoints) {
+    this.score += newScorePoints;
+  }
+
+  public Integer getScore() {
+    return Math.round(this.score);
   }
 
   boolean backpackIsFull() {

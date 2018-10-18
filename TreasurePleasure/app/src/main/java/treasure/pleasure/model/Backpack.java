@@ -49,13 +49,8 @@ class Backpack<T> {
   }
 
   void removeAll() {
-
-    System.out.println(nOfBusySlots);
-
     this.items = new ArrayList<>(0);
     nOfBusySlots = Data.getInitialNOfBusySlots();
-
-
   }
 
   List<T> getAllItems() {
