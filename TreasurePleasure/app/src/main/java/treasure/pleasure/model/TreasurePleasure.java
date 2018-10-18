@@ -204,4 +204,8 @@ public class TreasurePleasure {
     Chest playerChest = new Chest(chestLocation);
     return playerChest;
   }
+
+  public boolean isDebug() {
+    return Data.isDebug();
+  }
 }

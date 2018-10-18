@@ -12,6 +12,9 @@ import java.text.DecimalFormat;
  */
 public class Data {
 
+  // If set to true, it makes you "god". You can collect any item at any distance.
+  private static boolean debug = true;
+
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
   private static final LatLng southEast = new LatLng(57.684923, 11.984177);
@@ -34,7 +37,7 @@ public class Data {
   // CollectibleItems
   private static final int nrCollecteblesIncrementer = 10;
   private static final int itemValueIncrementer = 20;
-  private static final int nrOfCollecatbles = 500;
+  private static final int nrOfCollecatbles = 25;
 
   // Player
   private static final int backpackMaxSize = 10;
@@ -144,5 +147,9 @@ public class Data {
 
   public static int getNrOfCollectables() {
     return nrOfCollecatbles;
+  }
+
+  public static boolean isDebug() {
+    return debug;
   }
 }

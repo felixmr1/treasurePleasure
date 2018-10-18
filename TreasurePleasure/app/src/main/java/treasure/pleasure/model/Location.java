@@ -91,6 +91,7 @@ class Location {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
+    if (Data.isDebug()) return true;
     return distanceTo(incLat, incLong) <= interactionDistance;
   }
 
