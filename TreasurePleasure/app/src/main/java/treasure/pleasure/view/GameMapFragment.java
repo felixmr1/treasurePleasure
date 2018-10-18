@@ -165,8 +165,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     updateMyLocation();
     if (myCurrentLatLng == null) {
       // TODO this spawns us in the middle of the map
-      // return presenter.getDefualtPlayerLocation();
-      return myCurrentLatLng;
+      return presenter.getDefualtPlayerLocation();
     }
     return myCurrentLatLng;
   }
