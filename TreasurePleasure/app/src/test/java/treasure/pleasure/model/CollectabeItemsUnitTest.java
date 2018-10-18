@@ -50,6 +50,7 @@ public class CollectabeItemsUnitTest {
     }
     */
 
+    /*
     int sizeBefore = collectibleItems.getCollectibles().size();
     for (Location loc: collectibleItems.getCollectibles().keySet()) {
         try {
@@ -64,6 +65,7 @@ public class CollectabeItemsUnitTest {
 
     System.out.println(sizeBefore);
     System.out.println(sizeAfter);
+    */
     // TODO
     //assertTrue(sizeBefore == sizeAfter);
   }
