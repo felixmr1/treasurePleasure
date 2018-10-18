@@ -78,10 +78,20 @@ class Location {
    * @return True if distance is less or equal to max interaction Distance
    */
   boolean isCloseEnough(Location compareLocation) {
+    return this.isCloseEnough(compareLocation, this.maxInteractionDistance);
+  }
+
+  /**
+   * Calculates the distance between given location and returns true if they are within given
+   * Interaction Distance
+   *
+   * @return True if distance is less or equal to max interaction Distance
+   */
+  boolean isCloseEnough(Location compareLocation, double interactionDistance) {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
-    return distanceTo(incLat, incLong) <= this.maxInteractionDistance;
+    return distanceTo(incLat, incLong) <= interactionDistance;
   }
 
   /**
@@ -232,6 +242,10 @@ class Location {
 
   long getTimestamp() {
     return this.timestamp;
+  }
+
+  public double getMaxInteractionDistance() {
+    return maxInteractionDistance;
   }
 
   /**

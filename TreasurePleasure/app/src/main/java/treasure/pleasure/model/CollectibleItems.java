@@ -111,7 +111,7 @@ class CollectibleItems {
   Boolean isAvailableLocation(Location loc) {
     for (Location occupiedLoc : collectibles.keySet()
         ) {
-      if (occupiedLoc.isCloseEnough(loc)) {
+      if (occupiedLoc.isCloseEnough(loc, loc.getMaxInteractionDistance() * 4)) {
         return false;
       }
     }

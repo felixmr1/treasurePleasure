@@ -22,7 +22,7 @@ public class Data {
   ;
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 25;
+  private static double maxInteractionDistance = 30;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -32,9 +32,9 @@ public class Data {
   private static final int strokeColor = Color.BLACK;
 
   // CollectibleItems
-  private static final int nrCollecteblesIncrementer = 1000;
+  private static final int nrCollecteblesIncrementer = 10;
   private static final int itemValueIncrementer = 20;
-  private static final int nrOfCollecatbles = 15;
+  private static final int nrOfCollecatbles = 500;
 
   // Player
   private static final int backpackMaxSize = 10;
