@@ -240,6 +240,11 @@ public class TreasurePleasurePresenter {
     if (view.chestFragmentIsActive()) {view.closeChestFragment();}
   }
 
+  public void storeItemsButtonClicked() {
+    model.sellAllBackPackItems(username);
+    onBackpackUpdate();
+  }
+
   /**
    * TODO
    */
