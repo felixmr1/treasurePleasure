@@ -14,6 +14,7 @@
 9. Redovisning
 
 ## Links
+- SDD: https://docs.google.com/document/d/1mCN_0YYQ3tyLzMtvu72N_M3L_sUxsyj4U5FqamaCyrM/edit?usp=sharing
 - Course website: http://www.cse.chalmers.se/edu/course/tda367/
 - Trello: https://trello.com/b/1DMSwIxe/oopp
 - Slack: https://objektorienteradprog.slack.com/messages/CCMB3E9K9/
