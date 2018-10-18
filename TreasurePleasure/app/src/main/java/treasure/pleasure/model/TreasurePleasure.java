@@ -195,7 +195,7 @@ public class TreasurePleasure {
     }
   }
 
-  private Player getPlayer(String username) {
+  Player getPlayer(String username) {
     return players.get(username.toLowerCase());
   }
 
@@ -217,5 +217,20 @@ public class TreasurePleasure {
 
   public LatLng getDefualtPlayerLocation() {
     return new LatLng(Data.getPlayerDefaultLat(), Data.getPlayerDefaultLong());
+  }
+
+  public void sellAllBackPackItems(String username) {
+    Player player = getPlayer(username);
+    player.emptyBackpackToChest();
+  }
+
+  public Integer getPlayerScore(String username) {
+    Player player = getPlayer(username);
+    return player.getScore();
+  }
+
+  public void addItemToPlayer(String username, Item item) throws Exception {
+    Player player = getPlayer(username);
+    player.addToBackpack(item);
   }
 }

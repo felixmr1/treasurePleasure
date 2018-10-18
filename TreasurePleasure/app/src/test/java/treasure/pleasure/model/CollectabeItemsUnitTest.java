@@ -23,39 +23,31 @@ public class CollectabeItemsUnitTest {
   @Test
   public void spawnRandomItemTest() {
     int sizeBefore = collectibleItems.getCollectibles().size();
-    collectibleItems.spawnRandomItem();
-     /* TODO
     try {
       collectibleItems.spawnRandomItem();
     } catch (Exception e) {
-
+      assertTrue(e.getMessage(), false);
     }
-    */
 
     int sizeAfter = collectibleItems.getCollectibles().size();
 
-    // Size after add
     assertTrue(sizeAfter == 1 + sizeBefore);
   }
 
 
   @Test
   public void collectItem() {
-    collectibleItems.spawnRandomItem();
-    /* TODO
+    int sizeBefore = collectibleItems.getCollectibles().size();
     try {
       collectibleItems.spawnRandomItem();
     } catch (Exception e) {
-
+      assertTrue(e.getMessage(), false);
     }
-    */
 
-    /*
-    int sizeBefore = collectibleItems.getCollectibles().size();
     for (Location loc: collectibleItems.getCollectibles().keySet()) {
         try {
           Item item = collectibleItems.takeItem(loc);
-          System.out.println(item.getType());
+          break;
         } catch (Exception e) {
           System.out.println(e);
           assertTrue(e.getMessage(), false);
@@ -63,11 +55,8 @@ public class CollectabeItemsUnitTest {
     }
     int sizeAfter = collectibleItems.getCollectibles().size();
 
-    System.out.println(sizeBefore);
-    System.out.println(sizeAfter);
-    */
-    // TODO
-    //assertTrue(sizeBefore == sizeAfter);
+
+    assertTrue(sizeBefore == sizeAfter);
   }
 
   /*
