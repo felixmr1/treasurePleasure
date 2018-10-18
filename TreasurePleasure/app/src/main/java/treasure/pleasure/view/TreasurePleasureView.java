@@ -34,4 +34,5 @@ public interface TreasurePleasureView {
   void showChestFragment();
   boolean chestFragmentIsActive();
   void closeChestFragment();
+  void updateScore(Integer playerScore);
 }

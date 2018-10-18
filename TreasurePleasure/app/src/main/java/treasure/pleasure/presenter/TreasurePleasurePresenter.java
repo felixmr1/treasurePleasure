@@ -243,6 +243,7 @@ public class TreasurePleasurePresenter {
   public void storeItemsButtonClicked() {
     model.sellAllBackPackItems(username);
     onBackpackUpdate();
+    updateDisplayedScore();
   }
 
   /**
@@ -250,6 +251,10 @@ public class TreasurePleasurePresenter {
    */
   public void onStoreClick() {
     view.showToast("Store has been clicked");
+  }
+
+  public void updateDisplayedScore() {
+    view.updateScore(model.getPlayerScore(username));
   }
 
   public void changeUsername(String username) {

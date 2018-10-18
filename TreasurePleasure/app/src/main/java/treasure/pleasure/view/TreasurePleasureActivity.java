@@ -25,6 +25,7 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
 public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
 
   TreasurePleasurePresenter presenter;
+  TextView score;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         .findFragmentById(R.id.map);
     presenter = new TreasurePleasurePresenter(this, gameMapFragment);
     gameMapFragment.setPresenter(presenter);
+    score = (TextView) findViewById(R.id.score);
   }
 
   // Functions that the XML triggers (user-actions)
@@ -135,6 +137,11 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public void showToast(String string) {
     Toast.makeText(this, string,
         Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void updateScore(Integer playerScore) {
+    score.setText(playerScore.toString());
   }
 
 }
