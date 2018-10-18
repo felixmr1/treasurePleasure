@@ -75,6 +75,7 @@ public class TreasurePleasure {
 
     } else {
       Player player = new Player(username, avatar);
+
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()));
 
@@ -207,5 +208,14 @@ public class TreasurePleasure {
 
   public boolean isDebug() {
     return Data.isDebug();
+  }
+
+  // TODO: For now its hardcoded, if you update interactionDistance in location, UI wont know
+  public double getMaxInteractionDistance() {
+    return Data.getMaxInteractionDistance();
+  }
+
+  public LatLng getDefualtPlayerLocation() {
+    return new LatLng(Data.getPlayerDefaultLat(), Data.getPlayerDefaultLong());
   }
 }

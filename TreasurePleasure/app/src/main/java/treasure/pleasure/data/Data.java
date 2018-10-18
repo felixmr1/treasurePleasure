@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
-  private static boolean debug = true;
+  private static boolean debug = false;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
@@ -31,22 +31,24 @@ public class Data {
   private static final DecimalFormat dm = new DecimalFormat("##.#");
 
   // GameMap
-  private static final int fillColor = Color.argb(220, 0, 0, 0);
-  private static final int strokeColor = Color.BLACK;
+  private static final int fillColor = Color.argb(220, 100, 100, 100);
+  private static final int strokeColor = Color.argb(220, 200, 200, 200);
 
   // CollectibleItems
   private static final int nrCollecteblesIncrementer = 10;
   private static final int itemValueIncrementer = 20;
-  private static final int nrOfCollecatbles = 25;
+  private static final int nrOfCollecatbles = 15;
 
   // Player
-  private static final int backpackMaxSize = 10;
+  private static final int backpackMaxSize = 12;
   private static final int maxDropBonus = 1;
   private static final int dropBonus = 1;
-  private static double chestLat = 57.687630;
-  private static double chestLong = 11.978355;
-  private static double storeLat = 57.689168;
-  private static double storeLong = 11.974161;
+  private static double chestLat = southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
+  private static double chestLong = southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
+  private static double storeLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
+  private static double storeLong = northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
+  private static double playerDefaultLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 2;
+  private static double playerDefaultLong = northWest.longitude - (northWest.longitude - southEast.longitude) / 2;
 
 
   // Backpack
@@ -103,6 +105,14 @@ public class Data {
 
   public static double getStoreLong() {
     return storeLong;
+  }
+
+  public static double getPlayerDefaultLat() {
+    return playerDefaultLat;
+  }
+
+  public static double getPlayerDefaultLong() {
+    return playerDefaultLong;
   }
 
   public static int getBackpackMaxSize() {

@@ -3,8 +3,11 @@ package treasure.pleasure.view;
 import android.Manifest;
 import android.Manifest.permission;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -17,12 +20,15 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import treasure.pleasure.R;
+import treasure.pleasure.model.Avatar;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 
@@ -45,6 +51,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private LatLng myCurrentLatLng;
   private Marker myChest;
   private Marker myStore;
+  private int avatarPath;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -60,14 +67,36 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap.setOnMarkerClickListener(this);
     // position camera
     mMap.setMinZoomPreference(15.0f);
-    // TODO: GET CENTER OF MAP AND MOVE CAMERA THERE
-    //KLATTERLABBET for now
-    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(57.6874681, 11.9782412)));
+    mMap.moveCamera(CameraUpdateFactory.newLatLng(presenter.getDefualtPlayerLocation()));
     //fetches collectibles from model to be drawn on map.
     // TODO: PRESENTER SHOULD NOT BE CALLED?
     presenter.drawAllMapMarkers();
     setStyle();
     enableMyLocation();
+    setCustomUserMarker();
+  }
+
+  /**
+   * Disables the original map marker and adds a custom marker at the players location
+   */
+  private void setCustomUserMarker() {
+    // Sets the original position marker to false.
+    try {
+      mMap.setMyLocationEnabled(false);
+    } catch (SecurityException e) {
+      Log.w("LOCATION", e.getMessage());
+    }
+    updateMyLocation();
+    drawCustomUserMarker(getMyCurrentLatLng());
+
+    GoogleMap.OnMyLocationChangeListener locationListener = new GoogleMap.OnMyLocationChangeListener() {
+      @Override
+      public void onMyLocationChange(Location location) {
+
+        drawCustomUserMarker(new LatLng(location.getLatitude(), location.getLongitude()));
+      }
+    };
+    mMap.setOnMyLocationChangeListener(locationListener);
   }
 
   private void setStyle() {
@@ -137,7 +166,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
       return myCurrentLatLng;
     } else {
       //TODO return center of map, maybe exception
-      return new LatLng(57.6874681, 11.9782412);
+      return presenter.getDefualtPlayerLocation();
     }
   }
 
@@ -145,7 +174,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
     if (ActivityCompat.checkSelfPermission(getContext(), permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
-      //permission missing.
+      //permission missing.®
       showMissingPermissionToast();
       getLocationPermission();
     } else {
@@ -205,6 +234,14 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         Toast.LENGTH_SHORT).show();
   }
 
+  public void setPresenter(TreasurePleasurePresenter presenter) {
+    this.presenter = presenter;
+  }
+
+  public void clearMap() {
+    mMap.clear();
+  }
+
   /**
    * Draw marker on map.
    *
@@ -214,17 +251,17 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void drawMarker(LatLng latLng, int imagePath) {
     MarkerOptions marker = new MarkerOptions()
         .position(latLng)
+        .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(imagePath));
 
     mMap.addMarker(marker);
   }
 
-  public void setPresenter(TreasurePleasurePresenter presenter) {
-    this.presenter = presenter;
-  }
-
-  public void clearMap() {
-    mMap.clear();
+  public void drawCustomUserMarker (LatLng currentPosition) {
+    mMap.addMarker(new MarkerOptions()
+        .position(currentPosition)
+        .anchor(0.5f, 0.5f)
+        .icon(BitmapDescriptorFactory.fromResource(avatarPath)));
   }
 
   public void drawPolygon() {
@@ -234,12 +271,41 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   public void drawChest(LatLng latLng, int imagePath) {
     myChest = mMap.addMarker(new MarkerOptions()
         .position(latLng)
+        .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(imagePath)));
   }
 
   public void drawStore(LatLng latLng, int imagePath) {
     myStore = mMap.addMarker(new MarkerOptions()
         .position(latLng)
+        .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(imagePath)));
+  }
+
+  public void setAvatarPath(int avatarPath) {
+    this.avatarPath = avatarPath;
+  }
+
+  /**
+   * Draws a circle with given radius around given location. If timeout > 0 it will remove the circle after given milliseconds
+   * @param radius Radius of the circle in meters
+   * @param timeout Timeout in milliseconds
+   */
+  public void drawInteractionCircle(LatLng location, double radius, long timeout) {
+    final Circle circle = this.mMap.addCircle(new CircleOptions()
+        .center(location)
+        .radius(radius)
+        .strokeWidth(2)
+        .strokeColor(Color.argb(250, 100, 100, 100))
+        .fillColor(Color.argb(160, 200, 200, 200)));
+
+    Handler handler = new Handler();
+    handler.postDelayed(new Runnable()
+    {
+      @Override
+      public void run() {
+       circle.remove();
+      }
+    }, timeout);
   }
 }

@@ -35,7 +35,7 @@ public class TreasurePleasurePresenter {
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
   private String username = "Donald";
-  private Avatar avatar = Avatar.MAN;
+  private Avatar avatar = Avatar.WOMAN;
 
   public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
 
@@ -46,6 +46,7 @@ public class TreasurePleasurePresenter {
     this.model = new TreasurePleasure();
     this.model.addPlayerToGame(this.username, this.avatar);
     this.gameMapView = gameMapFragment;
+    this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
   }
 
   public void createPlayer(String name) {
@@ -149,6 +150,7 @@ public class TreasurePleasurePresenter {
   public void redrawMap() {
     gameMapView.clearMap();
     gameMapView.drawPolygon();
+    gameMapView.drawCustomUserMarker(getMyCurrentLatLng());
     drawAllMapMarkers();
   }
 
@@ -206,7 +208,6 @@ public class TreasurePleasurePresenter {
    */
   public void attemptCollectAndRemove(Marker marker) {
     LatLng playerLatLng = getMyCurrentLatLng();
-
     //TODO Is exception really the right way to code and decode messages
     try {
       // Will throw error if backpack us full OR player is not close enough.
@@ -218,8 +219,9 @@ public class TreasurePleasurePresenter {
       drawCollectibles();
     } catch (Exception e) {
       view.showToast(e.getMessage());
+    } finally {
+      gameMapView.drawInteractionCircle(playerLatLng, model.getMaxInteractionDistance(), 1500);
     }
-
   }
 
   /**
@@ -244,5 +246,9 @@ public class TreasurePleasurePresenter {
     } catch (Exception e) {
       settingsView.setSubtitleText(e.getMessage());
     }
+  }
+
+  public LatLng getDefualtPlayerLocation() {
+    return model.getDefualtPlayerLocation();
   }
 }
