@@ -36,6 +36,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     presenter = new TreasurePleasurePresenter(this, gameMapFragment);
     gameMapFragment.setPresenter(presenter);
     score = (TextView) findViewById(R.id.score);
+    retrievePersistentData();
+  }
+
+  @Override
+  protected void onPause() {
+    savePersistentData();
+    super.onPause();
   }
 
   // Functions that the XML triggers (user-actions)
@@ -71,10 +78,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     backpackFragment.setPresenter(presenter);
   }
 
-  public void showChestFragment () {
+  public void showChestFragment() {
     ChestFragment chestFragment = new ChestFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.chest_container, chestFragment)
-            .commit();
+        .commit();
     chestFragment.setPresenter(presenter);
   }
 
@@ -142,6 +149,24 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   @Override
   public void updateScore(Integer playerScore) {
     score.setText(playerScore.toString());
+  }
+
+  //TODO get backpackContent, maybe collectibles
+  private void retrievePersistentData() {
+    getSavedHighScore();
+  }
+
+  private void getSavedHighScore() {
+    updateScore(presenter.getSavedHighscore(this));
+  }
+
+  //TODO save backpackContent, maybe collectibles
+  private void savePersistentData() {
+    saveHighscore();
+  }
+
+  private void saveHighscore() {
+    presenter.saveHighScore(this);
   }
 
 }

@@ -11,10 +11,9 @@ import treasure.pleasure.data.Data;
 import treasure.pleasure.data.Tuple;
 
 /**
- * Handles and redirects information.
- * Collaborates with player, location, backpack and collectibles to handle Collects.
- * Initiates players and collectibles.
- * This model is also responsible for translating the inner struction of our models to general types, I.E location to latLng
+ * Handles and redirects information. Collaborates with player, location, backpack and collectibles
+ * to handle Collects. Initiates players and collectibles. This model is also responsible for
+ * translating the inner struction of our models to general types, I.E location to latLng
  *
  * @author Oskar, John, Felix, Jesper
  */
@@ -77,7 +76,8 @@ public class TreasurePleasure {
       Player player = new Player(username, avatar);
 
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
-      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()), Data.getBackpackMaxSize(), Data.getNrOfCollectables(), Data.getMaxInteractionDistance());
+      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()),
+          Data.getBackpackMaxSize(), Data.getNrOfCollectables(), Data.getMaxInteractionDistance());
 
       players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
@@ -91,7 +91,8 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple               <               ItemTYpe               ,               Double>
+   * @return List<Tuple                                                                                                                               <                                                                                                                               ItemTYpe
+               *       ,                                                                                                                               Double>
    */
 
   // TODO: hardcoded player
@@ -233,4 +234,5 @@ public class TreasurePleasure {
     Player player = getPlayer(username);
     player.addToBackpack(item);
   }
+
 }

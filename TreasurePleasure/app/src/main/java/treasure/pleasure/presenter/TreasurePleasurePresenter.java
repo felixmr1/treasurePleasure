@@ -1,5 +1,6 @@
 package treasure.pleasure.presenter;
 
+import android.content.Context;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import treasure.pleasure.data.AndroidImageAssets;
+import treasure.pleasure.data.PersistentData;
 import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
@@ -18,8 +20,8 @@ import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 /**
- * The presenter handles calls between views and the model. It makes sure that we dont need
- * any logic in the views and translates information from the model to the view.
+ * The presenter handles calls between views and the model. It makes sure that we dont need any
+ * logic in the views and translates information from the model to the view.
  *
  * The presenter is also responsible for initiating the model
  *
@@ -238,7 +240,9 @@ public class TreasurePleasurePresenter {
   }
 
   public void closeChestButtonClicked() {
-    if (view.chestFragmentIsActive()) {view.closeChestFragment();}
+    if (view.chestFragmentIsActive()) {
+      view.closeChestFragment();
+    }
   }
 
   public void storeItemsButtonClicked() {
@@ -270,5 +274,13 @@ public class TreasurePleasurePresenter {
 
   public LatLng getDefualtPlayerLocation() {
     return model.getDefualtPlayerLocation();
+  }
+
+  public int getSavedHighscore(Context context) {
+    return PersistentData.getHighScore(context);
+  }
+
+  public void saveHighScore(Context context) {
+    PersistentData.saveHighScore(context, model.getPlayerScore(username));
   }
 }
