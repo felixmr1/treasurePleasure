@@ -98,13 +98,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     }
     updateMyLocation();
 
-    GoogleMap.OnMyLocationChangeListener locationListener = new GoogleMap.OnMyLocationChangeListener() {
+   /* GoogleMap.OnMyLocationChangeListener locationListener = new GoogleMap.OnMyLocationChangeListener() {
       @Override
       public void onMyLocationChange(Location location) {
         drawCustomUserMarker(new LatLng(location.getLatitude(), location.getLongitude()));
       }
     };
-    mMap.setOnMyLocationChangeListener(locationListener);
+    mMap.setOnMyLocationChangeListener(locationListener);*/
   }
 
   private void setStyle() {

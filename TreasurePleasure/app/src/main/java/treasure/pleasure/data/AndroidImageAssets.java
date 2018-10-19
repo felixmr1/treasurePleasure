@@ -40,6 +40,11 @@ public class AndroidImageAssets {
     put(Avatar.WOMAN, R.drawable.woman_normal_map);
   }};
 
+  private static final EnumMap<Avatar, Integer> avatarLargeImageList = new EnumMap<Avatar, Integer>(Avatar.class) {{
+    put(Avatar.MAN, R.drawable.man_hipster);
+    put(Avatar.WOMAN, R.drawable.woman_normal);
+  }};
+
   public static EnumMap<ItemType, Integer> getImages() {
     return itemImageList;
   }
@@ -50,6 +55,10 @@ public class AndroidImageAssets {
 
   public static EnumMap<Avatar, Integer> getAvatarImages() {
     return avatarImageList;
+  }
+
+  public static Integer getAvatar(Avatar av) {
+    return avatarLargeImageList.get(av);
   }
 
   public static Integer getChestImage() {

@@ -1,14 +1,22 @@
 package treasure.pleasure.view;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 import treasure.pleasure.R;
+import treasure.pleasure.model.Avatar;
+import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
@@ -40,6 +48,13 @@ public class SettingsFragment extends Fragment {
     return view;
   }
 
+  @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    setSubtitleText(mPresenter.getUsername());
+    setAvatar(mPresenter.getAvatar());
+  }
+
   public void setPresenter(TreasurePleasurePresenter presenter) {
     mPresenter = presenter;
     presenter.setSettingsView(this);
@@ -50,4 +65,8 @@ public class SettingsFragment extends Fragment {
     t.setText(text);
   }
 
+  public void setAvatar(int i) {
+    ImageView iv = (ImageView) this.getView().findViewById(R.id.imageView);
+    iv.setImageResource(i);
+  }
 }

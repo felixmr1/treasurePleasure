@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
@@ -56,7 +57,6 @@ public class ChestFragment extends Fragment {
      * @param presenter
      */
     public void setPresenter(TreasurePleasurePresenter presenter) {
-        mPresenter = presenter;
+        this.mPresenter = presenter;
     }
-
 }

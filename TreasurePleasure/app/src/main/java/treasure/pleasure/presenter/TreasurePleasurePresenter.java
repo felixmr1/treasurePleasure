@@ -15,6 +15,7 @@ import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
+import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.TreasurePleasureView;
@@ -36,6 +37,7 @@ public class TreasurePleasurePresenter {
   private TreasurePleasure model;
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
+  private ChestFragment chestView;
   private String username = "Donald";
   private Avatar avatar = Avatar.WOMAN;
 
@@ -70,6 +72,7 @@ public class TreasurePleasurePresenter {
     if (view.backpackFragmentIsActive()) {
       view.closeBackpackFragment();
       view.changeMapButtonText("Show backpack");
+      backpackView = null;
     } else {
       view.loadBackpackFragment(model);
       view.changeMapButtonText("Close backpack");
@@ -81,14 +84,37 @@ public class TreasurePleasurePresenter {
     if (view.settingsFragmentIsActive()) {
       view.hideSettingsFragment();
       view.changeSettingsButtonText("Settings");
+      settingsView = null;
     } else {
       view.showSettingsFragment();
       view.changeSettingsButtonText("Close");
     }
   }
 
+  public void onChestClick() {
+    if (view.chestFragmentIsActive()) {
+      view.closeChestFragment();
+    } else {
+      view.showChestFragment();
+    }
+    view.showToast("Chest has been clicked.");
+  }
+
+  /**
+   * Tells the Activity to close the Fragment and removes its reference to the Fragment
+   */
+  public void closeChestButtonClicked() {
+    if (view.chestFragmentIsActive()) {
+      view.closeChestFragment();
+    }
+  }
+
   public void setSettingsView(SettingsFragment view) {
     this.settingsView = view;
+  }
+
+  public void setChestView(ChestFragment view) {
+    this.chestView = view;
   }
 
   //----------------------backpack stuff------------------------------------
@@ -227,28 +253,18 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  /**
-   * TODO
-   */
-  public void onChestClick() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    } else {
-      view.showChestFragment();
-    }
-    view.showToast("Chest has been clicked.");
-  }
-
-  public void closeChestButtonClicked() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    }
-  }
-
   public void storeItemsButtonClicked() {
     model.sellAllBackPackItems(username);
     onBackpackUpdate();
     updateDisplayedScore();
+  }
+
+  public String getUsername() {
+    return this.username;
+  }
+
+  public int getAvatar() {
+    return AndroidImageAssets.getAvatar(this.avatar);
   }
 
   /**
