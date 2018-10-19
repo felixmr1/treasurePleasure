@@ -47,7 +47,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private FusedLocationProviderClient mFusedLocationClient;
   private GoogleMap mMap;
 
-  //TODO make persist between launches.
   private LatLng myCurrentLatLng;
   private Marker myChest;
   private Marker myStore;

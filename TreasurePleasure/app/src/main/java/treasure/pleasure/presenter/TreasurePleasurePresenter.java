@@ -227,16 +227,12 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  /**
-   * TODO
-   */
   public void onChestClick() {
     if (view.chestFragmentIsActive()) {
       view.closeChestFragment();
     } else {
       view.showChestFragment();
     }
-    view.showToast("Chest has been clicked.");
   }
 
   public void closeChestButtonClicked() {

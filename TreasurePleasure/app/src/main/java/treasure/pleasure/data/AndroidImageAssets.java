@@ -10,7 +10,7 @@ import treasure.pleasure.model.ItemType;
  *
  * @author David & Jonn
  */
-//TODO add images for different types of items
+
 public class AndroidImageAssets {
 
   private static final Integer chestImage = R.drawable.chest_map;
