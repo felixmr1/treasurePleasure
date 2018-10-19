@@ -5,7 +5,6 @@ import android.Manifest.permission;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -28,14 +27,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import treasure.pleasure.R;
-import treasure.pleasure.model.Avatar;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 
 /**
- * TODO
+ * Hold ability to paint view on our mapFragment. Is used for painting our custom markers and is
+ * called when they are clicked. This view holds "no logic", everything is dependent on the
+ * presenter. This view also handles location Updates (The only way in accordance to google maps
+ * API.)
  *
- * @author David, Felix and John
+ * @author David, Felix, Jesper and John
  */
 public class GameMapFragment extends SupportMapFragment implements OnMapReadyCallback,
     OnMarkerClickListener {
@@ -53,6 +54,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   private Marker myStore;
   private Marker myAvatar;
   private int avatarPath;
+  private Circle myInteractionDistance;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap.setOnMarkerClickListener(this);
     // position camera
     mMap.setMinZoomPreference(15.0f);
+    // Defaults to where the player is spawned
     mMap.moveCamera(CameraUpdateFactory.newLatLng(presenter.getDefualtPlayerLocation()));
     //fetches collectibles from model to be drawn on map.
     // TODO: PRESENTER SHOULD NOT BE CALLED?
@@ -78,7 +81,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * Disables the original map marker and adds a custom marker at the players location
+   * TODO implement custom function to remove built in needle
+   * TODO implement custon function to get positionUpdates
+   * Should disable the original map marker and add a
+   * custom function to catch user movement,
+   * however this is NOT yet implemented.
+   * For now, we draw our custom marker on user location update
+   * and keeps the original function
    */
   private void setCustomUserMarker() {
 
@@ -89,7 +98,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
       Log.w("LOCATION", e.getMessage());
     }
     updateMyLocation();
-    drawCustomUserMarker(getMyCurrentLatLng());
 
     GoogleMap.OnMyLocationChangeListener locationListener = new GoogleMap.OnMyLocationChangeListener() {
       @Override
@@ -119,7 +127,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
     } else if (mMap != null) {
       // Access to the location has been granted to the app.
-
       mMap.setMyLocationEnabled(true);
     }
   }
@@ -156,29 +163,31 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * attempt to update player location then return last known location. If no location is found,
-   * KLATTERLABBET is returned
+   * attempt to update player location then return last known location. If no location is found, The
+   * middle of the map is returned. This should not happen and is a bug.
    *
    * @return LatLng of last known location
    */
   public LatLng getMyCurrentLatLng() {
     updateMyLocation();
     if (myCurrentLatLng == null) {
-      // TODO this spawns us in the middle of the map
+      // todo: Find why this bug happens
+      Log.w("BUG", "GameMapFragment: Players location was null when pulling last know location");
       return presenter.getDefualtPlayerLocation();
     }
     return myCurrentLatLng;
   }
 
   private void updateMyLocation() {
-
+    // If we don't have permission, ask permission.
     if (ActivityCompat.checkSelfPermission(getContext(), permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       //permission missing.®
       showMissingPermissionToast();
       getLocationPermission();
     } else {
-      //permission granted
+      // Permission it granted, we use google maps api to get our last
+      // known location.
       mFusedLocationClient.getLastLocation()
           .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
             @Override
@@ -187,7 +196,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
               if (location != null) {
                 myCurrentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
               } else {
-                Log.w("GameMapFragment", "mFusedLocation returns null");
+                Log.w("BUG", "GameMapFragment: mFusedLocation returns null");
               }
             }
           });
@@ -202,7 +211,6 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    */
   @Override
   public boolean onMarkerClick(Marker marker) {
-
     if (marker.equals(myChest)) {
       presenter.onChestClick();
     } else if (marker.equals(myStore)) {
@@ -215,9 +223,16 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     return true;
   }
 
-  //Did not provide expected behaviour
+  //Was used before to remove Markers. However there
+  // seems to be a bug in google maps api and some markers
+  // references are lost. For now we clear the entire map
+  // to work around this bug.
   public void removeMarker(Marker marker) {
     marker.remove();
+  }
+
+  public void clearMap() {
+    mMap.clear();
   }
 
   @Override
@@ -238,8 +253,8 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     this.presenter = presenter;
   }
 
-  public void clearMap() {
-    mMap.clear();
+  public void setAvatarPath(int avatarPath) {
+    this.avatarPath = avatarPath;
   }
 
   /**
@@ -257,14 +272,21 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     mMap.addMarker(marker);
   }
 
-  public void drawCustomUserMarker (LatLng currentPosition) {
-    if (myAvatar != null) myAvatar.remove();
+  /**
+   * Draws the custom user marker (AVATAR) at a given location.
+   * @param currentPosition The position where the custom Marker is drawn.
+   */
+  public void drawCustomUserMarker(LatLng currentPosition) {
+    if (myAvatar != null) {
+      myAvatar.remove();
+    }
     myAvatar = mMap.addMarker(new MarkerOptions()
         .position(currentPosition)
         .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(avatarPath)));
   }
 
+  // This Polygon represents the grey area on the map
   public void drawPolygon() {
     mMap.addPolygon(presenter.getPolygon());
   }
@@ -283,17 +305,18 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         .icon(BitmapDescriptorFactory.fromResource(imagePath)));
   }
 
-  public void setAvatarPath(int avatarPath) {
-    this.avatarPath = avatarPath;
-  }
-
   /**
-   * Draws a circle with given radius around given location. If timeout > 0 it will remove the circle after given milliseconds
+   * Draws a circle with given radius around given location. If timeout > 0 it will remove the
+   * circle after given milliseconds
+   *
    * @param radius Radius of the circle in meters
    * @param timeout Timeout in milliseconds
    */
   public void drawInteractionCircle(LatLng location, double radius, long timeout) {
-    final Circle circle = this.mMap.addCircle(new CircleOptions()
+    if (myInteractionDistance != null) {
+      myInteractionDistance.remove();
+    }
+    myInteractionDistance = this.mMap.addCircle(new CircleOptions()
         .center(location)
         .radius(radius)
         .strokeWidth(2)
@@ -301,11 +324,13 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         .fillColor(Color.argb(160, 200, 200, 200)));
 
     Handler handler = new Handler();
-    handler.postDelayed(new Runnable()
-    {
+    handler.postDelayed(new Runnable() {
       @Override
       public void run() {
-       circle.remove();
+        if (myInteractionDistance != null) {
+          myInteractionDistance.remove();
+        }
+        myInteractionDistance = null;
       }
     }, timeout);
   }
