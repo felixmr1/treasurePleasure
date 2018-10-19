@@ -5,7 +5,8 @@
     android:id="@+id/fragment_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    android:background="#FFF"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/settingsHeader"
