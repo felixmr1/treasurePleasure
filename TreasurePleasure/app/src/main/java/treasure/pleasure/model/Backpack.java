@@ -12,7 +12,7 @@ import treasure.pleasure.data.Data;
  */
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-class Backpack<T extends Item> {
+class Backpack<T> {
 
   private List<T> items;
 
