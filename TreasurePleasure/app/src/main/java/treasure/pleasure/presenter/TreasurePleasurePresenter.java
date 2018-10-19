@@ -3,6 +3,8 @@ package treasure.pleasure.presenter;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
-public class TreasurePleasurePresenter {
+public class TreasurePleasurePresenter implements Serializable {
 
   DecimalFormat dm = new DecimalFormat("#.##");
 
@@ -35,28 +37,12 @@ public class TreasurePleasurePresenter {
       throw new IllegalArgumentException("gameMapFragment null");
     }
     this.view = view;
-    this.model = new TreasurePleasure();
+    this.model = TreasurePleasure.getInstance();
     this.model.addPlayerToGame(this.username,this.avatar);
     this.gameMapView = gameMapFragment;
   }
 
 
-  public void onSignup(){
-
-  }
-
-
-
-  public void createPlayer(String name) {
-    Avatar a;
-    if (new Random().nextBoolean()) {
-      a = Avatar.MAN;
-    } else {
-      a = Avatar.WOMAN;
-    }
-    model.addPlayerToGame(name, a);
-    view.updatePlayers(model.getPlayerNames());
-  }
 
   /**
    * Show or close backpack widget. Update button text accordingly.
@@ -111,7 +97,7 @@ public class TreasurePleasurePresenter {
   private List<Tuple<Integer, String>> backPackItemsToDisplay() {
     List<Tuple<Integer, String>> dataToView = new ArrayList();
 
-    for (Tuple<ItemType, Double> tuple : model.getBackPackContentForPlayer(username)) {
+    for (Tuple<ItemType, Double> tuple : model.getBackPackContentForPlayer(username.toLowerCase())) {
       ItemType itemType = tuple.getField1();
       Double score = tuple.getField2();
 

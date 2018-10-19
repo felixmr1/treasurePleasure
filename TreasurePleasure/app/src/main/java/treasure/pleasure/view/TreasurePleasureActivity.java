@@ -13,7 +13,7 @@ import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
-public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
+public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView, treasure.pleasure.view.View {
 
   TreasurePleasurePresenter presenter;
 

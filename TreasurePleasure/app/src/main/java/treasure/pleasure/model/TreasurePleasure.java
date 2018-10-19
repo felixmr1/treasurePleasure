@@ -3,7 +3,6 @@ package treasure.pleasure.model;
  * This is the god class. it does everything
  */
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -16,6 +15,9 @@ import treasure.pleasure.data.Data;
 import treasure.pleasure.data.Tuple;
 
 public class TreasurePleasure {
+
+  private static final TreasurePleasure instance = new TreasurePleasure();
+
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -32,7 +34,7 @@ public class TreasurePleasure {
 
   private treasure.pleasure.model.Map map;
 
-  public TreasurePleasure() {
+  private TreasurePleasure() {
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.items = new HashMap<>();
@@ -62,14 +64,27 @@ public class TreasurePleasure {
     return markers;
   }
 
-  public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
+
+  public void reset() {
+
+    this.players = new HashMap<>();
+    this.takenUsernames = new ArrayList<>();
+    this.items = new HashMap<>();
+    this.map = new treasure.pleasure.model.Map();
+    this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
+    this.collectableItems = new CollectableItems(availableItemTypes, map.getMapReal());
+
+  }
+
+  public void addPlayerToGame(String username,Avatar avatar) throws ArrayStoreException {
+
 
     if (takenUsernames.contains(username.toLowerCase())) {
       throw new ArrayStoreException();
 
     } else {
       players.put(username.toLowerCase(), new Player(username, avatar, Data.getBackpackMaxSize(),Data.getInitialBackpackLevel(),Data.getDropBonus()));
-      this.takenUsernames.add(username.toLowerCase());
+      takenUsernames.add(username.toLowerCase());
     }
   }
 
@@ -151,16 +166,12 @@ public class TreasurePleasure {
     Location playerLocation = new Location(playerLatLng);
     Location itemLocation = new Location(itemLatLng);
 
-    boolean backpackIsFull = player.backpackIsFull();
     boolean playerCloseEnoughToItem = playerLocation.isCloseEnough(itemLocation);
 
     //TODO exceptions is to catch and handle exceptions, i.e unexpected behaviour. It is not a tool to control the flow of the application.
-
-/*    if (!playerCloseEnoughToItem) {
+    if (!playerCloseEnoughToItem) {
       throw new Exception("Player is not close enough to interact with item");
     }
-
- */
 
     try {
       Item itemCollected = collectableItems.takeItem(itemLocation);
@@ -197,4 +208,12 @@ public class TreasurePleasure {
     Chest playerChest = new Chest(chestLocation);
     return playerChest;
   }
+
+  public static TreasurePleasure getInstance(){
+    return instance;
+  }
+
+
+
+
 }
