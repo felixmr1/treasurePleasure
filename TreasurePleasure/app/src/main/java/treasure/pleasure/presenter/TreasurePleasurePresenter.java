@@ -276,8 +276,10 @@ public class TreasurePleasurePresenter {
     return model.getDefualtPlayerLocation();
   }
 
-  public int getSavedHighscore(Context context) {
-    return PersistentData.getHighScore(context);
+  public void getSavedHighscore(Context context) {
+    int score = PersistentData.getHighScore(context);
+    model.setScore(username, score);
+    updateDisplayedScore();
   }
 
   public void saveHighScore(Context context) {

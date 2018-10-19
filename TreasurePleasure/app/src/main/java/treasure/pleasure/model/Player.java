@@ -101,6 +101,8 @@ class Player {
     this.score += newScorePoints;
   }
 
+  void setScore(float score) {this.score = score;}
+
   public Integer getScore() {
     return Math.round(this.score);
   }

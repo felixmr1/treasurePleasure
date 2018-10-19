@@ -36,7 +36,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     presenter = new TreasurePleasurePresenter(this, gameMapFragment);
     gameMapFragment.setPresenter(presenter);
     score = (TextView) findViewById(R.id.score);
-    retrievePersistentData();
+    presenter.getSavedHighscore(this);
   }
 
   @Override
@@ -149,15 +149,6 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   @Override
   public void updateScore(Integer playerScore) {
     score.setText(playerScore.toString());
-  }
-
-  //TODO get backpackContent, maybe collectibles
-  private void retrievePersistentData() {
-    getSavedHighScore();
-  }
-
-  private void getSavedHighScore() {
-    updateScore(presenter.getSavedHighscore(this));
   }
 
   //TODO save backpackContent, maybe collectibles
