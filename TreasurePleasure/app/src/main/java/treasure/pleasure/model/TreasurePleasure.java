@@ -21,7 +21,6 @@ public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
-  private Map<Location, Item> items;
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
@@ -37,7 +36,6 @@ public class TreasurePleasure {
   public TreasurePleasure() {
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
-    this.items = new HashMap<>();
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
 
