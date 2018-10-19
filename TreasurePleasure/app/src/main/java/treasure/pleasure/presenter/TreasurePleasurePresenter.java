@@ -309,7 +309,9 @@ public class TreasurePleasurePresenter {
     updateDisplayedScore();
   }
 
-  public void saveHighScore(Context context) {
+  //TODO save all relevant data. backpackContent, maybe collectibles
+  public void savePersistentData(Context context) {
     PersistentData.saveHighScore(context, model.getPlayerScore(username));
   }
+
 }

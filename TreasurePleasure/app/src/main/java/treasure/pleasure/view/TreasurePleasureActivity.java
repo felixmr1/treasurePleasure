@@ -171,13 +171,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     score.setText(playerScore.toString());
   }
 
-  //TODO save backpackContent, maybe collectibles
   private void savePersistentData() {
-    saveHighscore();
+    presenter.savePersistentData(this);
   }
-
-  private void saveHighscore() {
-    presenter.saveHighScore(this);
-  }
-
 }
