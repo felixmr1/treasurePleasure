@@ -250,6 +250,7 @@ public class TreasurePleasurePresenter {
     }
   }
 
+  //TODO add check that player is close enough to chest
   public void onChestClick() {
     if (view.chestFragmentIsActive()) {
       view.closeChestFragment();
@@ -279,7 +280,7 @@ public class TreasurePleasurePresenter {
   }
 
   /**
-   * TODO
+   * TODO implement shop functionality, add check that the player is close enough to store
    */
   public void onStoreClick() {
     view.showToast("Store has been clicked");
