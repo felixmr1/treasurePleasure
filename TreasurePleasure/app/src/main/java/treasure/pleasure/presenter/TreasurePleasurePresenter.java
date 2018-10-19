@@ -91,24 +91,6 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  public void onChestClick() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    } else {
-      view.showChestFragment();
-    }
-    view.showToast("Chest has been clicked.");
-  }
-
-  /**
-   * Tells the Activity to close the Fragment and removes its reference to the Fragment
-   */
-  public void closeChestButtonClicked() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    }
-  }
-
   public void setSettingsView(SettingsFragment view) {
     this.settingsView = view;
   }
@@ -253,8 +235,6 @@ public class TreasurePleasurePresenter {
     }
   }
 
-<<<<<<< HEAD
-=======
   public void onChestClick() {
     if (view.chestFragmentIsActive()) {
       view.closeChestFragment();
@@ -269,7 +249,6 @@ public class TreasurePleasurePresenter {
     }
   }
 
->>>>>>> d316c062f3b35060c61103157737753a28d48997
   public void storeItemsButtonClicked() {
     model.sellAllBackPackItems(username);
     onBackpackUpdate();
