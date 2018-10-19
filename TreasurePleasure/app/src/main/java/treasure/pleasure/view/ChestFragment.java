@@ -11,6 +11,11 @@ import android.widget.ImageButton;
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
+/**
+ * Creates a view fragment showing the Chest.
+ * @author David
+ */
+
 public class ChestFragment extends Fragment {
     TreasurePleasurePresenter mPresenter;
     private ImageButton btnClose;

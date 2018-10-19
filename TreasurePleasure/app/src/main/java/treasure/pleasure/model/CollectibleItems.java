@@ -67,7 +67,7 @@ class CollectibleItems {
     collectibles.put(loc, item);
   }
 
-  Item createRandomItem() {
+  private Item createRandomItem() {
     ItemType itemType;
     int r = (int) (Math.random() * 100) + 1;
     // TODO: MAKE THIS GENERAL SO WE CAN ADD A NEW ITEM TYPE AND THIS FUNCTION SHOULD WORK GIVEN ITS PARAM

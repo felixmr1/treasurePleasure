@@ -14,8 +14,14 @@ import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
- * TODO add a description
- * Creates a viewfragment showing the backpack.
+ * Creates a view fragment showing the backpack.
+ *
+ * Utilizes RecyclerView, an android implementation used to display a list of elements with scrolling.
+ * RecyclerView populates itself using views managed by a layout manager
+ * Employs the helper class BackpackRecyclerAdapter to provide views for the adapter.
+ *
+ * This is a standard android implementation, for details visit https://developer.android.com/reference/android/support/v7/widget/RecyclerView
+ *
  * @author David & John
  */
 public class BackpackFragment extends Fragment {

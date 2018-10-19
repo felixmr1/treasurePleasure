@@ -12,7 +12,7 @@ import treasure.pleasure.data.Data;
  */
 
 //TODO: write method for removing(Item), moveItem(index1,index2), 
-class Backpack<T> {
+class Backpack<T extends Item> {
 
   private List<T> items;
 
@@ -20,9 +20,9 @@ class Backpack<T> {
   private int maxSize;
   private int nOfBusySlots;
 
+
   Backpack(int maxSize) {
     this.items = new ArrayList<>(maxSize);
-
     this.backPackLevel = Data.getInitialBackpackLevel();
     this.maxSize = maxSize;
     this.nOfBusySlots = Data.getInitialNOfBusySlots();
@@ -38,6 +38,11 @@ class Backpack<T> {
     }
   }
 
+  /**
+   * adds item to backpack
+   * @param item item to be added
+   * @throws Exception if full
+   */
   void add(T item) throws Exception {
 
     if (nOfBusySlots < maxSize) {
@@ -48,6 +53,9 @@ class Backpack<T> {
     }
   }
 
+  /**
+   * clears backpack if content.
+   */
   void removeAll() {
     this.items = new ArrayList<>(0);
     nOfBusySlots = Data.getInitialNOfBusySlots();

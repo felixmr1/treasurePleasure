@@ -41,6 +41,8 @@ class GameMap {
         .fillColor(Data.getFillColor());
   }
 
+
+  //TODO : REMOVE ANDROID DEPENDENCY
   MarkerOptions addMarker(LatLng latLng) {
     MarkerOptions marker = new MarkerOptions()
         .position(latLng)
