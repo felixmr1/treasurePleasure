@@ -18,6 +18,7 @@ import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
+import treasure.pleasure.view.ShopFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 /**
@@ -38,6 +39,7 @@ public class TreasurePleasurePresenter {
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
   private ChestFragment chestView;
+  private ShopFragment shopView;
   private String username = "Donald";
   private Avatar avatar = Avatar.WOMAN;
 
@@ -91,12 +93,25 @@ public class TreasurePleasurePresenter {
     }
   }
 
+  public void showShop() {
+    if (view.shopFragmentIsActive()) {
+      view.hideShopFragment();
+      shopView = null;
+    } else {
+      view.showSettingsFragment();
+    }
+  }
+
   public void setSettingsView(SettingsFragment view) {
     this.settingsView = view;
   }
 
   public void setChestView(ChestFragment view) {
     this.chestView = view;
+  }
+
+  public void setShopView(ShopFragment view) {
+    this.shopView = view;
   }
 
   //----------------------backpack stuff------------------------------------

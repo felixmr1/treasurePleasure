@@ -54,6 +54,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     presenter.onPressShowBackpackButton();
   }
 
+  public void onPressShowShopButton(View view) {
+    presenter.showShop();
+  }
+
   // Functions that the Presenter calls (tells view to update)
   @Override
   public void updatePlayers(ArrayList<String> users) {
@@ -92,6 +96,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     settingsFragment.setPresenter(presenter);
   }
 
+  public void showShopFragment() {
+    ShopFragment shopFragment = new ShopFragment();
+    getSupportFragmentManager().beginTransaction().add(R.id.chest_container, shopFragment)
+            .commit();
+    shopFragment.setPresenter(presenter);
+  }
+
 
   public void closeBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
@@ -104,6 +115,11 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   public void hideSettingsFragment() {
+    FragmentManager fm = getSupportFragmentManager();
+    fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
+  }
+
+  public void hideShopFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
   }
@@ -122,6 +138,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   public boolean chestFragmentIsActive() {
+    return (getSupportFragmentManager().findFragmentById(R.id.chest_container) != null);
+  }
+
+  public boolean shopFragmentIsActive() {
     return (getSupportFragmentManager().findFragmentById(R.id.chest_container) != null);
   }
 
