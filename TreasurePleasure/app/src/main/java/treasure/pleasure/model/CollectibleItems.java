@@ -108,7 +108,8 @@ class CollectibleItems {
 
   // Todo: write test for this
   Boolean isAvailableLocation(Location loc) {
-    for (Location occupiedLoc : collectibles.keySet()
+    if (Data.isDebug()) return true;
+      for (Location occupiedLoc : collectibles.keySet()
         ) {
       if (occupiedLoc.isCloseEnough(loc, loc.getMaxInteractionDistance() * 4)) {
         return false;

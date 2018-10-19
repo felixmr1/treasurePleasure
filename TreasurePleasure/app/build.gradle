@@ -38,3 +38,16 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
 }
+
+task deleteJar(type: Delete) {
+    delete 'libs/jars/tp.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/packaged-classes/release/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'tp.jar')
+}
+
+createJar.dependsOn(deleteJar, build)

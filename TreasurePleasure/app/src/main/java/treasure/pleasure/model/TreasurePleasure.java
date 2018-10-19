@@ -188,11 +188,16 @@ public class TreasurePleasure {
    * @throws Exception if the username already exists
    */
   public void changeUsername(String oldUsername, String newUsername) throws Exception {
+    // TODO Update the user, if a user changes name he loses all his attributes
     if (this.takenUsernames.contains(newUsername.toLowerCase())) {
       throw new Exception("Username is taken");
     } else {
-      Avatar oldAvatar = this.getPlayer(oldUsername).getAvatar();
-      this.addPlayerToGame(newUsername, oldAvatar);
+      Player oldPlayer = this.getPlayer(oldUsername);
+      this.players.put(newUsername.toLowerCase(), oldPlayer);
+      this.takenUsernames.add(newUsername.toLowerCase());
+
+      this.takenUsernames.remove(oldUsername);
+      this.players.remove(oldUsername);
     }
   }
 

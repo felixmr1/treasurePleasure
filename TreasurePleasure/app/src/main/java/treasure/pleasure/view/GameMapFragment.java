@@ -29,7 +29,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
-
 /**
  * Hold ability to paint view on our mapFragment. Is used for painting our custom markers and is
  * called when they are clicked. This view holds "no logic", everything is dependent on the
@@ -316,6 +315,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
     if (myInteractionDistance != null) {
       myInteractionDistance.remove();
     }
+    // TODO, Should colors be hard coded or in Data?
     myInteractionDistance = this.mMap.addCircle(new CircleOptions()
         .center(location)
         .radius(radius)

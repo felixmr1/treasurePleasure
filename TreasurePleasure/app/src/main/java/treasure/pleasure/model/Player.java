@@ -100,6 +100,9 @@ class Player {
   void addScore(float newScorePoints) {
     this.score += newScorePoints;
   }
+  void removeScore(float newScorePoints) {
+    this.score -= newScorePoints;
+  }
 
   void setScore(float score) {this.score = score;}
 
