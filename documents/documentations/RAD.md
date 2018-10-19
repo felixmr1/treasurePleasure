@@ -53,44 +53,88 @@ The application can be used to encourage a group of people to become more active
 
 ### 2.1 Epics / User Stories
 
-**1. As a player I want to see a map pinpointing my location so that I get a sense of belonging in the game**
+**1.1 As a player I want to see a map pinpointing my location so that I get a sense of belonging in the game**
 
-    Implement Google Map that appears in application
+    A map should show a representation of the real world (streets, buildings and locations)
     Map is constrained to specific area
+    
+**1.2 As a player, I want objects to have a location; so that I know where to find them.**
 
-**2. As a player I want to have a choosable nick and an avatar so that I get a personalized experience**
+    Add location to Chest
+    Add location to Upgrade Center
+    Add hashmap with <item,location> in TreasurePleasure model
+    
+**1.3. As a player I want to see different items on the map so that I know what I can collect**
+
+    There is always a certain amount of items on the map
+    Items are spread out rather than clustered
+    Items has value and type
+    There are at least 3 items differing in appearance and value
+
+**2.1 As a player, I want to a backpack so that I can collect items and plan my walk.**
+    
+    The backpack holds an iteger representing maximum capacity (number of items).
+    Backpack has slots accordiing to capacity.
+    The backpack must display the contents
+    Backpack has a function to erase all items when called
+
+**2.2 As a player, I want to be able to pickup items that I'm near; because items are valuable to me.**
+
+    Have a function that can compare two distances
+    The item must be within reaching distance for the player to pick it up
+    Cannot add item to full backpack
+    If item is added to backpack, it must be removed from the map
+    if item is not added to backpack, it must remain on the map
+    When an item is removed from the map a new item appears
+    
+ **2.3 As a player, I want a storage chest, with unlimited capacity, to unload my backpack contents into. - So that I can save all my valuables**
+    
+    Chest has unlimited capacity
+    The chest can display the value of contained items
+    There must be a certain distance between the chest and the upgrade center
+    The player must be close to the chest to be able to use it
+    After function call: all items that were in the backpack must be in the chest.
+    The player should be notified somehow that the backpack has been emptied.
+    
+**3.1 As a player, I want to be able to improve my character with drop-bonuses. This will add a sense of progress to my game experience.**
+
+    Player has a attribute dropBonus.
+    When a collectable is picked up its value is multiplied and changed according to the dropBonus    
+    
+**3.2 As a player, I want to be able to visit a Shop, where I can spend items (or item value) in exchange for bonuses.**
+    
+    There must be a certain distance between the chest and the upgrade center
+    The shop appears on the map
+    When close enough player can interact with shop
+    Ability to choose items from backpack and trade them for drop bonus (e.g. dropbonus increases by 1/100*(value of item))
+  
+  
+**4.1 As a player I need a player class so that I can get a backpack, chest and upgrade center.**
+
+    Implement a class Player holding a Backpack, Chest and Upgrade Center
+    All calls on functions in Backpack, Chest and Upgrade Center goes through Player
+    
+**4.2 As a player I want to have a choosable nick and an avatar so that I get a personalized experience**
     
     Can choose nick and avatar on first time playing game
     Player cannot take already taken nick
     Can change nick and avatar when in game
     Information about current nick and avatar is available
 
-**3. As a player I want to see different items on the map so that I know what I can collect**
+### TODO/Not yet implemented
 
-    There is always a certain amount of items on the map
-    Items are spread out rather than clustered
-    Items has value and type
-    There are at least 3 items differing in appearance and value
+**5.1 As a new player I want the game to have seasons with certain duration so that a winner is determined and everything resets and gives equal opportunities to all.**
+
+    Implement a Class Season
+    Season has an attribute integer or Date that defines the length or end of a season
+
+**5.2 As a player I want to be able to see my and others current score to see how well I'm doing.**
     
-**4.As a player I want to pick up item that appears on the map and put them in my backpack**
+    Implement function returning the 5 players (in order) with highest value in their chest. (highscore)
+    
+**5.3 As a player I want to see the history of who has won previous season in case I am on that scoreboard.**
 
-    The player needs to be close enough to the item
-    Backpack has capacity, i.e. max number of items or max weight
-    If backpack is full then the item stays on the map
-    On pickup the item is removed from map and added to backpack
-    There is a backpack view where player can view its content
-
-**5. As a player I need a chest where I can empty my backpack and gain points in the game**
-
-    The chest appears on the map
-    When close enough to chest user can interact with it and empty the backpack
-    When emptying the sum of the content in backpack should be added to the chest as points
-
-**6. As a player I want to see a shop on the map where I can go so that I can trade items for better values on picked up items**
-
-    The shop appears on the map
-    When close enough player can interact with shop
-    Ability to choose items from backpack and trade them for drop bonus (e.g. dropbonus increases by 1/100*(value of item))
+    Implement function returning the current leader of the season (winner)
 
 
 ### 2.2 User interface
