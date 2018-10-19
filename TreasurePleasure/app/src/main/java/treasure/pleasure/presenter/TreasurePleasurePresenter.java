@@ -253,6 +253,23 @@ public class TreasurePleasurePresenter {
     }
   }
 
+<<<<<<< HEAD
+=======
+  public void onChestClick() {
+    if (view.chestFragmentIsActive()) {
+      view.closeChestFragment();
+    } else {
+      view.showChestFragment();
+    }
+  }
+
+  public void closeChestButtonClicked() {
+    if (view.chestFragmentIsActive()) {
+      view.closeChestFragment();
+    }
+  }
+
+>>>>>>> d316c062f3b35060c61103157737753a28d48997
   public void storeItemsButtonClicked() {
     model.sellAllBackPackItems(username);
     onBackpackUpdate();

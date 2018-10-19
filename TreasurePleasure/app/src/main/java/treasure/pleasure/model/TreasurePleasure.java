@@ -131,7 +131,6 @@ public class TreasurePleasure {
 
 
   //---------------------------item pickup--------------------------------------
-  //should check if item is close enough TODO might aswell move this functionality from Location to presenter?
   public boolean isCloseEnough(double playerLat, double playerLng, double itemLat, double itemLng) {
     Location playerLocation = new Location(playerLat, playerLng);
     Location itemLocation = new Location(itemLat, itemLng);
