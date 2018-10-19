@@ -225,6 +225,11 @@ public class TreasurePleasure {
     player.emptyBackpackToChest();
   }
 
+  public void setScore(String username, int score) {
+    Player player = getPlayer(username);
+    player.setScore(score);
+  }
+
   public Integer getPlayerScore(String username) {
     Player player = getPlayer(username);
     return player.getScore();
