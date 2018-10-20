@@ -98,7 +98,7 @@ public class TreasurePleasurePresenter {
       view.hideShopFragment();
       shopView = null;
     } else {
-      view.showSettingsFragment();
+      view.showShopFragment();
     }
   }
 
@@ -283,7 +283,7 @@ public class TreasurePleasurePresenter {
    * TODO implement shop functionality, add check that the player is close enough to store
    */
   public void onStoreClick() {
-    view.showToast("Store has been clicked");
+    showShop();
   }
 
   public void updateDisplayedScore() {
@@ -315,4 +315,14 @@ public class TreasurePleasurePresenter {
     PersistentData.saveHighScore(context, model.getPlayerScore(username));
   }
 
+  //SHOP------------- TODO just setting up
+  public void btn1Clicked (){
+    view.showToast("btn1 clicked");
+  }
+
+  public void btnCloseShopButtonClicked(){
+    view.showToast("close shop clicked.");
+  }
+
+  //-----------------
 }

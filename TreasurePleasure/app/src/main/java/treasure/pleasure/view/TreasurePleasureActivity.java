@@ -98,7 +98,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   public void showShopFragment() {
     ShopFragment shopFragment = new ShopFragment();
-    getSupportFragmentManager().beginTransaction().add(R.id.chest_container, shopFragment)
+    getSupportFragmentManager().beginTransaction().add(R.id.shop_container, shopFragment)
             .commit();
     shopFragment.setPresenter(presenter);
   }
@@ -121,7 +121,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   public void hideShopFragment() {
     FragmentManager fm = getSupportFragmentManager();
-    fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
+    fm.beginTransaction().remove(fm.findFragmentById(R.id.shop_container)).commit();
   }
 
   /**
@@ -142,7 +142,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   public boolean shopFragmentIsActive() {
-    return (getSupportFragmentManager().findFragmentById(R.id.chest_container) != null);
+    return (getSupportFragmentManager().findFragmentById(R.id.shop_container) != null);
   }
 
 

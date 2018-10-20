@@ -108,8 +108,25 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/shop_container"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginTop="32dp"
+      android:layout_marginBottom="24dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginEnd="24dp"
+      android:scaleType="centerInside"
+      app:layout_constraintBottom_toTopOf="@id/backpack_container"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+
 
 
 

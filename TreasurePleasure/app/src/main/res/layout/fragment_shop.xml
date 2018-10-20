@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_shop"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:clickable="true">
+
+    <ImageButton
+      android:id="@+id/close_shop_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      app:layout_constraintBottom_toTopOf="@id/store_img"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="packed"
+      app:srcCompat="@drawable/close_button"/>
+
+    <ImageView
+      android:id="@+id/store_img"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      app:layout_constraintBottom_toTopOf="@+id/bt1"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/close_shop_button"
+      app:srcCompat="@drawable/store"/>
+
+    <Button
+      android:id="@+id/bt1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      android:text="interactiondistance"
+      app:layout_constraintBottom_toTopOf="@+id/bt2"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.507"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/store_img"
+      app:layout_constraintVertical_bias="0.26"/>
+
+    <Button
+      android:id="@+id/bt2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      android:text="dropbonus"
+      app:layout_constraintBottom_toTopOf="@+id/bt3"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/bt1"/>
+
+    <Button
+      android:id="@+id/bt3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      android:text="backpack size"
+      app:layout_constraintBottom_toTopOf="@+id/bt4"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/bt2"/>
+
+    <Button
+      android:id="@+id/bt4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:layout_marginStart="32dp"
+      android:layout_marginEnd="32dp"
+      android:text="amountcollectibles"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/bt3"/>
+
+</android.support.constraint.ConstraintLayout>
