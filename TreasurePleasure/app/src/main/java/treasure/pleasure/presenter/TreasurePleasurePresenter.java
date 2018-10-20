@@ -106,7 +106,7 @@ public class TreasurePleasurePresenter {
   public void buyStoreProduct(StoreProductWrapper spw) {
     try {
       model.buyStoreProduct(this.username, spw);
-      view.showToast("Spend " + spw.getPrice() + " points to increase " + spw.getName() + ". New value is " + spw.getValue());
+      view.showToast("Spend " + spw.getPrice() + " points to " + spw.getName() + ". New value is " + spw.getValue());
       updateDisplayedScore();
       redrawMap();
       if (view.backpackFragmentIsActive()) {

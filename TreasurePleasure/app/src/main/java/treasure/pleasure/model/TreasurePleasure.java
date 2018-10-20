@@ -17,7 +17,7 @@ import treasure.pleasure.data.Tuple;
  * to handle Collects. Initiates players and collectibles. This model is also responsible for
  * translating the inner struction of our models to general types, I.E location to latLng
  *
- * @author Oskar, John, Felix, Jesper
+ * @author Oskar, John, Felix, Jesper and David
  */
 public class TreasurePleasure {
 
