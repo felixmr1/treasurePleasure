@@ -22,7 +22,7 @@ public interface TreasurePleasureView {
 
   // For shop fragment
   void showShopFragment();
-  void hideShopFragment();
+  void closeShopFragment();
   boolean shopFragmentIsActive();
 
   // For settings fragment
@@ -37,4 +37,6 @@ public interface TreasurePleasureView {
   boolean chestFragmentIsActive();
   void closeChestFragment();
   void updateScore(Integer playerScore);
+    // For shop fragment
+
 }

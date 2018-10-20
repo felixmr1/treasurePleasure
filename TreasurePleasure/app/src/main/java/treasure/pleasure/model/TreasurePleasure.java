@@ -131,11 +131,11 @@ public class TreasurePleasure {
 
 
   //---------------------------item pickup--------------------------------------
-  public boolean isCloseEnough(double playerLat, double playerLng, double itemLat, double itemLng) {
-    Location playerLocation = new Location(playerLat, playerLng);
-    Location itemLocation = new Location(itemLat, itemLng);
+  public boolean isCloseEnough(double aLat, double aLng, double bLat, double bLng) {
+    Location a = new Location(aLat, aLng);
+    Location b = new Location(bLat, bLng);
 
-    return (playerLocation.isCloseEnough(itemLocation));
+    return (a.isCloseEnough(b));
   }
 
   public boolean isBackpackFullForPlayer(String username) {
@@ -242,4 +242,14 @@ public class TreasurePleasure {
     player.addToBackpack(item);
   }
 
+  public boolean isChestCloseEnough(String username,
+      LatLng myCurrentLatLng) {
+    Location chestLocation = getPlayer(username).getChestLocation();
+    Location myLocation = latLngToLocation(myCurrentLatLng);
+    return myLocation.isCloseEnough(chestLocation);
+  }
+
+  private Location latLngToLocation(LatLng latLng) {
+    return new Location(latLng.latitude, latLng.longitude);
+  }
 }

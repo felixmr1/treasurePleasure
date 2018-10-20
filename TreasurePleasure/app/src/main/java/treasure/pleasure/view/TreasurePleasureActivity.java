@@ -119,7 +119,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
   }
 
-  public void hideShopFragment() {
+  public void closeShopFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.shop_container)).commit();
   }

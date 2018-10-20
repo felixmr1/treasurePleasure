@@ -95,7 +95,7 @@ public class TreasurePleasurePresenter {
 
   public void showShop() {
     if (view.shopFragmentIsActive()) {
-      view.hideShopFragment();
+      view.closeShopFragment();
       shopView = null;
     } else {
       view.showShopFragment();
@@ -250,13 +250,15 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  //TODO add check that player is close enough to chest
   public void onChestClick() {
     if (view.chestFragmentIsActive()) {
       view.closeChestFragment();
+    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+      view.showToast("Chest is not close enough");
     } else {
       view.showChestFragment();
     }
+
   }
 
   public void closeChestButtonClicked() {
@@ -315,9 +317,10 @@ public class TreasurePleasurePresenter {
     PersistentData.saveHighScore(context, model.getPlayerScore(username));
   }
 
-  //SHOP------------- TODO just setting up
+  //SHOP------------- TODO implement functionality
   public void btnCloseShopButtonClicked() {
-    view.showToast("close shop clicked.");
+    view.closeShopFragment();
+    this.shopView = null;
   }
 
   public void btnInteractionDistanceClicked() {
