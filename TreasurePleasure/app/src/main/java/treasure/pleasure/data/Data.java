@@ -3,6 +3,9 @@ package treasure.pleasure.data;
 import android.graphics.Color;
 import com.google.android.gms.maps.model.LatLng;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import treasure.pleasure.model.ProductType;
+import treasure.pleasure.model.StoreProduct;
 
 /**
  * Contains all the different model attributes that can be changed for a different player experience
@@ -50,6 +53,11 @@ public class Data {
   private static double playerDefaultLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 2;
   private static double playerDefaultLong = northWest.longitude - (northWest.longitude - southEast.longitude) / 2;
 
+
+  // Store
+  private ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>()  {{
+    add(new StoreProduct());
+  }};
 
   // Backpack
   private static final int initialBackpackLevel = 1;
@@ -160,5 +168,9 @@ public class Data {
 
   public static boolean isDebug() {
     return debug;
+  }
+
+  public ArrayList<StoreProduct> getStoreProducts() {
+    return storeProducts;
   }
 }
