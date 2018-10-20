@@ -3,10 +3,10 @@
 #### Purpose of the application:
 Excitement! Adventure! Treasure! This app will turn your dreary everyday stroll into an exciting adventure! The adventurous user is plunged into an exciting world where treasure is never far away. But be vigilant, else other shady characters may snatch your price from under your nose. Will you be the most famous adventurer in the land, achieving wealth and glory beyond imagination? Only the boldest user should apply. 
 
-Our hope is to encourage physical activity through an competitive and enjoyable gaming experience.
+Encourage physical activity through an competitive and enjoyable gaming experience.
 
 #### Who will it benefit:
-Extraordinary gentlemen of exquisite taste. We believe the game can benefit anyone who enjoys a casual gaming experience while at the same time being outdoors.
+Extraordinary gentlemen of exquisite taste. We believe the game can benefit anyone who enjoys a casual gaming experience while at the same time being outdoors. However the game will maybe mostly benefit those who aren't very physically active in their day to day life because of lack of motivation.
 
 #### General description:
 TreasurePleasure is a competitive mobile multiplayer game for Android devices. It will use the users phone GPS to locate him/her on a shared **map** where multiple **players** compete with each other by collecting the most **items**.
@@ -18,40 +18,40 @@ The application can be used to encourage a group of people to become more active
 
 ### 1.1 Wordlist
 
-- A **Avatar** is an image representing the player. A player has the oppurtunity to chose his avatar in game.
-
-- A **Backpack** is a local inventory that every player carries with them. Backpacks are unique to each player and can only carry a limited amount of items in them. When a players backpack is full the player has to empty it to his/hers tresure chest.
-
-- A **Chest** is stationary storage unit with unlimited size. A player has one unique treasure chest that the player choses where to place when first starting the game. When a player empty his/hers backpack into the treasure chest a total value is calculated and dispalyed.
-
-- **Collectables** are randomly spawned items on the map. Collectables can be interacted with by players, and collected if the player is close enough to the collectable. These items are shared for all players so the one that picks an item up first gets it, and the collectable is removed from the global map. There is always a certain amount of collectables available, when one is collected a new collectable is randomly spawned.
-
-- A **Collect**: is an event where a Player picks up Collectable on the Map and puts in his or her backpack. 
-
-- A **Drop Bonus**: Players experienced in the art of finding valuable collectables can achieve a drop bonus. Drop bonus increases the value of items found.
-
-- A **Item** is a valueble in the game. There are different items and each item has a value and a unique type/id. The type can for example be diamond, stone and gold.
-
-- A **Location**: is real world location, represented by coordinates in latitude and longitude.
-
 - The **Map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, stores and settings
 
 - A **Player** is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
 
-- A **Score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
+- **Collectables** are randomly spawned items on the map. Collectables can be interacted with by players, and collected if the player is close enough to the collectable. These items are shared for all players so the one that picks an item up first gets it, and the collectable is removed from the global map. There is always a certain amount of collectables available, when one is collected a new collectable is randomly spawned.
 
-- **Settings** - Here one can access the highscore or change name and avatar.
+- A **Item** is a valueble in the game. There are different items and each item has a value and a unique type/id. The type can for example be diamond, stone and gold.
+
+- A **Backpack** is a local inventory that every player carries with them. Backpacks are unique to each player and can only carry a limited amount of items in them. When a players backpack is full the player has to empty it to his/hers tresure chest.
+
+- A **Treasure Chest** is stationary storage unit with unlimited size. A player has one unique treasure chest that the player choses where to place when first starting the game. When a player empty his/hers backpack into the treasure chest a total value is calculated and dispalyed.
+
+- A **Avatar** is an image representing the player. A player has the oppurtunity to chose his avatar in game.
 
 - A **Store** is a way for the player to buy a higher value multiplier. The value multiplier increases the value of collected items from the map.
 
-#### Future implementations
+- A **Score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
+
 - **Season** is a limited duration that a player can collect items and increments his/hers score. The season is a global season for all players. The player with the highest indivdual score after a season has ended won.
+
+- A **Drop Bonus**: Players experienced in the art of finding valuable collectables can achieve a drop bonus. Drop bonus increases the value of items found.
+
+- A **Location**: is real world location, represented by coordinates in latitude and longitude.
+
+- A **Collect**: is an event where a Player picks up Collectable on the Map and puts in his or her backpack. 
+
+#### Future implementations
+- **Settings** - Here one can access the highscore or change name and avatar.
 - **Hall of Fame** - A list or high score of the best performing players.
 
 
 ## 2 Requirements
 
-### 2.1 User Stories
+### 2.1 Epics / User Stories
 
 **1.1 As a player I want to see a map pinpointing my location so that I get a sense of belonging in the game**
 
