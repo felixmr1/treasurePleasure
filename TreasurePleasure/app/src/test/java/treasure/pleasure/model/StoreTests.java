@@ -13,23 +13,27 @@ public class StoreTests {
   int defCollectibles;
   int defBackpackSize;
   double defInteractionDistance;
+  double defCollectibleValue;
 
   @Before
   public void initStore() {
     // TODO FOR NOW HERE, SHOULD BE IN MODEL
-    this.localPlayer = new Player("storetestuser", Avatar.WOMAN);
+    this.localPlayer = new Player("storetestuser", Avatar.WOMAN, Data.getPlayerValueIncrementer());
     localPlayer.setInteractionDistance(Data.getMaxInteractionDistance());
     localPlayer.setBackpackMaxSize(Data.getBackpackMaxSize());
     localPlayer.setNrOfCollectibles(Data.getNrOfCollectables());
+    localPlayer.setValueMultiplier(Data.getPlayerValueIncrementer());
     defCollectibles = localPlayer.getNrOfCollectibles();
     defBackpackSize = localPlayer.getBackpackMaxSize();
     defInteractionDistance = localPlayer.getInteractionDistance();
+    defCollectibleValue = localPlayer.getValueMultiplier();
     Location storeLocation = new Location(Data.getStoreLat(), Data.getStoreLong());
 
-    this.store = new Store(localPlayer, storeLocation);
+    this.store = new Store(storeLocation);
     this.store.setDefaultAmountOfCollectibles(defCollectibles);
     this.store.setDefaultBackpackSize(defBackpackSize);
     this.store.setDefaultInteractionDistance(defInteractionDistance);
+    this.store.setDefaultCollectiblesValue(defCollectibleValue);
   }
 
   @Test
@@ -111,6 +115,32 @@ public class StoreTests {
         int newPrice = store.getAmountOfCollectiblesPrice(localPlayer.getNrOfCollectibles());
 
         assertTrue(newNrCollectibles > oldNrCollectibles);
+        assertTrue(newPrice > oldPrice);
+      }
+
+    } catch (Exception e) {
+      System.out.println(e);
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  public void checkIfplayerMultiplierIncreaseAfterUpgrade() {
+    int totalScore = 100000;
+    this.localPlayer.setScore(totalScore);
+
+    double newValueMultiplier = 0;
+    try {
+      for (int i = 0; i < 10; i++) {
+        double oldValueMultiplier = localPlayer.getValueMultiplier();
+        int oldPrice = store.getIncreaseCollectiblesValue(localPlayer.getValueMultiplier());
+
+        newValueMultiplier = store.increaseCollectiblesValue(oldValueMultiplier, this.localPlayer.getScore());
+        localPlayer.setValueMultiplier(newValueMultiplier);
+
+        int newPrice = store.getIncreaseCollectiblesValue(localPlayer.getValueMultiplier());
+      
+        assertTrue(newValueMultiplier > oldValueMultiplier);
         assertTrue(newPrice > oldPrice);
       }
 

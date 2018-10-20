@@ -17,22 +17,21 @@ class Player {
   private Avatar avatar;
   private Backpack<Item> backpack;
   private Chest chest;
-  private double dropBonus;
+
+
+
+  private double valueMultiplier;
   private Store store;
   private float score;
   private double interactionDistance;
   private int nrOfCollectibles;
 
 
-  Player(String username, Avatar avatar) {
+  Player(String username, Avatar avatar, double defaultCollectiblesValue) {
     this.username = username;
     this.avatar = avatar;
-    this.dropBonus = Data.getDropBonus();
+    this.valueMultiplier = defaultCollectiblesValue;
     this.backpack = new Backpack<>(Data.getBackpackMaxSize());
-  }
-
-  void placeUpgradeCenter(Location location) {
-    this.store = new Store(this, location);
   }
 
   String getUsername() {
@@ -43,15 +42,20 @@ class Player {
     return this.avatar;
   }
 
-  double getDropBonus() {
-    return this.dropBonus;
+  public double getValueMultiplier() {
+    return valueMultiplier;
   }
 
-  void setStore(Location location, int defaultBackpackSize, int defaultAmountOfCollectibles, double defaultInteractionDistance) {
-    this.store = new Store(this, location);
+  public void setValueMultiplier(double valueMultiplier) {
+    this.valueMultiplier = valueMultiplier;
+  }
+
+  void setStore(Location location, int defaultBackpackSize, int defaultAmountOfCollectibles, double defaultInteractionDistance, double defaultCollectiblesValue) {
+    this.store = new Store(location);
     this.store.setDefaultBackpackSize(defaultBackpackSize);
     this.store.setDefaultAmountOfCollectibles(defaultAmountOfCollectibles);
     this.store.setDefaultInteractionDistance(defaultInteractionDistance);
+    this.store.setDefaultCollectiblesValue(defaultCollectiblesValue);
   }
 
   void setChest(Location location) {
@@ -75,14 +79,6 @@ class Player {
     this.avatar = avatar;
   }
 
-  void setDropBonus(double dropBonus) {
-    if (dropBonus < Data.getMaxDropBonus()) {
-      throw new IllegalArgumentException("Could not change dropbonus: Dropbonus should be > 1");
-    } else {
-      this.dropBonus = dropBonus;
-    }
-  }
-
   void addToBackpack(Item i) throws Exception {
     backpack.add(i);
   }
@@ -90,7 +86,7 @@ class Player {
   void emptyBackpackToChest() {
     List<Item> items = backpack.getAllItems();
     for (int i = 0; i < items.size(); i++) {
-      addScore((float) (items.get(i).getValue() * dropBonus));
+      addScore((float) (items.get(i).getValue() * this.valueMultiplier));
     }
     backpack.removeAll();
   }

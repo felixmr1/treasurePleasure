@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+import treasure.pleasure.data.Data;
 
 
 /**
@@ -19,7 +20,7 @@ public class PlayerTests {
     public void initPlayer() {
         username = "Britta";
         avatar = Avatar.WOMAN;
-        player = new Player(username, avatar);
+        player = new Player(username, avatar, Data.getPlayerValueIncrementer());
     }
 
     @Test
@@ -40,7 +41,7 @@ public class PlayerTests {
      */
     public void getDropBonus() {
         double delta = 0.001;
-        assertEquals(1, player.getDropBonus(), delta);
+        assertEquals(1, player.getValueMultiplier(), delta);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class PlayerTests {
     public void setDropBonus() {
         double newDropBonus = 2.0;
         double delta = 0.001;
-        player.setDropBonus(newDropBonus);
-        assertEquals(newDropBonus, player.getDropBonus(), delta);
+        player.setValueMultiplier(newDropBonus);
+        assertEquals(newDropBonus, player.getValueMultiplier(), delta);
     }
 }

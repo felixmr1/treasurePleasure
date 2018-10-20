@@ -9,24 +9,17 @@ import treasure.pleasure.data.Data;
  * @author Oskar
  */
 public class Store {
-
   private Location location;
-  Player belongsTo;
   int dropBonusIncrement;
   int defaultBackpackSize = 0;
   int defaultAmountOfCollectibles = 0;
+  double defaultCollectiblesValue = 0;
   double defaultInteractionDistance = 0;
 
 
-  Store(Player player, Location location) {
-    //TODO hardcoded for now
+  Store(Location location) {
     this.location = location;
-    this.belongsTo = player;
     this.dropBonusIncrement = Data.getDropBonusIncrementer();
-  }
-
-  void upgradeDropBonus(Item i) {
-    belongsTo.setDropBonus(belongsTo.getDropBonus() + dropBonusIncrement);
   }
 
   public Location getLocation() {
@@ -85,15 +78,33 @@ public class Store {
     return newDistance;
   }
 
-  public void setDefaultBackpackSize(int defaultBackpackSize) {
+  int getIncreaseCollectiblesValue(double currentValueMultiplier) {
+    float defaultPrice = 35;
+    float increaseFactor = 0.004f;
+    float difference = ((float) currentValueMultiplier - (float) this.defaultCollectiblesValue) * 100f;
+
+    return Math.round(defaultPrice * increaseFactor * difference * difference);
+  }
+
+  double increaseCollectiblesValue(double currentValueMultiplier, int playerScore) throws Exception {
+    long price = getPlayerInteractionDistancePrice(currentValueMultiplier);
+    double newValueMultiplier = currentValueMultiplier * 1.1 + 0.05;
+    if (playerScore < price)  {
+      throw new Exception("Player does not have enough money");
+    }
+
+    return newValueMultiplier;
+  }
+
+  void setDefaultBackpackSize(int defaultBackpackSize) {
     this.defaultBackpackSize = defaultBackpackSize;
   }
 
-  public void setDefaultAmountOfCollectibles(int defaultAmountOfCollectibles) {
+  void setDefaultAmountOfCollectibles(int defaultAmountOfCollectibles) {
     this.defaultAmountOfCollectibles = defaultAmountOfCollectibles;
   }
 
-  public void setDefaultInteractionDistance(double defaultInteractionDistance) {
+  void setDefaultInteractionDistance(double defaultInteractionDistance) {
     this.defaultInteractionDistance = defaultInteractionDistance;
   }
   /*
@@ -103,4 +114,8 @@ public class Store {
   }
   */
 
+
+  void setDefaultCollectiblesValue(double defaultCollectiblesValue) {
+    this.defaultCollectiblesValue = defaultCollectiblesValue;
+  }
 }

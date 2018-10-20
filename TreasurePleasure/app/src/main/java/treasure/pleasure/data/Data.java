@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
-  private static boolean debug = false;
+  private static boolean debug = true;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
@@ -42,7 +42,7 @@ public class Data {
   // Player
   private static final int backpackMaxSize = 12;
   private static final int maxDropBonus = 1;
-  private static final int dropBonus = 1;
+  private static final double playerValueIncrementer = 1;
   private static double chestLat = southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
   private static double chestLong = southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
   private static double storeLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
@@ -78,8 +78,8 @@ public class Data {
     return dropBonusIncrementer;
   }
 
-  public static int getDropBonus() {
-    return dropBonus;
+  public static double getPlayerValueIncrementer() {
+    return playerValueIncrementer;
   }
 
   public static int getMaxDropBonus() {

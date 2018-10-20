@@ -24,11 +24,11 @@ public class TreasurePleasure {
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
-    add(ItemType.DIAMOND);
-    add(ItemType.GOLD);
-    add(ItemType.IRON);
-    add(ItemType.STONE);
     add(ItemType.WOOD);
+    add(ItemType.STONE);
+    add(ItemType.IRON);
+    add(ItemType.GOLD);
+    add(ItemType.DIAMOND);
   }};
 
   private ArrayList<ProductType> availableProducts = new ArrayList<ProductType>() {{
@@ -83,11 +83,12 @@ public class TreasurePleasure {
       throw new ArrayStoreException();
 
     } else {
-      Player player = new Player(username, avatar);
+      Player player = new Player(username, avatar, Data.getPlayerValueIncrementer());
 
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()),
-          Data.getBackpackMaxSize(), Data.getNrOfCollectables(), Data.getMaxInteractionDistance());
+          Data.getBackpackMaxSize(), Data.getNrOfCollectables(),
+          Data.getMaxInteractionDistance(), Data.getPlayerValueIncrementer());
 
       players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
