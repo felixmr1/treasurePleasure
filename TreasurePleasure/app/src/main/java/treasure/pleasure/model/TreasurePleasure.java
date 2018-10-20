@@ -1,5 +1,7 @@
 package treasure.pleasure.model;
 
+import android.util.Log;
+import android.widget.Switch;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -25,7 +27,6 @@ public class TreasurePleasure {
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = Data.getAvailableItemTypes();
-  private ArrayList<ProductType> availableProductTypes = Data.getAvailableProducts();
 
   private treasure.pleasure.model.Map map;
 
@@ -34,8 +35,7 @@ public class TreasurePleasure {
     this.takenUsernames = new ArrayList<>();
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
-    this.store = new Store(new Location(Data.getStoreLat(), Data.getStoreLong()),
-        availableProductTypes);
+    this.store = new Store(new Location(Data.getStoreLat(), Data.getStoreLong()));
 
     this.collectibleItems = new CollectibleItems(availableItemTypes, map.getMapReal());
   }
@@ -74,11 +74,10 @@ public class TreasurePleasure {
       throw new ArrayStoreException();
 
     } else {
-      Player player = new Player(username, avatar, Data.getPlayerValueIncrementer());
-
+      Player player = new Player(username, avatar, Data.getStoreProducts());
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
-
       players.put(username.toLowerCase(), player);
+      if (isDebug()) player.setScore(1000000);
       this.takenUsernames.add(username.toLowerCase());
     }
   }
@@ -202,13 +201,6 @@ public class TreasurePleasure {
     return players.get(username.toLowerCase());
   }
 
-  // Test function to check how git commits is shared
-  private Chest getPlayerChest(String username) {
-    Location chestLocation = new Location(map.getNorthWest());
-    Chest playerChest = new Chest(chestLocation);
-    return playerChest;
-  }
-
   public boolean isDebug() {
     return Data.isDebug();
   }
@@ -229,6 +221,7 @@ public class TreasurePleasure {
 
   public void setScore(String username, int score) {
     Player player = getPlayer(username);
+    if (isDebug()) score = 1000000;
     player.setScore(score);
   }
 
@@ -244,28 +237,72 @@ public class TreasurePleasure {
 
   public boolean isChestCloseEnough(String username,
       LatLng myCurrentLatLng) {
-    Location chestLocation = getPlayer(username).getChestLocation();
+    Player player = getPlayer(username);
+    Location chestLocation = player.getChestLocation();
     Location myLocation = latLngToLocation(myCurrentLatLng);
-    return myLocation.isCloseEnough(chestLocation);
+    double playerInteractionDistance = player.getInteractionDistance();
+    return myLocation.isCloseEnough(chestLocation, playerInteractionDistance);
   }
-/*
-  void purchaseStoreProduct(StoreProduct storeProduct, int score) {
-    switch (storeProduct.getProductType()) {
+
+  /**
+   *
+   * @param username
+   * @return
+   */
+  public ArrayList<StoreProductWrapper> getStoreProducts(String username) {
+    Player player = getPlayer(username);
+    ArrayList<StoreProduct> storeProducts = player.getStoreProducts();
+    ArrayList<StoreProductWrapper> storeProductWrappers = new ArrayList<>();
+    for (int i = 0; i < storeProducts.size(); i++) {
+      StoreProduct sp = storeProducts.get(i);
+      storeProductWrappers.add(new StoreProductWrapper(sp.getProductType(), sp.getName(), sp.getPrice(), sp.getValue(), sp.getDefaultValue()));
+    }
+    return storeProductWrappers;
+  }
+
+  /**
+   *
+   * @param username
+   * @param spw
+   * @throws Exception
+   */
+  public void buyStoreProduct(String username, StoreProductWrapper spw) throws Exception{
+    Player player = getPlayer(username);
+    StoreProduct sp = player.getStoreProduct(spw.getProductType());
+    int price = sp.getPrice();
+
+    try {
+      store.buy(sp, player.getScore());
+      player.removeScore((float) price);
+      updatePlayerAttribute(player, sp);
+    } catch (Exception e) {
+      throw new Exception(e.getMessage());
+    }
+  }
+
+  /**
+   *
+   * @param player
+   * @param sp
+   */
+  private void updatePlayerAttribute(Player player, StoreProduct sp) {
+    ProductType pt = sp.getProductType();
+    switch (pt) {
       case IncreaseBackPackSize:
-        store.increaseBackPackSize(storeProduct, score);
-        break;
-      case IncreaseInteractionDistance:
-        store.increaseInteractionDistance(storeProduct, score);
-        break;
-      case IncreaseNrCollectibles:
-        store.increaseNrCollectibles(storeProduct, score);
+        player.setBackpackMaxSize(Math.round(sp.getValue()));
         break;
       case IncreaseCollectiblesValue:
-        store.increaseCollectiblesValue(storeProduct, score);
+        player.setValueMultiplier(sp.getValue());
+        break;
+      case IncreaseNrCollectibles:
+        collectibleItems.setNrCollectibles(Math.round(sp.getValue()));
+        break;
+      case IncreaseInteractionDistance:
+        player.setInteractionDistance(sp.getValue());
         break;
     }
   }
-  */
+
   private Location latLngToLocation(LatLng latLng) {
     return new Location(latLng.latitude, latLng.longitude);
   }

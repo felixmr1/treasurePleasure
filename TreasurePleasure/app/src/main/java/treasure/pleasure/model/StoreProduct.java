@@ -1,20 +1,44 @@
 package treasure.pleasure.model;
 
+/**
+ *
+ * @author Jesper and Felix
+ */
+
 public class StoreProduct {
 
   private ProductType productType;
   private String name;
-  int value;
-  Integer avatar;
+  private int price;
+  private int defaultPrice;
+  private float value;
+  private final float defaultValue;
 
-  StoreProduct(ProductType productType, String name, int value, Integer avatar) {
+  private float priceIncrease;
+  private float incrementStep;
+
+
+
+  /**
+   * Creates a storeProduct.
+   * @param productType
+   * @param name Name that is showed to the customer
+   * @param price Price for the product
+   * @param value default value for the product
+   */
+  public StoreProduct(ProductType productType, String name, int price, float value) {
     this.productType = productType;
     this.name = name;
     this.value = value;
-    this.avatar = avatar;
+    this.defaultValue = value;
+
+    this.price = price;
+    this.defaultPrice = price;
+
+    this.incrementStep = 1;
+    this.priceIncrease = 1.25f;
   }
 
-  // Setters
   public void setProductType(ProductType product) {
     this.productType = product;
   }
@@ -23,16 +47,27 @@ public class StoreProduct {
     this.name = name;
   }
 
-  public void setValue(int value) {
-    this.value = value;
+  /**
+   * Sets a custom priceIncrease. Default is 5%
+   * @param priceIncrease
+   */
+  public void setPriceIncrease(float priceIncrease) {
+    this.priceIncrease = priceIncrease;
   }
 
-  public void setAvatar(Integer avatar) {
-    this.avatar = avatar;
+  public void setIncrementStep(float incrementStep) {
+    this.incrementStep = incrementStep;
+  }
+
+  public void setValue(float value) {
+    this.value = value;
+  }
+  public void setPrice(int price) {
+    this.price = price;
   }
 
   // Getters
-    public ProductType getProductType() {
+  public ProductType getProductType() {
     return productType;
   }
 
@@ -40,11 +75,23 @@ public class StoreProduct {
     return name;
   }
 
-  public int getValue() {
+  public float getValue() {
     return value;
   }
 
-  public Integer getAvatar() {
-    return avatar;
+  public int getPrice() {
+    return price;
+  }
+
+  public float getDefaultValue() {
+    return defaultValue;
+  }
+
+  public float getIncrementStep() {
+    return incrementStep;
+  }
+
+  public float getPriceIncrease() {
+    return priceIncrease;
   }
 }

@@ -119,6 +119,18 @@ class CollectibleItems {
     return this.nrCollectibles;
   }
 
+  void setNrCollectibles(int nrOfCollectibles) {
+    int oldCollectibles = this.nrCollectibles;
+    this.nrCollectibles = nrOfCollectibles;
+    for (int i = oldCollectibles; i < nrCollectibles; i++) {
+      try {
+        this.spawnRandomItem();
+      } catch (Exception e) {
+        Log.w("CollectibleItems", "Could not spawn a item since its to close to other items");
+      }
+    }
+  }
+
   public HashMap<Location, Item> getCollectibles() {
     return collectibles;
   }

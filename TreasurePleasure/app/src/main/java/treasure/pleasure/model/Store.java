@@ -1,52 +1,51 @@
 package treasure.pleasure.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import treasure.pleasure.data.Data;
-
 /**
  * Contains the logic for a players personal store.
  *
- * @author Oskar
+ * @author Jesper
  */
 public class Store {
   private Location location;
-  ArrayList<ProductType> productTypes;
 
-
-  Store(Location location, ArrayList<ProductType> productTypes) {
+  Store(Location location) {
     this.location = location;
-    this.productTypes = productTypes;
   }
 
   public Location getLocation() {
     return location;
   }
 
-  /*
-  int getBackPackSizePrice(int currentSize) {
-    float defaultPrice = 20;
-    float increaseFactor = 1.2f;
-    float difference = currentSize - this.defaultBackpackSize + 1;
-    return Math.round(defaultPrice * increaseFactor * difference * difference * 0.1f);
-  }
-
-  int increaseBackPackSize(int currentSize, int playerScore) throws Exception {
-    int price = getBackPackSizePrice(currentSize);
-    int newSize = currentSize + 3;
-    if (playerScore < price)  {
+  /**
+   * Increases storeProducts value and price if player has enough money.
+   * @param storeProduct
+   * @param money
+   * @throws Exception
+   */
+  void buy (StoreProduct storeProduct, int money)  throws Exception {
+    if (storeProduct.getPrice() > money)  {
       throw new Exception("Player does not have enough money");
     }
-    return newSize;
+    increaseProductValue(storeProduct);
+    increaseProductPrice(storeProduct);
   }
-  */
 
-  void purchase (StoreProduct storeProduct, int score)  throws Exception{
-    if (storeProduct.getValue() < score)  {
-      throw new Exception("Player does not have enough money");
-    }
-
+  private void increaseProductValue(StoreProduct sp){
+    sp.setValue(sp.getValue() + sp.getIncrementStep());
   }
+
+  private void increaseProductPrice(StoreProduct sp){
+    float productValue = sp.getValue();
+    float defaultValue = sp.getDefaultValue();
+    float priceIncrease = sp.getPriceIncrease();
+
+    float valueDifference = productValue - defaultValue;
+    int newPrice = sp.getPrice() + Math.round(valueDifference * valueDifference * priceIncrease);
+
+    sp.setPrice(newPrice);
+  }
+
+
 
 
 }

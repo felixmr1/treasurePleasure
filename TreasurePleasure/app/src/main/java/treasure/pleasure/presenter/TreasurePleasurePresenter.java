@@ -13,6 +13,7 @@ import treasure.pleasure.data.PersistentData;
 import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
+import treasure.pleasure.model.StoreProductWrapper;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
@@ -100,6 +101,21 @@ public class TreasurePleasurePresenter {
     } else {
       view.showStoreFragment();
     }
+  }
+
+  public void buyStoreProduct(StoreProductWrapper spw) {
+    try {
+      model.buyStoreProduct(this.username, spw);
+      view.showToast("Spend " + spw.getPrice() + " points to increase " + spw.getName() + ". New value is " + spw.getValue());
+      updateDisplayedScore();
+      redrawMap();
+      if (view.backpackFragmentIsActive()) {
+        retrieveAndDisplayContent();
+      }
+    } catch (Exception e) {
+      view.showToast(e.getMessage());
+    }
+
   }
 
   public void setSettingsView(SettingsFragment view) {
@@ -288,6 +304,10 @@ public class TreasurePleasurePresenter {
     showStore();
   }
 
+  public ArrayList<StoreProductWrapper> getStoreProducts() {
+    return model.getStoreProducts(this.username);
+  }
+
   public void updateDisplayedScore() {
     view.updateScore(model.getPlayerScore(username));
   }
@@ -315,6 +335,7 @@ public class TreasurePleasurePresenter {
   //TODO save all relevant data. backpackContent, maybe collectibles
   public void savePersistentData(Context context) {
     PersistentData.saveHighScore(context, model.getPlayerScore(username));
+    // PersistentData.saveStoreProducts(context, model.getPlayerStoreProducts(username));
   }
 
   //SHOP------------- TODO implement functionality

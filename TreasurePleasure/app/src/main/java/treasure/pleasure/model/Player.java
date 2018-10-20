@@ -1,5 +1,7 @@
 package treasure.pleasure.model;
 
+import android.util.Log;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,19 +21,20 @@ class Player {
   private Chest chest;
 
 
-
+  private ArrayList<StoreProduct> storeProducts;
   private double valueMultiplier;
-  private Store store;
   private float score;
   private double interactionDistance;
   private int nrOfCollectibles;
 
 
-  Player(String username, Avatar avatar, double defaultCollectiblesValue) {
+  Player(String username, Avatar avatar, ArrayList<StoreProduct> storeProducts) {
     this.username = username;
     this.avatar = avatar;
-    this.valueMultiplier = defaultCollectiblesValue;
     this.backpack = new Backpack<>(Data.getBackpackMaxSize());
+    this.storeProducts = storeProducts;
+    this.score = 0;
+    this.valueMultiplier = 1;
   }
 
   String getUsername() {
@@ -89,6 +92,8 @@ class Player {
 
   void addScore(float newScorePoints) {
     this.score += newScorePoints;
+    Log.w("STORE", "new money: " +newScorePoints);
+    Log.w("STORE", "Players money: " + this.score);
   }
   void removeScore(float newScorePoints) {
     this.score -= newScorePoints;
@@ -128,10 +133,6 @@ class Player {
     return chest.getLocation();
   }
 
-  Location getStoreLocation() {
-    return store.getLocation();
-  }
-
   public double getInteractionDistance() {
     return interactionDistance;
   }
@@ -146,6 +147,18 @@ class Player {
 
   public void setNrOfCollectibles(int nrOfCollectibles) {
     this.nrOfCollectibles = nrOfCollectibles;
+  }
+
+  public ArrayList<StoreProduct> getStoreProducts() {
+    return this.storeProducts;
+  }
+
+  public StoreProduct getStoreProduct(ProductType pt) {
+    for (int i = 0; i < this.storeProducts.size(); i++) {
+      StoreProduct sp = this.storeProducts.get(i);
+      if (sp.getProductType() == pt) return sp;
+    }
+    return null;
   }
 
 }

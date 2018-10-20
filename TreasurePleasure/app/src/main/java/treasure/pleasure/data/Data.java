@@ -47,12 +47,18 @@ public class Data {
   private static final int backpackMaxSize = 12;
   private static final int maxDropBonus = 1;
   private static final double playerValueIncrementer = 1;
-  private static double chestLat = southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
-  private static double chestLong = southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
-  private static double storeLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
-  private static double storeLong = northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
-  private static double playerDefaultLat = northWest.latitude - (northWest.latitude - southEast.latitude) / 2;
-  private static double playerDefaultLong = northWest.longitude - (northWest.longitude - southEast.longitude) / 2;
+  private static double chestLat =
+      southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
+  private static double chestLong =
+      southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
+  private static double storeLat =
+      northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
+  private static double storeLong =
+      northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
+  private static double playerDefaultLat =
+      northWest.latitude - (northWest.latitude - southEast.latitude) / 2;
+  private static double playerDefaultLong =
+      northWest.longitude - (northWest.longitude - southEast.longitude) / 2;
 
 
   private static ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
@@ -63,11 +69,26 @@ public class Data {
     add(ItemType.DIAMOND);
   }};
 
-  private static ArrayList<ProductType> availableProducts = new ArrayList<ProductType>() {{
-    add(ProductType.IncreaseBackPackSize);
-    add(ProductType.IncreaseInteractionDistance);
-    add(ProductType.IncreaseNrCollectibles);
-    add(ProductType.IncreaseCollectiblesValue);
+  private static StoreProduct increaseBackPackSize = new StoreProduct(
+      ProductType.IncreaseBackPackSize, "Increase backpack size", 125, (float) backpackMaxSize);
+  private static StoreProduct increaseCollectiblesValue = new StoreProduct(
+      ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
+      (float) playerValueIncrementer);
+  private static StoreProduct increaseNrCollectibles = new StoreProduct(
+      ProductType.IncreaseNrCollectibles, "Increase items on the map", 400,
+      (float) nrOfCollecatbles);
+  private static StoreProduct increaseInteractionDistance = new StoreProduct(
+      ProductType.IncreaseInteractionDistance, "Increase your reach", 500,
+      (float) maxInteractionDistance);
+
+  private static ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>() {{
+    increaseCollectiblesValue.setIncrementStep(0.05f);
+    increaseCollectiblesValue.setPriceIncrease(50f);
+    increaseInteractionDistance.setPriceIncrease(1.5f);
+    add(increaseBackPackSize);
+    add(increaseCollectiblesValue);
+    add(increaseNrCollectibles);
+    add(increaseInteractionDistance);
   }};
 
   // Backpack
@@ -185,7 +206,11 @@ public class Data {
     return availableItemTypes;
   }
 
-  public static ArrayList<ProductType> getAvailableProducts() {
-    return availableProducts;
+  public static ArrayList<StoreProduct> getStoreProducts() {
+    ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
+    for (int i = 0; i < storeProducts.size(); i++) {
+      storeProductsCopied.add(storeProducts.get(i));
+    }
+    return storeProductsCopied;
   }
 }

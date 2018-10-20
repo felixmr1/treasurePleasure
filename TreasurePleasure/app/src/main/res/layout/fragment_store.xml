@@ -1,88 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_store"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/fragment_store"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#FFF"
+  android:clickable="true">
+
+  <ImageButton
+    android:id="@+id/close_store_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:layout_constraintBottom_toTopOf="@id/store_img"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_chainStyle="spread"
+    app:srcCompat="@drawable/close_button"/>
+
+  <ImageView
+    android:id="@+id/store_img"
+    android:layout_width="0dp"
+    android:layout_height="97dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/close_store_button"
+    app:srcCompat="@drawable/store"/>
+
+  <TableLayout
+    android:id="@+id/tableStore"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFF"
-    android:clickable="true">
+    android:layout_height="438dp"
+    android:padding="0dp"
+    android:stretchColumns="*"
+    app:layout_constraintTop_toBottomOf="@+id/store_img">
+  </TableLayout>
 
-    <ImageButton
-      android:id="@+id/close_store_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintBottom_toTopOf="@id/store_img"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_chainStyle="packed"
-      app:srcCompat="@drawable/close_button"/>
-
-    <ImageView
-      android:id="@+id/store_img"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
-      app:layout_constraintBottom_toTopOf="@+id/btn_interaction_distance"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/close_store_button"
-      app:srcCompat="@drawable/store"/>
-
-    <Button
-      android:id="@+id/btn_interaction_distance"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
-      android:text="interactiondistance"
-      app:layout_constraintBottom_toTopOf="@+id/btn_drop_bonus"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.507"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/store_img"
-      app:layout_constraintVertical_bias="0.26"/>
-
-    <Button
-      android:id="@+id/btn_drop_bonus"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
-      android:text="dropbonus"
-      app:layout_constraintBottom_toTopOf="@+id/btn_backpack_size"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_interaction_distance"/>
-
-    <Button
-      android:id="@+id/btn_backpack_size"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
-      android:text="backpack size"
-      app:layout_constraintBottom_toTopOf="@+id/btn_amount_collectibles"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_drop_bonus"/>
-
-    <Button
-      android:id="@+id/btn_amount_collectibles"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:layout_marginStart="32dp"
-      android:layout_marginEnd="32dp"
-      android:text="amountcollectibles"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_backpack_size"/>
 
 </android.support.constraint.ConstraintLayout>
