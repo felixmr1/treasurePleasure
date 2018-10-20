@@ -57,13 +57,9 @@ public class AndroidImageAssets {
     return avatarImageList;
   }
 
-<<<<<<< HEAD
-  public static Integer getAvatarImage(Avatar avatar) {
-    return avatarImageList.get(avatar);
-=======
-  public static Integer getAvatar(Avatar av) {
+
+  public static Integer getAvatarImage(Avatar av) {
     return avatarLargeImageList.get(av);
->>>>>>> babeee9bf411105b6194ce082197fec7cb2a010f
   }
 
   public static Integer getChestImage() {
