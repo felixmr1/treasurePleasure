@@ -33,33 +33,32 @@ public class Store {
   }
 
   int getBackPackSizePrice(int currentSize) {
-    float defaultPrice = 50;
-    float increaseFactor = 1.30f;
+    float defaultPrice = 20;
+    float increaseFactor = 1.2f;
     float difference = currentSize - this.defaultBackpackSize + 1;
-
-    return Math.round(defaultPrice * difference * increaseFactor);
+    return Math.round(defaultPrice * increaseFactor * difference * difference * 0.1f);
   }
 
   int increaseBackPackSize(int currentSize, int playerScore) throws Exception {
     int price = getBackPackSizePrice(currentSize);
     int newSize = currentSize + 3;
-    if (playerScore >= price)  {
+    if (playerScore < price)  {
       throw new Exception("Player does not have enough money");
     }
     return newSize;
   }
 
-  int getAmoutOfCollectiblesPrice(int currentAmount) {
-    float defaultPrice = 50;
-    float increaseFactor = 1.75f;
+  int getAmountOfCollectiblesPrice(int currentAmount) {
+    float defaultPrice = 110;
+    float increaseFactor = 0.35f;
     float difference = currentAmount - this.defaultAmountOfCollectibles + 1;
 
-    return Math.round(defaultPrice * difference * increaseFactor);
+    return Math.round(defaultPrice * increaseFactor * difference * difference);
   }
 
-  int increaseAmoutOfCollectibles(int defaultAmount, int playerScore) throws Exception {
-    int price = getAmoutOfCollectiblesPrice(defaultAmount);
-    int newAmount = defaultAmount + 1;
+  int increaseAmountOfCollectibles(int currentAmount, int playerScore) throws Exception {
+    int price = getAmountOfCollectiblesPrice(currentAmount);
+    int newAmount = currentAmount + 1;
     if (playerScore < price)  {
       throw new Exception("Player does not have enough money");
     }
@@ -67,17 +66,17 @@ public class Store {
     return newAmount;
   }
 
-  int getPlayerInteractionDistancePrice( int currentDistance) {
-    float defaultPrice = 50;
-    float increaseFactor = 2.5f;
-    float difference =  currentDistance - (float) this.defaultInteractionDistance + 1;
+  int getPlayerInteractionDistancePrice(double currentDistance) {
+    float defaultPrice = 100;
+    float increaseFactor = 0.08f;
+    float difference = (float) currentDistance - (float) this.defaultInteractionDistance + 1;
 
-    return Math.round(defaultPrice * difference * increaseFactor);
+    return Math.round(defaultPrice * increaseFactor * difference * difference);
   }
 
-  int increasePlayerInteractionDistance(int currentDistance, int playerScore) throws Exception {
-    int price = getPlayerInteractionDistancePrice(currentDistance);
-    int newDistance = currentDistance + 5;
+  double increasePlayerInteractionDistance(double currentDistance, int playerScore) throws Exception {
+    long price = getPlayerInteractionDistancePrice(currentDistance);
+    double newDistance = currentDistance + 3;
     if (playerScore < price)  {
       throw new Exception("Player does not have enough money");
     }

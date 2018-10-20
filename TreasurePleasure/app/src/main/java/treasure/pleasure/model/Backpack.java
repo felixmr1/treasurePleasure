@@ -93,5 +93,9 @@ class Backpack<T> {
     return this.maxSize;
   }
 
+  void setMaxSize(int maxSize) {
+    this.maxSize = maxSize;
+  }
+
 }
 

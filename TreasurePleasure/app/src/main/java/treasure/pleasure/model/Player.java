@@ -20,6 +20,8 @@ class Player {
   private double dropBonus;
   private Store store;
   private float score;
+  private double interactionDistance;
+  private int nrOfCollectibles;
 
 
   Player(String username, Avatar avatar) {
@@ -130,12 +132,32 @@ class Player {
     return this.backpack.getMaxSize();
   }
 
+  void setBackpackMaxSize(int backpackMaxSize) {
+    this.backpack.setMaxSize(backpackMaxSize);
+  }
+
   Location getChestLocation() {
     return chest.getLocation();
   }
 
   Location getStoreLocation() {
     return store.getLocation();
+  }
+
+  public double getInteractionDistance() {
+    return interactionDistance;
+  }
+
+  public void setInteractionDistance(double interactionDistance) {
+    this.interactionDistance = interactionDistance;
+  }
+
+  public int getNrOfCollectibles() {
+    return nrOfCollectibles;
+  }
+
+  public void setNrOfCollectibles(int nrOfCollectibles) {
+    this.nrOfCollectibles = nrOfCollectibles;
   }
 
 }
