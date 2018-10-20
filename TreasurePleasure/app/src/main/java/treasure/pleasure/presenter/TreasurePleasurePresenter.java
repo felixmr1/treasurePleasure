@@ -278,7 +278,7 @@ public class TreasurePleasurePresenter {
   }
 
   public int getAvatar() {
-    return AndroidImageAssets.getAvatar(this.avatar);
+    return AndroidImageAssets.getAvatarImage(this.avatar);
   }
 
   /**

@@ -24,11 +24,11 @@ public class TreasurePleasure {
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
-    add(ItemType.DIAMOND);
-    add(ItemType.GOLD);
-    add(ItemType.IRON);
-    add(ItemType.STONE);
     add(ItemType.WOOD);
+    add(ItemType.STONE);
+    add(ItemType.IRON);
+    add(ItemType.GOLD);
+    add(ItemType.DIAMOND);
   }};
 
   private treasure.pleasure.model.Map map;
@@ -55,7 +55,12 @@ public class TreasurePleasure {
   //Get all markers from model. Chest and store might as well have their own methods.
   public List<Tuple<ItemType, LatLng>> getMarkers() {
 
-    //TODO discuss android types in model, translations are needed everywhere LatLng and imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new Class type, Triple instead of Tuple. Or Tuple in Tuple.
+    /*
+      TODO discuss android types in model, translations are needed everywhere LatLng and
+      imagePath -> slow app & difficult to read code. Also not using LatLng here would require a new
+      Class type, Triple instead of Tuple. Or Tuple in Tuple.
+    */
+
     //get collectibles
     List<Tuple<ItemType, LatLng>> markers = new ArrayList<>();
     for (Map.Entry<Location, Item> entry : getCollectibleItems().getCollectibles().entrySet()) {
@@ -89,8 +94,7 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple                                                                                                                               <                                                                                                                               ItemTYpe
-               *       ,                                                                                                                               Double>
+   * @return List<Tuple<ItemTYpe, Double>>
    */
 
   // TODO: hardcoded player
