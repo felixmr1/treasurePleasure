@@ -145,7 +145,7 @@ The main view is a map where various objects are displayed. The user of the appl
 
 ## 3 Domain model
 //TODO update domain model.
-![Domain model](../diagrammes/DomainModel/domain3.0.png)
+![Domain model](../diagrammes/DomainModel/DomainModel4.png)
 
 ### 3.1 Class responsibilites
 //TODO update with the domain model.
