@@ -50,14 +50,6 @@ class Player {
     this.valueMultiplier = valueMultiplier;
   }
 
-  void setStore(Location location, int defaultBackpackSize, int defaultAmountOfCollectibles, double defaultInteractionDistance, double defaultCollectiblesValue) {
-    this.store = new Store(location);
-    this.store.setDefaultBackpackSize(defaultBackpackSize);
-    this.store.setDefaultAmountOfCollectibles(defaultAmountOfCollectibles);
-    this.store.setDefaultInteractionDistance(defaultInteractionDistance);
-    this.store.setDefaultCollectiblesValue(defaultCollectiblesValue);
-  }
-
   void setChest(Location location) {
     this.chest = new Chest(location);
   }

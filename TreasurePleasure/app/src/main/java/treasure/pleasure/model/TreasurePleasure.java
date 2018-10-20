@@ -24,20 +24,8 @@ public class TreasurePleasure {
   private Store store;
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
-  private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
-    add(ItemType.WOOD);
-    add(ItemType.STONE);
-    add(ItemType.IRON);
-    add(ItemType.GOLD);
-    add(ItemType.DIAMOND);
-  }};
-
-  private ArrayList<ProductType> availableProducts = new ArrayList<ProductType>() {{
-    add(ProductType.IncreaseBackPackSize);
-    add(ProductType.IncreaseInteractionDistance);
-    add(ProductType.IncreaseNrCollectibles);
-    add(ProductType.IncreaseCollectiblesValue);
-  }};
+  private ArrayList<ItemType> availableItemTypes = Data.getAvailableItemTypes();
+  private ArrayList<ProductType> availableProductTypes = Data.getAvailableProducts();
 
   private treasure.pleasure.model.Map map;
 
@@ -46,18 +34,20 @@ public class TreasurePleasure {
     this.takenUsernames = new ArrayList<>();
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
+    this.store = new Store(new Location(Data.getStoreLat(), Data.getStoreLong()),
+        availableProductTypes);
 
     this.collectibleItems = new CollectibleItems(availableItemTypes, map.getMapReal());
   }
 
   public LatLng getChestLocation(String username) {
-    Location backpackLocation = getPlayer(username).getChestLocation();
-    return new LatLng(backpackLocation.getLatitude(), backpackLocation.getLongitude());
+    Location chestLocation = getPlayer(username).getChestLocation();
+    return chestLocation.getLatLng();
   }
 
   public LatLng getStoreLocation(String username) {
-    Location storeLocation = getPlayer(username).getStoreLocation();
-    return new LatLng(storeLocation.getLatitude(), storeLocation.getLongitude());
+    Location storeLocation = store.getLocation();
+    return storeLocation.getLatLng();
   }
 
   //Get all markers from model. Chest and store might as well have their own methods.
@@ -87,9 +77,6 @@ public class TreasurePleasure {
       Player player = new Player(username, avatar, Data.getPlayerValueIncrementer());
 
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
-      player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()),
-          Data.getBackpackMaxSize(), Data.getNrOfCollectables(),
-          Data.getMaxInteractionDistance(), Data.getPlayerValueIncrementer());
 
       players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
@@ -261,7 +248,7 @@ public class TreasurePleasure {
     Location myLocation = latLngToLocation(myCurrentLatLng);
     return myLocation.isCloseEnough(chestLocation);
   }
-
+/*
   void purchaseStoreProduct(StoreProduct storeProduct, int score) {
     switch (storeProduct.getProductType()) {
       case IncreaseBackPackSize:
@@ -278,6 +265,7 @@ public class TreasurePleasure {
         break;
     }
   }
+  */
   private Location latLngToLocation(LatLng latLng) {
     return new Location(latLng.latitude, latLng.longitude);
   }

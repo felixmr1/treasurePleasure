@@ -11,17 +11,12 @@ import treasure.pleasure.data.Data;
  */
 public class Store {
   private Location location;
-  int dropBonusIncrement;
-  int defaultBackpackSize = 0;
-
-  ArrayList<StoreProduct> storeProducts;
+  ArrayList<ProductType> productTypes;
 
 
-  Store(Location location, ArrayList<StoreProduct> storeProducts) {
+  Store(Location location, ArrayList<ProductType> productTypes) {
     this.location = location;
-    this.dropBonusIncrement = Data.getDropBonusIncrementer();
-
-    this.storeProducts = storeProducts;
+    this.productTypes = productTypes;
   }
 
   public Location getLocation() {
@@ -46,26 +41,11 @@ public class Store {
   }
   */
 
+  void purchase (StoreProduct storeProduct, int score)  throws Exception{
+    if (storeProduct.getValue() < score)  {
+      throw new Exception("Player does not have enough money");
+    }
 
-  int increaseBackPackSize(StoreProduct storeProduct, int score) {
-    return 1;
-  }
-
-  int increaseInteractionDistance(StoreProduct storeProduct, int score) {
-    return 1;
-  }
-
-  int increaseNrCollectibles(StoreProduct storeProduct, int score) {
-    return 1;
-  }
-
-  double increaseCollectiblesValue(StoreProduct storeProduct, int score) {
-    return 1;
-  }
-
-
-  void updateStoreProductValue(StoreProduct product, int value) {
-    product.setValue(value);
   }
 
 

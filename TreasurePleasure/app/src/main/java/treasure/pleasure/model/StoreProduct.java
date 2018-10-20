@@ -32,7 +32,7 @@ public class StoreProduct {
   }
 
   // Getters
-  public ProductType getProductType() {
+    public ProductType getProductType() {
     return productType;
   }
 
