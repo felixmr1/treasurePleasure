@@ -1,5 +1,6 @@
 package treasure.pleasure.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import treasure.pleasure.data.Data;
 
@@ -12,20 +13,22 @@ public class Store {
   private Location location;
   int dropBonusIncrement;
   int defaultBackpackSize = 0;
-  int defaultAmountOfCollectibles = 0;
-  double defaultCollectiblesValue = 0;
-  double defaultInteractionDistance = 0;
+
+  ArrayList<StoreProduct> storeProducts;
 
 
-  Store(Location location) {
+  Store(Location location, ArrayList<StoreProduct> storeProducts) {
     this.location = location;
     this.dropBonusIncrement = Data.getDropBonusIncrementer();
+
+    this.storeProducts = storeProducts;
   }
 
   public Location getLocation() {
     return location;
   }
 
+  /*
   int getBackPackSizePrice(int currentSize) {
     float defaultPrice = 20;
     float increaseFactor = 1.2f;
@@ -41,81 +44,29 @@ public class Store {
     }
     return newSize;
   }
-
-  int getAmountOfCollectiblesPrice(int currentAmount) {
-    float defaultPrice = 110;
-    float increaseFactor = 0.35f;
-    float difference = currentAmount - this.defaultAmountOfCollectibles + 1;
-
-    return Math.round(defaultPrice * increaseFactor * difference * difference);
-  }
-
-  int increaseAmountOfCollectibles(int currentAmount, int playerScore) throws Exception {
-    int price = getAmountOfCollectiblesPrice(currentAmount);
-    int newAmount = currentAmount + 1;
-    if (playerScore < price)  {
-      throw new Exception("Player does not have enough money");
-    }
-
-    return newAmount;
-  }
-
-  int getPlayerInteractionDistancePrice(double currentDistance) {
-    float defaultPrice = 100;
-    float increaseFactor = 0.08f;
-    float difference = (float) currentDistance - (float) this.defaultInteractionDistance + 1;
-
-    return Math.round(defaultPrice * increaseFactor * difference * difference);
-  }
-
-  double increasePlayerInteractionDistance(double currentDistance, int playerScore) throws Exception {
-    long price = getPlayerInteractionDistancePrice(currentDistance);
-    double newDistance = currentDistance + 3;
-    if (playerScore < price)  {
-      throw new Exception("Player does not have enough money");
-    }
-
-    return newDistance;
-  }
-
-  int getIncreaseCollectiblesValue(double currentValueMultiplier) {
-    float defaultPrice = 35;
-    float increaseFactor = 0.004f;
-    float difference = ((float) currentValueMultiplier - (float) this.defaultCollectiblesValue) * 100f;
-
-    return Math.round(defaultPrice * increaseFactor * difference * difference);
-  }
-
-  double increaseCollectiblesValue(double currentValueMultiplier, int playerScore) throws Exception {
-    long price = getPlayerInteractionDistancePrice(currentValueMultiplier);
-    double newValueMultiplier = currentValueMultiplier * 1.1 + 0.05;
-    if (playerScore < price)  {
-      throw new Exception("Player does not have enough money");
-    }
-
-    return newValueMultiplier;
-  }
-
-  void setDefaultBackpackSize(int defaultBackpackSize) {
-    this.defaultBackpackSize = defaultBackpackSize;
-  }
-
-  void setDefaultAmountOfCollectibles(int defaultAmountOfCollectibles) {
-    this.defaultAmountOfCollectibles = defaultAmountOfCollectibles;
-  }
-
-  void setDefaultInteractionDistance(double defaultInteractionDistance) {
-    this.defaultInteractionDistance = defaultInteractionDistance;
-  }
-  /*
-  public int getProductValue(StoreProduct product) {
-    int value = product.getValue();
-    return value;
-  }
   */
 
 
-  void setDefaultCollectiblesValue(double defaultCollectiblesValue) {
-    this.defaultCollectiblesValue = defaultCollectiblesValue;
+  int increaseBackPackSize(StoreProduct storeProduct, int score) {
+    return 1;
   }
+
+  int increaseInteractionDistance(StoreProduct storeProduct, int score) {
+    return 1;
+  }
+
+  int increaseNrCollectibles(StoreProduct storeProduct, int score) {
+    return 1;
+  }
+
+  double increaseCollectiblesValue(StoreProduct storeProduct, int score) {
+    return 1;
+  }
+
+
+  void updateStoreProductValue(StoreProduct product, int value) {
+    product.setValue(value);
+  }
+
+
 }

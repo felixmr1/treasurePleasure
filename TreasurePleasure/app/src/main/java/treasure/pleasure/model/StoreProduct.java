@@ -2,34 +2,49 @@ package treasure.pleasure.model;
 
 public class StoreProduct {
 
-  private ProductType product;
+  private ProductType productType;
   private String name;
+  int value;
+  Integer avatar;
 
-
-  StoreProduct(ProductType product, String name) {
-    this.product = product;
+  StoreProduct(ProductType productType, String name, int value, Integer avatar) {
+    this.productType = productType;
     this.name = name;
-
+    this.value = value;
+    this.avatar = avatar;
   }
 
-  public void setProduct(ProductType product) {
-    this.product = product;
+  // Setters
+  public void setProductType(ProductType product) {
+    this.productType = product;
   }
 
   public void setName(String name) {
     this.name = name;
   }
 
-  public ProductType getProduct() {
-    return product;
+  public void setValue(int value) {
+    this.value = value;
+  }
+
+  public void setAvatar(Integer avatar) {
+    this.avatar = avatar;
+  }
+
+  // Getters
+  public ProductType getProductType() {
+    return productType;
   }
 
   public String getName() {
     return name;
   }
-/*
-  public int getValue(Player player) {
 
+  public int getValue() {
+    return value;
   }
-  */
+
+  public Integer getAvatar() {
+    return avatar;
+  }
 }

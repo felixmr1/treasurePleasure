@@ -21,6 +21,7 @@ public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
+  private Store store;
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
@@ -261,16 +262,22 @@ public class TreasurePleasure {
     return myLocation.isCloseEnough(chestLocation);
   }
 
-  public boolean canPlayerAfford(String username, StoreProduct product) {
-    Player player = getPlayer(username);
-    /* TODO
-    if (player.getScore() <) {
-
+  void purchaseStoreProduct(StoreProduct storeProduct, int score) {
+    switch (storeProduct.getProductType()) {
+      case IncreaseBackPackSize:
+        store.increaseBackPackSize(storeProduct, score);
+        break;
+      case IncreaseInteractionDistance:
+        store.increaseInteractionDistance(storeProduct, score);
+        break;
+      case IncreaseNrCollectibles:
+        store.increaseNrCollectibles(storeProduct, score);
+        break;
+      case IncreaseCollectiblesValue:
+        store.increaseCollectiblesValue(storeProduct, score);
+        break;
     }
-    */
-    return true;
   }
-
   private Location latLngToLocation(LatLng latLng) {
     return new Location(latLng.latitude, latLng.longitude);
   }
