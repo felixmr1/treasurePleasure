@@ -44,8 +44,6 @@ public class StoreTests {
     int totalScore = 100000;
     this.localPlayer.setScore(totalScore);
 
-    System.out.println("BACKPACK");
-
     try {
       for (int i = 0; i < 10; i++) {
         int newBackpackSize = 0;
@@ -66,8 +64,6 @@ public class StoreTests {
       assertTrue(false);
     }
 
-    System.out.println(" ");
-    System.out.println(" ");
   }
 
   @Test
@@ -75,7 +71,6 @@ public class StoreTests {
     int totalScore = 100000;
     this.localPlayer.setScore(totalScore);
 
-    System.out.println("InteractionDistance");
     double newInteractionDistance = 0;
 
     try {
@@ -103,8 +98,6 @@ public class StoreTests {
   public void checkIfNRCPriceIncreaseAfterUpgrade() {
     int totalScore = 100000;
     this.localPlayer.setScore(totalScore);
-
-    System.out.println("NrOfCollectibles");
 
     int newNrCollectibles = 0;
     try {

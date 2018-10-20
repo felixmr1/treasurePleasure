@@ -13,50 +13,45 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
  * Creates a view fragment showing the Chest.
+ *
  * @author David
  */
 
 public class ChestFragment extends Fragment {
-    TreasurePleasurePresenter mPresenter;
-    private ImageButton btnClose;
-    private Button btnStoreItems;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_chest, container, false);
+  TreasurePleasurePresenter mPresenter;
+  private ImageButton btnClose;
+  private Button btnStoreItems;
 
-        btnClose = (ImageButton) view.findViewById(R.id.close_button);
-        btnStoreItems = (Button) view.findViewById(R.id.store_items_button);
-        setupButtons();
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    final View view = inflater.inflate(R.layout.fragment_chest, container, false);
+    btnClose = (ImageButton) view.findViewById(R.id.close_chest_button);
+    btnStoreItems = (Button) view.findViewById(R.id.store_items_button);
+    setupButtons();
+    return view;
+  }
 
-        return view;
-    }
+  private void setupButtons() {
+    btnClose.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mPresenter.closeChestButtonClicked();
+      }
+    });
+    btnStoreItems.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mPresenter.storeItemsButtonClicked();
+      }
+    });
+  }
 
-    private void setupButtons() {
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.closeChestButtonClicked();
-            }
-        });
-
-        btnStoreItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.storeItemsButtonClicked();
-            }
-        });
-    }
-
-    /**
-     * Establish communication between TreasurePleasurePresenter and BackpackFragment
-     *
-     * @param presenter
-     */
-    public void setPresenter(TreasurePleasurePresenter presenter) {
-        mPresenter = presenter;
-    }
-
+  /**
+   * Establish communication between TreasurePleasurePresenter and BackpackFragment
+   */
+  public void setPresenter(TreasurePleasurePresenter presenter) {
+    this.mPresenter = presenter;
+  }
 }

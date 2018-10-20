@@ -20,13 +20,15 @@ public interface TreasurePleasureView {
 
   void showToast(String s);
 
+  // For store fragment
+  void showStoreFragment();
+  void hideStoreFragment();
+  boolean storeFragmentIsActive();
+
   // For settings fragment
   void showSettingsFragment();
-
   void hideSettingsFragment();
-
   boolean settingsFragmentIsActive();
-
   void changeSettingsButtonText(String s);
 
   // For chest fragment

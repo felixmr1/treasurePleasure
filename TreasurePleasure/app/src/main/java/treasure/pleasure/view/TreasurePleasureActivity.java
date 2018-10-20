@@ -54,6 +54,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     presenter.onPressShowBackpackButton();
   }
 
+  public void onPressShowStoreButton(View view) {
+    presenter.showStore();
+  }
+
   // Functions that the Presenter calls (tells view to update)
   @Override
   public void updatePlayers(ArrayList<String> users) {
@@ -92,6 +96,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     settingsFragment.setPresenter(presenter);
   }
 
+  public void showStoreFragment() {
+    StoreFragment storeFragment = new StoreFragment();
+    getSupportFragmentManager().beginTransaction().add(R.id.store_container, storeFragment)
+            .commit();
+    storeFragment.setPresenter(presenter);
+  }
+
 
   public void closeBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
@@ -106,6 +117,11 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   public void hideSettingsFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.settings_container)).commit();
+  }
+
+  public void hideStoreFragment() {
+    FragmentManager fm = getSupportFragmentManager();
+    fm.beginTransaction().remove(fm.findFragmentById(R.id.store_container)).commit();
   }
 
   /**
@@ -123,6 +139,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
 
   public boolean chestFragmentIsActive() {
     return (getSupportFragmentManager().findFragmentById(R.id.chest_container) != null);
+  }
+
+  public boolean storeFragmentIsActive() {
+    return (getSupportFragmentManager().findFragmentById(R.id.store_container) != null);
   }
 
 
@@ -151,13 +171,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     score.setText(playerScore.toString());
   }
 
-  //TODO save backpackContent, maybe collectibles
   private void savePersistentData() {
-    saveHighscore();
+    presenter.savePersistentData(this);
   }
-
-  private void saveHighscore() {
-    presenter.saveHighScore(this);
-  }
-
 }

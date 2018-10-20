@@ -15,8 +15,10 @@ import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
+import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
+import treasure.pleasure.view.StoreFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 /**
@@ -36,6 +38,8 @@ public class TreasurePleasurePresenter {
   private TreasurePleasure model;
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
+  private ChestFragment chestView;
+  private StoreFragment storeView;
   private String username = "Donald";
   private Avatar avatar = Avatar.WOMAN;
 
@@ -70,6 +74,7 @@ public class TreasurePleasurePresenter {
     if (view.backpackFragmentIsActive()) {
       view.closeBackpackFragment();
       view.changeMapButtonText("Show backpack");
+      backpackView = null;
     } else {
       view.loadBackpackFragment(model);
       view.changeMapButtonText("Close backpack");
@@ -81,14 +86,32 @@ public class TreasurePleasurePresenter {
     if (view.settingsFragmentIsActive()) {
       view.hideSettingsFragment();
       view.changeSettingsButtonText("Settings");
+      settingsView = null;
     } else {
       view.showSettingsFragment();
       view.changeSettingsButtonText("Close");
     }
   }
 
+  public void showStore() {
+    if (view.storeFragmentIsActive()) {
+      view.hideStoreFragment();
+      storeView = null;
+    } else {
+      view.showStoreFragment();
+    }
+  }
+
   public void setSettingsView(SettingsFragment view) {
     this.settingsView = view;
+  }
+
+  public void setChestView(ChestFragment view) {
+    this.chestView = view;
+  }
+
+  public void setStoreView(StoreFragment view) {
+    this.storeView = view;
   }
 
   //----------------------backpack stuff------------------------------------
@@ -230,9 +253,12 @@ public class TreasurePleasurePresenter {
   public void onChestClick() {
     if (view.chestFragmentIsActive()) {
       view.closeChestFragment();
+    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+      view.showToast("Chest is not close enough");
     } else {
       view.showChestFragment();
     }
+
   }
 
   public void closeChestButtonClicked() {
@@ -247,11 +273,19 @@ public class TreasurePleasurePresenter {
     updateDisplayedScore();
   }
 
+  public String getUsername() {
+    return this.username;
+  }
+
+  public int getAvatar() {
+    return AndroidImageAssets.getAvatar(this.avatar);
+  }
+
   /**
-   * TODO
+   * TODO implement store functionality, add check that the player is close enough to store
    */
   public void onStoreClick() {
-    view.showToast("Store has been clicked");
+    showStore();
   }
 
   public void updateDisplayedScore() {
@@ -278,7 +312,32 @@ public class TreasurePleasurePresenter {
     updateDisplayedScore();
   }
 
-  public void saveHighScore(Context context) {
+  //TODO save all relevant data. backpackContent, maybe collectibles
+  public void savePersistentData(Context context) {
     PersistentData.saveHighScore(context, model.getPlayerScore(username));
   }
+
+  //SHOP------------- TODO implement functionality
+  public void btnCloseStoreButtonClicked() {
+    view.hideStoreFragment();
+    this.storeView = null;
+  }
+
+  public void btnInteractionDistanceClicked() {
+    view.showToast("InteractionDistanceClicked clicked");
+  }
+
+  public void btnDropBonusClicked() {
+    view.showToast("drop bonus clicked.");
+  }
+
+  public void btnBackpackSizeClicked() {
+    view.showToast("backpack size clicked.");
+  }
+
+  public void btnAmountCollectiblesClicked() {
+    view.showToast("amount collectibles clicked.");
+  }
+
+  //-----------------
 }
