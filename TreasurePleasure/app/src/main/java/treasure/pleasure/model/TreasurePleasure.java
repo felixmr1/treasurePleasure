@@ -76,11 +76,12 @@ public class TreasurePleasure {
       throw new ArrayStoreException();
 
     } else {
-      Player player = new Player(username, avatar);
+      Player player = new Player(username, avatar, Data.getPlayerValueIncrementer());
 
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       player.setStore(new Location(Data.getStoreLat(), Data.getStoreLong()),
-          Data.getBackpackMaxSize(), Data.getNrOfCollectables(), Data.getMaxInteractionDistance());
+          Data.getBackpackMaxSize(), Data.getNrOfCollectables(),
+          Data.getMaxInteractionDistance(), Data.getPlayerValueIncrementer());
 
       players.put(username.toLowerCase(), player);
       this.takenUsernames.add(username.toLowerCase());
@@ -94,7 +95,7 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple<ItemTYpe, Double>>
+   * @return List<Tuple < ItemTYpe ,   Double>>
    */
 
   // TODO: hardcoded player
