@@ -24,11 +24,11 @@ public class TreasurePleasure {
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = new ArrayList<ItemType>() {{
-    add(ItemType.DIAMOND);
-    add(ItemType.GOLD);
-    add(ItemType.IRON);
-    add(ItemType.STONE);
     add(ItemType.WOOD);
+    add(ItemType.STONE);
+    add(ItemType.IRON);
+    add(ItemType.GOLD);
+    add(ItemType.DIAMOND);
   }};
 
   private treasure.pleasure.model.Map map;

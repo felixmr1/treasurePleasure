@@ -8,7 +8,6 @@ import treasure.pleasure.data.Data;
  * @author Oskar
  */
 public class Store {
-
   private Location location;
   Player belongsTo;
   int dropBonusIncrement;

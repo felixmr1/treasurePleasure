@@ -68,30 +68,7 @@ class CollectibleItems {
   }
 
   private Item createRandomItem() {
-    ItemType itemType;
-    int r = (int) (Math.random() * 100) + 1;
-    // TODO: MAKE THIS GENERAL SO WE CAN ADD A NEW ITEM TYPE AND THIS FUNCTION SHOULD WORK GIVEN ITS PARAM
-    int wood = 30;
-    int stone = 55;
-    int iron = 75;
-    int gold = 90;
-    int diamond = 110;
-
-    if (r <= wood) {
-      itemType = ItemType.WOOD;
-    } else if (r <= stone) {
-      itemType = ItemType.STONE;
-    } else if (r <= iron) {
-      itemType = ItemType.IRON;
-    } else if (r <= gold) {
-      itemType = ItemType.GOLD;
-    } else if (r <= diamond) {
-      itemType = ItemType.DIAMOND;
-    } else {
-      itemType = ItemType.WOOD;
-    }
-
-    return new Item(itemType, r);
+    return new Item(availableItemTypes);
   }
 
   /**
