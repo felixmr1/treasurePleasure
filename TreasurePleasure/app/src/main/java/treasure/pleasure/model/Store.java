@@ -1,5 +1,6 @@
 package treasure.pleasure.model;
 
+import java.util.HashMap;
 import treasure.pleasure.data.Data;
 
 /**
@@ -95,4 +96,11 @@ public class Store {
   public void setDefaultInteractionDistance(double defaultInteractionDistance) {
     this.defaultInteractionDistance = defaultInteractionDistance;
   }
+  /*
+  public int getProductValue(StoreProduct product) {
+    int value = product.getValue();
+    return value;
+  }
+  */
+
 }

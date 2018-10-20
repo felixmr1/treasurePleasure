@@ -27,4 +27,9 @@ public class StoreProduct {
   public String getName() {
     return name;
   }
+/*
+  public int getValue(Player player) {
+
+  }
+  */
 }
