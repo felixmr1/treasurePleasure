@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.ProductType;
+import treasure.pleasure.model.StoreProduct;
 
 /**
  * Contains all the different model attributes that can be changed for a different player experience
