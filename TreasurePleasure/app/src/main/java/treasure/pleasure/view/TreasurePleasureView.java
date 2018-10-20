@@ -20,10 +20,10 @@ public interface TreasurePleasureView {
 
   void showToast(String s);
 
-  // For shop fragment
-  void showShopFragment();
-  void hideShopFragment();
-  boolean shopFragmentIsActive();
+  // For store fragment
+  void showStoreFragment();
+  void hideStoreFragment();
+  boolean storeFragmentIsActive();
 
   // For settings fragment
   void showSettingsFragment();

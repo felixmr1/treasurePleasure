@@ -18,7 +18,7 @@ The application can be used to encourage a group of people to become more active
 
 ### 1.1 Wordlist
 
-- The **Map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, shops and settings
+- The **Map** is the main view of the game. We append the players location on a map served by google. From the map a player can interact with items, stores and settings
 
 - A **Player** is one of several players on a map. Players are unique to each user. Players also hold a backpack and a treasure chest, where they can store items collected from different locations on the map.
 
@@ -32,7 +32,7 @@ The application can be used to encourage a group of people to become more active
 
 - A **Avatar** is an image representing the player. A player has the oppurtunity to chose his avatar in game.
 
-- A **Shop** is a way for the player to buy a higher value multiplier. The value multiplier increases the value of collected items from the map.
+- A **Store** is a way for the player to buy a higher value multiplier. The value multiplier increases the value of collected items from the map.
 
 - A **Score** is a players unique player score for the current season. The score is calculated using collected items value after the player has inserted them to his/hers treasure chest. 
 
@@ -101,11 +101,11 @@ The application can be used to encourage a group of people to become more active
     Player has a attribute dropBonus.
     When a collectable is picked up its value is multiplied and changed according to the dropBonus    
     
-**3.2 As a player, I want to be able to visit a Shop, where I can spend items (or item value) in exchange for bonuses.**
+**3.2 As a player, I want to be able to visit a Store, where I can spend items (or item value) in exchange for bonuses.**
     
     There must be a certain distance between the chest and the upgrade center
-    The shop appears on the map
-    When close enough player can interact with shop
+    The store appears on the map
+    When close enough player can interact with store
     Ability to choose items from backpack and trade them for drop bonus (e.g. dropbonus increases by 1/100*(value of item))
   
   
@@ -139,7 +139,7 @@ The application can be used to encourage a group of people to become more active
 
 ### 2.2 User interface
 
-The main view is a map where various objects are displayed. The user of the application can interact with these objects if they are close enough, if not then they have to move to get closer to them. If e.g. a player is close enough to an item that is on the map the user can click on this item to collect it. The user can also interact with his or her chest and shop, where items can be dropped of or traded for increased drop rate.
+The main view is a map where various objects are displayed. The user of the application can interact with these objects if they are close enough, if not then they have to move to get closer to them. If e.g. a player is close enough to an item that is on the map the user can click on this item to collect it. The user can also interact with his or her chest and store, where items can be dropped of or traded for increased drop rate.
 
 ![Concept user interface](../images/concept-interface.png)
 
@@ -165,7 +165,7 @@ Each class has responsibilites. Below follows a short descripition of the differ
 
 - Item: keeps track of Item type and value.
 
-- Shop: provides a place for a player to improve Drop Bonus. Has a Location. Yet to be implemented.
+- Store: provides a place for a player to improve Drop Bonus. Has a Location. Yet to be implemented.
 
 - Score: not in use. Is currently represented by a variable in Chest.
 
