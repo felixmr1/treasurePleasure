@@ -26,7 +26,7 @@
       android:layout_height="0dp"
       android:layout_marginStart="32dp"
       android:layout_marginEnd="32dp"
-      app:layout_constraintBottom_toTopOf="@+id/bt1"
+      app:layout_constraintBottom_toTopOf="@+id/btn_interaction_distance"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +34,13 @@
       app:srcCompat="@drawable/store"/>
 
     <Button
-      android:id="@+id/bt1"
+      android:id="@+id/btn_interaction_distance"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
       android:layout_marginEnd="32dp"
       android:text="interactiondistance"
-      app:layout_constraintBottom_toTopOf="@+id/bt2"
+      app:layout_constraintBottom_toTopOf="@+id/btn_drop_bonus"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.507"
       app:layout_constraintStart_toStartOf="parent"
@@ -48,32 +48,32 @@
       app:layout_constraintVertical_bias="0.26"/>
 
     <Button
-      android:id="@+id/bt2"
+      android:id="@+id/btn_drop_bonus"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
       android:layout_marginEnd="32dp"
       android:text="dropbonus"
-      app:layout_constraintBottom_toTopOf="@+id/bt3"
+      app:layout_constraintBottom_toTopOf="@+id/btn_backpack_size"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/bt1"/>
+      app:layout_constraintTop_toBottomOf="@+id/btn_interaction_distance"/>
 
     <Button
-      android:id="@+id/bt3"
+      android:id="@+id/btn_backpack_size"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
       android:layout_marginEnd="32dp"
       android:text="backpack size"
-      app:layout_constraintBottom_toTopOf="@+id/bt4"
+      app:layout_constraintBottom_toTopOf="@+id/btn_amount_collectibles"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/bt2"/>
+      app:layout_constraintTop_toBottomOf="@+id/btn_drop_bonus"/>
 
     <Button
-      android:id="@+id/bt4"
+      android:id="@+id/btn_amount_collectibles"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
@@ -83,6 +83,6 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/bt3"/>
+      app:layout_constraintTop_toBottomOf="@+id/btn_backpack_size"/>
 
 </android.support.constraint.ConstraintLayout>

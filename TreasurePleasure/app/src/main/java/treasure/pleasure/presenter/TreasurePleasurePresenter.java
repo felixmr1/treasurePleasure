@@ -316,12 +316,24 @@ public class TreasurePleasurePresenter {
   }
 
   //SHOP------------- TODO just setting up
-  public void btn1Clicked (){
-    view.showToast("btn1 clicked");
+  public void btnCloseShopButtonClicked() {
+    view.showToast("close shop clicked.");
   }
 
-  public void btnCloseShopButtonClicked(){
-    view.showToast("close shop clicked.");
+  public void btnInteractionDistanceClicked() {
+    view.showToast("InteractionDistanceClicked clicked");
+  }
+
+  public void btnDropBonusClicked() {
+    view.showToast("drop bonus clicked.");
+  }
+
+  public void btnBackpackSizeClicked() {
+    view.showToast("backpack size clicked.");
+  }
+
+  public void btnAmountCollectiblesClicked() {
+    view.showToast("amount collectibles clicked.");
   }
 
   //-----------------
