@@ -22,7 +22,7 @@ public class Data {
   // Map
   private static final double mapLimitIncrementer = 0.1;
 
-  ;
+
   // Location
   // Max interactionDistance is given in meters!
   private static double maxInteractionDistance = 30;
@@ -60,7 +60,6 @@ public class Data {
 
   // Chest
   private static final int initialChestValue = 0;
-
 
   // Getters
   public static LatLng getNorthWest() {

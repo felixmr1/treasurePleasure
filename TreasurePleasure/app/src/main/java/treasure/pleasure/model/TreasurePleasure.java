@@ -31,6 +31,13 @@ public class TreasurePleasure {
     add(ItemType.WOOD);
   }};
 
+  private ArrayList<ProductType> availableProducts = new ArrayList<ProductType>() {{
+    add(ProductType.IncreaseBackPackSize);
+    add(ProductType.IncreaseInteractionDistance);
+    add(ProductType.IncreaseNrCollectibles);
+    add(ProductType.IncreaseCollectiblesValue);
+  }};
+
   private treasure.pleasure.model.Map map;
 
   public TreasurePleasure() {
@@ -94,7 +101,7 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple<ItemTYpe, Double>>
+   * @return List<Tuple < ItemTYpe ,   Double>>
    */
 
   // TODO: hardcoded player
@@ -251,6 +258,16 @@ public class TreasurePleasure {
     Location chestLocation = getPlayer(username).getChestLocation();
     Location myLocation = latLngToLocation(myCurrentLatLng);
     return myLocation.isCloseEnough(chestLocation);
+  }
+
+  public boolean canPlayerAfford(String username, StoreProduct product) {
+    Player player = getPlayer(username);
+    /* TODO
+    if (player.getScore() <) {
+
+    }
+    */
+    return true;
   }
 
   private Location latLngToLocation(LatLng latLng) {
