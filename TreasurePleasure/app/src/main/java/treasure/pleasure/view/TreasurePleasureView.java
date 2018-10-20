@@ -20,10 +20,10 @@ public interface TreasurePleasureView {
 
   void showToast(String s);
 
-  // For shop fragment
-  void showShopFragment();
-  void closeShopFragment();
-  boolean shopFragmentIsActive();
+  // For store fragment
+  void showStoreFragment();
+  void hideStoreFragment();
+  boolean storeFragmentIsActive();
 
   // For settings fragment
   void showSettingsFragment();
@@ -37,6 +37,4 @@ public interface TreasurePleasureView {
   boolean chestFragmentIsActive();
   void closeChestFragment();
   void updateScore(Integer playerScore);
-    // For shop fragment
-
 }

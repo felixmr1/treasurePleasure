@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import treasure.pleasure.data.Tuple;
+
 /**
  * Tests for the the implementation of the main model TreasurePleasure
  *
@@ -86,6 +88,27 @@ public class TreasurePleasureTest {
     tp.addPlayerToGame(playerName, Avatar.MAN);
     assertFalse(tp.getBackPackContentForPlayer(playerName).size() == 0);
   }
+
+  @Test
+  public void getBackPackContentForPlayer2() {
+    String playerName = "Diana";
+    ItemType itemType = ItemType.DIAMOND;
+    double itemValue = 100;
+    Item i = new Item(itemType, itemValue);
+
+    tp.addPlayerToGame(playerName, Avatar.WOMAN);
+    try {
+      tp.addItemToPlayer(playerName, i);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+    Tuple<ItemType, Double> tuple = tp.getBackPackContentForPlayer(playerName).get(0);
+    ItemType it = tuple.getField1();
+    double iv = tuple.getField2();
+    assertEquals(itemType, it);
+    assertEquals(itemValue, iv, 0.001);
+  }
+
 
   @Test
   public void isCloseEnough() {

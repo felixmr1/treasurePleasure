@@ -111,7 +111,7 @@
     </FrameLayout>
 
     <FrameLayout
-      android:id="@+id/shop_container"
+      android:id="@+id/store_container"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:layout_marginTop="32dp"

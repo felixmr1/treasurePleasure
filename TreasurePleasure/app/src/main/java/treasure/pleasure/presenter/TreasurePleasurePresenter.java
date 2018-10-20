@@ -18,7 +18,7 @@ import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
-import treasure.pleasure.view.ShopFragment;
+import treasure.pleasure.view.StoreFragment;
 import treasure.pleasure.view.TreasurePleasureView;
 
 /**
@@ -39,7 +39,7 @@ public class TreasurePleasurePresenter {
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
   private ChestFragment chestView;
-  private ShopFragment shopView;
+  private StoreFragment storeView;
   private String username = "Donald";
   private Avatar avatar = Avatar.WOMAN;
 
@@ -93,12 +93,12 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  public void showShop() {
-    if (view.shopFragmentIsActive()) {
-      view.closeShopFragment();
-      shopView = null;
+  public void showStore() {
+    if (view.storeFragmentIsActive()) {
+      view.hideStoreFragment();
+      storeView = null;
     } else {
-      view.showShopFragment();
+      view.showStoreFragment();
     }
   }
 
@@ -110,8 +110,8 @@ public class TreasurePleasurePresenter {
     this.chestView = view;
   }
 
-  public void setShopView(ShopFragment view) {
-    this.shopView = view;
+  public void setStoreView(StoreFragment view) {
+    this.storeView = view;
   }
 
   //----------------------backpack stuff------------------------------------
@@ -282,10 +282,10 @@ public class TreasurePleasurePresenter {
   }
 
   /**
-   * TODO implement shop functionality, add check that the player is close enough to store
+   * TODO implement store functionality, add check that the player is close enough to store
    */
   public void onStoreClick() {
-    showShop();
+    showStore();
   }
 
   public void updateDisplayedScore() {
@@ -318,9 +318,9 @@ public class TreasurePleasurePresenter {
   }
 
   //SHOP------------- TODO implement functionality
-  public void btnCloseShopButtonClicked() {
-    view.closeShopFragment();
-    this.shopView = null;
+  public void btnCloseStoreButtonClicked() {
+    view.hideStoreFragment();
+    this.storeView = null;
   }
 
   public void btnInteractionDistanceClicked() {

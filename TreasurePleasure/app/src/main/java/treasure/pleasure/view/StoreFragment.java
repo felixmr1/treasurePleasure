@@ -16,27 +16,27 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
  * @author oskar & david
  */
 
-public class ShopFragment extends Fragment implements OnClickListener {
+public class StoreFragment extends Fragment implements OnClickListener {
 
   private TreasurePleasurePresenter mPresenter;
-  private ImageButton btnCloseShop;
+  private ImageButton btnCloseStore;
   private Button btnInteractionDistance, btnDropBonus, btnBackpackSize, btnAmountCollectibles;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.fragment_shop, container, false);
+    final View view = inflater.inflate(R.layout.fragment_store, container, false);
     setupButtons(view);
     return view;
   }
 
   private void setupButtons(View view) {
-    btnCloseShop = view.findViewById(R.id.close_shop_button);
+    btnCloseStore = view.findViewById(R.id.close_store_button);
     btnInteractionDistance = view.findViewById(R.id.btn_interaction_distance);
     btnDropBonus = view.findViewById(R.id.btn_drop_bonus);
     btnBackpackSize = view.findViewById(R.id.btn_backpack_size);
     btnAmountCollectibles = view.findViewById(R.id.btn_amount_collectibles);
-    btnCloseShop.setOnClickListener(this);
+    btnCloseStore.setOnClickListener(this);
     btnInteractionDistance.setOnClickListener(this);
     btnDropBonus.setOnClickListener(this);
     btnBackpackSize.setOnClickListener(this);
@@ -45,14 +45,14 @@ public class ShopFragment extends Fragment implements OnClickListener {
 
   public void setPresenter(TreasurePleasurePresenter presenter) {
     mPresenter = presenter;
-    presenter.setShopView(this);
+    presenter.setStoreView(this);
   }
 
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
-      case R.id.close_shop_button:
-        mPresenter.btnCloseShopButtonClicked();
+      case R.id.close_store_button:
+        mPresenter.btnCloseStoreButtonClicked();
         break;
       case R.id.btn_interaction_distance:
         mPresenter.btnInteractionDistanceClicked();
