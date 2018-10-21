@@ -82,6 +82,7 @@ class Player {
     List<Item> items = backpack.getAllItems();
     for (int i = 0; i < items.size(); i++) {
       addScore((float) (items.get(i).getValue() * this.valueMultiplier));
+      chest.incrementNrItemsInChest();
     }
     backpack.removeAll();
   }
@@ -147,6 +148,10 @@ class Player {
 
   public void setNrOfCollectibles(int nrOfCollectibles) {
     this.nrOfCollectibles = nrOfCollectibles;
+  }
+
+  public Chest getChest() {
+    return chest;
   }
 
   public ArrayList<StoreProduct> getStoreProducts() {

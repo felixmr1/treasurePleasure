@@ -1,6 +1,7 @@
 package treasure.pleasure.data;
 
 import android.graphics.Color;
+import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -44,17 +45,8 @@ public class Data {
   private static final int nrOfCollecatbles = 15;
 
   // Player
-  private static final int backpackMaxSize = 12;
   private static final int maxDropBonus = 1;
   private static final double playerValueIncrementer = 1;
-  private static double chestLat =
-      southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
-  private static double chestLong =
-      southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
-  private static double storeLat =
-      northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
-  private static double storeLong =
-      northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
   private static double playerDefaultLat =
       northWest.latitude - (northWest.latitude - southEast.latitude) / 2;
   private static double playerDefaultLong =
@@ -69,6 +61,13 @@ public class Data {
     add(ItemType.DIAMOND);
   }};
 
+
+  // Backpack
+  private static final int initialBackpackLevel = 1;
+  private static final int initialNOfBusySlots = 0;
+  private static final int backpackMaxSize = 12;
+
+  // Store
   private static StoreProduct increaseBackPackSize = new StoreProduct(
       ProductType.IncreaseBackPackSize, "Increase backpack size", 125, (float) backpackMaxSize);
   private static StoreProduct increaseCollectiblesValue = new StoreProduct(
@@ -90,16 +89,22 @@ public class Data {
     add(increaseNrCollectibles);
     add(increaseInteractionDistance);
   }};
-
-  // Backpack
-  private static final int initialBackpackLevel = 1;
-  private static final int initialNOfBusySlots = 0;
+  private static double storeLat =
+      northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
+  private static double storeLong =
+      northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
 
   // Upgrade Center
   private static final int dropBonusIncrementer = 1;
 
   // Chest
   private static final int initialChestValue = 0;
+  private static double chestLat =
+      southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
+  private static double chestLong =
+      southEast.longitude + (northWest.longitude - southEast.longitude) / 8;
+
+  private static LatLng chestLatLng = new LatLng(chestLat, chestLong);
 
   // Getters
   public static LatLng getNorthWest() {
@@ -184,6 +189,10 @@ public class Data {
 
   public static int getInitialChestValue() {
     return initialChestValue;
+  }
+
+  public static LatLng getChestLatLng() {
+    return chestLatLng;
   }
 
   public static int getInitialBackpackLevel() {
