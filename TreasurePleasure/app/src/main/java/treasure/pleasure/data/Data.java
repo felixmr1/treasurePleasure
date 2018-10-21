@@ -61,44 +61,16 @@ public class Data {
     add(ItemType.DIAMOND);
   }};
 
-<<<<<<< HEAD
-  // Backpack
-  private static final int initialBackpackLevel = 1;
-  private static final int initialNOfBusySlots = 0;
-=======
 
   // Backpack
   private static final int initialBackpackLevel = 1;
   private static final int initialNOfBusySlots = 0;
   private static final int backpackMaxSize = 12;
 
-  // Store
-  private static StoreProduct increaseBackPackSize = new StoreProduct(
-      ProductType.IncreaseBackPackSize, "Increase backpack size", 125, (float) backpackMaxSize);
-  private static StoreProduct increaseCollectiblesValue = new StoreProduct(
-      ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
-      (float) playerValueIncrementer);
-  private static StoreProduct increaseNrCollectibles = new StoreProduct(
-      ProductType.IncreaseNrCollectibles, "Increase items on the map", 400,
-      (float) nrOfCollecatbles);
-  private static StoreProduct increaseInteractionDistance = new StoreProduct(
-      ProductType.IncreaseInteractionDistance, "Increase your reach", 500,
-      (float) maxInteractionDistance);
-
-  private static ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>() {{
-    increaseCollectiblesValue.setIncrementStep(0.05f);
-    increaseCollectiblesValue.setPriceIncrease(50f);
-    increaseInteractionDistance.setPriceIncrease(1.5f);
-    add(increaseBackPackSize);
-    add(increaseCollectiblesValue);
-    add(increaseNrCollectibles);
-    add(increaseInteractionDistance);
-  }};
   private static double storeLat =
       northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
   private static double storeLong =
       northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
->>>>>>> 84b348b45c0765916dbe2c8853906c120c2afef2
 
   // Upgrade Center
   private static final int dropBonusIncrementer = 1;

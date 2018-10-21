@@ -20,9 +20,10 @@ public class ChestTests {
 
   @Before
   public void initPlayer() {
+    TreasurePleasure tp = new TreasurePleasure();
     this.username = "Britta";
     this.avatar = Avatar.WOMAN;
-    this.player = new Player(username, avatar, Data.getStoreProducts());
+    this.player = new Player(username, avatar, tp.getStoreProducts());
     this.loc = new Location(Data.getChestLatLng());
     this.player.setChest(loc);
     this.chest = player.getChest();
