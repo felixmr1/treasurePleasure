@@ -78,6 +78,9 @@ class Player {
     backpack.add(i);
   }
 
+  /**
+   * Takes all the player Items that is in the chest and puts it in the chest
+   */
   void emptyBackpackToChest() {
     List<Item> items = backpack.getAllItems();
     for (int i = 0; i < items.size(); i++) {

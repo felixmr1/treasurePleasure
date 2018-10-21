@@ -8,6 +8,10 @@ package treasure.pleasure.model;
 public class Store {
   private Location location;
 
+  /**
+   * Creates a store at the desired location
+   * @param location
+   */
   Store(Location location) {
     this.location = location;
   }

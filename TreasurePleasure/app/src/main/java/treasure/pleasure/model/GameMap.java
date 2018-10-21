@@ -22,6 +22,12 @@ class GameMap {
   // number of items on map
   private int numberOfItems;
 
+  /**
+   * Creates a Google Map polygon with mapLimit coordinates and a hole in the polygon with the
+   * coordinates of mapReal
+   * @param mapLimit
+   * @param mapReal
+   */
   GameMap(ArrayList<LatLng> mapLimit, ArrayList<LatLng> mapReal) {
 
     // instantiate coordinates
@@ -32,6 +38,10 @@ class GameMap {
     numberOfItems = 0;
   }
 
+  /**
+   * Method that builds the polygon
+   * @return PolygonOptions to be used in the view to create the polygon
+   */
   private PolygonOptions createPolygonMap() {
     return new PolygonOptions()
         .add(mapLimit.get(0), mapLimit.get(1),
