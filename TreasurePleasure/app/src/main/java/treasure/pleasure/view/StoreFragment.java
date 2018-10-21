@@ -50,12 +50,24 @@ public class StoreFragment extends Fragment implements OnClickListener {
     for (int i = 0; i < this.storeProductWrappers.size(); i++) {
       final StoreProductWrapper storeProductWrapper = storeProductWrappers.get(i);
       TableRow row = new TableRow(context);
-      TextView tv = new TextView(context);
-      tv.setText(storeProductWrapper.getName());
+      TextView name = new TextView(context);
+      /*
+      TextView price = new TextView(context);
+      TextView currentValue = new TextView(context);
+      TextView buy = new TextView(context);
+      name.setText(storeProductWrapper.getName());
+      price.setText(storeProductWrapper.getName());
+      buy.setText("BUY");
+      currentValue.setText(storeProductWrapper.getName());
+      */
       storeTable.addView(row);
-      row.addView(tv);
-
-      tv.setOnClickListener(new OnClickListener() {
+      row.addView(name);
+      /*
+      row.addView(price);
+      row.addView(currentValue);
+      row.addView(buy);
+      */
+      storeTable.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
           mPresenter.buyStoreProduct(storeProductWrapper);
