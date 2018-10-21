@@ -18,7 +18,7 @@ import treasure.pleasure.model.StoreProduct;
 public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
-  private static boolean debug = true;
+  private static boolean debug = false;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
