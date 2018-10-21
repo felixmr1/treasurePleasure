@@ -11,6 +11,7 @@ public class Chest<T extends ItemCallBack> {
 
   private Location location;
   private double score;
+  private int nrItemsInChest;
 
   /**
    * Constructor to call when all values need to be parameterized, for example when fetchign data
@@ -22,6 +23,7 @@ public class Chest<T extends ItemCallBack> {
   Chest(double score, Location location) {
     this.location = location;
     this.score = score;
+    nrItemsInChest = 0;
   }
 
   /**
@@ -32,14 +34,25 @@ public class Chest<T extends ItemCallBack> {
   Chest(Location location) {
     this.score = Data.getInitialChestValue();
     this.location = location;
+    this.nrItemsInChest = 0;
   }
 
   // Add multiple items at once
-  void sell(List<T> items) {
+  double sell(List<T> items) {
+    double valueOfAllItems = 0;
     for (T item : items) {
-      sell(item);
+      valueOfAllItems += sell(item);
+      incrementNrItemsInChest();
     }
+    return valueOfAllItems;
+  }
 
+  public int getNrItemsInChest() {
+    return nrItemsInChest;
+  }
+
+  void incrementNrItemsInChest() {
+    nrItemsInChest++;
   }
 
   double sell(T item) {
