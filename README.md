@@ -14,6 +14,7 @@
 9. Redovisning
 
 ## Links
+- RAD: https://docs.google.com/document/d/1R22-YMYw6wcnvqW69ybtfUwh5KwOOhLTOGASOnpR0GM/edit?usp=sharing
 - SDD: https://docs.google.com/document/d/1mCN_0YYQ3tyLzMtvu72N_M3L_sUxsyj4U5FqamaCyrM/edit?usp=sharing
 - Course website: http://www.cse.chalmers.se/edu/course/tda367/
 - Trello: https://trello.com/b/1DMSwIxe/oopp
