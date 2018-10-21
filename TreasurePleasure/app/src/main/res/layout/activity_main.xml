@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Represents the main view of the app. Has containers where to draw the:
+   * GameMapFragment
+   * BackpackFragment
+   * ChestFragment
+   * SettingsFragment
+   * StoreFragment
+  @author Oskar, David
+-->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
