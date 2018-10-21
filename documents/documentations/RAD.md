@@ -121,7 +121,7 @@ The application can be used to encourage a group of people to become more active
     Can change nick and avatar when in game
     Information about current nick and avatar is available
 
-### TODO/Not yet implemented
+### Not yet implemented
 
 **5.1 As a new player I want the game to have seasons with certain duration so that a winner is determined and everything resets and gives equal opportunities to all.**
 
@@ -144,11 +144,9 @@ The main view is a map where various objects are displayed. The user of the appl
 ![Concept user interface](../images/concept-interface.png)
 
 ## 3 Domain model
-//TODO update domain model.
 ![Domain model](../diagrammes/DomainModel/DomainModel4.png)
 
 ### 3.1 Class responsibilites
-//TODO update with the domain model.
 Each class has responsibilites. Below follows a short descripition of the different classes in the domain model.
 
 - Treasure Pleasure: is the hub of the model. Handles and redirects information. Collaborates with Player, Location, Backpack and Collectables to handle Collects. Stores user name and handles name update. In addition it keeps track of players.
