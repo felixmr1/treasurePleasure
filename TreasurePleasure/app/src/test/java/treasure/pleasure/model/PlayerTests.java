@@ -20,9 +20,10 @@ public class PlayerTests {
 
   @Before
   public void initPlayer() {
+    TreasurePleasure tp = new TreasurePleasure();
     username = "Britta";
     avatar = Avatar.WOMAN;
-    player = new Player(username, avatar, Data.getStoreProducts());
+    player = new Player(username, avatar, tp.getStoreProducts());
   }
 
   @Test

@@ -1,7 +1,5 @@
 package treasure.pleasure.model;
 
-import android.util.Log;
-import android.widget.Switch;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -27,6 +25,7 @@ public class TreasurePleasure {
   private GameMap gameMap;
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = Data.getAvailableItemTypes();
+  private ArrayList<StoreProduct> storeProducts = new ArrayList<>();
 
   private treasure.pleasure.model.Map map;
 
@@ -36,8 +35,8 @@ public class TreasurePleasure {
     this.map = new treasure.pleasure.model.Map();
     this.gameMap = new GameMap(map.getLatLngMapLimit(), map.getLatLngMapReal());
     this.store = new Store(new Location(Data.getStoreLat(), Data.getStoreLong()));
-
     this.collectibleItems = new CollectibleItems(availableItemTypes, map.getMapReal());
+    this.addStoreProducts();
   }
 
   public LatLng getChestLocation(String username) {
@@ -74,12 +73,38 @@ public class TreasurePleasure {
       throw new ArrayStoreException();
 
     } else {
-      Player player = new Player(username, avatar, Data.getStoreProducts());
+      Player player = new Player(username, avatar, this.getStoreProducts());
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       players.put(username.toLowerCase(), player);
-      if (isDebug()) player.setScore(1000000);
+      if (isDebug()) {
+        player.setScore(1000000);
+      }
       this.takenUsernames.add(username.toLowerCase());
     }
+  }
+
+  private void addStoreProducts() {
+     StoreProduct increaseBackPackSize = new StoreProduct(
+        ProductType.IncreaseBackPackSize, "Increase backpack size", 125,
+        (float) Data.getBackpackMaxSize());
+
+     StoreProduct increaseCollectiblesValue = new StoreProduct(
+        ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
+        (float) Data.getPlayerValueIncrementer(), 50f, 0.05f);
+
+     StoreProduct increaseNrCollectibles = new StoreProduct(
+        ProductType.IncreaseNrCollectibles, "Increase items on the map", 400,
+        (float) Data.getNrOfCollectables());
+
+     StoreProduct increaseInteractionDistance = new StoreProduct(
+        ProductType.IncreaseInteractionDistance, "Increase your reach", 500,
+        (float) Data.getMaxInteractionDistance(), 1.5f);
+
+
+    storeProducts.add(increaseBackPackSize);
+    storeProducts.add(increaseCollectiblesValue);
+    storeProducts.add(increaseNrCollectibles);
+    storeProducts.add(increaseInteractionDistance);
   }
 
   public ArrayList<String> getPlayerNames() {
@@ -89,7 +114,7 @@ public class TreasurePleasure {
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple < ItemTYpe ,   Double>>
+   * @return List<Tuple               <               ItemTYpe               ,                               Double>>
    */
 
   // TODO: hardcoded player
@@ -114,7 +139,6 @@ public class TreasurePleasure {
     return content;
   }
 
-
   //felix´s old method
   public MarkerOptions addMarker(LatLng latLng) {
     return gameMap.addMarker(latLng);
@@ -127,7 +151,6 @@ public class TreasurePleasure {
   CollectibleItems getCollectibleItems() {
     return collectibleItems;
   }
-
 
   //---------------------------item pickup--------------------------------------
   public boolean isCloseEnough(double aLat, double aLng, double bLat, double bLng) {
@@ -205,6 +228,14 @@ public class TreasurePleasure {
     return Data.isDebug();
   }
 
+  public ArrayList<StoreProduct> getStoreProducts() {
+    ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
+    for (int i = 0; i < this.storeProducts.size(); i++) {
+      storeProductsCopied.add(this.storeProducts.get(i));
+    }
+    return storeProductsCopied;
+  }
+
   // TODO: For now its hardcoded, if you update interactionDistance in location, UI wont know
   public double getMaxInteractionDistance() {
     return Data.getMaxInteractionDistance();
@@ -221,7 +252,9 @@ public class TreasurePleasure {
 
   public void setScore(String username, int score) {
     Player player = getPlayer(username);
-    if (isDebug()) score = 1000000;
+    if (isDebug()) {
+      score = 1000000;
+    }
     player.setScore(score);
   }
 
@@ -255,7 +288,9 @@ public class TreasurePleasure {
     ArrayList<StoreProductWrapper> storeProductWrappers = new ArrayList<>();
     for (int i = 0; i < storeProducts.size(); i++) {
       StoreProduct sp = storeProducts.get(i);
-      storeProductWrappers.add(new StoreProductWrapper(sp.getProductType(), sp.getName(), sp.getPrice(), sp.getValue(), sp.getDefaultValue()));
+      storeProductWrappers.add(
+          new StoreProductWrapper(sp.getProductType(), sp.getName(), sp.getPrice(), sp.getValue(),
+              sp.getDefaultValue()));
     }
     return storeProductWrappers;
   }
@@ -266,7 +301,7 @@ public class TreasurePleasure {
    * @param spw
    * @throws Exception
    */
-  public void buyStoreProduct(String username, StoreProductWrapper spw) throws Exception{
+  public void buyStoreProduct(String username, StoreProductWrapper spw) throws Exception {
     Player player = getPlayer(username);
     StoreProduct sp = player.getStoreProduct(spw.getProductType());
     int price = sp.getPrice();

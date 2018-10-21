@@ -26,7 +26,7 @@ public class StoreProduct {
    * @param price Price for the product
    * @param value default value for the product
    */
-  public StoreProduct(ProductType productType, String name, int price, float value) {
+  StoreProduct(ProductType productType, String name, int price, float value) {
     this.productType = productType;
     this.name = name;
     this.value = value;
@@ -35,8 +35,48 @@ public class StoreProduct {
     this.price = price;
     this.defaultPrice = price;
 
-    this.incrementStep = 1;
     this.priceIncrease = 1.25f;
+    this.incrementStep = 1;
+  }
+
+  /**
+   * Creates a storeProduct.
+   * @param productType
+   * @param name Name that is showed to the customer
+   * @param price Price for the product
+   * @param value default value for the product
+   */
+  StoreProduct(ProductType productType, String name, int price, float value, float priceIncrease) {
+    this.productType = productType;
+    this.name = name;
+    this.value = value;
+    this.defaultValue = value;
+
+    this.price = price;
+    this.defaultPrice = price;
+
+    this.priceIncrease = priceIncrease;
+    this.incrementStep = 1;
+  }
+
+  /**
+   * Creates a storeProduct.
+   * @param productType
+   * @param name Name that is showed to the customer
+   * @param price Price for the product
+   * @param value default value for the product
+   */
+  StoreProduct(ProductType productType, String name, int price, float value, float priceIncrease, float incrementStep) {
+    this.productType = productType;
+    this.name = name;
+    this.value = value;
+    this.defaultValue = value;
+
+    this.price = price;
+    this.defaultPrice = price;
+
+    this.priceIncrease = priceIncrease;
+    this.incrementStep = incrementStep;
   }
 
   public void setProductType(ProductType product) {

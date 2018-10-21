@@ -17,7 +17,7 @@ import treasure.pleasure.model.StoreProduct;
 public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
-  private static boolean debug = true;
+  private static boolean debug = false;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
@@ -67,28 +67,6 @@ public class Data {
     add(ItemType.IRON);
     add(ItemType.GOLD);
     add(ItemType.DIAMOND);
-  }};
-
-  private static StoreProduct increaseBackPackSize = new StoreProduct(
-      ProductType.IncreaseBackPackSize, "Increase backpack size", 125, (float) backpackMaxSize);
-  private static StoreProduct increaseCollectiblesValue = new StoreProduct(
-      ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
-      (float) playerValueIncrementer);
-  private static StoreProduct increaseNrCollectibles = new StoreProduct(
-      ProductType.IncreaseNrCollectibles, "Increase items on the map", 400,
-      (float) nrOfCollecatbles);
-  private static StoreProduct increaseInteractionDistance = new StoreProduct(
-      ProductType.IncreaseInteractionDistance, "Increase your reach", 500,
-      (float) maxInteractionDistance);
-
-  private static ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>() {{
-    increaseCollectiblesValue.setIncrementStep(0.05f);
-    increaseCollectiblesValue.setPriceIncrease(50f);
-    increaseInteractionDistance.setPriceIncrease(1.5f);
-    add(increaseBackPackSize);
-    add(increaseCollectiblesValue);
-    add(increaseNrCollectibles);
-    add(increaseInteractionDistance);
   }};
 
   // Backpack
@@ -204,13 +182,5 @@ public class Data {
 
   public static ArrayList<ItemType> getAvailableItemTypes() {
     return availableItemTypes;
-  }
-
-  public static ArrayList<StoreProduct> getStoreProducts() {
-    ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
-    for (int i = 0; i < storeProducts.size(); i++) {
-      storeProductsCopied.add(storeProducts.get(i));
-    }
-    return storeProductsCopied;
   }
 }
