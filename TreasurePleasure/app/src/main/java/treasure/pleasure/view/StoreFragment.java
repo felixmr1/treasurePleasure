@@ -43,16 +43,33 @@ public class StoreFragment extends Fragment implements OnClickListener {
   private void setupStoreTable(final TableLayout storeTable) {
     Context context = this.getContext();
     storeTable.removeAllViews();
-    //btnInteractionDistance = view.findViewById(R.id.btn_interaction_distance);
-    //btnInteractionDistance.setOnClickListener(this);
-    Log.w("Store", this.storeProducts.size() + "");
+
+    TableRow header = new TableRow(context);
+
+    TextView name = new TextView(context);
+    TextView price = new TextView(context);
+    TextView nextValue = new TextView(context);
+    TextView buy = new TextView(context);
+
+    name.setText("Product name");
+    price.setText("Price");
+    nextValue.setText("New value");
+    buy.setText("Buy item");
+
+    storeTable.addView(header);
+
+    header.addView(name);
+    header.addView(price);
+    header.addView(nextValue);
+    header.addView(buy);
+
     for (int i = 0; i < this.storeProducts.size(); i++) {
       final Integer storeProduct = storeProducts.get(i);
       TableRow row = new TableRow(context);
-      TextView name = new TextView(context);
-      TextView price = new TextView(context);
-      TextView nextValue = new TextView(context);
-      TextView buy = new TextView(context);
+      name = new TextView(context);
+      price = new TextView(context);
+      nextValue = new TextView(context);
+      buy = new TextView(context);
 
       name.setText(mPresenter.getStoreProductName(storeProduct));
       price.setText(mPresenter.getStoreProductPrice(storeProduct));
