@@ -1,7 +1,7 @@
 package treasure.pleasure.model;
 
 /**
- *
+ * TODO SHOULD MAYBE BE IN A MODULE CALLED WRAPPER?
  * @author Jesper
  */
 

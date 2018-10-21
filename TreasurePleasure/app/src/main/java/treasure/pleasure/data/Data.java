@@ -18,7 +18,7 @@ import treasure.pleasure.model.StoreProduct;
 public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
-  private static boolean debug = true;
+  private static boolean debug = false;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
@@ -61,6 +61,11 @@ public class Data {
     add(ItemType.DIAMOND);
   }};
 
+<<<<<<< HEAD
+  // Backpack
+  private static final int initialBackpackLevel = 1;
+  private static final int initialNOfBusySlots = 0;
+=======
 
   // Backpack
   private static final int initialBackpackLevel = 1;
@@ -93,6 +98,7 @@ public class Data {
       northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
   private static double storeLong =
       northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
+>>>>>>> 84b348b45c0765916dbe2c8853906c120c2afef2
 
   // Upgrade Center
   private static final int dropBonusIncrementer = 1;
@@ -213,13 +219,5 @@ public class Data {
 
   public static ArrayList<ItemType> getAvailableItemTypes() {
     return availableItemTypes;
-  }
-
-  public static ArrayList<StoreProduct> getStoreProducts() {
-    ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
-    for (int i = 0; i < storeProducts.size(); i++) {
-      storeProductsCopied.add(storeProducts.get(i));
-    }
-    return storeProductsCopied;
   }
 }
