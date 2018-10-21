@@ -158,12 +158,14 @@ class Player {
     return this.storeProducts;
   }
 
-  public StoreProduct getStoreProduct(ProductType pt) {
-    for (int i = 0; i < this.storeProducts.size(); i++) {
-      StoreProduct sp = this.storeProducts.get(i);
-      if (sp.getProductType() == pt) return sp;
-    }
-    return null;
+  public StoreProduct getStoreProduct(ProductType pt) throws Exception {
+
+      for (StoreProduct sp: storeProducts
+          ) {
+        if (sp.getProductType() == pt) return sp;
+      }
+
+      throw new Exception("Product not found");
   }
 
 }
