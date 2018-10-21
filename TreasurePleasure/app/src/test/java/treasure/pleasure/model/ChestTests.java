@@ -88,5 +88,30 @@ public class ChestTests {
     assertTrue(initalValueOfItems == afterSellValueOfItems);
   }
 
+  @Test
+  public void testSellMultiple() {
+    // Init some items
+    int initalValueOfItems = 0;
+    int afterSellValueOfItems = 0;
+  
+    ArrayList<Item> itemArrayList = new ArrayList<Item>(){{
+      add(new Item(Data.getAvailableItemTypes()));
+      add(new Item(Data.getAvailableItemTypes()));
+      add(new Item(Data.getAvailableItemTypes()));
+      add(new Item(Data.getAvailableItemTypes()));
+      add(new Item(Data.getAvailableItemTypes()));
+    }};
+
+    // get value of all items
+    for (int i = 0; i < itemArrayList.size(); i++) {
+      initalValueOfItems += itemArrayList.get(i).getValue();
+    }
+
+    // Sell items and calc value
+      afterSellValueOfItems += chest.sell(itemArrayList);
+
+    assertTrue(initalValueOfItems == afterSellValueOfItems);
+  }
+
 
 }

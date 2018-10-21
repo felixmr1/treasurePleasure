@@ -34,15 +34,17 @@ public class Chest<T extends ItemCallBack> {
   Chest(Location location) {
     this.score = Data.getInitialChestValue();
     this.location = location;
-    int nrItemsInChest = 0;
+    this.nrItemsInChest = 0;
   }
 
   // Add multiple items at once
-  void sell(List<T> items) {
+  double sell(List<T> items) {
+    double valueOfAllItems = 0;
     for (T item : items) {
-      sell(item);
+      valueOfAllItems += sell(item);
+      incrementNrItemsInChest();
     }
-
+    return valueOfAllItems;
   }
 
   public int getNrItemsInChest() {
