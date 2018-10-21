@@ -74,6 +74,11 @@ class Player {
     this.avatar = avatar;
   }
 
+  /**
+   * Calls backpack add
+   * @param i
+   * @throws Exception if full
+   */
   void addToBackpack(Item i) throws Exception {
     backpack.add(i);
   }

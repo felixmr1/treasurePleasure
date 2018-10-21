@@ -88,7 +88,7 @@ class CollectibleItems {
   /**
    * Checks if given location is valid i.e there are no other items within 'closeEnough' distance
    * @param loc
-   * @return
+   * @return boolean if its valid
    * Todo: write test for this
    */
   Boolean isAvailableLocation(Location loc) {
