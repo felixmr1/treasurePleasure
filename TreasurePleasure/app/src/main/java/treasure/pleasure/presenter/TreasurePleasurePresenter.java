@@ -13,7 +13,6 @@ import treasure.pleasure.data.PersistentData;
 import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
-import treasure.pleasure.model.StoreProductWrapper;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
@@ -98,15 +97,17 @@ public class TreasurePleasurePresenter {
     if (view.storeFragmentIsActive()) {
       view.hideStoreFragment();
       storeView = null;
+    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+      view.showToast("Store is not close enough");
     } else {
       view.showStoreFragment();
     }
   }
 
-  public void buyStoreProduct(StoreProductWrapper spw) {
+  public void buyStoreProduct(Integer storeProduct) {
     try {
-      model.buyStoreProduct(this.username, spw);
-      view.showToast("Spend " + spw.getPrice() + " points to " + spw.getName() + ". New value is " + spw.getValue());
+      model.buyStoreProduct(this.username, storeProduct);
+      //view.showToast("Spend " + spw.getPrice() + " points to " + spw.getName() + ". New value is " + spw.getValue());
       updateDisplayedScore();
       redrawMap();
       if (view.backpackFragmentIsActive()) {
@@ -304,8 +305,45 @@ public class TreasurePleasurePresenter {
     showStore();
   }
 
-  public ArrayList<StoreProductWrapper> getStoreProducts() {
+  public ArrayList<Integer> getStoreProducts() {
     return model.getStoreProducts(this.username);
+  }
+
+  public String getStoreProductName(Integer id) {
+    String name = "";
+    try {
+      name = model.getStoreProductName(this.username, id);
+    } catch (Exception e) {
+      view.showToast("Could not find storeproduct for id: " + id);
+    }
+    return name;
+  }
+  public String getStoreProductPrice(Integer id) {
+    String name = "";
+    try {
+      name = model.getStoreProductPrice(this.username, id);
+    } catch (Exception e) {
+      view.showToast("Could not find storeproduct for id: " + id);
+    }
+    return name;
+  }
+  public String getStoreProductValue(Integer id) {
+    String name = "";
+    try {
+      name = model.getStoreProductValue(this.username, id);
+    } catch (Exception e) {
+      view.showToast("Could not find storeproduct for id: " + id);
+    }
+    return name;
+  }
+  public String getStoreProductNextValue(Integer id) {
+    String name = "";
+    try {
+      name = model.getStoreProductNextValue(this.username, id);
+    } catch (Exception e) {
+      view.showToast("Could not find storeproduct for id: " + id);
+    }
+    return name;
   }
 
   public void updateDisplayedScore() {
@@ -343,22 +381,4 @@ public class TreasurePleasurePresenter {
     view.hideStoreFragment();
     this.storeView = null;
   }
-
-  public void btnInteractionDistanceClicked() {
-    view.showToast("InteractionDistanceClicked clicked");
-  }
-
-  public void btnDropBonusClicked() {
-    view.showToast("drop bonus clicked.");
-  }
-
-  public void btnBackpackSizeClicked() {
-    view.showToast("backpack size clicked.");
-  }
-
-  public void btnAmountCollectiblesClicked() {
-    view.showToast("amount collectibles clicked.");
-  }
-
-  //-----------------
 }

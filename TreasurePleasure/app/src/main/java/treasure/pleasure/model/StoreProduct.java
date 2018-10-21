@@ -127,6 +127,11 @@ public class StoreProduct {
     return defaultValue;
   }
 
+
+  public float getNextValue() {
+    return this.value + this.incrementStep;
+  }
+
   public float getIncrementStep() {
     return incrementStep;
   }

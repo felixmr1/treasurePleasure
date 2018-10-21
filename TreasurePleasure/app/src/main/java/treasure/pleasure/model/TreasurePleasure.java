@@ -3,6 +3,7 @@ package treasure.pleasure.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,6 +88,7 @@ public class TreasurePleasure {
      StoreProduct increaseBackPackSize = new StoreProduct(
         ProductType.IncreaseBackPackSize, "Increase backpack size", 125,
         (float) Data.getBackpackMaxSize());
+    increaseBackPackSize.setIncrementStep(3);
 
      StoreProduct increaseCollectiblesValue = new StoreProduct(
         ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
@@ -228,7 +230,7 @@ public class TreasurePleasure {
     return Data.isDebug();
   }
 
-  public ArrayList<StoreProduct> getStoreProducts() {
+  ArrayList<StoreProduct> getStoreProducts() {
     ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
     for (int i = 0; i < this.storeProducts.size(); i++) {
       storeProductsCopied.add(this.storeProducts.get(i));
@@ -282,30 +284,66 @@ public class TreasurePleasure {
    * @param username
    * @return
    */
-  public ArrayList<StoreProductWrapper> getStoreProducts(String username) {
+  public ArrayList<Integer> getStoreProducts(String username) {
     Player player = getPlayer(username);
     ArrayList<StoreProduct> storeProducts = player.getStoreProducts();
-    ArrayList<StoreProductWrapper> storeProductWrappers = new ArrayList<>();
+    ArrayList<Integer> sps = new ArrayList<>();
     for (int i = 0; i < storeProducts.size(); i++) {
-      StoreProduct sp = storeProducts.get(i);
-      storeProductWrappers.add(
-          new StoreProductWrapper(sp.getProductType(), sp.getName(), sp.getPrice(), sp.getValue(),
-              sp.getDefaultValue()));
+      sps.add(i);
     }
-    return storeProductWrappers;
+    return sps;
+  }
+
+  public String getStoreProductName(String username, Integer storeProductId) throws Exception {
+    Player player = getPlayer(username);
+    try {
+      StoreProduct sp = player.getStoreProduct(storeProductId);
+      return sp.getName();
+    } catch (Exception e) {
+      throw new Exception(e);
+    }
+  }
+
+  public String getStoreProductPrice(String username, Integer storeProductId) throws Exception {
+    Player player = getPlayer(username);
+    try {
+      StoreProduct sp = player.getStoreProduct(storeProductId);
+      return sp.getPrice() + "";
+    } catch (Exception e) {
+      throw new Exception(e);
+    }
+  }
+
+  public String getStoreProductValue(String username, Integer storeProductId) throws Exception {
+    Player player = getPlayer(username);
+    try {
+      StoreProduct sp = player.getStoreProduct(storeProductId);
+      return sp.getValue() + "";
+    } catch (Exception e) {
+      throw new Exception(e);
+    }
+  }
+
+  public String getStoreProductNextValue(String username, Integer storeProductId) throws Exception {
+    Player player = getPlayer(username);
+    try {
+      StoreProduct sp = player.getStoreProduct(storeProductId);
+      return sp.getNextValue() + "";
+    } catch (Exception e) {
+      throw new Exception(e);
+    }
   }
 
   /**
    *
    * @param username
-   * @param spw
+   * @param storeProductId
    * @throws Exception
    */
-  public void buyStoreProduct(String username, StoreProductWrapper spw) throws Exception {
+  public void buyStoreProduct(String username, Integer storeProductId) throws Exception {
     Player player = getPlayer(username);
-    StoreProduct sp = player.getStoreProduct(spw.getProductType());
+    StoreProduct sp = player.getStoreProduct(storeProductId);
     int price = sp.getPrice();
-
     try {
       store.buy(sp, player.getScore());
       player.removeScore((float) price);

@@ -158,14 +158,12 @@ class Player {
     return this.storeProducts;
   }
 
-  public StoreProduct getStoreProduct(ProductType pt) throws Exception {
-
-      for (StoreProduct sp: storeProducts
-          ) {
-        if (sp.getProductType() == pt) return sp;
+  public StoreProduct getStoreProduct(Integer storeProductId) throws Exception {
+      StoreProduct storeProduct = this.storeProducts.get(storeProductId);
+      if (storeProduct == null) {
+        throw  new Exception("Cant get storeproduct");
       }
-
-      throw new Exception("Product not found");
+      return storeProduct;
   }
 
 }
