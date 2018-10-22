@@ -140,9 +140,7 @@ public class TreasurePleasureTest {
     int diamond = 100;
     int gold = 80;
     int iron = 60;
-    int stone = 35;
-    int wood = 25;
-    int totalScore = diamond + gold + iron + stone + wood;
+    int totalScore = diamond + gold + iron;
     String username = "checkscoreplayer";
     try {
       tp.addPlayerToGame(username, Avatar.MAN);
@@ -156,8 +154,6 @@ public class TreasurePleasureTest {
       tp.addItemToPlayer(username, new Item(ItemType.DIAMOND, diamond));
       tp.addItemToPlayer(username, new Item(ItemType.GOLD, gold));
       tp.addItemToPlayer(username, new Item(ItemType.IRON, iron));
-      tp.addItemToPlayer(username, new Item(ItemType.STONE, stone));
-      tp.addItemToPlayer(username, new Item(ItemType.WOOD, wood));
     } catch (Exception e) {
       assertTrue(false);
     }

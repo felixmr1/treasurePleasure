@@ -22,4 +22,8 @@ public class DebugTest {
   public void isDebugModeOn() {
    assertFalse(tp.isDebug());
   }
+  @Test
+  public void isDemoModeOn() {
+    assertFalse(tp.isDemo());
+  }
 }

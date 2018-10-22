@@ -43,8 +43,6 @@ public class ChestTests {
       add(new Item(Data.getAvailableItemTypes()));
       add(new Item(Data.getAvailableItemTypes()));
       add(new Item(Data.getAvailableItemTypes()));
-      add(new Item(Data.getAvailableItemTypes()));
-      add(new Item(Data.getAvailableItemTypes()));
     }};
 
     // Give player some items

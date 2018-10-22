@@ -230,6 +230,10 @@ public class TreasurePleasure {
     return Data.isDebug();
   }
 
+  public boolean isDemo() {
+    return Data.isDemo();
+  }
+
   ArrayList<StoreProduct> getStoreProducts() {
     ArrayList<StoreProduct> storeProductsCopied = new ArrayList<>();
     for (int i = 0; i < this.storeProducts.size(); i++) {
