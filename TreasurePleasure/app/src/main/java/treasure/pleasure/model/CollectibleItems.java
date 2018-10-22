@@ -6,8 +6,8 @@ import java.util.HashMap;
 import treasure.pleasure.data.Data;
 
 /**
- * Contains items and their location for all items on the map.
- * This class can also spawn new random items at random locations on the map.
+ * Contains items and their location for all items on the map. This class can also spawn new random
+ * items at random locations on the map.
  *
  * @author jesper, oskar and david
  */
@@ -32,11 +32,21 @@ class CollectibleItems {
     this.collectibles = new HashMap<>();
     this.mapConstraint = mapConstraint;
 
-    for (int i = 0; i < nrCollectibles; i++) {
-      try {
-        this.spawnRandomItem();
-      } catch (Exception e) {
-        Log.w("CollectibleItems", "Could not spawn a item since its to close to other items");
+    this.spawnInitialItems();
+  }
+
+  void spawnInitialItems() {
+    if (Data.isDemo()) {
+      Item collectible = createRandomItem();
+      Location loc = new Location(57.690085, 11.973020);
+      addItem(loc, collectible);
+    } else {
+      for (int i = 0; i < nrCollectibles; i++) {
+        try {
+          this.spawnRandomItem();
+        } catch (Exception e) {
+          Log.w("CollectibleItems", "Could not spawn a item since its to close to other items");
+        }
       }
     }
   }
@@ -53,7 +63,8 @@ class CollectibleItems {
       loc = getRandomLocationWithinBounds();
     }
     if (i >= maxIterations) {
-      throw new Exception("Could not get a new location within borders after: " + maxIterations + " tries");
+      throw new Exception(
+          "Could not get a new location within borders after: " + maxIterations + " tries");
     }
     Item collectible = createRandomItem();
 
@@ -85,8 +96,10 @@ class CollectibleItems {
 
   // Todo: write test for this
   Boolean isAvailableLocation(Location loc) {
-    if (Data.isDebug()) return true;
-      for (Location occupiedLoc : collectibles.keySet()
+    if (Data.isDebug()) {
+      return true;
+    }
+    for (Location occupiedLoc : collectibles.keySet()
         ) {
       if (occupiedLoc.isCloseEnough(loc, loc.getMaxInteractionDistance() * 4)) {
         return false;
