@@ -32,6 +32,9 @@ public class TreasurePleasure {
 
   private treasure.pleasure.model.Map map;
 
+  private String activeUsername;
+
+
   TreasurePleasure() {
 
     System.out.println("!!!!!!!!!!!!!! A MODEL WAS CREATED!!!!!!!!!!!!!!!");

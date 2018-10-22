@@ -26,7 +26,6 @@ import treasure.pleasure.view.TreasurePleasureView;
  * The presenter handles calls between views and the model. It makes sure that we dont need any
  * logic in the views and translates information from the model to the view.
  *
- * The presenter is also responsible for initiating the model
  *
  * @author david, oskar, jesper, felix and john
  */
@@ -43,16 +42,24 @@ public class TreasurePleasurePresenter {
   private StoreFragment storeView;
 
 
-  private String username = "Donald";
-  private Avatar avatar = Avatar.WOMAN;
+  private String username;
+  private Avatar avatar;
 
-  public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment) {
+  public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment, String username, Avatar avatar) {
 
     if (gameMapFragment == null) {
       throw new IllegalArgumentException("gameMapFragment null");
     }
+    this.username = username;
+    this.avatar = avatar;
     this.view = view;
     this.model = TreasurePleasureFactory.getInstance();
+    try {
+      this.model.addPlayerToGame(username,avatar);
+    }catch (Exception e){
+      System.out.println("LOL COULD NOT ADD");
+    }
+
     this.gameMapView = gameMapFragment;
     this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
   }

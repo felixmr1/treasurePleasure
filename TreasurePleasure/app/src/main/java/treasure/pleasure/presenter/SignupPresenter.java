@@ -20,7 +20,7 @@ public class SignupPresenter extends BasePresenter<SignupActivity> {
             a= Avatar.WOMAN;
         try{
             model.addPlayerToGame(userName,a);
-            view.startTreasurePleasure();
+            view.startTreasurePleasure(userName,a);
         }
         catch (Exception e){
             view.showFailureToast(e);

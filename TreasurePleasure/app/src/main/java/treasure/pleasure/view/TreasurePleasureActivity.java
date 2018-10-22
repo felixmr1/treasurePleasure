@@ -1,5 +1,6 @@
 package treasure.pleasure.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import treasure.pleasure.R;
+import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
@@ -33,7 +35,14 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     setContentView(R.layout.activity_main);
     GameMapFragment gameMapFragment = (GameMapFragment) getSupportFragmentManager()
         .findFragmentById(R.id.map);
-    presenter = new TreasurePleasurePresenter(this, gameMapFragment);
+
+    Avatar avatar ;
+    String userName = getIntent().getStringExtra("username");
+    if(getIntent().getBooleanExtra("isMale",true))
+      avatar = Avatar.MAN;
+    else
+      avatar = Avatar.WOMAN;
+    presenter = new TreasurePleasurePresenter(this, gameMapFragment,userName, avatar);
     gameMapFragment.setPresenter(presenter);
     score = (TextView) findViewById(R.id.score);
     presenter.getSavedHighscore(this);

@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import treasure.pleasure.R;
+import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.SignupPresenter;
 
@@ -42,11 +43,7 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
                 mPresenter.onSubmit(editText.getText().toString(), maleButton.isChecked());
-
-                Intent toTreasurePleasure = new Intent(getApplicationContext(),TreasurePleasureActivity.class);
-
             }
         });
     }
@@ -66,8 +63,15 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
         }
     }
 
-    public void startTreasurePleasure(){
+    public void startTreasurePleasure(String userName, Avatar a ){
         Intent toTreasurePleasure = new Intent(getApplicationContext(),TreasurePleasureActivity.class);
+        Bundle b = new Bundle();
+
+        System.out.println("USERNAME: "+ userName);
+
+
+        toTreasurePleasure.putExtra("username",userName);
+        toTreasurePleasure.putExtra("avatar",a);
         startActivity(toTreasurePleasure);
     }
 
