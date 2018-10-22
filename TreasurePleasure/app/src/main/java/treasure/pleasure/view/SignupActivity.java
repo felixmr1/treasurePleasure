@@ -14,7 +14,6 @@ import treasure.pleasure.model.TreasurePleasure;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private TreasurePleasure mPresenter;
     private Button submitButton;
     private EditText editText;
     private boolean isMale;
@@ -26,8 +25,8 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        submitButton = findViewById(R.id.btn_login);
-        setSubmitButtonListener();
+        //submitButton = findViewById(R.id.btn_login);
+        //setSubmitButtonListener();
 
 
     }
