@@ -14,6 +14,7 @@ import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
 import treasure.pleasure.model.TreasurePleasure;
+import treasure.pleasure.model.TreasurePleasureFactory;
 import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
@@ -40,6 +41,8 @@ public class TreasurePleasurePresenter {
   private SettingsFragment settingsView;
   private ChestFragment chestView;
   private StoreFragment storeView;
+
+
   private String username = "Donald";
   private Avatar avatar = Avatar.WOMAN;
 
@@ -49,22 +52,11 @@ public class TreasurePleasurePresenter {
       throw new IllegalArgumentException("gameMapFragment null");
     }
     this.view = view;
-    this.model = new TreasurePleasure();
-    this.model.addPlayerToGame(this.username, this.avatar);
+    this.model = TreasurePleasureFactory.getInstance();
     this.gameMapView = gameMapFragment;
     this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
   }
 
-  public void createPlayer(String name) {
-    Avatar a;
-    if (new Random().nextBoolean()) {
-      a = Avatar.MAN;
-    } else {
-      a = Avatar.WOMAN;
-    }
-    model.addPlayerToGame(name, a);
-    view.updatePlayers(model.getPlayerNames());
-  }
 
   /**
    * Show or close backpack widget. Update button text accordingly.

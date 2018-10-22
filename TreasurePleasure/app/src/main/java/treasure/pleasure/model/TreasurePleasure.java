@@ -20,7 +20,7 @@ import treasure.pleasure.data.Tuple;
  *
  * @author Oskar, John, Felix, Jesper and David
  */
-public class TreasurePleasure implements Serializable {
+public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -32,7 +32,11 @@ public class TreasurePleasure implements Serializable {
 
   private treasure.pleasure.model.Map map;
 
-  public TreasurePleasure() {
+  TreasurePleasure() {
+
+    System.out.println("!!!!!!!!!!!!!! A MODEL WAS CREATED!!!!!!!!!!!!!!!");
+
+
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.map = new treasure.pleasure.model.Map();
@@ -71,9 +75,9 @@ public class TreasurePleasure implements Serializable {
     return markers;
   }
 
-  public void addPlayerToGame(String username, Avatar avatar) throws ArrayStoreException {
+  public void addPlayerToGame(String username, Avatar avatar) throws Exception {
     if (takenUsernames.contains(username.toLowerCase())) {
-      throw new ArrayStoreException();
+      throw new Exception("Player already exist");
 
     } else {
       Player player = new Player(username, avatar, this.getStoreProducts());

@@ -10,6 +10,8 @@ import treasure.pleasure.presenter.BasePresenter;
 
 /**
  * author John
+ *
+ * The baseactivity handles every internal call as attaching / detaching presenters.
  * @param <Presenter>  We force the views presenter to be a presenter that extends the BasePresenter.
  */
 public abstract class BaseActivity<Presenter extends BasePresenter> extends AppCompatActivity {
@@ -20,12 +22,14 @@ public abstract class BaseActivity<Presenter extends BasePresenter> extends AppC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mPresenter = createPresenter(this);
+        mPresenter.attachActivity(this);
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mPresenter.detachActivity();
         detachPresenter();
     }
 

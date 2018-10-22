@@ -1,42 +1,37 @@
 package treasure.pleasure.presenter;
 
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import treasure.pleasure.model.TreasurePleasure;
+import treasure.pleasure.model.TreasurePleasureFactory;
+import treasure.pleasure.view.BaseActivity;
 
-@SuppressWarnings({"UnusedParameters", "unused"})
-public abstract class BasePresenter {
+
+public abstract class BasePresenter <Activity extends BaseActivity> {
+
+    TreasurePleasure model;
+    Activity view;
 
 
     protected BasePresenter() {
-    }
+        this.model = TreasurePleasureFactory.getInstance();
 
-    @CallSuper
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-    }
-
-    @CallSuper
-    public void onResume() {
-    }
-
-    @CallSuper
-    public void onPause() {
-    }
-
-    @CallSuper
-    public void onSaveInstanceState(@NonNull final Bundle outState) {
-    }
-
-    @CallSuper
-    public void onDestroy() {
-    }
-
-    @CallSuper
-    public void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
     }
 
 
+    public void attachActivity(Activity activity){
+        this.view = activity;
+
     }
+
+    public void detachActivity(){
+        this.view = null;
+    }
+
+
+
+}

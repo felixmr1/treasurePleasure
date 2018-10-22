@@ -1,29 +1,31 @@
 package treasure.pleasure.presenter;
-
-import android.content.Context;
-import android.graphics.ColorSpace;
-import android.os.Bundle;
-
-import treasure.pleasure.model.TreasurePleasure;
+import treasure.pleasure.model.Avatar;
 import treasure.pleasure.view.SignupActivity;
 
-public class SignupPresenter extends BasePresenter {
-    SignupActivity mView;
-    TreasurePleasure model;
 
+public class SignupPresenter extends BasePresenter<SignupActivity> {
 
-   public SignupPresenter(SignupActivity view,TreasurePleasure model){
-    this.mView = view;
-    attachModel(model);
-
-    }
-
-    private void attachModel(TreasurePleasure model){
-       this.model = model;
-
+    public SignupPresenter() {
+        super();
     }
 
 
 
+    public void onSubmit(String userName, boolean isMale){
+
+        Avatar a;
+        if(isMale)
+            a = Avatar.MAN;
+        else
+            a= Avatar.WOMAN;
+        try{
+            model.addPlayerToGame(userName,a);
+            view.startTreasurePleasure();
+        }
+        catch (Exception e){
+            view.showFailureToast(e);
+        }
+
+    }
 
 }
