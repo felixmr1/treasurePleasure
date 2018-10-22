@@ -66,7 +66,7 @@ public class Data {
   // Backpack
   private static final int initialBackpackLevel = 1;
   private static final int initialNOfBusySlots = 0;
-  private static final int backpackMaxSize = 12;
+  private static final int backpackMaxSize = 3;
 
   private static double storeLat =
       northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
