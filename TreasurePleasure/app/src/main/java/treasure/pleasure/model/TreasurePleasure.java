@@ -3,6 +3,8 @@ package treasure.pleasure.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
+
+import java.io.Serializable;
 import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ import treasure.pleasure.data.Tuple;
  *
  * @author Oskar, John, Felix, Jesper and David
  */
-public class TreasurePleasure {
+public class TreasurePleasure implements Serializable {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;

@@ -1,18 +1,20 @@
 package treasure.pleasure.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-
 import treasure.pleasure.R;
 import treasure.pleasure.model.TreasurePleasure;
+import treasure.pleasure.presenter.SignupPresenter;
 
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends BaseActivity<SignupPresenter> {
+
 
     private Button submitButton;
     private EditText editText;
@@ -22,14 +24,21 @@ public class SignupActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         //submitButton = findViewById(R.id.btn_login);
         //setSubmitButtonListener();
 
+    }
+
+    @NonNull
+    @Override
+    public SignupPresenter createPresenter(@NonNull final Context contex, Bundle bundle) {
+        return new SignupPresenter(this, (TreasurePleasure) bundle.get("model") );
 
     }
+
 
     private void setSubmitButtonListener(){
 
