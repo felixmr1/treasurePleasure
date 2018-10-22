@@ -2,16 +2,23 @@
 <resources>
 
 
-    <color name="cyan_primary">#00796b</color>
-    <color name="cyan_primary_dark">#004c40</color>
-    <color name="cyan_accent">#3d9c83</color>
+    <color name="colorPrimary">#00796b</color>
+    <color name="colorPrimaryDark">#004c40</color>
+    <color name="colorAccent">#3d9c83</color>
     <color name="cyan_accent_secondary">#1b563b</color>
 
 
 
 
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+
+
+    <color name="colorPrimary2">#3F51B5</color>
+    <color name="colorPrimaryDark2">#303F9F</color>
+    <color name="colorAccent2">#FF4081</color>
+
+
+    <color name="buttonText">#e0e0e0</color>
+
 </resources>
