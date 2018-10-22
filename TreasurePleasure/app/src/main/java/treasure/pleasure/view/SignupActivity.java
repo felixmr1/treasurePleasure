@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import treasure.pleasure.R;
@@ -15,10 +16,12 @@ import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.SignupPresenter;
 
+import static java.security.AccessController.getContext;
+
 
 public class SignupActivity extends BaseActivity<SignupPresenter> {
 
-
+    private  RadioGroup radioGroup;
     private Button submitButton;
     private EditText editText;
     private RadioButton maleButton;
@@ -29,11 +32,11 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
     @Override
     public  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_signup);
         editText = findViewById(R.id.input_username);
+        initRadioButtons();
         submitButton = findViewById(R.id.btn_login);
-        maleButton = findViewById(R.id.radio_male);
-        maleButton.setChecked(false);
         setSubmitButtonListener();
 
     }
@@ -85,10 +88,18 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+
+
+    private void initRadioButtons(){
+
+        this.radioGroup = findViewById(R.id.sex_choice);
+        this.maleButton = findViewById(R.id.radio_male);
+        maleButton.setChecked(true);
 
 
     }
-
 
     /**
      * superclass will call this in its constructor. Has to be implemented to make sure the constructor

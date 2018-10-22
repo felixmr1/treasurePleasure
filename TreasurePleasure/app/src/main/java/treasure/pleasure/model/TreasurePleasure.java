@@ -76,8 +76,12 @@ public class TreasurePleasure {
     if (takenUsernames.contains(username.toLowerCase())) {
       throw new Exception("Username is taken!");
 
-    } else {
-      
+    }
+    else if (username.isEmpty() || username == null){
+      throw new Exception("Username can not be empty!");
+    }
+    else {
+
       Player player = new Player(username, avatar, this.getStoreProducts());
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       players.put(username.toLowerCase(), player);

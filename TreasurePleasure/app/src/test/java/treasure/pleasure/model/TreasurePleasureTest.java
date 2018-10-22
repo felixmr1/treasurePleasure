@@ -72,8 +72,13 @@ public class TreasurePleasureTest {
 
   @Test
   public void addPlayerCreatesNoDuplicateUsernames() {
-    tp.addPlayerToGame("Anders", Avatar.MAN);
-    usernames = tp.getPlayerNames();
+    try{ tp.addPlayerToGame("Anders", Avatar.MAN);
+      usernames = tp.getPlayerNames();}
+      catch (Exception e ){
+
+      assertTrue(false);
+      }
+
 
     try {
       tp.addPlayerToGame("Anders", Avatar.MAN);
@@ -85,8 +90,13 @@ public class TreasurePleasureTest {
   @Test
   public void getBackPackContentForPlayer() {
     String playerName = "TATA";
-    tp.addPlayerToGame(playerName, Avatar.MAN);
-    assertFalse(tp.getBackPackContentForPlayer(playerName).size() == 0);
+    try {
+      tp.addPlayerToGame(playerName, Avatar.MAN);
+      assertFalse(tp.getBackPackContentForPlayer(playerName).size() == 0);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
   }
 
   @Test
@@ -96,7 +106,11 @@ public class TreasurePleasureTest {
     double itemValue = 100;
     Item i = new Item(itemType, itemValue);
 
-    tp.addPlayerToGame(playerName, Avatar.WOMAN);
+    try {
+      tp.addPlayerToGame(playerName, Avatar.WOMAN);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
     try {
       tp.addItemToPlayer(playerName, i);
     } catch (Exception e) {
@@ -120,14 +134,22 @@ public class TreasurePleasureTest {
   @Test
   public void isBackpackFullForPlayer() {
     String playerName = "TATA";
-    tp.addPlayerToGame(playerName, Avatar.MAN);
+    try {
+      tp.addPlayerToGame(playerName, Avatar.MAN);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
     assertFalse(tp.isBackpackFullForPlayer(playerName));
   }
 
   @Test
   public void isBackpackEmptyForPlayer() {
     String playerName = "TATA";
-    tp.addPlayerToGame(playerName, Avatar.MAN);
+    try {
+      tp.addPlayerToGame(playerName, Avatar.MAN);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
     assertTrue(tp.isBackpackEmptyForPlayer(playerName));
   }
 
