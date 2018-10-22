@@ -95,6 +95,10 @@ public class StoreProduct {
     this.priceIncrease = priceIncrease;
   }
 
+  /**
+   * Sets a custom increment for how much item price will increment
+   * @param incrementStep
+   */
   public void setIncrementStep(float incrementStep) {
     this.incrementStep = incrementStep;
   }

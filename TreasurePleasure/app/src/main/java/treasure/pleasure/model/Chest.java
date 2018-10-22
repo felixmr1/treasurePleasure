@@ -37,7 +37,11 @@ public class Chest<T extends ItemCallBack> {
     this.nrItemsInChest = 0;
   }
 
-  // Add multiple items at once
+  /**
+   * Loops over and "sells" all items given
+   * @param items
+   * @return the collective value of all items
+   */
   double sell(List<T> items) {
     double valueOfAllItems = 0;
     for (T item : items) {
@@ -55,6 +59,11 @@ public class Chest<T extends ItemCallBack> {
     nrItemsInChest++;
   }
 
+  /**
+   * "Sells an item"
+   * @param item
+   * @return The value of the item
+   */
   double sell(T item) {
     return item.getValueCallBack();
   }

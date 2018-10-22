@@ -8,6 +8,10 @@ package treasure.pleasure.model;
 public class Store {
   private Location location;
 
+  /**
+   * Creates a store at the desired location
+   * @param location
+   */
   Store(Location location) {
     this.location = location;
   }
@@ -20,7 +24,7 @@ public class Store {
    * Increases storeProducts value and price if player has enough money.
    * @param storeProduct
    * @param money
-   * @throws Exception
+   * @throws Exception if player does not have enough money
    */
   void buy (StoreProduct storeProduct, int money)  throws Exception {
     if (storeProduct.getPrice() > money)  {

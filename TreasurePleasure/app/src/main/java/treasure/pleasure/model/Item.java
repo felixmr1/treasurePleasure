@@ -16,6 +16,10 @@ public class Item implements ItemCallBack {
   private double value;
   private ItemType type;
 
+  /**
+   * Randomly creates an Item of a random type that exists in th ArrayList itemTypes
+   * @param itemTypes
+   */
   Item(ArrayList<ItemType> itemTypes) {
     ItemType itemType;
     int r = (int) (Math.random() * 100) + 1;
@@ -44,6 +48,11 @@ public class Item implements ItemCallBack {
     this.value = r;
   }
 
+  /**
+   * creates a specific Item with desired type and value.
+   * @param type
+   * @param value
+   */
   Item(ItemType type, double value) {
     this.type = type;
     this.value = value;

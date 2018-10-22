@@ -52,7 +52,8 @@ class CollectibleItems {
   }
 
   /**
-   * Spawns a random item within the current map constraints
+   * Spawns a random item
+   * @throws Exception
    */
   void spawnRandomItem() throws Exception {
     int i = 0;
@@ -72,7 +73,9 @@ class CollectibleItems {
   }
 
   /**
-   * Adds an item
+   * Adds the item the location
+   * @param loc
+   * @param item
    */
   private void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
@@ -84,7 +87,6 @@ class CollectibleItems {
 
   /**
    * Creates a Location within map constraints
-   *
    * @return Location
    */
   public Location getRandomLocationWithinBounds() {
@@ -94,7 +96,12 @@ class CollectibleItems {
     return northWest.getLocationWithinCoordinates(northWest, southEast);
   }
 
-  // Todo: write test for this
+  /**
+   * Checks if given location is valid i.e there are no other items within 'closeEnough' distance
+   * @param loc
+   * @return boolean if its valid
+   * Todo: write test for this
+   */
   Boolean isAvailableLocation(Location loc) {
     if (Data.isDebug()) {
       return true;
@@ -109,14 +116,18 @@ class CollectibleItems {
   }
 
   /**
-   * Removes item located at given location
+   * Removes an item from collectibles arrayList
+   * @param location
    */
   void removeItem(Location location) {
     collectibles.remove(location);
   }
 
   /**
-   * Returns item at corresponding location and removes it from map
+   * Takes an item at specified location. Throws exception if there is no item at that location
+   * @param location
+   * @return
+   * @throws Exception
    */
   Item takeItem(Location location) throws Exception {
     Item item = collectibles.get(location);
@@ -132,6 +143,10 @@ class CollectibleItems {
     return this.nrCollectibles;
   }
 
+  /**
+   * Increase the nrOfCollectibles that is on the map.
+   * @param nrOfCollectibles
+   */
   void setNrCollectibles(int nrOfCollectibles) {
     int oldCollectibles = this.nrCollectibles;
     this.nrCollectibles = nrOfCollectibles;
