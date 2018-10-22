@@ -29,16 +29,10 @@ public class TreasurePleasure {
   private CollectibleItems collectibleItems;
   private ArrayList<ItemType> availableItemTypes = Data.getAvailableItemTypes();
   private ArrayList<StoreProduct> storeProducts = new ArrayList<>();
-
   private treasure.pleasure.model.Map map;
-
-  private String activeUsername;
 
 
   TreasurePleasure() {
-
-    System.out.println("!!!!!!!!!!!!!! A MODEL WAS CREATED!!!!!!!!!!!!!!!");
-
 
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
@@ -80,9 +74,10 @@ public class TreasurePleasure {
 
   public void addPlayerToGame(String username, Avatar avatar) throws Exception {
     if (takenUsernames.contains(username.toLowerCase())) {
-      throw new Exception("Player already exist");
+      throw new Exception("Username is taken!");
 
     } else {
+      
       Player player = new Player(username, avatar, this.getStoreProducts());
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
       players.put(username.toLowerCase(), player);

@@ -54,12 +54,6 @@ public class TreasurePleasurePresenter {
     this.avatar = avatar;
     this.view = view;
     this.model = TreasurePleasureFactory.getInstance();
-    try {
-      this.model.addPlayerToGame(username,avatar);
-    }catch (Exception e){
-      System.out.println("LOL COULD NOT ADD");
-    }
-
     this.gameMapView = gameMapFragment;
     this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
   }
