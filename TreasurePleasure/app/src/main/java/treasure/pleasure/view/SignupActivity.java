@@ -13,10 +13,7 @@ import android.widget.Toast;
 
 import treasure.pleasure.R;
 import treasure.pleasure.model.Avatar;
-import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.SignupPresenter;
-
-import static java.security.AccessController.getContext;
 
 
 public class SignupActivity extends BaseActivity<SignupPresenter> {
@@ -29,7 +26,7 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
 
     private RadioGroup radioGroup;
     private Button submitButton;
-    private EditText editText;
+    private EditText usernameInput;
     private RadioButton maleButton;
     private static final String TAG = "SignupActivity";
 
@@ -40,7 +37,7 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_signup);
-        editText = findViewById(R.id.input_username);
+        usernameInput = findViewById(R.id.input_username);
         initRadioButtons();
         submitButton = findViewById(R.id.btn_login);
         setSubmitButtonListener();
@@ -55,7 +52,7 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                mPresenter.onSubmit(editText.getText().toString(), maleButton.isChecked());
+                mPresenter.onSubmit(usernameInput.getText().toString(), maleButton.isChecked());
             }
         });
     }
