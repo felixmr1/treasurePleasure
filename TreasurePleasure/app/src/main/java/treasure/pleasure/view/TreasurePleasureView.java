@@ -9,16 +9,13 @@ import treasure.pleasure.model.TreasurePleasure;
 public interface TreasurePleasureView {
 
   void updatePlayers(ArrayList<String> users);
-
   void changeMapButtonText(String newText);
-
-  boolean backpackFragmentIsActive();
-
-  void loadBackpackFragment(TreasurePleasure model);
-
-  void closeBackpackFragment();
-
   void showToast(String s);
+
+  // For backpack fragment
+  boolean backpackFragmentIsActive();
+  void showBackpackFragment();
+  void hideBackpackFragment();
 
   // For store fragment
   void showStoreFragment();
@@ -32,9 +29,8 @@ public interface TreasurePleasureView {
   void changeSettingsButtonText(String s);
 
   // For chest fragment
-
   void showChestFragment();
   boolean chestFragmentIsActive();
-  void closeChestFragment();
+  void hideChestFragment();
   void updateScore(Integer playerScore);
 }

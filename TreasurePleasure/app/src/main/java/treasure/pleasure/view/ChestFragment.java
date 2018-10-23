@@ -37,7 +37,7 @@ public class ChestFragment extends Fragment {
     btnClose.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        mPresenter.closeChestButtonClicked();
+        mPresenter.hideChestButtonClicked();
       }
     });
     btnStoreItems.setOnClickListener(new View.OnClickListener() {

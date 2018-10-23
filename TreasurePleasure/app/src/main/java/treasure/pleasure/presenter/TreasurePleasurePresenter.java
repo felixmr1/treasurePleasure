@@ -62,14 +62,14 @@ public class TreasurePleasurePresenter {
   /**
    * Show or close backpack widget. Update button text accordingly.
    */
-  public void onPressShowBackpackButton() {
+  public void showBackpack() {
 
     if (view.backpackFragmentIsActive()) {
-      view.closeBackpackFragment();
+      view.hideBackpackFragment();
       view.changeMapButtonText("Show backpack");
       backpackView = null;
     } else {
-      view.loadBackpackFragment(model);
+      view.showBackpackFragment();
       view.changeMapButtonText("Close backpack");
     }
   }
@@ -97,19 +97,20 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  public void buyStoreProduct(Integer storeProduct) {
-    try {
-      model.buyStoreProduct(this.username, storeProduct);
-      //view.showToast("Spend " + spw.getPrice() + " points to " + spw.getName() + ". New value is " + spw.getValue());
-      updateDisplayedScore();
-      redrawMap();
-      if (view.backpackFragmentIsActive()) {
-        retrieveAndDisplayContent();
-      }
-    } catch (Exception e) {
-      view.showToast(e.getMessage());
+  public void showChest() {
+    if (view.chestFragmentIsActive()) {
+      view.hideChestFragment();
+    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+      view.showToast("Chest is not close enough");
+    } else {
+      view.showChestFragment();
     }
+  }
 
+  public void hideChestButtonClicked() {
+    if (view.chestFragmentIsActive()) {
+      view.hideChestFragment();
+    }
   }
 
   public void setSettingsView(SettingsFragment view) {
@@ -260,23 +261,6 @@ public class TreasurePleasurePresenter {
     }
   }
 
-  public void onChestClick() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
-      view.showToast("Chest is not close enough");
-    } else {
-      view.showChestFragment();
-    }
-
-  }
-
-  public void closeChestButtonClicked() {
-    if (view.chestFragmentIsActive()) {
-      view.closeChestFragment();
-    }
-  }
-
   public void storeItemsButtonClicked() {
     model.sellAllBackPackItems(username);
     onBackpackUpdate();
@@ -292,14 +276,29 @@ public class TreasurePleasurePresenter {
   }
 
   /**
-   * TODO implement store functionality, add check that the player is close enough to store
+   * Get available store products for the current user
    */
-  public void onStoreClick() {
-    showStore();
-  }
-
   public ArrayList<Integer> getStoreProducts() {
     return model.getStoreProducts(this.username);
+  }
+
+  /**
+   * Buying a storeProduct results in a change of game state
+   * @param storeProduct
+   */
+  public void buyStoreProduct(Integer storeProduct) {
+    try {
+      model.buyStoreProduct(this.username, storeProduct);
+      //view.showToast("Spend " + spw.getPrice() + " points to " + spw.getName() + ". New value is " + spw.getValue());
+      updateDisplayedScore();
+      redrawMap();
+      if (view.backpackFragmentIsActive()) {
+        retrieveAndDisplayContent();
+      }
+    } catch (Exception e) {
+      view.showToast(e.getMessage());
+    }
+
   }
 
   public String getStoreProductName(Integer id) {
