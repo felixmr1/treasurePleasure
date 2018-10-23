@@ -12,8 +12,12 @@ import treasure.pleasure.view.BaseActivity;
 
 
 public abstract class BasePresenter <Activity extends BaseActivity> {
-
+    /**
+     * A basePresenter that handles logic with instanciating / getting the instance of the model.
+     * By extending this class, the programmer does not have to worry  about setting the model, but it is done for them
+     */
     TreasurePleasure model;
+
     Activity view;
 
 
@@ -22,12 +26,18 @@ public abstract class BasePresenter <Activity extends BaseActivity> {
 
     }
 
-
+    /**
+     * attaches a view to the presenter
+     * @param activity
+     */
     public void attachActivity(Activity activity){
         this.view = activity;
 
     }
 
+    /**
+     * detaches a view to the presenter
+     */
     public void detachActivity(){
         this.view = null;
     }

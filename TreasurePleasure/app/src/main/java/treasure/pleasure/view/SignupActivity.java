@@ -21,6 +21,11 @@ import static java.security.AccessController.getContext;
 
 public class SignupActivity extends BaseActivity<SignupPresenter> {
 
+    /**
+     * The sign in avtivity. handles UI logic that is decided of its presenter
+     */
+
+
     private  RadioGroup radioGroup;
     private Button submitButton;
     private EditText editText;
@@ -41,7 +46,10 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
 
     }
 
-
+    /**
+     * Onpress event when submit button is clicked.
+     * lets the presenter handle the logic and call methods depending on what happens within business logic.
+     */
     private void setSubmitButtonListener(){
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,9 +74,14 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
         }
     }
 
+    /**
+     *  starts the activity TreasurePleasureActivity
+     * @param userName derived from EditText will be used by TreasurePleasurePresenter.
+     * @param a avatar derived from radioButtons will be used by TreasurePleasurePresenter.
+     *
+     */
     public void startTreasurePleasure(String userName, Avatar a ){
         Intent toTreasurePleasure = new Intent(getApplicationContext(),TreasurePleasureActivity.class);
-        Bundle data = new Bundle();
 
         toTreasurePleasure.putExtra("username",userName);
         toTreasurePleasure.putExtra("avatar",a);
@@ -76,8 +89,13 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
     }
 
 
-
-    public void showFailureToast(Exception e){
+    /**
+     * Called if a exception is fired within the business logic and lets the user see this.
+     * Shows the exception message in form of a toast.
+     *
+     * @param e exception that is fired within the model
+     */
+    public void showFailureToast(Exception e ){
 
         Context context = getApplicationContext();
         CharSequence text = e.getMessage();
