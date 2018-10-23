@@ -1,11 +1,8 @@
 package treasure.pleasure.view;
-
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +10,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import treasure.pleasure.R;
 import treasure.pleasure.model.Avatar;
-import treasure.pleasure.model.TreasurePleasure;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
@@ -43,7 +39,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
     mPresenter.getSavedHighscore(this);
   }
 
-
   /**
    * is called in super the superclass BaseActivity constructor. has to be implemented to get a concrete implementation of the presenter
    * @param context
@@ -57,7 +52,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
     String userName = data.getString("username");
 
     return new TreasurePleasurePresenter(this,userName,avatar);
-
 
   }
 
@@ -206,17 +200,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
     Toast.makeText(this, string,
         Toast.LENGTH_SHORT).show();
   }
-
-
-
-  private Avatar getAvatarDecision(boolean isMale){
-    Avatar avatar;
-    if(isMale)
-      avatar = Avatar.MAN;
-    else
-      avatar = Avatar.WOMAN;
-    return avatar;
-
   }
 
 
