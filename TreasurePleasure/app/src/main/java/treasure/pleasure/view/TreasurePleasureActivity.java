@@ -173,11 +173,12 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         Toast.LENGTH_SHORT).show();
   }
 
-<<<<<<< Updated upstream
   @Override
   public void updateScore(Integer playerScore) {
     score.setText(playerScore.toString());
-=======
+  }
+  
+
   private Avatar getAvatarDecision(boolean isMale){
     Avatar avatar;
     if(isMale)
@@ -185,7 +186,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     else
       avatar = Avatar.WOMAN;
     return avatar;
->>>>>>> Stashed changes
+
   }
 
   private void savePersistentData() {
