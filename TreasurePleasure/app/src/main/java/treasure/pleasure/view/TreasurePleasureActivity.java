@@ -36,14 +36,12 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     GameMapFragment gameMapFragment = (GameMapFragment) getSupportFragmentManager()
         .findFragmentById(R.id.map);
 
-    Avatar avatar ;
     String userName = getIntent().getStringExtra("username");
-    if(getIntent().getBooleanExtra("isMale",true))
-      avatar = Avatar.MAN;
-    else
-      avatar = Avatar.WOMAN;
-    presenter = new TreasurePleasurePresenter(this, gameMapFragment,userName, avatar);
+    Avatar avatar = getAvatarDecision(getIntent().getBooleanExtra("isMale",true));
+    presenter = new TreasurePleasurePresenter(this,userName, avatar);
+    presenter.attachGameMapFragment(gameMapFragment);
     gameMapFragment.setPresenter(presenter);
+
     score = (TextView) findViewById(R.id.score);
     presenter.getSavedHighscore(this);
   }
@@ -175,9 +173,19 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         Toast.LENGTH_SHORT).show();
   }
 
+<<<<<<< Updated upstream
   @Override
   public void updateScore(Integer playerScore) {
     score.setText(playerScore.toString());
+=======
+  private Avatar getAvatarDecision(boolean isMale){
+    Avatar avatar;
+    if(isMale)
+      avatar = Avatar.MAN;
+    else
+      avatar = Avatar.WOMAN;
+    return avatar;
+>>>>>>> Stashed changes
   }
 
   private void savePersistentData() {

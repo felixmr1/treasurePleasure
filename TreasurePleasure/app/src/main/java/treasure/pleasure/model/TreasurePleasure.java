@@ -20,7 +20,7 @@ import treasure.pleasure.data.Tuple;
  *
  * @author Oskar, John, Felix, Jesper and David
  */
-public class TreasurePleasure {
+ public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;

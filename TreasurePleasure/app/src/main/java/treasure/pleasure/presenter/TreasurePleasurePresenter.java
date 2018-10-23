@@ -45,17 +45,12 @@ public class TreasurePleasurePresenter {
   private String username;
   private Avatar avatar;
 
-  public TreasurePleasurePresenter(TreasurePleasureView view, GameMapFragment gameMapFragment, String username, Avatar avatar) {
+  public TreasurePleasurePresenter(TreasurePleasureView view, String username, Avatar avatar) {
 
-    if (gameMapFragment == null) {
-      throw new IllegalArgumentException("gameMapFragment null");
-    }
     this.username = username;
     this.avatar = avatar;
     this.view = view;
     this.model = TreasurePleasureFactory.getInstance();
-    this.gameMapView = gameMapFragment;
-    this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
   }
 
 
@@ -374,4 +369,17 @@ public class TreasurePleasurePresenter {
     view.hideStoreFragment();
     this.storeView = null;
   }
+
+
+  public void attachGameMapFragment(GameMapFragment gameMapFragment) throws IllegalArgumentException{
+
+    if (gameMapFragment == null) {
+      throw new IllegalArgumentException("gameMapFragment null");
+    }
+    this.gameMapView = gameMapFragment;
+    this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
+
+
+  }
+
 }
