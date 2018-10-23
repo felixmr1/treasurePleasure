@@ -52,20 +52,27 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     super.onPause();
   }
 
-  // Functions that the XML triggers (user-actions)
+  /**
+   * Pressing buttons on screen triggers these functionalities
+   * @param view
+   */
   public void onPressShowSettingsButton(View view) {
     presenter.showSettings();
   }
 
   public void onPressBackpackButton(View view) {
-    presenter.onPressShowBackpackButton();
+    presenter.showBackpack();
   }
 
   public void onPressShowStoreButton(View view) {
     presenter.showStore();
   }
 
-  // Functions that the Presenter calls (tells view to update)
+  /**
+   * Can take a list of users from the Presenter to update its displayed content
+   * @param users
+   */
+// Functions that the Presenter calls (tells view to update)
   @Override
   public void updatePlayers(ArrayList<String> users) {
     String allNames = "";
@@ -76,12 +83,10 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   /**
-   * Create a widget onscreen displaying the backpack content.
+   * Create a fragment onscreen displaying e.g. backpack content
    *
-   * @param model reference is passed to establish communication between BackpackFragment and
-   * model.
    */
-  public void loadBackpackFragment(TreasurePleasure model) {
+  public void showBackpackFragment() {
     BackpackFragment backpackFragment = new BackpackFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment)
         .commit();
@@ -110,13 +115,16 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     storeFragment.setPresenter(presenter);
   }
 
-
-  public void closeBackpackFragment() {
+  /**
+   * Hide fragment onscreen displaying the backpack content.
+   *
+   */
+  public void hideBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.backpack_container)).commit();
   }
 
-  public void closeChestFragment() {
+  public void hideChestFragment() {
     FragmentManager fm = getSupportFragmentManager();
     fm.beginTransaction().remove(fm.findFragmentById(R.id.chest_container)).commit();
   }
@@ -132,9 +140,9 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
   /**
-   * Check if backpack widget already being displayed
+   * The following functions check if a fragment being displayed
    *
-   * @return true if backpack is already onscreen, else false
+   * @return e.g. true if backpack is already onscreen, else false
    */
   public boolean backpackFragmentIsActive() {
     return (getSupportFragmentManager().findFragmentById(R.id.backpack_container) != null);
@@ -153,6 +161,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
 
+  /**
+   * With the following functions the presenter tells a fragment/view
+   * to change the text on a displayed button
+   *
+   * @param newText
+   */
+
   public void changeMapButtonText(String newText) {
     Button mapButton = findViewById(R.id.showBackpackButton);
     mapButton.setText(newText);
@@ -163,9 +178,13 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     mapButton.setText(newText);
   }
 
+  @Override
+  public void updateScore(Integer playerScore) {
+    score.setText(playerScore.toString());
+  }
+
   /**
-   * Show on screen message.
-   *
+   * Show on screen message (the little grey popup box on the bottom).
    * @param string to be displayed
    */
   public void showToast(String string) {
@@ -173,11 +192,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
         Toast.LENGTH_SHORT).show();
   }
 
-  @Override
-  public void updateScore(Integer playerScore) {
-    score.setText(playerScore.toString());
-  }
-  
+
 
   private Avatar getAvatarDecision(boolean isMale){
     Avatar avatar;
@@ -188,6 +203,7 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     return avatar;
 
   }
+
 
   private void savePersistentData() {
     presenter.savePersistentData(this);

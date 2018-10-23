@@ -210,9 +210,9 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   @Override
   public boolean onMarkerClick(Marker marker) {
     if (marker.equals(myChest)) {
-      presenter.onChestClick();
+      presenter.showChest();
     } else if (marker.equals(myStore)) {
-      presenter.onStoreClick();
+      presenter.showStore();
     } else {
       // - a collectible has been clicked
       presenter.attemptCollectAndRemove(marker);

@@ -36,6 +36,9 @@ public class SettingsFragment extends Fragment {
     final View view = inflater.inflate(R.layout.fragment_settings, container, false);
     btnChangeUsername = (Button) view.findViewById(R.id.changeUsernameButton);
 
+    /**
+     * The presenter is called with given input if "Change username" is pressed
+     */
     btnChangeUsername.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
