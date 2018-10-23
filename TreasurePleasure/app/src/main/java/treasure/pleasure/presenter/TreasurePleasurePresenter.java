@@ -20,6 +20,7 @@ import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
 import treasure.pleasure.view.SettingsFragment;
 import treasure.pleasure.view.StoreFragment;
+import treasure.pleasure.view.TreasurePleasureActivity;
 import treasure.pleasure.view.TreasurePleasureView;
 
 /**
@@ -29,13 +30,12 @@ import treasure.pleasure.view.TreasurePleasureView;
  *
  * @author david, oskar, jesper, felix and john
  */
-public class TreasurePleasurePresenter {
+public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureActivity> {
 
   DecimalFormat dm = new DecimalFormat("#.##");
 
   private TreasurePleasureView view;
   private BackpackFragment backpackView;
-  private TreasurePleasure model;
   private GameMapFragment gameMapView;
   private SettingsFragment settingsView;
   private ChestFragment chestView;
@@ -46,7 +46,7 @@ public class TreasurePleasurePresenter {
   private Avatar avatar;
 
   public TreasurePleasurePresenter(TreasurePleasureView view, String username, Avatar avatar) {
-
+    super();
     this.username = username;
     this.avatar = avatar;
     this.view = view;

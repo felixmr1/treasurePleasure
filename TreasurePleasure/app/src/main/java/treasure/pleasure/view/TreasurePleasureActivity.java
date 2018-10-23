@@ -1,7 +1,9 @@
 package treasure.pleasure.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,9 +26,8 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
  * @author oskar, david, jesper, felix and john
  */
 
-public class TreasurePleasureActivity extends AppCompatActivity implements TreasurePleasureView {
+public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePresenter> implements TreasurePleasureView {
 
-  TreasurePleasurePresenter presenter;
   TextView score;
 
   @Override
@@ -36,19 +37,33 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     GameMapFragment gameMapFragment = (GameMapFragment) getSupportFragmentManager()
         .findFragmentById(R.id.map);
 
-    String userName = getIntent().getStringExtra("username");
-    Avatar avatar = getAvatarDecision(getIntent().getBooleanExtra("isMale",true));
-    presenter = new TreasurePleasurePresenter(this,userName, avatar);
-    presenter.attachGameMapFragment(gameMapFragment);
-    gameMapFragment.setPresenter(presenter);
-
+    mPresenter.attachGameMapFragment(gameMapFragment);
+    gameMapFragment.setPresenter(mPresenter);
     score = (TextView) findViewById(R.id.score);
-    presenter.getSavedHighscore(this);
+    mPresenter.getSavedHighscore(this);
+  }
+
+
+  /**
+   * is called in super the superclass BaseActivity constructor. has to be implemented to get a concrete implementation of the presenter
+   * @param context
+   * @return TreasurePleasurePresenter.
+   */
+  @Override
+  TreasurePleasurePresenter createPresenter(@NonNull Context context) {
+
+    Bundle data = getIntent().getExtras();
+    Avatar avatar = (Avatar) data.get("avatar");
+    String userName = data.getString("username");
+
+    return new TreasurePleasurePresenter(this,userName,avatar);
+
+
   }
 
   @Override
   protected void onPause() {
-    savePersistentData();
+    mPresenter.savePersistentData(this);
     super.onPause();
   }
 
@@ -57,15 +72,15 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
    * @param view
    */
   public void onPressShowSettingsButton(View view) {
-    presenter.showSettings();
+    mPresenter.showSettings();
   }
 
   public void onPressBackpackButton(View view) {
-    presenter.showBackpack();
+    mPresenter.showBackpack();
   }
 
   public void onPressShowStoreButton(View view) {
-    presenter.showStore();
+    mPresenter.showStore();
   }
 
   /**
@@ -91,28 +106,28 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
     getSupportFragmentManager().beginTransaction().add(R.id.backpack_container, backpackFragment)
         .commit();
     //TODO handle presenter of model in a different way
-    backpackFragment.setPresenter(presenter);
+    backpackFragment.setPresenter(mPresenter);
   }
 
   public void showChestFragment() {
     ChestFragment chestFragment = new ChestFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.chest_container, chestFragment)
         .commit();
-    chestFragment.setPresenter(presenter);
+    chestFragment.setPresenter(mPresenter);
   }
 
   public void showSettingsFragment() {
     SettingsFragment settingsFragment = new SettingsFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment)
         .commit();
-    settingsFragment.setPresenter(presenter);
+    settingsFragment.setPresenter(mPresenter);
   }
 
   public void showStoreFragment() {
     StoreFragment storeFragment = new StoreFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.store_container, storeFragment)
             .commit();
-    storeFragment.setPresenter(presenter);
+    storeFragment.setPresenter(mPresenter);
   }
 
   /**
@@ -205,7 +220,4 @@ public class TreasurePleasureActivity extends AppCompatActivity implements Treas
   }
 
 
-  private void savePersistentData() {
-    presenter.savePersistentData(this);
-  }
 }

@@ -68,10 +68,7 @@ public class SignupActivity extends BaseActivity<SignupPresenter> {
 
     public void startTreasurePleasure(String userName, Avatar a ){
         Intent toTreasurePleasure = new Intent(getApplicationContext(),TreasurePleasureActivity.class);
-        Bundle b = new Bundle();
-
-        System.out.println("USERNAME: "+ userName);
-
+        Bundle data = new Bundle();
 
         toTreasurePleasure.putExtra("username",userName);
         toTreasurePleasure.putExtra("avatar",a);

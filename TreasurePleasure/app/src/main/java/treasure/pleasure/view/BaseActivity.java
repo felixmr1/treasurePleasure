@@ -19,7 +19,7 @@ public abstract class BaseActivity<Presenter extends BasePresenter> extends AppC
     Presenter mPresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mPresenter = createPresenter(this);
         mPresenter.attachActivity(this);
