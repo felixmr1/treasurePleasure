@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 import treasure.pleasure.data.Data;
 
 /**
- * TODO
- *
  * @author Oskar
+ * As a Player hold its chest, backpack and storeProducts many functionalities
+ * goes through the Player. Thus this file can be quite bulky
  */
 
 class Player {
@@ -95,6 +95,9 @@ class Player {
     backpack.removeAll();
   }
 
+  /**
+   * Removes all items in backpack, called by emptyBackpackToChest
+   */
   void emptyBackpack() {
     backpack.removeAll();
   }

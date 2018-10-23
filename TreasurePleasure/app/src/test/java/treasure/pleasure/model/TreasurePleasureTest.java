@@ -195,4 +195,15 @@ public class TreasurePleasureTest {
     assertTrue(tp.getPlayerScore(username) == (totalScore + diamond));
   }
 
+  @Test
+  public void getStoreProducts(){
+    try {
+      tp.addPlayerToGame("Hanna", Avatar.WOMAN);
+    } catch (Exception e) {
+      ArrayList<Integer> products = tp.getStoreProducts("Hanna");
+      assertTrue(products.size() != 0);
+    }
+  }
+
+
 }
