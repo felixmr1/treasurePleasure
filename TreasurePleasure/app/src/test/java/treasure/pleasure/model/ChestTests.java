@@ -23,7 +23,11 @@ public class ChestTests {
     TreasurePleasure tp = new TreasurePleasure();
     this.username = "Britta";
     this.avatar = Avatar.WOMAN;
-    this.player = new Player(username, avatar, tp.getStoreProducts());
+    try {
+      this.player = new Player(username, avatar, tp.getStoreProducts());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     this.loc = new Location(Data.getChestLatLng());
     this.player.setChest(loc);
     this.chest = player.getChest();

@@ -1,6 +1,9 @@
 package treasure.pleasure.model;
 
+import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +26,11 @@ public class PlayerTests {
     TreasurePleasure tp = new TreasurePleasure();
     username = "Britta";
     avatar = Avatar.WOMAN;
-    player = new Player(username, avatar, tp.getStoreProducts());
+    try {
+      player = new Player(username, avatar, tp.getStoreProducts());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Test
@@ -50,8 +57,26 @@ public class PlayerTests {
   @Test
   public void setUsername() {
     String newName = "ove";
-    player.setUsername(newName);
+    try {
+      player.setUsername(newName);
+    } catch (Exception e) {
+      assertTrue(false);
+    }
     assertEquals(player.getUsername(), newName);
+  }
+
+
+  @Test
+  public void setUserNameNotAlowwed(){
+    try {
+      player.setUsername("0---00");
+      assertFalse(true);
+    } catch (Exception e) {
+      assertTrue(true);
+      System.out.println("exception fired");
+    }
+
+
   }
 
   @Test

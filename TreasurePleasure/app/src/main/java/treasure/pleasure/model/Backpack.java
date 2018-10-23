@@ -6,6 +6,7 @@ import treasure.pleasure.data.Data;
 
 /**
  *
+ * Class / data structure of a backpack that handles logic for the backpacks limitations
  *
  * class invariant : nOfBusySlots < maxSize
  * @author John
@@ -21,11 +22,23 @@ class Backpack<T> {
   private int nOfBusySlots;
 
 
-  Backpack(int maxSize) {
+
+  Backpack(int maxSize){
     this.items = new ArrayList<>(maxSize);
     this.backPackLevel = Data.getInitialBackpackLevel();
     this.maxSize = maxSize;
-    this.nOfBusySlots = Data.getInitialNOfBusySlots();
+    this.nOfBusySlots = 0;
+  }
+
+  /**
+   * Copy constructor
+   * @param copy
+   */
+  Backpack(Backpack copy) {
+    this.items = copy.getAllItems();
+    this.backPackLevel = copy.getBackPackLevel();
+    this.maxSize = copy.getMaxSize();
+    this.nOfBusySlots = copy.getnOfBusySlots();
   }
 
   /**

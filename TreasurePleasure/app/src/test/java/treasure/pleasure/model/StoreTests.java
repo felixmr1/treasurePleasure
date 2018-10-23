@@ -17,7 +17,11 @@ public class StoreTests {
   @Before
   public void initStore() {
     TreasurePleasure tp = new TreasurePleasure();
-    player = new Player("storetest", Avatar.WOMAN, tp.getStoreProducts());
+    try {
+      player = new Player("storetest", Avatar.WOMAN, tp.getStoreProducts());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     Location storeLocation = new Location(Data.getStoreLat(), Data.getStoreLong());
     ArrayList<StoreProduct> storeProducts = new ArrayList<>();
     increaseBackpack = new StoreProduct(ProductType.IncreaseBackPackSize, "Increase backpack size", 50, player.getBackpackMaxSize());

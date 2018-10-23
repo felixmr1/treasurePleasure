@@ -1,6 +1,8 @@
 package treasure.pleasure.model;
 
 import android.util.Log;
+
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,8 +30,8 @@ class Player {
   private int nrOfCollectibles;
 
 
-  Player(String username, Avatar avatar, ArrayList<StoreProduct> storeProducts) {
-    this.username = username;
+  Player(String username, Avatar avatar, ArrayList<StoreProduct> storeProducts) throws Exception {
+    setUsername(username);
     this.avatar = avatar;
     this.backpack = new Backpack<>(Data.getBackpackMaxSize());
     this.storeProducts = storeProducts;
@@ -57,12 +59,12 @@ class Player {
     this.chest = new Chest(location);
   }
 
-  void setUsername(String username) {
+  void setUsername(String username) throws Exception {
     Pattern p = Pattern.compile("[^A-Za-z0-9]");
     Matcher m = p.matcher(username);
     boolean b = m.find();
     if (b) {
-      throw new IllegalArgumentException(
+      throw new Exception(
           "Could not set username: Contains special characters."); // if only normal characters and numbers are allowed
 
     } else {

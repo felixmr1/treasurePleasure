@@ -75,7 +75,6 @@ import treasure.pleasure.data.Tuple;
   public void addPlayerToGame(String username, Avatar avatar) throws Exception {
     if (takenUsernames.contains(username.toLowerCase())) {
       throw new Exception("Username is taken!");
-
     }
     else if (username.isEmpty() || username == null){
       throw new Exception("Username can not be empty!");

@@ -22,11 +22,12 @@ import static java.security.AccessController.getContext;
 public class SignupActivity extends BaseActivity<SignupPresenter> {
 
     /**
+     * @author John
      * The sign in avtivity. handles UI logic that is decided of its presenter
      */
 
 
-    private  RadioGroup radioGroup;
+    private RadioGroup radioGroup;
     private Button submitButton;
     private EditText editText;
     private RadioButton maleButton;

@@ -1,9 +1,11 @@
 package treasure.pleasure.model;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.security.spec.ECField;
 import java.util.Collection;
 import java.util.List;
 import org.junit.Before;
@@ -105,11 +107,19 @@ public class BackpackTests {
 
 
   @Test
-  public void test_remove_all() throws Exception {
+  public void test_remove_all(){
 
-    b.add(item);
-    b.add(item2);
-    b.add(item3);
+    try {
+      b.add(item);
+      b.add(item2);
+      b.add(item3);
+    }
+    catch (Exception e){
+      // no exception should be fired.
+      assertFalse(true);
+
+    }
+
 
     b.removeAll();
 
@@ -118,6 +128,29 @@ public class BackpackTests {
     assertEquals(b.getnOfEmptySlots(), b.getMaxSize());
 
     testClassInvariant();
+
+  }
+
+
+  @Test
+  public void test_copy_constructor(){
+
+    try{
+      b.add(item);
+    }catch(Exception e ){
+      assertFalse(true);
+    }
+
+    Backpack copyPack = new Backpack(b);
+
+    assertEquals(b.getnOfEmptySlots(),copyPack.getnOfEmptySlots());
+    assertEquals(b.getMaxSize(),copyPack.getMaxSize());
+    assertEquals(b.getBackPackLevel(),copyPack.getBackPackLevel());
+
+
+    assertArrayEquals(b.getAllItems().toArray(),copyPack.getAllItems().toArray());
+
+
 
   }
 
