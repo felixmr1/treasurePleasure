@@ -9,7 +9,7 @@
 - Concept GUI MarvelApp: https://marvelapp.com/1982i2e6
 - Maps SDK for android: https://developers.google.com/maps/documentation/android-sdk/intro
 - Google maps api example app: https://github.com/googlemaps/android-samples
-- Travis test runs: https://travis-ci.com/TheFelixR/treasurePleasure/jobs/145987848
+- Travis test runs: https://travis-ci.com/TheFelixR/treasurePleasure
 
 For debugging, you need to change a the debugflag in /data/Data.java to true, this enables you to pick up items at any distance. If you’re developing on the emulator, open settings (pictured to the right) and change the Longitude, Latitude and press send.
 
