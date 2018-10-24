@@ -201,6 +201,3 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
         Toast.LENGTH_SHORT).show();
   }
   }
-
-
-}
