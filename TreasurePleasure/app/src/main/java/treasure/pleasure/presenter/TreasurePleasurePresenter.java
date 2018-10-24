@@ -50,7 +50,6 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     this.username = username;
     this.avatar = avatar;
     this.view = view;
-    this.model = TreasurePleasureFactory.getInstance();
   }
 
 
