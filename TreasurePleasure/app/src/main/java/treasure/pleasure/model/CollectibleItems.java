@@ -38,8 +38,17 @@ class CollectibleItems {
   void spawnInitialItems() {
     if (Data.isDemo()) {
       Item collectible = createRandomItem();
-      Location loc = new Location(57.690085, 11.973020);
-      addItem(loc, collectible);
+
+      ArrayList<Location> demoItems = new ArrayList<Location>() {{
+        add( new Location(57.687740, 11.978079)); // first item
+        add( new Location(57.688273, 11.978599)); // second item
+          add( new Location(57.688113, 11.979645)); // third item
+      }};
+
+      for (int i = 0; i < demoItems.size(); i++) {
+        addItem(demoItems.get(i), collectible);
+      }
+
     } else {
       for (int i = 0; i < nrCollectibles; i++) {
         try {

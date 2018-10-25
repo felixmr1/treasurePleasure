@@ -19,7 +19,7 @@ public class Data {
 
   // If set to true, it makes you "god". You can collect any item at any distance.
   private static boolean debug = false;
-  private static boolean demo = false;
+  private static boolean demo = true;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
