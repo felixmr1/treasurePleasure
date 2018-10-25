@@ -37,19 +37,13 @@ class CollectibleItems {
 
   void spawnInitialItems() {
     if (Data.isDemo()) {
-      addItem(new Location(57.687740, 11.978079), new Item(ItemType.DIAMOND, 99)); // first item
+      addItem(new Location(57.687740, 11.978000), new Item(ItemType.DIAMOND, 99)); // first item
       addItem(new Location(57.688273, 11.978599), new Item(ItemType.GOLD, 71)); // second item
       addItem(new Location(57.688113, 11.979645), new Item(ItemType.IRON, 56)); // third item
       addItem(new Location(57.688713, 11.979545), new Item(ItemType.STONE, 32)); // forth item
-      addItem(new Location(57.690000, 11.974000), new Item(ItemType.WOOD, 21)); // random item
-      addItem(new Location(57.687600, 11.976000), new Item(ItemType.WOOD, 16)); // random item
-      addItem(new Location(57.689000, 11.975000), new Item(ItemType.STONE, 35)); // random item
-      addItem(new Location(57.689600, 11.984000), new Item(ItemType.WOOD, 11)); // random item
-      addItem(new Location(57.687600, 11.981000), new Item(ItemType.IRON, 51)); // random item
-      addItem(new Location(57.686200, 11.979800), new Item(ItemType.WOOD, 13)); // random item
-      addItem(new Location(57.686600, 11.979700), new Item(ItemType.STONE, 38)); // random item
-    } else {
-      for (int i = 0; i < nrCollectibles; i++) {
+    }
+    {
+      for (int i = this.collectibles.size() - 1; i < nrCollectibles; i++) {
         try {
           this.spawnRandomItem();
         } catch (Exception e) {

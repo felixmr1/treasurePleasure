@@ -266,7 +266,7 @@ import treasure.pleasure.data.Tuple;
   public void setScore(String username, int score) {
     Player player = getPlayer(username);
     if (isDebug()) {
-      score = 1000000;
+      score = 100;
     }
     player.setScore(score);
   }
