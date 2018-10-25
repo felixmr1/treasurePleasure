@@ -37,18 +37,17 @@ class CollectibleItems {
 
   void spawnInitialItems() {
     if (Data.isDemo()) {
-      Item collectible = createRandomItem();
-
-      ArrayList<Location> demoItems = new ArrayList<Location>() {{
-        add( new Location(57.687740, 11.978079)); // first item
-        add( new Location(57.688273, 11.978599)); // second item
-          add( new Location(57.688113, 11.979645)); // third item
-      }};
-
-      for (int i = 0; i < demoItems.size(); i++) {
-        addItem(demoItems.get(i), collectible);
-      }
-
+      addItem(new Location(57.687740, 11.978079), new Item(ItemType.DIAMOND, 99)); // first item
+      addItem(new Location(57.688273, 11.978599), new Item(ItemType.GOLD, 71)); // second item
+      addItem(new Location(57.688113, 11.979645), new Item(ItemType.IRON, 56)); // third item
+      addItem(new Location(57.688713, 11.979545), new Item(ItemType.STONE, 32)); // forth item
+      addItem(new Location(57.690000, 11.974000), new Item(ItemType.WOOD, 21)); // random item
+      addItem(new Location(57.687600, 11.976000), new Item(ItemType.WOOD, 16)); // random item
+      addItem(new Location(57.689000, 11.975000), new Item(ItemType.STONE, 35)); // random item
+      addItem(new Location(57.689600, 11.984000), new Item(ItemType.WOOD, 11)); // random item
+      addItem(new Location(57.687600, 11.981000), new Item(ItemType.IRON, 51)); // random item
+      addItem(new Location(57.686200, 11.979800), new Item(ItemType.WOOD, 13)); // random item
+      addItem(new Location(57.686600, 11.979700), new Item(ItemType.STONE, 38)); // random item
     } else {
       for (int i = 0; i < nrCollectibles; i++) {
         try {
@@ -62,7 +61,6 @@ class CollectibleItems {
 
   /**
    * Spawns a random item
-   * @throws Exception
    */
   void spawnRandomItem() throws Exception {
     int i = 0;
@@ -83,8 +81,6 @@ class CollectibleItems {
 
   /**
    * Adds the item the location
-   * @param loc
-   * @param item
    */
   private void addItem(Location loc, Item item) {
     collectibles.put(loc, item);
@@ -96,6 +92,7 @@ class CollectibleItems {
 
   /**
    * Creates a Location within map constraints
+   *
    * @return Location
    */
   public Location getRandomLocationWithinBounds() {
@@ -107,9 +104,8 @@ class CollectibleItems {
 
   /**
    * Checks if given location is valid i.e there are no other items within 'closeEnough' distance
-   * @param loc
-   * @return boolean if its valid
-   * Todo: write test for this
+   *
+   * @return boolean if its valid Todo: write test for this
    */
   Boolean isAvailableLocation(Location loc) {
     if (Data.isDebug()) {
@@ -126,7 +122,6 @@ class CollectibleItems {
 
   /**
    * Removes an item from collectibles arrayList
-   * @param location
    */
   void removeItem(Location location) {
     collectibles.remove(location);
@@ -134,9 +129,6 @@ class CollectibleItems {
 
   /**
    * Takes an item at specified location. Throws exception if there is no item at that location
-   * @param location
-   * @return
-   * @throws Exception
    */
   Item takeItem(Location location) throws Exception {
     Item item = collectibles.get(location);
@@ -154,7 +146,6 @@ class CollectibleItems {
 
   /**
    * Increase the nrOfCollectibles that is on the map.
-   * @param nrOfCollectibles
    */
   void setNrCollectibles(int nrOfCollectibles) {
     int oldCollectibles = this.nrCollectibles;

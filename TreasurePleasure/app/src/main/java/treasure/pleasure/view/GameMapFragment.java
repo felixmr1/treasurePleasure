@@ -275,6 +275,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
    * @param currentPosition The position where the custom Marker is drawn.
    */
   public void drawCustomUserMarker(LatLng currentPosition) {
+    /*
     if (myAvatar != null) {
       myAvatar.remove();
     }
@@ -282,6 +283,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
         .position(currentPosition)
         .anchor(0.5f, 0.5f)
         .icon(BitmapDescriptorFactory.fromResource(avatarPath)));
+        */
   }
 
   // This Polygon represents the grey area on the map

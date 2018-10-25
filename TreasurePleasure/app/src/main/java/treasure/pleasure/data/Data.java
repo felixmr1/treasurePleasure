@@ -31,7 +31,7 @@ public class Data {
 
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 30;
+  private static double maxInteractionDistance = 100;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -69,7 +69,7 @@ public class Data {
   private static final int backpackMaxSize = 3;
 
   private static double storeLat =
-      northWest.latitude - (northWest.latitude - southEast.latitude) / 8;
+      southEast.latitude + (northWest.latitude - southEast.latitude) / 8;
   private static double storeLong =
       northWest.longitude - (northWest.longitude - southEast.longitude) / 8;
 
