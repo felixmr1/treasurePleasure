@@ -5,7 +5,7 @@ import telnetlib
 from time import sleep
 import random
 
-FILE = open('/home/felix/.emulator_console_auth_token', 'r')
+FILE = open('/Users/jesper/.emulator_console_auth_token', 'r')
 AUTH_TOKEN = FILE.read()
 FILE.close()
 

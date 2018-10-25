@@ -5,7 +5,7 @@ import telnetlib
 from time import sleep
 import random
 
-FILE = open('/home/felix/.emulator_console_auth_token', 'r')
+FILE = open('/Users/jesper/.emulator_console_auth_token', 'r')
 AUTH_TOKEN = FILE.read()
 FILE.close()
 
@@ -36,18 +36,18 @@ tn.read_until("OK", 5)
 
 tn.read_until("OK", 5)
 
-tn.write("geo fix {0} {1}\n".format( str(LNG_SRC).replace('.', ','), str(LAT_SRC).replace('.', ',')))
+tn.write("geo fix {0} {1}\n".format( str(LNG_SRC).replace('.', '.'), str(LAT_SRC).replace('.', '.')))
 
 for i in range(SECONDS):
     lat += round(random.uniform(0, LAT_MAX_STEP), 4) * DIRECTION_LAT
     lng += round(random.uniform(0, LNG_MAX_STEP), 4) * DIRECTION_LNG
 
     #tn.read_until("OK", 5)
-    tn.write("geo fix {0} {1}\n".format(str(lng).replace('.', ','), str(lat).replace('.', ',')))
+    tn.write("geo fix {0} {1}\n".format(str(lng).replace('.', '.'), str(lat).replace('.', '.')))
     #tn.write("exit\n")
     sleep(1)
 
-tn.write("geo fix {0} {1}\n".format(str(LNG_DST).replace('.', ','), str(LAT_DST).replace('.', ',')))
+tn.write("geo fix {0} {1}\n".format(str(LNG_DST).replace('.', '.'), str(LAT_DST).replace('.', '.')))
 tn.write("exit\n")
 
 print tn.read_all()
