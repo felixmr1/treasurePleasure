@@ -3,7 +3,9 @@ package treasure.pleasure.model;
 public class TreasurePleasureFactory {
 
   /**
-   * returns a singleton instance of TreasurePleasure model. Used as a facede out to other packages
+   * @author John
+   * returns a singleton instance of TreasurePleasure model to ensure we don't get multiple model instances
+   * Used as a faceade out to other packages
    */
   private static TreasurePleasure instance = null;
 

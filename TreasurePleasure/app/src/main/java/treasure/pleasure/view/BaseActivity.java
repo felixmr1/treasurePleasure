@@ -8,14 +8,19 @@ import treasure.pleasure.presenter.BasePresenter;
 
 
 /**
- * author John
+ * @author John
  *
  * A BaseActivity that the programmer extends: handles all logic with attaching / detatching /
  * creating the activitys presenter. Since this is logic that all Activity requires this class does
  * it for the the programmer without having to worry about attaching / detatching manually.
  *
- * @param <Presenter> We force the views presenter to be a presenter that extends the
+ * @param <Presenter> forces the activities presenter to be a presenter that extends the
  * BasePresenter.
+ *
+ *
+ *By letting presenters and activities the programmer dont have to think about attaching / detaching
+ *                  / instanciating model. This will be done in the background by calling super()
+ *                  constructor.
  */
 public abstract class BaseActivity<Presenter extends BasePresenter> extends AppCompatActivity {
 

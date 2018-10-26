@@ -18,7 +18,11 @@ import treasure.pleasure.presenter.SignupPresenter;
 public class SignupActivity extends BaseActivity<SignupPresenter> {
 
   /**
-   * @author John The sign in avtivity. handles UI logic that is decided of its presenter
+   *  @author John
+   *
+   *  The sign up avtivity. It handles UI logic that is decided by its presenter.
+   *  It also extends BaseAcitivity<SignUpPresenter> which enables and ensures that the Activity
+   *  is using correct presenter.
    */
 
 

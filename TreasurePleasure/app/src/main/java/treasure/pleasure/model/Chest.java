@@ -5,6 +5,8 @@ import treasure.pleasure.data.Data;
 
 /**
  * @author john
+ * This class handles logic regarding the TreasurePleasure Chest.
+ * it can be instanciated over T extends Itemcallback.
  */
 
 public class Chest<T extends ItemCallBack> {
