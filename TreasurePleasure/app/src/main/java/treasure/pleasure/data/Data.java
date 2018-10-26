@@ -14,9 +14,12 @@ import treasure.pleasure.model.ItemType;
  */
 public class Data {
 
+  /**
+   * TODO: THIS SHOULD BE IN A DIFFERENT CLASS, SINCE WE INITATE DATA AND SHOULD NOT CHANGE THIS.
+   */
   // If set to true, it makes you "god". You can collect any item at any distance.
   private static boolean debug = false;
-  private static boolean demo = false;
+  private static boolean demo = true;
 
   // Coordinates
   private static final LatLng northWest = new LatLng(57.690085, 11.973020);
@@ -28,7 +31,7 @@ public class Data {
 
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 20;
+  private static double maxInteractionDistance = 40;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -192,6 +195,17 @@ public class Data {
     return debug;
   }
 
+  /**
+   * TODO: THIS SHOULD BE IN A DIFFERENT CLASS, SINCE WE INITATE DATA AND SHOULD NOT CHANGE THIS.
+   * @param isDebug
+   */
+  public static void setDebug(boolean isDebug) {
+    debug = isDebug;
+  }
+
+  /**
+   * TODO: THIS SHOULD BE IN A DIFFERENT CLASS, SINCE WE INITATE DATA AND SHOULD NOT CHANGE THIS.
+   */
   public static boolean isDemo() {
     return demo;
   }

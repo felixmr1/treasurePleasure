@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
@@ -23,12 +24,16 @@ public class SettingsFragment extends Fragment {
 
   private TreasurePleasurePresenter mPresenter;
   private Button btnChangeUsername;
+  private ToggleButton toggleGodMode;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_settings, container, false);
     btnChangeUsername = (Button) view.findViewById(R.id.changeUsernameButton);
+    toggleGodMode = (ToggleButton) view.findViewById(R.id.toggleGodMode);
+
+    toggleGodMode.setChecked(mPresenter.isGodMode());
 
     /**
      * The presenter is called with given input if "Change username" is pressed
@@ -39,6 +44,13 @@ public class SettingsFragment extends Fragment {
         EditText newUsername = (EditText) view.findViewById(R.id.usernameInput);
         String usernameAsString = newUsername.getText().toString();
         mPresenter.changeUsername(usernameAsString);
+      }
+    });
+
+    toggleGodMode.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        mPresenter.toggleGodMode(toggleGodMode.isChecked());
       }
     });
 

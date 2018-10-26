@@ -4,67 +4,95 @@
   @author Oskar
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_settings"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFF"
-    android:clickable="true">
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/fragment_settings"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#FFF"
+  android:clickable="true">
 
-    <TextView
-        android:id="@+id/settingsHeader"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:text="Settings" />
+  <TextView
+    android:id="@+id/settingsHeader"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_centerHorizontal="true"
+    android:text="Settings"
+    android:textSize="25sp"/>
 
-    <TextView
-        android:id="@+id/settingsSubtitle"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginTop="70dp"
-        android:textStyle="bold"
-        android:text="Hi Username! Here you can change things" />
+  <TextView
+    android:id="@+id/settingsSubtitleHeader"
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="70dp"
+    android:layout_marginStart="30dp"
+    android:text="Username"
+    android:textSize="15sp"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/usernameInput"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="-179dp"
-        tools:srcCompat="@tools:sample/avatars" />
+  <TextView
+    android:id="@+id/imageViewHeader"
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="70dp"
+    android:layout_marginStart="220dp"
+    android:text="Avatar"
+    android:textSize="15sp"/>
+
+  <TextView
+    android:id="@+id/settingsSubtitle"
+    android:textStyle="bold"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_alignTop="@+id/settingsSubtitleHeader"
+    android:layout_marginTop="30dp"
+    android:layout_centerHorizontal="false"
+    android:text="Hi Username! Here you can change things"
+    android:textSize="25sp"/>
+
+  <ImageView
+    android:id="@+id/imageView"
+    android:layout_width="60dp"
+    android:layout_height="100dp"
+    android:layout_marginStart="220dp"
+    android:layout_alignTop="@+id/imageViewHeader"
+    tools:srcCompat="@tools:sample/avatars"/>
+
+  <ToggleButton
+    android:id="@+id/toggleGodMode"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/settingsSubtitle"
+    android:layout_marginTop="70dp"
+    android:layout_marginStart="20dp"
+    android:textOn="GODMODE ON"
+    android:textOff="GODMODE OFF"/>
 
 
-    <EditText
-        android:id="@+id/usernameInput"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="300dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+  <EditText
+    android:id="@+id/usernameInput"
+    android:textStyle="bold"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="300dp"
+    android:layout_marginStart="6dp"
+    android:layout_alignParentStart="true"
+    android:layout_marginHorizontal="20dp"
+    android:ems="10"
+    android:hint="Username"
+    android:layout_centerHorizontal="true"
+    android:inputType="textPersonName"
+    android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/changeUsernameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/usernameInput"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="0dp"
-        android:text="Change username" />
+  <Button
+    android:id="@+id/changeUsernameButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:layout_marginEnd="12dp"
+    android:layout_alignBottom="@+id/usernameInput"
+    android:layout_alignParentEnd="true"
+    android:text="Change username"/>
 
 </RelativeLayout>

@@ -234,6 +234,25 @@ public class TreasurePleasure {
     return Data.isDebug();
   }
 
+
+  public boolean isGodMode() {
+    return this.isDebug();
+  }
+
+  public void enableGodMode() {
+    /**
+     * TODO: THIS SHOULD BE IN A DIFFERENT CLASS, SINCE WE INITATE DATA AND SHOULD NOT CHANGE THIS.
+     */
+    Data.setDebug(true);
+  }
+
+  public void disableGodMode() {
+    /**
+     * TODO: THIS SHOULD BE IN A DIFFERENT CLASS, SINCE WE INITATE DATA AND SHOULD NOT CHANGE THIS.
+     */
+    Data.setDebug(false);
+  }
+
   public boolean isDemo() {
     return Data.isDemo();
   }

@@ -338,9 +338,10 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     try {
       this.model.changeUsername(this.username, username);
       this.username = username;
-      settingsView.setSubtitleText("Username was successfully changed to: " + username);
+      settingsView.setSubtitleText(username);
+      view.showToast("Username was successfully changed to: " + username);
     } catch (Exception e) {
-      settingsView.setSubtitleText(e.getMessage());
+      view.showToast("Failed to change username to: " + username + ". Reason: " + e.getMessage());
     }
   }
 
@@ -374,5 +375,19 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     }
     this.gameMapView = gameMapFragment;
     this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
+  }
+
+  public void toggleGodMode(boolean godmode) {
+    if (godmode) {
+      this.model.enableGodMode();
+      this.view.showToast("Godmode enabled");
+    } else {
+      this.model.disableGodMode();
+      this.view.showToast("Godmode disabled");
+    }
+  }
+
+  public boolean isGodMode() {
+    return this.model.isGodMode();
   }
 }
