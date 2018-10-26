@@ -85,33 +85,31 @@ public class TreasurePleasure {
   }
 
   private void addStoreProducts() {
-    StoreProduct increaseBackPackSize = new StoreProduct(
+    StoreProduct backpackIncreaseSmall = new StoreProduct(
         ProductType.BackpackIncreaseSmall, "Small backpack increase", 125,
-        (float) Data.getBackpackMaxSize());
-    increaseBackPackSize.setIncrementStep(3);
+        (float) Data.getBackpackMaxSize(), 2f, 6);
 
-    StoreProduct increaseBackPackSizeAlot = new StoreProduct(
+    StoreProduct backpackIncreaseLarge = new StoreProduct(
         ProductType.BackpackIncreaseLarge, "Large backpack increase", 300,
-        (float) Data.getBackpackMaxSize(), 1.5f, 9);
-    increaseBackPackSize.setIncrementStep(6);
+        (float) Data.getBackpackMaxSize(), 3f, 9);
 
-    StoreProduct increaseCollectiblesValue = new StoreProduct(
+    StoreProduct collectiblesValueIncreaseSmall = new StoreProduct(
         ProductType.CollectiblesValueIncreaseSmall, "Increase value of items", 1000,
         (float) Data.getPlayerValueIncrementer(), 50f, 0.05f);
 
-    StoreProduct increaseNrCollectibles = new StoreProduct(
+    StoreProduct nrCollectiblesIncreaseSmall = new StoreProduct(
         ProductType.NrCollectiblesIncreaseSmall, "Increase items on the map", 400,
         (float) Data.getNrOfCollectables());
 
-    StoreProduct increaseInteractionDistance = new StoreProduct(
+    StoreProduct interactionDistanceIncreaseSmall = new StoreProduct(
         ProductType.InteractionDistanceIncreaseSmall, "Increase your reach", 500,
         (float) Data.getMaxInteractionDistance(), 1.5f);
 
-    storeProducts.add(increaseBackPackSize);
-    storeProducts.add(increaseBackPackSizeAlot);
-    storeProducts.add(increaseCollectiblesValue);
-    storeProducts.add(increaseNrCollectibles);
-    storeProducts.add(increaseInteractionDistance);
+    storeProducts.add(backpackIncreaseSmall);
+    storeProducts.add(backpackIncreaseLarge);
+    storeProducts.add(collectiblesValueIncreaseSmall);
+    storeProducts.add(nrCollectiblesIncreaseSmall);
+    storeProducts.add(interactionDistanceIncreaseSmall);
   }
 
   public ArrayList<String> getPlayerNames() {
