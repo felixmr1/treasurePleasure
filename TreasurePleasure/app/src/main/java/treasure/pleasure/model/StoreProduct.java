@@ -1,6 +1,10 @@
 package treasure.pleasure.model;
 
 /**
+ * Products used for store as products (duh).
+ * This is COPIED from the model to the PLAYER
+ * when a PLAYER is initiated. This is done
+ * to create unique store options for each player
  * @author Jesper and Felix
  */
 

@@ -16,7 +16,9 @@ import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**
- * TODO
+ * Creates a dynamic list of products
+ * depending on how many products the model
+ * currently offers.
  *
  * @author Jesper
  */
