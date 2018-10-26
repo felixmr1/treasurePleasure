@@ -1,13 +1,10 @@
 package treasure.pleasure.data;
 
 import android.graphics.Color;
-import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import treasure.pleasure.model.ItemType;
-import treasure.pleasure.model.ProductType;
-import treasure.pleasure.model.StoreProduct;
 
 /**
  * Contains all the different model attributes that can be changed for a different player experience
@@ -31,7 +28,7 @@ public class Data {
 
   // Location
   // Max interactionDistance is given in meters!
-  private static double maxInteractionDistance = 30;
+  private static double maxInteractionDistance = 20;
 
   // Item
   private static final DecimalFormat dm = new DecimalFormat("##.#");
@@ -41,6 +38,7 @@ public class Data {
   private static final int strokeColor = Color.argb(220, 200, 200, 200);
 
   // CollectibleItems
+  private static final int itemDistanceMultiplier = 4;
   private static final int nrCollecteblesIncrementer = 10;
   private static final int itemValueIncrementer = 20;
   private static final int nrOfCollecatbles = 10;
@@ -104,6 +102,10 @@ public class Data {
 
   public static double getPlayerValueIncrementer() {
     return playerValueIncrementer;
+  }
+
+  public static int getItemDistanceMultiplier() {
+    return itemDistanceMultiplier;
   }
 
   public static int getMaxDropBonus() {

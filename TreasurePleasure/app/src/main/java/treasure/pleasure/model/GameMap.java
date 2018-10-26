@@ -25,8 +25,6 @@ class GameMap {
   /**
    * Creates a Google Map polygon with mapLimit coordinates and a hole in the polygon with the
    * coordinates of mapReal
-   * @param mapLimit
-   * @param mapReal
    */
   GameMap(ArrayList<LatLng> mapLimit, ArrayList<LatLng> mapReal) {
 
@@ -40,6 +38,7 @@ class GameMap {
 
   /**
    * Method that builds the polygon
+   *
    * @return PolygonOptions to be used in the view to create the polygon
    */
   private PolygonOptions createPolygonMap() {

@@ -6,11 +6,11 @@ package treasure.pleasure.model;
  * @author Jesper
  */
 public class Store {
+
   private Location location;
 
   /**
    * Creates a store at the desired location
-   * @param location
    */
   Store(Location location) {
     this.location = location;
@@ -22,23 +22,22 @@ public class Store {
 
   /**
    * Increases storeProducts value and price if player has enough money.
-   * @param storeProduct
-   * @param money
+   *
    * @throws Exception if player does not have enough money
    */
-  void buy (StoreProduct storeProduct, int money)  throws Exception {
-    if (storeProduct.getPrice() > money)  {
+  void buy(StoreProduct storeProduct, int money) throws Exception {
+    if (storeProduct.getPrice() > money) {
       throw new Exception("Player does not have enough money");
     }
     increaseProductValue(storeProduct);
     increaseProductPrice(storeProduct);
   }
 
-  private void increaseProductValue(StoreProduct sp){
+  private void increaseProductValue(StoreProduct sp) {
     sp.setValue(sp.getValue() + sp.getIncrementStep());
   }
 
-  private void increaseProductPrice(StoreProduct sp){
+  private void increaseProductPrice(StoreProduct sp) {
     float productValue = sp.getValue();
     float defaultValue = sp.getDefaultValue();
     float priceIncrease = sp.getPriceIncrease();
@@ -48,8 +47,6 @@ public class Store {
 
     sp.setPrice(newPrice);
   }
-
-
 
 
 }

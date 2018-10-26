@@ -79,13 +79,10 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
   }
 
   /**
-   * TODO implement custom function to remove built in needle
-   * TODO implement custon function to get positionUpdates
-   * Should disable the original map marker and add a
-   * custom function to catch user movement,
-   * however this is NOT yet implemented.
-   * For now, we draw our custom marker on user location update
-   * and keeps the original function
+   * TODO implement custom function to remove built in needle TODO implement custon function to get
+   * positionUpdates Should disable the original map marker and add a custom function to catch user
+   * movement, however this is NOT yet implemented. For now, we draw our custom marker on user
+   * location update and keeps the original function
    */
   private void setCustomUserMarker() {
 
@@ -272,6 +269,7 @@ public class GameMapFragment extends SupportMapFragment implements OnMapReadyCal
 
   /**
    * Draws the custom user marker (AVATAR) at a given location.
+   *
    * @param currentPosition The position where the custom Marker is drawn.
    */
   public void drawCustomUserMarker(LatLng currentPosition) {

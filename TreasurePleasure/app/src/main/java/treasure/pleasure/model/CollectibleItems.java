@@ -98,8 +98,8 @@ class CollectibleItems {
 
   /**
    * Checks if given location is valid i.e there are no other items within 'closeEnough' distance
-   *
-   * @return boolean if its valid Todo: write test for this
+   * closeEnough is DEFAULT locations maxDistance MULTIPLIES with itemDistanceMultiplier
+   * @return boolean if its valid
    */
   Boolean isAvailableLocation(Location loc) {
     if (Data.isDebug()) {
@@ -107,7 +107,7 @@ class CollectibleItems {
     }
     for (Location occupiedLoc : collectibles.keySet()
         ) {
-      if (occupiedLoc.isCloseEnough(loc, loc.getMaxInteractionDistance() * 4)) {
+      if (occupiedLoc.isCloseEnough(loc, Data.getMaxInteractionDistance() * Data.getItemDistanceMultiplier())) {
         return false;
       }
     }

@@ -39,7 +39,7 @@ public class Chest<T extends ItemCallBack> {
 
   /**
    * Loops over and "sells" all items given
-   * @param items
+   *
    * @return the collective value of all items
    */
   double sell(List<T> items) {
@@ -61,7 +61,7 @@ public class Chest<T extends ItemCallBack> {
 
   /**
    * "Sells an item"
-   * @param item
+   *
    * @return The value of the item
    */
   double sell(T item) {

@@ -1,7 +1,6 @@
 package treasure.pleasure.model;
 
 /**
- *
  * @author Jesper and Felix
  */
 
@@ -17,11 +16,9 @@ public class StoreProduct {
   private float priceIncrease;
   private float incrementStep;
 
-
-
   /**
    * Creates a storeProduct.
-   * @param productType
+   *
    * @param name Name that is showed to the customer
    * @param price Price for the product
    * @param value default value for the product
@@ -41,7 +38,7 @@ public class StoreProduct {
 
   /**
    * Creates a storeProduct.
-   * @param productType
+   *
    * @param name Name that is showed to the customer
    * @param price Price for the product
    * @param value default value for the product
@@ -61,12 +58,13 @@ public class StoreProduct {
 
   /**
    * Creates a storeProduct.
-   * @param productType
+   *
    * @param name Name that is showed to the customer
    * @param price Price for the product
    * @param value default value for the product
    */
-  StoreProduct(ProductType productType, String name, int price, float value, float priceIncrease, float incrementStep) {
+  StoreProduct(ProductType productType, String name, int price, float value, float priceIncrease,
+      float incrementStep) {
     this.productType = productType;
     this.name = name;
     this.value = value;
@@ -89,7 +87,6 @@ public class StoreProduct {
 
   /**
    * Sets a custom priceIncrease. Default is 5%
-   * @param priceIncrease
    */
   public void setPriceIncrease(float priceIncrease) {
     this.priceIncrease = priceIncrease;
@@ -97,7 +94,6 @@ public class StoreProduct {
 
   /**
    * Sets a custom increment for how much item price will increment
-   * @param incrementStep
    */
   public void setIncrementStep(float incrementStep) {
     this.incrementStep = incrementStep;
@@ -106,6 +102,7 @@ public class StoreProduct {
   public void setValue(float value) {
     this.value = value;
   }
+
   public void setPrice(int price) {
     this.price = price;
   }

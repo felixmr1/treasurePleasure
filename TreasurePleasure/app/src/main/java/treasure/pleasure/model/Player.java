@@ -1,8 +1,6 @@
 package treasure.pleasure.model;
 
 import android.util.Log;
-
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -10,9 +8,8 @@ import java.util.regex.Pattern;
 import treasure.pleasure.data.Data;
 
 /**
- * @author Oskar
- * As a Player hold its chest, backpack and storeProducts many functionalities
- * goes through the Player. Thus this file can be quite bulky
+ * @author Oskar As a Player hold its chest, backpack and storeProducts many functionalities goes
+ * through the Player. Thus this file can be quite bulky
  */
 
 class Player {
@@ -78,7 +75,7 @@ class Player {
 
   /**
    * Calls backpack add
-   * @param i
+   *
    * @throws Exception if full
    */
   void addToBackpack(Item i) throws Exception {
@@ -106,14 +103,17 @@ class Player {
 
   void addScore(float newScorePoints) {
     this.score += newScorePoints;
-    Log.w("STORE", "new money: " +newScorePoints);
+    Log.w("STORE", "new money: " + newScorePoints);
     Log.w("STORE", "Players money: " + this.score);
   }
+
   void removeScore(float newScorePoints) {
     this.score -= newScorePoints;
   }
 
-  void setScore(float score) {this.score = score;}
+  void setScore(float score) {
+    this.score = score;
+  }
 
   public Integer getScore() {
     return Math.round(this.score);
@@ -172,11 +172,11 @@ class Player {
   }
 
   public StoreProduct getStoreProduct(Integer storeProductId) throws Exception {
-      StoreProduct storeProduct = this.storeProducts.get(storeProductId);
-      if (storeProduct == null) {
-        throw  new Exception("Cant get storeproduct");
-      }
-      return storeProduct;
+    StoreProduct storeProduct = this.storeProducts.get(storeProductId);
+    if (storeProduct == null) {
+      throw new Exception("Cant get storeproduct");
+    }
+    return storeProduct;
   }
 
 }

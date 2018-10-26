@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import treasure.pleasure.R;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 

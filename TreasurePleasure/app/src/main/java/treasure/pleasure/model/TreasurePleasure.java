@@ -3,9 +3,6 @@ package treasure.pleasure.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
-
-import java.io.Serializable;
-import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +17,7 @@ import treasure.pleasure.data.Tuple;
  *
  * @author Oskar, John, Felix, Jesper and David
  */
- public class TreasurePleasure {
+public class TreasurePleasure {
 
   private Map<String, Player> players;
   private ArrayList<String> takenUsernames;
@@ -31,9 +28,7 @@ import treasure.pleasure.data.Tuple;
   private ArrayList<StoreProduct> storeProducts = new ArrayList<>();
   private treasure.pleasure.model.Map map;
 
-
   TreasurePleasure() {
-
     this.players = new HashMap<>();
     this.takenUsernames = new ArrayList<>();
     this.map = new treasure.pleasure.model.Map();
@@ -75,11 +70,9 @@ import treasure.pleasure.data.Tuple;
   public void addPlayerToGame(String username, Avatar avatar) throws Exception {
     if (takenUsernames.contains(username.toLowerCase())) {
       throw new Exception("Username is taken!");
-    }
-    else if (username.isEmpty() || username == null){
+    } else if (username.isEmpty() || username == null) {
       throw new Exception("Username can not be empty!");
-    }
-    else {
+    } else {
 
       Player player = new Player(username, avatar, this.getStoreProducts());
       player.setChest(new Location(Data.getChestLat(), Data.getChestLong()));
@@ -92,25 +85,30 @@ import treasure.pleasure.data.Tuple;
   }
 
   private void addStoreProducts() {
-     StoreProduct increaseBackPackSize = new StoreProduct(
-        ProductType.IncreaseBackPackSize, "Increase backpack size", 125,
+    StoreProduct increaseBackPackSize = new StoreProduct(
+        ProductType.BackpackIncreaseSmall, "Small backpack increase", 125,
         (float) Data.getBackpackMaxSize());
     increaseBackPackSize.setIncrementStep(3);
 
-     StoreProduct increaseCollectiblesValue = new StoreProduct(
-        ProductType.IncreaseCollectiblesValue, "Increase value of items", 1000,
+    StoreProduct increaseBackPackSizeAlot = new StoreProduct(
+        ProductType.BackpackIncreaseLarge, "Large backpack increase", 300,
+        (float) Data.getBackpackMaxSize(), 1.5f, 9);
+    increaseBackPackSize.setIncrementStep(6);
+
+    StoreProduct increaseCollectiblesValue = new StoreProduct(
+        ProductType.CollectiblesValueIncreaseSmall, "Increase value of items", 1000,
         (float) Data.getPlayerValueIncrementer(), 50f, 0.05f);
 
-     StoreProduct increaseNrCollectibles = new StoreProduct(
-        ProductType.IncreaseNrCollectibles, "Increase items on the map", 400,
+    StoreProduct increaseNrCollectibles = new StoreProduct(
+        ProductType.NrCollectiblesIncreaseSmall, "Increase items on the map", 400,
         (float) Data.getNrOfCollectables());
 
-     StoreProduct increaseInteractionDistance = new StoreProduct(
-        ProductType.IncreaseInteractionDistance, "Increase your reach", 500,
+    StoreProduct increaseInteractionDistance = new StoreProduct(
+        ProductType.InteractionDistanceIncreaseSmall, "Increase your reach", 500,
         (float) Data.getMaxInteractionDistance(), 1.5f);
 
-
     storeProducts.add(increaseBackPackSize);
+    storeProducts.add(increaseBackPackSizeAlot);
     storeProducts.add(increaseCollectiblesValue);
     storeProducts.add(increaseNrCollectibles);
     storeProducts.add(increaseInteractionDistance);
@@ -123,7 +121,8 @@ import treasure.pleasure.data.Tuple;
   /**
    * returns pair of (ItemType, double Value) to whatever UI/ controller that  calls it.
    *
-   * @return List<Tuple               <               ItemTYpe               ,                               Double>>
+   * @return List<Tuple                                                                                                                                                                                                                                                               <
+               *       ItemTYpe                                                                                                                                                                                                                                                               ,       Double>>
    */
 
   // TODO: hardcoded player
@@ -372,16 +371,19 @@ import treasure.pleasure.data.Tuple;
   private void updatePlayerAttribute(Player player, StoreProduct sp) {
     ProductType pt = sp.getProductType();
     switch (pt) {
-      case IncreaseBackPackSize:
+      case BackpackIncreaseSmall:
         player.setBackpackMaxSize(Math.round(sp.getValue()));
         break;
-      case IncreaseCollectiblesValue:
+      case BackpackIncreaseLarge:
+        player.setBackpackMaxSize(Math.round(sp.getValue()));
+        break;
+      case CollectiblesValueIncreaseSmall:
         player.setValueMultiplier(sp.getValue());
         break;
-      case IncreaseNrCollectibles:
+      case NrCollectiblesIncreaseSmall:
         collectibleItems.setNrCollectibles(Math.round(sp.getValue()));
         break;
-      case IncreaseInteractionDistance:
+      case InteractionDistanceIncreaseSmall:
         player.setInteractionDistance(sp.getValue());
         break;
     }

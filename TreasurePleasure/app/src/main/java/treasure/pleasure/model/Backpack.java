@@ -5,10 +5,10 @@ import java.util.List;
 import treasure.pleasure.data.Data;
 
 /**
- *
  * Class / data structure of a backpack that handles logic for the backpacks limitations
  *
  * class invariant : nOfBusySlots < maxSize
+ *
  * @author John
  */
 
@@ -22,8 +22,7 @@ class Backpack<T> {
   private int nOfBusySlots;
 
 
-
-  Backpack(int maxSize){
+  Backpack(int maxSize) {
     this.items = new ArrayList<>(maxSize);
     this.backPackLevel = Data.getInitialBackpackLevel();
     this.maxSize = maxSize;
@@ -32,7 +31,6 @@ class Backpack<T> {
 
   /**
    * Copy constructor
-   * @param copy
    */
   Backpack(Backpack copy) {
     this.items = copy.getAllItems();
@@ -53,6 +51,7 @@ class Backpack<T> {
 
   /**
    * adds item to backpack
+   *
    * @param item item to be added
    * @throws Exception if full
    */

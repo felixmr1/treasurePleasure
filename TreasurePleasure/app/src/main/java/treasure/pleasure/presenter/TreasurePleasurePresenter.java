@@ -7,14 +7,11 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import treasure.pleasure.data.AndroidImageAssets;
 import treasure.pleasure.data.PersistentData;
 import treasure.pleasure.data.Tuple;
 import treasure.pleasure.model.Avatar;
 import treasure.pleasure.model.ItemType;
-import treasure.pleasure.model.TreasurePleasure;
-import treasure.pleasure.model.TreasurePleasureFactory;
 import treasure.pleasure.view.BackpackFragment;
 import treasure.pleasure.view.ChestFragment;
 import treasure.pleasure.view.GameMapFragment;
@@ -26,7 +23,6 @@ import treasure.pleasure.view.TreasurePleasureView;
 /**
  * The presenter handles calls between views and the model. It makes sure that we dont need any
  * logic in the views and translates information from the model to the view.
- *
  *
  * @author david, oskar, jesper, felix and john
  */
@@ -278,7 +274,6 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
 
   /**
    * Buying a storeProduct results in a change of game state
-   * @param storeProduct
    */
   public void buyStoreProduct(Integer storeProduct) {
     try {
@@ -304,6 +299,7 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     }
     return name;
   }
+
   public String getStoreProductPrice(Integer id) {
     String name = "";
     try {
@@ -313,6 +309,7 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     }
     return name;
   }
+
   public String getStoreProductValue(Integer id) {
     String name = "";
     try {
@@ -322,6 +319,7 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     }
     return name;
   }
+
   public String getStoreProductNextValue(Integer id) {
     String name = "";
     try {
@@ -368,16 +366,13 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
     this.storeView = null;
   }
 
-
-  public void attachGameMapFragment(GameMapFragment gameMapFragment) throws IllegalArgumentException{
+  public void attachGameMapFragment(GameMapFragment gameMapFragment)
+      throws IllegalArgumentException {
 
     if (gameMapFragment == null) {
       throw new IllegalArgumentException("gameMapFragment null");
     }
     this.gameMapView = gameMapFragment;
     this.gameMapView.setAvatarPath(AndroidImageAssets.getAvatarImages().get(avatar));
-
-
   }
-
 }

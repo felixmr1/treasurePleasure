@@ -24,7 +24,7 @@ public class StoreTests {
     }
     Location storeLocation = new Location(Data.getStoreLat(), Data.getStoreLong());
     ArrayList<StoreProduct> storeProducts = new ArrayList<>();
-    increaseBackpack = new StoreProduct(ProductType.IncreaseBackPackSize, "Increase backpack size", 50, player.getBackpackMaxSize());
+    increaseBackpack = new StoreProduct(ProductType.BackpackIncreaseSmall, "Increase backpack size", 50, player.getBackpackMaxSize());
 
     store = new Store(storeLocation);
   }
@@ -115,6 +115,40 @@ public class StoreTests {
         assertTrue(newPrice > oldPrice);
         assertTrue((newPrice - oldPrice) > oldDifference);
         oldDifference = newPrice - oldPrice;
+      }
+    } catch (Exception e) {
+      assertFalse(e.getMessage(), true);
+    }
+  }
+
+  @Test
+  public void checkIfHigherPriceIncreaseIsHigher() {
+    StoreProduct iInteractionRad = new StoreProduct(ProductType.InteractionDistanceIncreaseSmall, "Increase interaction distance", 50, (float) player.getInteractionDistance(), 1.5f);
+
+    int buys = 10;
+    try {
+      for (int i = 0; i < buys; i++) {
+        player.setScore(1000000);
+        store.buy(increaseBackpack, player.getScore());
+        store.buy(iInteractionRad, player.getScore());
+        assertTrue(increaseBackpack.getPrice() < iInteractionRad.getPrice());
+      }
+    } catch (Exception e) {
+      assertFalse(e.getMessage(), true);
+    }
+  }
+
+  @Test
+  public void checkIfHigherIncrementStepIsHigher() {
+    StoreProduct increaseBackpackPlus = new StoreProduct(ProductType.BackpackIncreaseSmall, "Increase backpackSize 2x", 100, (float) player.getBackpackMaxSize(), 1.3f, 6);
+
+    int buys = 10;
+    try {
+      for (int i = 0; i < buys; i++) {
+        player.setScore(1000000);
+        store.buy(increaseBackpack, player.getScore());
+        store.buy(increaseBackpackPlus, player.getScore());
+        assertTrue(increaseBackpack.getNextValue() < increaseBackpackPlus.getNextValue());
       }
     } catch (Exception e) {
       assertFalse(e.getMessage(), true);

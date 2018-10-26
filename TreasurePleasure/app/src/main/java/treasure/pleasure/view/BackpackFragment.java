@@ -8,9 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
-import treasure.pleasure.data.Tuple;
-
 import treasure.pleasure.R;
+import treasure.pleasure.data.Tuple;
 import treasure.pleasure.presenter.TreasurePleasurePresenter;
 
 /**

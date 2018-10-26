@@ -18,7 +18,6 @@ public class Item implements ItemCallBack {
 
   /**
    * Randomly creates an Item of a random type that exists in th ArrayList itemTypes
-   * @param itemTypes
    */
   Item(ArrayList<ItemType> itemTypes) {
     ItemType itemType;
@@ -50,8 +49,6 @@ public class Item implements ItemCallBack {
 
   /**
    * creates a specific Item with desired type and value.
-   * @param type
-   * @param value
    */
   Item(ItemType type, double value) {
     this.type = type;

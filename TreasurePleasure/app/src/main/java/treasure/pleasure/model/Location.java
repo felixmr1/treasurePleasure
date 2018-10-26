@@ -1,15 +1,13 @@
 package treasure.pleasure.model;
 
-import android.util.Log;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.Date;
 import java.util.Objects;
 import treasure.pleasure.data.Data;
 
 /**
- * Contains all the logic for handling longitudes and latitudes.
- * Other classes uses this clase to calculate distances, their long/lats and if they are
- * closeEnough to an other location.
+ * Contains all the logic for handling longitudes and latitudes. Other classes uses this clase to
+ * calculate distances, their long/lats and if they are closeEnough to an other location.
  *
  * @author Jesper and David
  */
@@ -91,7 +89,9 @@ class Location {
     final double incLong = compareLocation.getLongitude();
     final double incLat = compareLocation.getLatitude();
 
-    if (Data.isDebug()) return true;
+    if (Data.isDebug()) {
+      return true;
+    }
     return distanceTo(incLat, incLong) <= interactionDistance;
   }
 
@@ -139,8 +139,8 @@ class Location {
     double latDiff = latToRad - latFromRad;
     double longDiff = lngToRad - lngFromRad;
 
-    double sinLatDiff = Math.pow(Math.sin(latDiff/2), 2);
-    double sinLongDiff = Math.pow(Math.sin(longDiff/2), 2);
+    double sinLatDiff = Math.pow(Math.sin(latDiff / 2), 2);
+    double sinLongDiff = Math.pow(Math.sin(longDiff / 2), 2);
     double cosLatDiff = Math.cos(latFromRad) * Math.cos(latToRad);
 
     double alpha = sinLatDiff + cosLatDiff * sinLongDiff;
@@ -153,6 +153,7 @@ class Location {
 
   /**
    * Checks if a location is within map/border (Only supports a rectangular box for now)
+   *
    * @param northWest The northwest locaiton of the map/border
    * @param southEast The soutEast location of the map/border
    */
@@ -160,20 +161,30 @@ class Location {
     boolean isWithin = true;
     double mapWidth = southEast.getLongitude() - northWest.getLongitude();
     double mapHeight = northWest.getLatitude() - southEast.getLatitude();
-    Location northEast = new Location(northWest.getLatitude() + 0, northWest.getLongitude() + mapWidth);
+    Location northEast = new Location(northWest.getLatitude() + 0,
+        northWest.getLongitude() + mapWidth);
     Location southWest = new Location(southEast.getLatitude(), southEast.getLongitude() - mapWidth);
 
-    if (this.getLatitude() > northWest.getLatitude()) return false;
-    if (this.getLongitude() < northWest.getLongitude()) return false;
+    if (this.getLatitude() > northWest.getLatitude()) {
+      return false;
+    }
+    if (this.getLongitude() < northWest.getLongitude()) {
+      return false;
+    }
 
-    if (this.getLatitude() < southEast.getLatitude()) return false;
-    if (this.getLongitude() > southEast.getLongitude()) return false;
+    if (this.getLatitude() < southEast.getLatitude()) {
+      return false;
+    }
+    if (this.getLongitude() > southEast.getLongitude()) {
+      return false;
+    }
 
     return true;
   }
 
   /**
    * Returns a new random location
+   *
    * @param northWest The northwest locaiton of the map/border
    * @param southEast The soutEast location of the map/border
    * @return A new location that is randomly spawned within given map/border
@@ -226,7 +237,8 @@ class Location {
 
   /**
    * * Sets the distance between interactions on the map. Used when calculating if two locations is
-   *    * close enough.
+   * * close enough.
+   *
    * @param maxDistance distance in meters
    */
   void setMaxInteractionDistance(double maxDistance) {
@@ -256,21 +268,31 @@ class Location {
     return new LatLng(this.latitude, this.longitude);
   }
 
-    //override equals and hashcode to make matching work in CollectibleItems hashmap
-    @Override
-    public boolean equals(Object obj) {
-      if (obj == null ) return false;
-      if (obj == this) return true;
-      if (!(obj instanceof Location)) return false;
-
-      Location other = (Location) obj;
-      if (this.latitude != other.latitude) return false;
-      if (this.longitude != other.longitude) return false;
+  //override equals and hashcode to make matching work in CollectibleItems hashmap
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (obj == this) {
       return true;
+    }
+    if (!(obj instanceof Location)) {
+      return false;
+    }
+
+    Location other = (Location) obj;
+    if (this.latitude != other.latitude) {
+      return false;
+    }
+    if (this.longitude != other.longitude) {
+      return false;
+    }
+    return true;
   }
 
-    @Override
-    public int hashCode() {
-      return Objects.hash(latitude, longitude);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(latitude, longitude);
+  }
 }

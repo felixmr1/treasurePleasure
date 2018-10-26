@@ -1,4 +1,5 @@
 package treasure.pleasure.view;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,7 +23,8 @@ import treasure.pleasure.presenter.TreasurePleasurePresenter;
  * @author oskar, david, jesper, felix and john
  */
 
-public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePresenter> implements TreasurePleasureView {
+public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePresenter> implements
+    TreasurePleasureView {
 
   TextView score;
 
@@ -40,8 +42,9 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
   }
 
   /**
-   * is called in super the superclass BaseActivity constructor. has to be implemented to get a concrete implementation of the presenter
-   * @param context
+   * is called in super the superclass BaseActivity constructor. has to be implemented to get a
+   * concrete implementation of the presenter
+   *
    * @return TreasurePleasurePresenter.
    */
   @Override
@@ -51,7 +54,7 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
     Avatar avatar = (Avatar) data.get("avatar");
     String userName = data.getString("username");
 
-    return new TreasurePleasurePresenter(this,userName,avatar);
+    return new TreasurePleasurePresenter(this, userName, avatar);
 
   }
 
@@ -63,7 +66,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
 
   /**
    * Pressing buttons on screen triggers these functionalities
-   * @param view
    */
   public void onPressShowSettingsButton(View view) {
     mPresenter.showSettings();
@@ -79,7 +81,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
 
   /**
    * Can take a list of users from the Presenter to update its displayed content
-   * @param users
    */
 // Functions that the Presenter calls (tells view to update)
   @Override
@@ -93,7 +94,6 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
 
   /**
    * Create a fragment onscreen displaying e.g. backpack content
-   *
    */
   public void showBackpackFragment() {
     BackpackFragment backpackFragment = new BackpackFragment();
@@ -120,13 +120,12 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
   public void showStoreFragment() {
     StoreFragment storeFragment = new StoreFragment();
     getSupportFragmentManager().beginTransaction().add(R.id.store_container, storeFragment)
-            .commit();
+        .commit();
     storeFragment.setPresenter(mPresenter);
   }
 
   /**
    * Hide fragment onscreen displaying the backpack content.
-   *
    */
   public void hideBackpackFragment() {
     FragmentManager fm = getSupportFragmentManager();
@@ -171,10 +170,8 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
 
 
   /**
-   * With the following functions the presenter tells a fragment/view
-   * to change the text on a displayed button
-   *
-   * @param newText
+   * With the following functions the presenter tells a fragment/view to change the text on a
+   * displayed button
    */
 
   public void changeMapButtonText(String newText) {
@@ -194,10 +191,11 @@ public class TreasurePleasureActivity extends BaseActivity<TreasurePleasurePrese
 
   /**
    * Show on screen message (the little grey popup box on the bottom).
+   *
    * @param string to be displayed
    */
   public void showToast(String string) {
     Toast.makeText(this, string,
         Toast.LENGTH_SHORT).show();
   }
-  }
+}

@@ -33,6 +33,18 @@ public class TreasurePleasureTest {
    * Tests for player and username functionalities:
    */
   @Test
+  public void testFactory() {
+    TreasurePleasureFactory tpf = new TreasurePleasureFactory();
+    TreasurePleasure tp1 = tpf.getInstance();
+    TreasurePleasure tp2 = tpf.getInstance();
+
+    assertTrue(tp1.equals(tp2));
+  }
+
+  /**
+   * Tests for player and username functionalities:
+   */
+  @Test
   public void addPlayerIncrementsNrPlayers() {
     usernames = tp.getPlayerNames();
     try {
