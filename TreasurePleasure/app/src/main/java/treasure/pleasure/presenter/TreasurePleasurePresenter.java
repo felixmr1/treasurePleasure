@@ -77,10 +77,12 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
   }
 
   public void showStore() {
+    LatLng playerLatLng = getMyCurrentLatLng();
+    gameMapView.drawInteractionCircle(playerLatLng, model.getMaxInteractionDistance(), 1500);
     if (view.storeFragmentIsActive()) {
       view.hideStoreFragment();
       storeView = null;
-    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+    } else if (!model.isStoreCloseEnough(username, playerLatLng)) {
       view.showToast("Store is not close enough");
     } else {
       view.showStoreFragment();
@@ -88,9 +90,12 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
   }
 
   public void showChest() {
+    LatLng playerLatLng = getMyCurrentLatLng();
+    gameMapView.drawInteractionCircle(playerLatLng, model.getMaxInteractionDistance(), 1500);
     if (view.chestFragmentIsActive()) {
       view.hideChestFragment();
-    } else if (!model.isChestCloseEnough(username, getMyCurrentLatLng())) {
+    } else if (!model.isChestCloseEnough(username, playerLatLng)) {
+
       view.showToast("Chest is not close enough");
     } else {
       view.showChestFragment();
@@ -244,7 +249,6 @@ public class TreasurePleasurePresenter extends BasePresenter<TreasurePleasureAct
       view.showToast("Item collected! Check your backpack =D");
       drawCollectibles();
     } catch (Exception e) {
-      gameMapView.drawCustomUserMarker(getMyCurrentLatLng());
       view.showToast(e.getMessage());
     } finally {
       gameMapView.drawInteractionCircle(playerLatLng, model.getMaxInteractionDistance(), 1500);

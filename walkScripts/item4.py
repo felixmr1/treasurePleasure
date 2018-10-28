@@ -5,19 +5,19 @@ import telnetlib
 from time import sleep
 import random
 
+char = '.'
 FILE = open('/Users/jesper/.emulator_console_auth_token', 'r')
 AUTH_TOKEN = FILE.read()
 FILE.close()
 
-char = '.'
 HOST = "127.0.0.1"
 PORT = 5554
-TIMEOUT = 5
-LAT_SRC = 57.687712
-LNG_SRC = 11.979047
-LAT_DST = 57.686935
-LNG_DST = 11.979410
-SECONDS = 10
+TIMEOUT = 10
+LAT_SRC = 57.689737
+LNG_SRC = 11.977012
+LAT_DST = 57.688113
+LNG_DST = 11.979645
+SECONDS = 5
 
 LAT_MAX_STEP = ((max(LAT_DST, LAT_SRC) - min(LAT_DST, LAT_SRC)) / SECONDS) * 2
 LNG_MAX_STEP = ((max(LNG_DST, LNG_SRC) - min(LNG_DST, LNG_SRC)) / SECONDS) * 2

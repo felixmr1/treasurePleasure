@@ -37,10 +37,11 @@ class CollectibleItems {
 
   void spawnInitialItems() {
     if (Data.isDemo()) {
-      addItem(new Location(57.687740, 11.978000), new Item(ItemType.DIAMOND, 99)); // first item
-      addItem(new Location(57.688273, 11.978599), new Item(ItemType.GOLD, 71)); // second item
-      addItem(new Location(57.688113, 11.979645), new Item(ItemType.IRON, 56)); // third item
-      addItem(new Location(57.688713, 11.979545), new Item(ItemType.STONE, 32)); // forth item
+      addItem(new Location(57.686935, 11.979610), new Item(ItemType.DIAMOND, 99)); // first item
+      addItem(new Location(57.687716, 11.978210), new Item(ItemType.GOLD, 71)); // second item
+      addItem(new Location(57.689737, 11.977012), new Item(ItemType.GOLD, 84)); // third item
+      addItem(new Location(57.688113, 11.979645), new Item(ItemType.IRON, 56)); // forth item
+      addItem(new Location(57.688713, 11.979545), new Item(ItemType.STONE, 32)); // fifth item
     }
     {
       for (int i = this.collectibles.size() - 1; i < nrCollectibles; i++) {

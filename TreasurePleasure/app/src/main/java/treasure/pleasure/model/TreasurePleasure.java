@@ -87,7 +87,7 @@ public class TreasurePleasure {
   private void addStoreProducts() {
     StoreProduct backpackIncreaseSmall = new StoreProduct(
         ProductType.BackpackIncreaseSmall, "Small backpack increase", 125,
-        (float) Data.getBackpackMaxSize(), 2f, 6);
+        (float) Data.getBackpackMaxSize(), 2f, 3);
 
     StoreProduct backpackIncreaseLarge = new StoreProduct(
         ProductType.BackpackIncreaseLarge, "Large backpack increase", 300,
@@ -303,7 +303,18 @@ public class TreasurePleasure {
     Location chestLocation = player.getChestLocation();
     Location myLocation = latLngToLocation(myCurrentLatLng);
     double playerInteractionDistance = player.getInteractionDistance();
+    if (playerInteractionDistance < 30) playerInteractionDistance = 30;
     return myLocation.isCloseEnough(chestLocation, playerInteractionDistance);
+  }
+
+  public boolean isStoreCloseEnough(String username,
+      LatLng myCurrentLatLng) {
+    Player player = getPlayer(username);
+    Location storeLocation = store.getLocation();
+    Location myLocation = latLngToLocation(myCurrentLatLng);
+    double playerInteractionDistance = player.getInteractionDistance();
+    if (playerInteractionDistance < 30) playerInteractionDistance = 30;
+    return myLocation.isCloseEnough(storeLocation, playerInteractionDistance);
   }
 
   /**
