@@ -42,6 +42,8 @@ class CollectibleItems {
       addItem(new Location(57.689737, 11.977012), new Item(ItemType.GOLD, 84)); // third item
       addItem(new Location(57.688113, 11.979645), new Item(ItemType.IRON, 56)); // forth item
       addItem(new Location(57.688713, 11.979545), new Item(ItemType.STONE, 32)); // fifth item
+      addItem(new Location(57.685485, 11.978886), new Item(ItemType.WOOD, 12));
+      addItem(new Location(57.685486, 11.978583), new Item(ItemType.STONE, 29));
     }
     {
       for (int i = this.collectibles.size() - 1; i < nrCollectibles; i++) {
